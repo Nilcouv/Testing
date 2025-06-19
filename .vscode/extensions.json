@@ -2,6 +2,7 @@
     "recommendations": [
         "davidanson.vscode-markdownlint",
         "bierner.markdown-mermaid",
-        "bpruitt-goddard.mermaid-markdown-syntax-highlighting"
+        "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+        "jasew.anki"
     ]
 }
