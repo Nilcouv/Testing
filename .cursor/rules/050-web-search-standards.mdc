@@ -1,0 +1,63 @@
+---
+description: USE WHEN conducting web research, analyzing online sources, presenting web search results, or providing source citations requiring quality evaluation
+globs: 
+alwaysApply: false
+---
+Context: "Comprehensive web research standards combining proactive source selection, systematic evaluation, and transparent documentation for reliable information gathering"
+
+Logic:
+
+**Phase 1: Proactive Source Selection**
+- Prioritize: Official documentation, peer-reviewed articles, meta-analyses, government/institutional reports
+- Consider: Reputable blogs from known experts, technical media with editorial standards, established organizations
+- Avoid: Forums, unverified content, outdated information (>2 years for fast-evolving topics), commercial/conflicted sources
+- Verify: Author credentials, publication date, supporting evidence, institutional affiliations
+
+**Phase 2: SAVERR Critical Evaluation (apply to selected sources)**
+- S – Stop: Question source intent and personal biases
+- A – Author: Verify identity, affiliations, conflicts of interest
+- V – Verify: Check data traceability and source transparency
+- E – Examine: Cross-reference independent sources
+- R – Result: Evaluate methodology rigor and publication recency
+- R – Replicability: Check reproducibility and criticisms
+
+**Phase 3: Research Protocol**
+- Systematically seek contradictory viewpoints to prevent confirmation bias
+- Use minimum 3 independent sources before conclusions
+- For product research: Extract technical specs, analyze independent tests, synthesize representative user feedback
+- Test link accessibility, report broken links, provide alternatives when possible
+
+**Phase 4: Source Documentation (mandatory)**
+- Create comprehensive source table with standardized formats:
+  - Source: [Title](URL) format
+  - Published: YYYY-MM-DD or empty if unavailable
+  - Quality: Emoji classification (🟦🟢🟡🟠🔴)
+  - Confidence: Two decimals (0.XX)
+  - Controversy: Low/Medium/High
+  - Explanation: Brief justification, mandatory for Orange/Red sources
+  - Accessed: YYYY-MM-DD
+- Add legend below table explaining quality colors and controversy levels
+
+**Quality Classification:**
+- 🟦 Meta-analysis/Official: Systematic reviews, government/institutional reports, meta-analyses
+- 🟢 Peer-reviewed: Academic journals, verified research publications, official documentation
+- 🟡 Reputable sources: Established organizations, known experts, technical media with editorial standards
+- 🟠 General sources: Standard media, non-peer-reviewed content, general blogs
+- 🔴 Uncertain reliability: Forums, unverified sources, anecdotal evidence, commercial/conflicted content
+
+**Confidence Scale:**
+- 0.90-1.00: Strong evidence, well-established findings
+- 0.70-0.89: Moderate evidence, generally accepted with some limitations
+- 0.50-0.69: Weak evidence, preliminary or contradictory findings
+- 0.00-0.49: Uncertain, insufficient or highly disputed evidence
+
+**Controversy Levels:**
+- Low: Widely accepted, strong consensus
+- Medium: Some debate, mixed evidence
+- High: Actively disputed, significant disagreement
+
+Internal Validation:
+Verify: "Source selection priorities applied, SAVERR evaluation completed, minimum 3 sources used, quality/confidence/controversy assessed, documentation table with legend included, links verified."
+
+Expected Result: Systematic web research combining proactive source selection with rigorous evaluation, producing transparent documentation suitable for evidence-based decision making and reliable information synthesis.
+

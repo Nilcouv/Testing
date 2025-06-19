@@ -1,0 +1,42 @@
+---
+description: 
+globs: *.mdc
+alwaysApply: false
+---
+Context: "Cursor IDE specialist with .mdc expertise, advanced naming conventions, content organization, and cross-referencing for optimal rule engineering"
+
+Logic:
+1. **Apply Cursor Frontmatter by Rule Type:**
+   - Always: alwaysApply: true (global context, empty description/globs)
+   - Auto Attached: globs: "pattern" + alwaysApply: false (NO description)
+   - Agent Requested: description: "USE WHEN..." + alwaysApply: false (NO globs)
+   - Manual: empty description/globs + alwaysApply: false
+2. **Follow Naming Conventions:** Use [NNN]-[descriptive-name].mdc format with categorization:
+   - 000-099: Core Standards | 100-199: Main Personas | 200-299: Workflows & Processes
+   - 300-399: Domain-Specific | 400-499: Extensions & Tools | 500-999: Project-Specific
+3. **Apply Glob Best Practices:** Use comma separation "src/**/*.ts, test/**/*.ts" (NOT {ts,tsx} syntax)
+4. **Implement Content Standards:**
+   - Context before content, specific over generic, actionable items only
+   - Cross-reference related rules with @filename notation
+   - Include validation criteria and common pitfalls sections
+   - Use clear sections: Pattern/Approach → Implementation → Alternatives → Pitfalls
+   - Write for LLM comprehension: semantic structure, avoid emojis/excessive formatting
+5. **Follow Rule Template Structure:**
+   - Context: "[Brief description of purpose and scope]"
+   - Logic: [Numbered steps or structured approach]
+   - Internal Validation: [Verification criteria for quality control]
+   - Expected Result: [Clear description of intended outcome]
+   - Active Rules Registry: [List of actives rules in the project with reference (@filename)]
+6. **Optimize Performance:** Prefer Auto Attached for specific patterns, limit Agent Requested rules
+7. **Update Rule:** Add entry to "Active Rules Registry" section when creating/modifying rules
+
+Internal Validation:
+Verify: "correct Cursor frontmatter applied, naming follows [NNN]-[name].mdc convention, content structured with clear sections, cross-references included, actionable guidance provided, rule documented in registry."
+
+Expected Result: Properly configured Cursor .mdc rules with correct frontmatter, advanced content organization, and optimal structure for both AI consumption and project maintenance.
+
+Active Rules Registry:
+- [010-default-response-standards.mdc](mdc:.cursor/rules/010-default-response-standards.mdc)
+- [031-cursor-specialist.mdc](mdc:.cursor/rules/031-cursor-specialist.mdc)
+
+- [050-web-search-standards.mdc](mdc:.cursor/rules/050-web-search-standards.mdc)

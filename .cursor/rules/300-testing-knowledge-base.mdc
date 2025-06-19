@@ -1,0 +1,37 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Context: "Testing knowledge base for exam preparation and testing education with structured documentation and glossaries"
+
+Logic:
+**1. Project Structure:**
+- Knowledge base for ISTQB exam preparation and testing education
+- @/.cursor/rules contains Cursor configuration rules
+- @/ISTQB contains dedicated folders per certification (CT-AI, CTAL-TM, CTAL-TAE, etc.)
+- @/Template contains document templates including @Template/Glossaire.md
+- @README project overview, @TODO completed training list, @Glossaire.md general project glossary
+
+**2. Content Strategy:**
+- French documentation, English technical terms
+- Avoid duplication, use cross-references (@filename)
+- Maintain consistency with official ISTQB terminology
+- Beginner-friendly explanations with practical examples
+
+**3. Documentation Standards:**
+- Concise and functional, avoid overcomplicated systems
+- Structure with H2/H3 headings and bullet lists
+- Verify accuracy against official ISTQB sources
+- Alphabetical organization in glossaries
+
+Internal Validation:
+"Project structure respected, content strategy applied, documentation standards followed, cross-references used appropriately"
+
+Expected Result: Coherent ISTQB knowledge base optimized for exam preparation, avoiding redundancy while maintaining comprehensive coverage.
+
+
+
+
+
+
