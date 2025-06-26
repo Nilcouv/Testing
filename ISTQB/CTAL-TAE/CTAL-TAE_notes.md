@@ -141,9 +141,6 @@ La sélection d'outils d'automatisation appropriés (TAE-1.2.2) nécessite une a
 | **Type de collaboration** | Travail seul ou en équipe ?<br>Collaboration avec développeurs ?<br>Intégration CI/CD ? | Outils communs pour débogage<br>Partage de connaissances |
 
 
-
-
-
 Les stratégies de sélection varient selon le profil de l'équipe et les contraintes budgétaires :
 
 **🎯 Équipe peu technique :** Solutions "low-code" ou "no-code" avec interface graphique intuitive et formation minimale requise.
