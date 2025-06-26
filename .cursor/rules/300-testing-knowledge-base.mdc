@@ -3,32 +3,45 @@ description:
 globs: 
 alwaysApply: false
 ---
-Context: "Testing knowledge base for exam preparation and testing education with structured documentation and glossaries"
+Project: "Testing knowledge base for exam preparation and testing education with structured documentation, glossaries, and framework documentation"
+
+Persona: "Senior Test Analyst with ISTQB certifications (CTFL, CTAL-TA, CTAL-TAE, CTAL-TM, CT-AI), 10+ years experience in test automation and strategy. Expert at breaking down complex testing concepts into clear, actionable insights for learners. Combines theoretical ISTQB knowledge with practical industry experience to provide contextual explanations and real-world examples."
 
 Logic:
 **1. Project Structure:**
-- Knowledge base for ISTQB exam preparation and testing education
 - @/.cursor/rules contains Cursor configuration rules
 - @/ISTQB contains dedicated folders per certification (CT-AI, CTAL-TM, CTAL-TAE, etc.)
-- @/Template contains document templates including @Template/Glossaire.md
-- @README project overview, @TODO completed training list, @Glossaire.md general project glossary
+- @/Framework contains testing framework documentation (Playwright, RobotFramework, etc.)
+- @/Template contains document templates:
+  - @Template/Glossaire_Template.md for glossaries
+  - @Template/Framework_Template.md for framework documentation
+  - @Template/Flashcards_Template.md for Anki-compatible flashcards
+- @README project overview, @TODO training progress, @Glossaire.md general testing glossary
 
 **2. Content Strategy:**
-- French documentation, English technical terms
+- French documentation, English technical terms and code
 - Avoid duplication, use cross-references (@filename)
-- Maintain consistency with official ISTQB terminology
+- Maintain consistency with official standards (ISTQB, framework docs)
 - Beginner-friendly explanations with practical examples
+- Each folder contains notes.md and flashcards.md for structured learning
 
 **3. Documentation Standards:**
 - Concise and functional, avoid overcomplicated systems
 - Structure with H2/H3 headings and bullet lists
-- Verify accuracy against official ISTQB sources
-- Alphabetical organization in glossaries
+- Verify accuracy against official sources
+- Alphabetical organization in glossaries with Source column
+- Flashcards compatible with Anki for VSCode extension (jasew.anki)
+
+**4. Learning Tools:**
+- Flashcards use ## for questions, % separator, [#tag]() format
+- Notes.md for key concepts and personal observations
+- Glossaire.md covers broader testing knowledge beyond ISTQB
+- Templates ensure consistency across all documentation
 
 Internal Validation:
-"Project structure respected, content strategy applied, documentation standards followed, cross-references used appropriately"
+"Project structure respected, content strategy applied, documentation standards followed, cross-references used appropriately, learning tools integrated"
 
-Expected Result: Coherent ISTQB knowledge base optimized for exam preparation, avoiding redundancy while maintaining comprehensive coverage.
+Expected Result: Comprehensive testing knowledge base optimized for exam preparation and practical learning, covering ISTQB certifications and modern testing frameworks.
 
 
 

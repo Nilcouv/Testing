@@ -38,5 +38,5 @@ Expected Result: Properly configured Cursor .mdc rules with correct frontmatter,
 Active Rules Registry:
 - [010-default-response-standards.mdc](mdc:.cursor/rules/010-default-response-standards.mdc)
 - [031-cursor-specialist.mdc](mdc:.cursor/rules/031-cursor-specialist.mdc)
-
 - [050-web-search-standards.mdc](mdc:.cursor/rules/050-web-search-standards.mdc)
+- [300-testing-knowledge-base.mdc](mdc:.cursor/rules/300-testing-knowledge-base.mdc)

@@ -70,22 +70,92 @@ Il y a huit chapitres dont le contenu peut faire l'objet d'un examen. Le syllabu
 ## Chapitre 1 : Introduction et objectifs de l'Automatisation des tests (45 minutes - K2)
 
 ### **Mots-clés**
+
 - système sous test
 - Automatisation des tests  
 - ingénieur en Automatisation des tests
 
-### **Objectifs d'apprentissage**
+### 1.1 Objectif de l'Automatisation des tests
 
-#### 1.1 Objectif de l'Automatisation des tests
-- **TAE-1.1.1 (K2)** : Expliquer les avantages et les inconvénients de l'Automatisation des tests
+#### **TAE-1.1.1 (K2)** : Expliquer les avantages et les inconvénients de l'Automatisation des tests
 
-#### 1.2 L'Automatisation des tests dans le cycle de vie du développement logiciel
-- **TAE-1.2.1 (K2)** : Expliquer comment l'Automatisation des tests est appliquée dans les différents modèles de cycle de vie du développement logiciel
-- **TAE-1.2.2 (K2)** : Sélectionner les outils d'Automatisation des tests appropriés pour un système sous test donné
+L'Automatisation des tests comprend :
+- l'**utilisation d'outils logiciels** pour contrôler et mettre en place des suites de tests,
+- l'**exécution automatisée** des tests,
+- la **comparaison automatique** des résultats réels aux résultats attendus.
+
+Cette approche couvre divers types de SUT (UI, sans UI, applications mobiles, protocoles réseau) et va au-delà des simples "frameworks" pour constituer un écosystème complet d'outils incluant l'établissement automatisé de rapports.
+
+| **AVANTAGES** | **Description** | **Exemple concret** |
+|---------------|-----------------|-------------------|
+| **Plus de tests par build** | Exécution massive automatisée | 5000 tests vs 50 manuels |
+| **Tests impossibles manuellement** | Capacités dépassant l'humain | Tests temps réel <1ms, 10k utilisateurs simultanés |
+| **Tests plus complexes** | Scénarios sophistiqués | Intégration multi-systèmes |
+| **Rapidité d'exécution** | Vitesse supérieure | 2h vs 40h pour régression |
+| **Réduction erreurs humaines** | Élimination variations manuelles | Saisie 1000 jeux de données sans erreur |
+| **Efficience des ressources** | Optimisation temps/coût/personnel | 1 TAE remplace 5 testeurs manuels |
+| **Feedback rapide** | Retour immédiat sur qualité | Résultats en temps réel |
+| **Amélioration fiabilité** | Disponibilité et récupération | Tests de robustesse continus |
+| **Cohérence d'exécution** | Standardisation des tests | Même séquence à chaque fois |
+
+| **INCONVÉNIENTS** | **Description** | **Impact** |
+|-------------------|-----------------|------------|
+| **Coûts supplémentaires** | TAE, matériel, formation | Investissement initial élevé |
+| **Temps développement** | Création et maintenance | ROI différé |
+| **Objectifs clairs requis** | Définition précise nécessaire | Risque d'échec si flou |
+| **Rigidité des tests** | Moins d'adaptabilité | Maintenance lors changements SUT |
+| **Défauts supplémentaires** | Bugs dans l'automatisation | Faux positifs/négatifs |
+
+| **LIMITES** | **Description** | **Exemples** |
+|-------------|-----------------|--------------|
+| **Automatisation partielle** | Tous tests manuels non automatisables | Tests exploratoires, utilisabilité |
+| **Vérification programmée** | Ne vérifie que ce pour quoi programmé | Pas de découverte fortuite |
+| **Oracle machine uniquement** | Résultats interprétables par machine | Pas d'évaluation esthétique/ergonomique |
+| **Caractéristiques qualité** | Certains aspects non testables | Intuitivité, ressenti utilisateur |
+
+### 1.2 L'Automatisation des tests dans le cycle de vie du développement logiciel
+
+#### **TAE-1.2.1 (K2)** : Expliquer comment l'Automatisation des tests est appliquée dans les différents modèles de cycle de vie du développement logiciel
+
+
+L'implémentation de l'automatisation varie selon le modèle SDLC utilisé. Chaque approche présente des caractéristiques spécifiques qui influencent la stratégie d'automatisation :
+
+| **Modèle SDLC** | **Caractéristiques clés** | **Implémentation TAF** | **Moment d'exécution** | **Avantages automatisation** |
+|-----------------|----------------------|------------------------|------------------------|------------------------------|
+| **Cascade** | • Séquentiel et linéaire<br>• Phases distinctes non-chevauchantes<br>• Documentation lourde<br>• Changements coûteux<br>• Exigences figées dès le début | Développement TAF après implémentation<br>Tests en fin de cycle | Phase de vérification uniquement | • Documentation complète disponible<br>• Planning prévisible<br>• Tests répétables |
+| **Modèle en V** | • Extension du modèle Cascade<br>• Correspondance phase développement ↔ test<br>• Tests planifiés en parallèle<br>• Vérification ET validation<br>• Détection précoce des défauts | TAF développé pour chaque niveau<br>Tests unitaires → Acceptation | Chaque niveau de test correspondant | • Couverture complète par niveau<br>• Validation systématique<br>• Traçabilité exigences-tests |
+| **Agile** | • Itératif (cycles répétés)<br>• Incrémental (fonctionnalités ajoutées)<br>• Sprints courts (1-4 semaines)<br>• Collaboration continue<br>• Adaptation aux changements | Automatisation intégrée dans sprints<br>CI/CD avec tests automatiques | Continue à chaque itération | • Feedback rapide<br>• Régression automatique<br>• Livraison continue |
+
+
+#### **TAE-1.2.2 (K2)** : Sélectionner les outils d'Automatisation des tests appropriés pour un système sous test donné
+
+La sélection d'outils d'automatisation appropriés (TAE-1.2.2) nécessite une analyse multicritères du contexte projet et technique :
+
+| **Critère d'analyse** | **Questions clés** | **Impact sur choix outil** |
+|-----------------------|-------------------|---------------------------|
+| **Nature du SUT** | Type de système (web, mobile, API, desktop) ?<br>Technologies utilisées ?<br>Contraintes techniques ? | Outils spécialisés requis<br>Compatibilité technologique |
+| **Besoins et contraintes projet** | Objectifs métier ?<br>Timeline et budget ?<br>Exigences de qualité ? | Évolutivité et maintenance<br>ROI attendu |
+| **Taille équipe** | Nombre de testeurs ?<br>Répartition géographique ?<br>Disponibilité ressources ? | Licences et infrastructure<br>Formation nécessaire |
+| **Répartition et expertise équipe** | Niveau technique des testeurs ?<br>Connaissances en programmation ?<br>Expérience outils similaires ? | Low-code vs programmation<br>Langage aligné avec SUT |
+| **Coût/Budget** | Budget acquisition ?<br>Coût maintenance ?<br>ROI attendu ? | Commercial vs Open Source<br>TCO long terme |
+| **Type de collaboration** | Travail seul ou en équipe ?<br>Collaboration avec développeurs ?<br>Intégration CI/CD ? | Outils communs pour débogage<br>Partage de connaissances |
+
+
+
+
+
+Les stratégies de sélection varient selon le profil de l'équipe et les contraintes budgétaires :
+
+**🎯 Équipe peu technique :** Solutions "low-code" ou "no-code" avec interface graphique intuitive et formation minimale requise.
+
+**🎯 Équipe technique :** Outils dans le même langage que le SUT pour faciliter la collaboration avec les développeurs et permettre un débogage et une formation conjointe.
+
+**🎯 Considérations coûts :** Arbitrage entre solutions commerciales sur étagère et Open Source, en évaluant le coût total de possession (TCO) incluant maintenance et support long terme.
 
 ## Chapitre 2 : Se préparer à l'Automatisation des tests (180 minutes - K4)
 
 ### **Mots-clés**
+
 - Tests d'API
 - tests de l'interface graphique
 - testabilité

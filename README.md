@@ -6,6 +6,7 @@ Base de connaissances structurée pour étudier et préparer les certifications 
 
 - **Documentation ISTQB** : Informations officielles, liens et processus de certification
 - **Dossiers par certification** : Matériel d'étude organisé par formation (CT-AI, CTAL-TM, CTAL-TAE)
+- **Frameworks de test** : Documentation des outils et frameworks (Playwright, Robot Framework)
 - **Templates** : Modèles de documents réutilisables
 - **Glossaire** : Terminologie technique bilingue (français/anglais)
 
@@ -22,6 +23,9 @@ Base de connaissances structurée pour étudier et préparer les certifications 
 │   ├── CT-AI/             # Certification AI Testing
 │   ├── CTAL-TM/           # Certification Test Management
 │   └── CTAL-TAE/          # Certification Test Automation Engineering
+├── Framework/             # Documentation des frameworks de test
+│   ├── Playwright/        # Framework Playwright
+│   └── RobotFramework/    # Framework Robot Framework
 ├── Template/              # Modèles de documents
 └── TODO                   # Suivi des formations
 ```
@@ -35,10 +39,15 @@ Base de connaissances structurée pour étudier et préparer les certifications 
 
 ## 📚 Ressources
 
+### ISTQB
 - [Site officiel ISTQB](https://www.istqb.org/)
 - [Glossaire ISTQB](https://glossary.istqb.org/)
 - [Organismes de certification français](https://cftl.fr/)
 
+### Frameworks de test
+- [Playwright](https://playwright.dev/) - Framework de test end-to-end moderne
+- [Robot Framework](https://robotframework.org/) - Framework d'automatisation générique
+
 ## 📝 Licence
 
-Contenu éducatif à des fins d'apprentissage. Les références ISTQB appartiennent à leurs propriétaires respectifs. 
+Contenu éducatif à des fins d'apprentissage. Les références ISTQB appartiennent à leurs propriétaires respectifs.
