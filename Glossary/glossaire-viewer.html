@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<!--
+===========================================
+ GLOSSAIRE TESTING - INTERFACE DYNAMIQUE
+===========================================
+
+🚀 COMMENT UTILISER CE FICHIER :
+
+📖 CONSULTATION :
+  Option 1: Serveur Python (Recommandée)
+    - Ouvrir terminal dans ce dossier
+    - Exécuter: python -m http.server 8000
+    - Ouvrir: http://localhost:8000/glossaire-viewer.html
+    
+  Option 2: Extension Cursor/VSCode
+    - Installer "Live Preview" ou "Live Server"
+    - Clic droit sur ce fichier → "Show Preview" ou "Open with Live Server"
+
+✏️  MODIFICATION DES DONNÉES :
+  - Éditer le fichier "glossaire.csv" dans le même dossier
+  - Ajouter/supprimer/modifier les lignes CSV
+  - Rafraîchir la page → Changements visibles instantanément
+  
+🔍 FONCTIONNALITÉS :
+  - Recherche temps réel dans tous les champs
+  - Filtres par catégorie et source
+  - Statistiques automatiques
+  - Interface responsive (mobile/desktop)
+  - Support bilingue FR/EN
+
+🤖 POUR L'AGENT IA :
+  - Modifier uniquement le fichier glossaire.csv
+  - Une ligne = un terme
+  - Format: id,term_en,term_fr,definition_en,definition_fr,source,category
+  - Pas besoin de regénération - tout est dynamique !
+
+===========================================
+-->
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossaire Testing - Viewer Dynamique</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .controls {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .search-bar {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        input[type="text"], select {
+            padding: 10px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        select {
+            min-width: 150px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .term {
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .definition {
+            max-width: 400px;
+            line-height: 1.4;
+        }
+        
+        .source {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        
+        .category {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            color: white;
+        }
+        
+        .category-fundamentals { background: #dc3545; }
+        .category-technical { background: #28a745; }
+        .category-testing-types { background: #ffc107; color: #212529; }
+        .category-methodologies { background: #17a2b8; }
+        .category-automation { background: #6f42c1; }
+        .category-devops { background: #fd7e14; }
+        .category-process { background: #6c757d; }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #6c757d;
+        }
+        
+        .footer {
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            background: #f8f9fa;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Glossaire Testing</h1>
+            <p>Base de connaissances dynamique - Lecture directe CSV</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number" id="total-terms">0</div>
+                    <div>Termes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="total-categories">0</div>
+                    <div>Catégories</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="filtered-count">0</div>
+                    <div>Affichés</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="🔍 Rechercher un terme ou une définition...">
+                <select id="category-filter">
+                    <option value="">Toutes les catégories</option>
+                </select>
+                <select id="source-filter">
+                    <option value="">Toutes les sources</option>
+                </select>
+                <button class="btn" onclick="clearFilters()">Effacer</button>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table id="glossary-table">
+                <thead>
+                    <tr>
+                        <th>Terme EN</th>
+                        <th>Terme FR</th>
+                        <th>Définition EN</th>
+                        <th>Définition FR</th>
+                        <th>Source</th>
+                        <th>Catégorie</th>
+                    </tr>
+                </thead>
+                <tbody id="glossary-body">
+                    <tr>
+                        <td colspan="6" class="no-results">
+                            🔄 Chargement du glossaire...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Dynamique :</strong> Lecture directe de glossaire.csv - Aucune génération requise</p>
+            <p><strong>Agent IA :</strong> Modifie directement le CSV | <strong>Utilisateur :</strong> Interface temps réel</p>
+        </div>
+    </div>
+
+    <script>
+        let glossaryData = [];
+        let filteredData = [];
+        
+        // Chargement et parsing du CSV
+        async function loadGlossary() {
+            try {
+                const response = await fetch('glossaire.csv');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const csvText = await response.text();
+                parseCSV(csvText);
+                updateStats();
+                renderTable();
+                populateFilters();
+            } catch (error) {
+                console.error('Erreur de chargement:', error);
+                document.getElementById('glossary-body').innerHTML = `
+                    <tr><td colspan="6" class="no-results">
+                        ❌ Erreur de chargement du CSV<br>
+                        <small>Assurez-vous que glossaire.csv est accessible</small>
+                    </td></tr>
+                `;
+            }
+        }
+        
+        // Parser CSV simple
+        function parseCSV(csv) {
+            const lines = csv.trim().split('\n');
+            const headers = lines[0].split(',');
+            
+            glossaryData = [];
+            for (let i = 1; i < lines.length; i++) {
+                const values = parseCSVLine(lines[i]);
+                if (values.length === headers.length) {
+                    const entry = {};
+                    headers.forEach((header, index) => {
+                        entry[header.trim()] = values[index].trim();
+                    });
+                    glossaryData.push(entry);
+                }
+            }
+            filteredData = [...glossaryData];
+        }
+        
+        // Parser une ligne CSV avec gestion des guillemets
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current);
+            return result;
+        }
+        
+        // Rendu du tableau
+        function renderTable() {
+            const tbody = document.getElementById('glossary-body');
+            
+            if (filteredData.length === 0) {
+                tbody.innerHTML = `
+                    <tr><td colspan="6" class="no-results">
+                        🔍 Aucun résultat trouvé<br>
+                        <small>Essayez d'autres mots-clés ou filtres</small>
+                    </td></tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = filteredData.map(entry => `
+                <tr>
+                    <td><span class="term">${entry.term_en || '-'}</span></td>
+                    <td><span class="term">${entry.term_fr || '-'}</span></td>
+                    <td><div class="definition">${entry.definition_en || '-'}</div></td>
+                    <td><div class="definition">${entry.definition_fr || '-'}</div></td>
+                    <td><span class="source">${entry.source || '-'}</span></td>
+                    <td><span class="category category-${entry.category}">${entry.category || '-'}</span></td>
+                </tr>
+            `).join('');
+        }
+        
+        // Mise à jour des statistiques
+        function updateStats() {
+            document.getElementById('total-terms').textContent = glossaryData.length;
+            document.getElementById('filtered-count').textContent = filteredData.length;
+            
+            const categories = new Set(glossaryData.map(entry => entry.category).filter(Boolean));
+            document.getElementById('total-categories').textContent = categories.size;
+        }
+        
+        // Population des filtres
+        function populateFilters() {
+            const categories = [...new Set(glossaryData.map(entry => entry.category).filter(Boolean))].sort();
+            const sources = [...new Set(glossaryData.map(entry => entry.source).filter(Boolean))].sort();
+            
+            const categoryFilter = document.getElementById('category-filter');
+            categoryFilter.innerHTML = '<option value="">Toutes les catégories</option>' +
+                categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+            
+            const sourceFilter = document.getElementById('source-filter');
+            sourceFilter.innerHTML = '<option value="">Toutes les sources</option>' +
+                sources.map(src => `<option value="${src}">${src}</option>`).join('');
+        }
+        
+        // Filtrage
+        function applyFilters() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const categoryFilter = document.getElementById('category-filter').value;
+            const sourceFilter = document.getElementById('source-filter').value;
+            
+            filteredData = glossaryData.filter(entry => {
+                const matchesSearch = !searchTerm || 
+                    entry.term_en.toLowerCase().includes(searchTerm) ||
+                    entry.term_fr.toLowerCase().includes(searchTerm) ||
+                    entry.definition_en.toLowerCase().includes(searchTerm) ||
+                    entry.definition_fr.toLowerCase().includes(searchTerm);
+                
+                const matchesCategory = !categoryFilter || entry.category === categoryFilter;
+                const matchesSource = !sourceFilter || entry.source === sourceFilter;
+                
+                return matchesSearch && matchesCategory && matchesSource;
+            });
+            
+            updateStats();
+            renderTable();
+        }
+        
+        // Effacer les filtres
+        function clearFilters() {
+            document.getElementById('search').value = '';
+            document.getElementById('category-filter').value = '';
+            document.getElementById('source-filter').value = '';
+            applyFilters();
+        }
+        
+        // Event listeners
+        document.getElementById('search').addEventListener('input', applyFilters);
+        document.getElementById('category-filter').addEventListener('change', applyFilters);
+        document.getElementById('source-filter').addEventListener('change', applyFilters);
+        
+        // Chargement initial
+        loadGlossary();
+    </script>
+</body>
+</html>

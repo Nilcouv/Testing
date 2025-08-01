@@ -22,14 +22,19 @@ INSTRUCTIONS POUR L'AGENT :
 | **Behavior-Driven Development** | Développement piloté par les comportements | Approche collaborative de développement où l'équipe se concentre sur la livraison du comportement attendu d'un composant pour le client. | Agile Testing |
 | **Capture/Playback** | Capture/rejeu | Approche d'automatisation des tests où les entrées vers l'objet de test sont enregistrées pendant les tests manuels pour générer des scripts automatisés. | ISTQB CTAL-TAE |
 | **CI/CD Pipeline** | Pipeline d'intégration et déploiement continus | Série d'étapes automatisées utilisées par les équipes de développement et d'opérations pour compiler, tester et déployer le code logiciel de manière plus rapide et fiable. Le pipeline automatise les processus d'intégration continue (CI) et de livraison continue (CD) pour améliorer la qualité du code et accélérer les cycles de livraison. | DevOps |
+| **Confirmation Testing (Retest)** | Test de confirmation (retest) | A type of change-related testing performed after fixing a defect to confirm that a failure caused by that defect does not reoccur. | ISTQB |
 | **Continuous Deployment** | Déploiement continu | Pratique DevOps où les modifications de code sont automatiquement déployées en production après avoir passé tous les tests automatisés prédéfinis. | DevOps |
 | **Continuous Integration** | Intégration continue | Pratique de développement où les développeurs intègrent fréquemment leurs modifications de code dans un référentiel central, déclenchant des tests automatisés pour détecter les problèmes d'intégration rapidement. | DevOps |
 | **Contract Testing** | Tests de contrat | Type de test qui vérifie que les interactions entre les services respectent un contrat défini, particulièrement important dans les architectures de microservices. | Microservices Testing |
 | **Data-Driven Testing** | Tests pilotés par les données | Technique de script qui stocke les données de test et les résultats attendus dans un tableau, permettant à un script de contrôle d'exécuter tous les tests. | ISTQB CTAL-TAE |
+| **Defect (Bug, Fault)** | Défaut (Bug, Faute) | An imperfection or deficiency in a work product where it does not meet its requirements or specifications or impairs its intended use. | ISTQB |
+| **Error (Mistake)** | Erreur | A human action that results in a defect. | ISTQB |
 | **Exit Criteria** | Critères de sortie | Ensemble de conditions génériques ou spécifiques, convenues au préalable avec les parties prenantes, pour permettre à un processus d'être officiellement achevé. | ISTQB CTFL |
+| **Failure** | Défaillance | An event in which a component or system does not meet its requirements within specified limits during its execution. | ISTQB |
 | **Frontend** | Interface utilisateur | Partie visible d'une application accessible via le navigateur web. | General Testing |
 | **Generic Test Automation Architecture (gTAA)** | Architecture générique d'automatisation des tests (gTAA) | Représentation des couches, composants et interfaces d'une architecture d'automatisation des tests, permettant une approche structurée et modulaire. | ISTQB CTAL-TAE |
 | **GUI Testing** | Tests de l'interface graphique | Tests réalisés en interagissant avec le logiciel testé via l'interface utilisateur graphique. | ISTQB CTAL-TAE |
+| **Incident** | Incident | Tout événement arrivant pendant les tests qui requiert une vérification. Divergence entre le résultat obtenu et le résultat attendu lors de l'exécution d'un test. | ISTQB |
 | **Keyword-Driven Testing** | Tests pilotés par les mots-clés | Technique de script qui utilise des fichiers de données contenant non seulement les données de test mais aussi des mots-clés liés à l'application testée. | ISTQB CTAL-TAE |
 | **Linear Scripting** | Script linéaire | Technique de script simple sans structure de contrôle dans les scripts de test. | ISTQB CTAL-TAE |
 | **Logging** | Journalisation | Processus d'enregistrement des événements, erreurs et informations système pendant l'exécution des tests pour faciliter le débogage et l'analyse. | General Testing |
@@ -37,6 +42,7 @@ INSTRUCTIONS POUR L'AGENT :
 | **Metric** | Métrique | Échelle de mesure et méthode utilisée pour la mesure. | ISTQB CTAL-TM |
 | **Model-Based Testing** | Tests basés sur des modèles | Tests basés sur ou impliquant des modèles du système ou de ses composants. | ISTQB CTFL |
 | **Risk** | Risque | Facteur qui pourrait entraîner des conséquences négatives futures. | ISTQB CTFL |
+| **Regression Testing** | Test de non-régression | A type of change-related testing to detect whether defects have been introduced or uncovered in unchanged areas of the software. | ISTQB |
 | **Schema Validation** | Validation de schéma | Processus de vérification qu'un document ou une structure de données respecte un schéma prédéfini. | API Testing |
 | **SDLC (Software Development Life Cycle)** | Cycle de vie du développement logiciel | Processus structuré de développement logiciel comprenant les phases de planification, analyse, conception, implémentation, test, déploiement et maintenance. L'automatisation des tests doit être intégrée à travers toutes ces phases pour assurer une qualité continue. | IEEE 12207 |
 | **Static Analysis** | Analyse statique | Analyse du code ou des documents sans exécution du programme, pour détecter des défauts potentiels ou vérifier la conformité aux standards. | ISTQB CTFL |
@@ -48,9 +54,16 @@ INSTRUCTIONS POUR L'AGENT :
 | **Test Context** | Contexte de test | Ensemble des conditions et circonstances dans lesquelles les tests sont planifiés et exécutés. | ISTQB CTFL |
 | **Test Harness** | Harnais de tests | Collection d'outils logiciels et de données de test configurés pour tester un programme en simulant l'environnement d'exécution. | IEEE 610 |
 | **Test Logging** | Journalisation des tests | Enregistrement automatique des activités et résultats de test pour faciliter l'analyse et le débogage. | ISTQB CTAL-TAE |
+| **Test Level** | Niveau de test | A specific instantiation of a test process. | ISTQB |
+| **Test Plan** | Plan de test | Documentation describing the test objectives to be achieved and the means and the schedule for achieving them, organized to coordinate testing. | ISTQB |
+| **Test Policy** | Politique de test | High-level documentation describing the principles, approach and major objectives of the organization regarding testing. | ISTQB |
+| **Test Procedure** | Procédure de test | A sequence of test cases in execution order and any associated actions that may be required to set up the initial preconditions and any wrap-up activities after execution. | ISTQB |
 | **Test Progress Report** | Rapport d'avancement des tests | Document résumant les activités de test et les résultats obtenus pendant une période donnée. | ISTQB CTAL-TM |
 | **Test Script** | Script de test | Séquence d'instructions qui peut être exécutée par un outil d'exécution de test. | ISTQB CTAL-TAE |
 | **Test Step** | Étape de test | Action individuelle la plus petite dans un script de test ou un cas de test. | ISTQB CTAL-TAE |
+| **Test Strategy** | Stratégie de test | A description of how to perform testing to reach test objectives under given circumstances. | ISTQB |
+| **Test Suite** | Suite de test | A set of test scripts or test procedures to be executed in a specific test run. | ISTQB |
+| **Test Completion Report** | Rapport de synthèse de test | A type of test report produced at completion milestones that provides an evaluation of the corresponding test items against exit criteria. | ISTQB |
 | **Test-Driven Development** | Développement piloté par les tests | Pratique de développement où les tests sont écrits avant le code de production. | Agile Testing |
 | **Test Adaptation Layer** | Couche d'adaptation des tests | Couche dans une architecture d'automatisation des tests qui fournit les interfaces nécessaires pour interagir avec le système sous test. | ISTQB CTAL-TAE |
 | **Test Automation Architecture** | Architecture d'automatisation des tests | Structure organisationnelle et technique d'un système d'automatisation des tests, définissant les composants, leurs relations et les principes directeurs. | ISTQB CTAL-TAE |
@@ -59,19 +72,6 @@ INSTRUCTIONS POUR L'AGENT :
 | **Test Histogram** | Histogramme de test | Représentation graphique de la distribution des résultats de test ou des métriques de test sur une période donnée. | ISTQB CTAL-TAE |
 | **Testability** | Testabilité | Degré d'efficacité et d'efficience avec lequel les critères de test peuvent être établis pour un système et les tests peuvent être effectués. | ISTQB CTFL |
 | **Testware** | Artefacts de test | Tous les produits de travail créés pendant le processus de test, incluant les plans, cas de test, procédures et données de test. | ISTQB CTFL |
-| **Confirmation Testing (Retest)** | Test de confirmation (retest) | Test qui exécute des cas de tests qui ont été en échec la dernière fois. | ISTQB |
-| **Defect (Bug, Fault)** | Défaut (Bug, Faute) | Une imperfection dans un composant ou un système ce qui conduit à une mauvaise exécution. Un défaut, si rencontré lors de l'exécution, peut causer la défaillance d'un composant ou d'un système. | ISTQB |
-| **Error (Mistake)** | Erreur | Action humaine produisant un résultat incorrect. | ISTQB |
-| **Failure** | Défaillance | Écart constaté du composant ou système par rapport au livrable, au service ou au résultat attendu. Une défaillance peut être produite quand un défaut est rencontré. | ISTQB |
-| **Incident** | Incident | Tout événement arrivant pendant les tests qui requiert une vérification. Divergence entre le résultat obtenu et le résultat attendu lors de l'exécution d'un test. | ISTQB |
-| **Regression Testing** | Test de non-régression | Test d'un système préalablement testé, après une modification pour assurer qu'il n'y a pas de défauts ont été nouvellement introduit. | ISTQB |
-| **Test Level** | Niveau de test | Un groupe d'activité de test qui sont organisées ensemble. Ex: "Test d'intégration", "système d'acceptation", etc. | ISTQB |
-| **Test Plan** | Plan de test | Un document décrivant l'étendue, les ressources et le planning des activités de test prévues. | ISTQB |
-| **Test Policy** | Politique de test | Un document de haut niveau décrivant les principes, approches et objectifs majeurs de l'organisation ayant trait aux tests. | ISTQB |
-| **Test Procedure** | Procédure de test | Un document spécifiant la séquence d'actions pour l'exécution d'un test connu sous le terme "script de test". | ISTQB |
-| **Test Strategy** | Stratégie de test | Un document de haut niveau, définissant pour un programme, les niveaux de tests à exécuter. | ISTQB |
-| **Test Suite** | Suite de test | Un ensemble de plusieurs cas de test. | ISTQB |
-| **Test Summary Report** | Rapport de synthèse de test | Un document synthétisant les activités et les résultats de test. | ISTQB |
 
 <!-- 
 MAINTENANCE :

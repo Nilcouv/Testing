@@ -3,6 +3,7 @@
         "davidanson.vscode-markdownlint",
         "bierner.markdown-mermaid",
         "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
-        "jasew.anki"
+        "jasew.anki",
+        "ms-vscode.live-server"
     ]
 }

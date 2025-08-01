@@ -13,19 +13,7 @@ tags:
 |[[Test de ressources]]|✔ ==Mais nécessite un nombre important de testeurs==|✔ Capable de produire de multiple instance|
 |[[Test de performences]]|==❌ Incapable d'évaluer les performences==|✔ Capable d'évaluer la charge|
 
-  
-  
 
-#### Testing tools
-
-|Name|Tags|
-|---|---|
-|[[SOAP UI]]||
-|[[Selenium]]||
-|[[Jira]]||
-|[[Jmeter]]||
-|[[Confluence]]||
-|[[LambdaTesting]]||
 
   
   
