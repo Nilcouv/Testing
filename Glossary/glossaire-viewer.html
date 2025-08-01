@@ -57,7 +57,7 @@
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
             border-radius: 8px;
@@ -138,6 +138,48 @@
         
         .table-container {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,123,255,0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            z-index: 5;
+            display: none;
+        }
+        
+        .table-container:hover .scroll-indicator {
+            display: block;
+        }
+        
+        .compact-toggle {
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        
+        .compact-mode .definition {
+            max-width: 200px;
+            font-size: 0.9em;
+        }
+        
+        .compact-mode th, .compact-mode td {
+            padding: 8px;
+        }
+        
+        .compact-mode .header h1 {
+            font-size: 1.8em;
+        }
+        
+        .compact-mode .stats {
+            gap: 15px;
         }
         
         table {
@@ -171,6 +213,8 @@
         .definition {
             max-width: 400px;
             line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         .source {
@@ -212,13 +256,97 @@
             background: #f8f9fa;
             font-size: 0.9em;
         }
+        
+        .column-controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .column-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        
+        .hidden-column {
+            display: none !important;
+        }
+        
+        /* Media queries pour responsive */
+        @media (max-width: 1200px) {
+            .definition {
+                max-width: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            input[type="text"] {
+                min-width: auto;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+                font-size: 14px;
+            }
+            
+            .definition {
+                max-width: 180px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+                font-size: 12px;
+            }
+            
+            .definition {
+                max-width: 150px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>📚 Glossaire Testing</h1>
-            <p>Base de connaissances dynamique - Lecture directe CSV</p>
+            <p>Base dynamique - CSV temps réel</p>
             <div class="stats">
                 <div class="stat">
                     <div class="stat-number" id="total-terms">0</div>
@@ -237,33 +365,58 @@
         
         <div class="controls">
             <div class="search-bar">
-                <input type="text" id="search" placeholder="🔍 Rechercher un terme ou une définition...">
+                <input type="text" id="search" placeholder="🔍 Rechercher...">
                 <select id="category-filter">
-                    <option value="">Toutes les catégories</option>
+                    <option value="">Toutes catégories</option>
                 </select>
                 <select id="source-filter">
-                    <option value="">Toutes les sources</option>
+                    <option value="">Toutes sources</option>
                 </select>
                 <button class="btn" onclick="clearFilters()">Effacer</button>
+            </div>
+            
+            <div class="column-controls">
+                <span><strong>Colonnes :</strong></span>
+                <label class="column-control">
+                    <input type="checkbox" id="show-term-en" checked> EN
+                </label>
+                <label class="column-control">
+                    <input type="checkbox" id="show-term-fr" checked> FR
+                </label>
+                <label class="column-control">
+                    <input type="checkbox" id="show-def-en" checked> Déf. EN
+                </label>
+                <label class="column-control">
+                    <input type="checkbox" id="show-def-fr" checked> Déf. FR
+                </label>
+                <label class="column-control">
+                    <input type="checkbox" id="show-source" checked> Source
+                </label>
+                <label class="column-control">
+                    <input type="checkbox" id="show-category" checked> Cat.
+                </label>
+                <button class="btn" onclick="setMobileView()" style="margin-left: 15px; padding: 6px 12px; font-size: 12px;">📱 Mobile</button>
+                <button class="btn" onclick="setDesktopView()" style="padding: 6px 12px; font-size: 12px;">🖥️ Complet</button>
             </div>
         </div>
         
         <div class="table-container">
+            <div class="scroll-indicator">← Défiler →</div>
             <table id="glossary-table">
                 <thead>
                     <tr>
-                        <th>Terme EN</th>
-                        <th>Terme FR</th>
-                        <th>Définition EN</th>
-                        <th>Définition FR</th>
-                        <th>Source</th>
-                        <th>Catégorie</th>
+                        <th class="col-term-en">EN</th>
+                        <th class="col-term-fr">FR</th>
+                        <th class="col-def-en">Déf. EN</th>
+                        <th class="col-def-fr">Déf. FR</th>
+                        <th class="col-source">Source</th>
+                        <th class="col-category">Cat.</th>
                     </tr>
                 </thead>
                 <tbody id="glossary-body">
                     <tr>
                         <td colspan="6" class="no-results">
-                            🔄 Chargement du glossaire...
+                            🔄 Chargement...
                         </td>
                     </tr>
                 </tbody>
@@ -271,8 +424,8 @@
         </div>
         
         <div class="footer">
-            <p><strong>Dynamique :</strong> Lecture directe de glossaire.csv - Aucune génération requise</p>
-            <p><strong>Agent IA :</strong> Modifie directement le CSV | <strong>Utilisateur :</strong> Interface temps réel</p>
+            <p><strong>Dynamique :</strong> Lecture directe CSV - Temps réel</p>
+            <p><strong>Agent IA :</strong> Modifie CSV | <strong>Utilisateur :</strong> Interface auto</p>
         </div>
     </div>
 
@@ -296,21 +449,27 @@
                 console.error('Erreur de chargement:', error);
                 document.getElementById('glossary-body').innerHTML = `
                     <tr><td colspan="6" class="no-results">
-                        ❌ Erreur de chargement du CSV<br>
-                        <small>Assurez-vous que glossaire.csv est accessible</small>
+                        ❌ Erreur chargement CSV<br>
+                        <small>Vérifiez l'accès au fichier</small>
                     </td></tr>
                 `;
             }
         }
         
-        // Parser CSV simple
+        // Parser CSV simple avec support des commentaires
         function parseCSV(csv) {
             const lines = csv.trim().split('\n');
-            const headers = lines[0].split(',');
+            
+            // Filtrer les lignes de commentaires (commençant par #)
+            const dataLines = lines.filter(line => !line.trim().startsWith('#') && line.trim() !== '');
+            
+            if (dataLines.length === 0) return;
+            
+            const headers = dataLines[0].split(',');
             
             glossaryData = [];
-            for (let i = 1; i < lines.length; i++) {
-                const values = parseCSVLine(lines[i]);
+            for (let i = 1; i < dataLines.length; i++) {
+                const values = parseCSVLine(dataLines[i]);
                 if (values.length === headers.length) {
                     const entry = {};
                     headers.forEach((header, index) => {
@@ -351,8 +510,8 @@
             if (filteredData.length === 0) {
                 tbody.innerHTML = `
                     <tr><td colspan="6" class="no-results">
-                        🔍 Aucun résultat trouvé<br>
-                        <small>Essayez d'autres mots-clés ou filtres</small>
+                        🔍 Aucun résultat<br>
+                        <small>Changez les filtres</small>
                     </td></tr>
                 `;
                 return;
@@ -360,14 +519,17 @@
             
             tbody.innerHTML = filteredData.map(entry => `
                 <tr>
-                    <td><span class="term">${entry.term_en || '-'}</span></td>
-                    <td><span class="term">${entry.term_fr || '-'}</span></td>
-                    <td><div class="definition">${entry.definition_en || '-'}</div></td>
-                    <td><div class="definition">${entry.definition_fr || '-'}</div></td>
-                    <td><span class="source">${entry.source || '-'}</span></td>
-                    <td><span class="category category-${entry.category}">${entry.category || '-'}</span></td>
+                    <td class="col-term-en"><span class="term">${entry.term_en || '-'}</span></td>
+                    <td class="col-term-fr"><span class="term">${entry.term_fr || '-'}</span></td>
+                    <td class="col-def-en"><div class="definition">${entry.definition_en || '-'}</div></td>
+                    <td class="col-def-fr"><div class="definition">${entry.definition_fr || '-'}</div></td>
+                    <td class="col-source"><span class="source">${entry.source || '-'}</span></td>
+                    <td class="col-category"><span class="category category-${entry.category}">${entry.category || '-'}</span></td>
                 </tr>
             `).join('');
+            
+            // Vérifier le besoin de scroll après le rendu
+            setTimeout(checkScrollNeed, 50);
         }
         
         // Mise à jour des statistiques
@@ -385,11 +547,11 @@
             const sources = [...new Set(glossaryData.map(entry => entry.source).filter(Boolean))].sort();
             
             const categoryFilter = document.getElementById('category-filter');
-            categoryFilter.innerHTML = '<option value="">Toutes les catégories</option>' +
+            categoryFilter.innerHTML = '<option value="">Toutes catégories</option>' +
                 categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
             
             const sourceFilter = document.getElementById('source-filter');
-            sourceFilter.innerHTML = '<option value="">Toutes les sources</option>' +
+            sourceFilter.innerHTML = '<option value="">Toutes sources</option>' +
                 sources.map(src => `<option value="${src}">${src}</option>`).join('');
         }
         
@@ -424,13 +586,114 @@
             applyFilters();
         }
         
+        // Gestion de l'affichage des colonnes
+        function toggleColumn(columnId, show) {
+            const className = 'col-' + columnId.replace('show-', '');
+            const elements = document.querySelectorAll('.' + className);
+            
+            elements.forEach(element => {
+                if (show) {
+                    element.classList.remove('hidden-column');
+                } else {
+                    element.classList.add('hidden-column');
+                }
+            });
+            
+            // Vérifier le besoin de scroll après le changement de colonnes
+            setTimeout(checkScrollNeed, 50);
+        }
+        
+        // Initialiser les contrôles de colonnes
+        function initColumnControls() {
+            const columnCheckboxes = [
+                'show-term-en', 'show-term-fr', 'show-def-en', 
+                'show-def-fr', 'show-source', 'show-category'
+            ];
+            
+            columnCheckboxes.forEach(id => {
+                const checkbox = document.getElementById(id);
+                if (checkbox) {
+                    checkbox.addEventListener('change', function() {
+                        toggleColumn(id, this.checked);
+                    });
+                }
+            });
+        }
+        
+        // Ajuster l'affichage pour les petits écrans
+        function adjustForSmallScreens() {
+            if (window.innerWidth < 768) {
+                // Sur petits écrans, masquer certaines colonnes par défaut
+                document.getElementById('show-def-en').checked = false;
+                toggleColumn('show-def-en', false);
+            }
+        }
+        
+        // Vue mobile optimisée
+        function setMobileView() {
+            const mobileColumns = ['show-term-fr', 'show-def-fr', 'show-category'];
+            const allColumns = ['show-term-en', 'show-term-fr', 'show-def-en', 'show-def-fr', 'show-source', 'show-category'];
+            
+            // Décocher toutes les colonnes
+            allColumns.forEach(id => {
+                const checkbox = document.getElementById(id);
+                checkbox.checked = false;
+                toggleColumn(id, false);
+            });
+            
+            // Cocher seulement les colonnes mobiles
+            mobileColumns.forEach(id => {
+                const checkbox = document.getElementById(id);
+                checkbox.checked = true;
+                toggleColumn(id, true);
+            });
+        }
+        
+        // Vue desktop complète
+        function setDesktopView() {
+            const allColumns = ['show-term-en', 'show-term-fr', 'show-def-en', 'show-def-fr', 'show-source', 'show-category'];
+            
+            // Cocher toutes les colonnes
+            allColumns.forEach(id => {
+                const checkbox = document.getElementById(id);
+                checkbox.checked = true;
+                toggleColumn(id, true);
+            });
+        }
+        
         // Event listeners
         document.getElementById('search').addEventListener('input', applyFilters);
         document.getElementById('category-filter').addEventListener('change', applyFilters);
         document.getElementById('source-filter').addEventListener('change', applyFilters);
         
+        // Vérifier si le scroll horizontal est nécessaire
+        function checkScrollNeed() {
+            const container = document.querySelector('.table-container');
+            const table = document.querySelector('#glossary-table');
+            const indicator = document.querySelector('.scroll-indicator');
+            
+            if (container && table && indicator) {
+                if (table.scrollWidth > container.clientWidth) {
+                    indicator.style.opacity = '1';
+                } else {
+                    indicator.style.opacity = '0';
+                }
+            }
+        }
+        
         // Chargement initial
         loadGlossary();
+        initColumnControls();
+        adjustForSmallScreens();
+        
+        // Réajuster lors du redimensionnement
+        window.addEventListener('resize', () => {
+            adjustForSmallScreens();
+            setTimeout(checkScrollNeed, 100);
+        });
+        
+        // Vérifier le scroll après le rendu du tableau
+        setTimeout(checkScrollNeed, 500);
     </script>
 </body>
 </html>
