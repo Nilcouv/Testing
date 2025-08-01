@@ -1,7 +1,7 @@
 # Glossaire - Base de Connaissances Testing
 
 <!-- 
-INSTRUCTIONS POUR LLM :
+INSTRUCTIONS POUR L'AGENT :
 - Remplir le tableau avec les termes techniques du projet
 - Anglais : terme technique standard en anglais
 - Français : traduction ou équivalent français
@@ -42,6 +42,7 @@ INSTRUCTIONS POUR LLM :
 | **Static Analysis** | Analyse statique | Analyse du code ou des documents sans exécution du programme, pour détecter des défauts potentiels ou vérifier la conformité aux standards. | ISTQB CTFL |
 | **Structured Scripting** | Script structuré | Technique de script qui utilise des structures de contrôle et une organisation hiérarchique pour améliorer la maintenabilité. | ISTQB CTAL-TAE |
 | **System Under Test (SUT)** | Système sous test | Système qui est testé pour un fonctionnement correct. Selon ISTQB, il s'agit de l'objet de test. | ISTQB CTFL |
+| **TAS (Test Automation Solution)** | Solution d'automatisation des tests | Ensemble complet d'outils, de processus et de ressources mis en place pour automatiser les activités de test dans un contexte donné. | ISTQB CTAL-TAE |
 | **Test Automation** | Automatisation des tests | Utilisation de logiciels pour effectuer ou soutenir les activités de test, par exemple la gestion des tests, la conception des tests, l'exécution des tests et la vérification des résultats. | ISTQB CTFL |
 | **Test Automation Engineer** | Ingénieur en automatisation des tests | Professionnel spécialisé dans la conception, le développement et la maintenance de solutions d'automatisation des tests. | ISTQB CTAL-TAE |
 | **Test Context** | Contexte de test | Ensemble des conditions et circonstances dans lesquelles les tests sont planifiés et exécutés. | ISTQB CTFL |
@@ -58,6 +59,19 @@ INSTRUCTIONS POUR LLM :
 | **Test Histogram** | Histogramme de test | Représentation graphique de la distribution des résultats de test ou des métriques de test sur une période donnée. | ISTQB CTAL-TAE |
 | **Testability** | Testabilité | Degré d'efficacité et d'efficience avec lequel les critères de test peuvent être établis pour un système et les tests peuvent être effectués. | ISTQB CTFL |
 | **Testware** | Artefacts de test | Tous les produits de travail créés pendant le processus de test, incluant les plans, cas de test, procédures et données de test. | ISTQB CTFL |
+| **Confirmation Testing (Retest)** | Test de confirmation (retest) | Test qui exécute des cas de tests qui ont été en échec la dernière fois. | ISTQB |
+| **Defect (Bug, Fault)** | Défaut (Bug, Faute) | Une imperfection dans un composant ou un système ce qui conduit à une mauvaise exécution. Un défaut, si rencontré lors de l'exécution, peut causer la défaillance d'un composant ou d'un système. | ISTQB |
+| **Error (Mistake)** | Erreur | Action humaine produisant un résultat incorrect. | ISTQB |
+| **Failure** | Défaillance | Écart constaté du composant ou système par rapport au livrable, au service ou au résultat attendu. Une défaillance peut être produite quand un défaut est rencontré. | ISTQB |
+| **Incident** | Incident | Tout événement arrivant pendant les tests qui requiert une vérification. Divergence entre le résultat obtenu et le résultat attendu lors de l'exécution d'un test. | ISTQB |
+| **Regression Testing** | Test de non-régression | Test d'un système préalablement testé, après une modification pour assurer qu'il n'y a pas de défauts ont été nouvellement introduit. | ISTQB |
+| **Test Level** | Niveau de test | Un groupe d'activité de test qui sont organisées ensemble. Ex: "Test d'intégration", "système d'acceptation", etc. | ISTQB |
+| **Test Plan** | Plan de test | Un document décrivant l'étendue, les ressources et le planning des activités de test prévues. | ISTQB |
+| **Test Policy** | Politique de test | Un document de haut niveau décrivant les principes, approches et objectifs majeurs de l'organisation ayant trait aux tests. | ISTQB |
+| **Test Procedure** | Procédure de test | Un document spécifiant la séquence d'actions pour l'exécution d'un test connu sous le terme "script de test". | ISTQB |
+| **Test Strategy** | Stratégie de test | Un document de haut niveau, définissant pour un programme, les niveaux de tests à exécuter. | ISTQB |
+| **Test Suite** | Suite de test | Un ensemble de plusieurs cas de test. | ISTQB |
+| **Test Summary Report** | Rapport de synthèse de test | Un document synthétisant les activités et les résultats de test. | ISTQB |
 
 <!-- 
 MAINTENANCE :
