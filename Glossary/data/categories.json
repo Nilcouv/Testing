@@ -1,0 +1,88 @@
+{
+  "categories": [
+    {
+      "id": "fundamentals",
+      "name": "Fundamentals",
+      "background": "#6f42c1",
+      "color": "#ffffff"
+    },
+    {
+      "id": "technical",
+      "name": "Technical",
+      "background": "#fd7e14",
+      "color": "#ffffff"
+    },
+    {
+      "id": "testing-types",
+      "name": "Testing Types",
+      "background": "#20c997",
+      "color": "#ffffff"
+    },
+    {
+      "id": "methodologies",
+      "name": "Methodologies",
+      "background": "#17a2b8",
+      "color": "#ffffff"
+    },
+    {
+      "id": "automation",
+      "name": "Automation",
+      "background": "#28a745",
+      "color": "#ffffff"
+    },
+    {
+      "id": "devops",
+      "name": "DevOps",
+      "background": "#6c757d",
+      "color": "#ffffff"
+    },
+    {
+      "id": "process",
+      "name": "Process",
+      "background": "#e83e8c",
+      "color": "#ffffff"
+    },
+    {
+      "id": "metrics",
+      "name": "Metrics",
+      "background": "#ffc107",
+      "color": "#212529"
+    },
+    {
+      "id": "documentation",
+      "name": "Documentation",
+      "background": "#6f42c1",
+      "color": "#ffffff"
+    },
+    {
+      "id": "tools",
+      "name": "Tools",
+      "background": "#dc3545",
+      "color": "#ffffff"
+    },
+    {
+      "id": "roles",
+      "name": "Roles",
+      "background": "#28a745",
+      "color": "#ffffff"
+    },
+    {
+      "id": "management",
+      "name": "Management",
+      "background": "#007bff",
+      "color": "#ffffff"
+    },
+    {
+      "id": "techniques",
+      "name": "Techniques",
+      "background": "#fd7e14",
+      "color": "#ffffff"
+    },
+    {
+      "id": "quality",
+      "name": "Quality",
+      "background": "#20c997",
+      "color": "#ffffff"
+    }
+  ]
+}

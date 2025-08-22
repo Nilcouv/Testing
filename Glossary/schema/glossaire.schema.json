@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "migrated_from": {
+          "type": "string"
+        },
+        "total_entries": {
+          "type": "integer"
+        },
+        "last_updated": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "total_entries"
+      ]
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "term_en": {
+            "type": "string"
+          },
+          "term_fr": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string",
+            "description": "Abréviation ou acronyme du terme (optionnel)"
+          },
+          "definition_en": {
+            "type": "string"
+          },
+          "definition_fr": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "term_en",
+          "term_fr"
+        ]
+      }
+    }
+  },
+  "required": [
+    "metadata",
+    "entries"
+  ]
+}

@@ -1,0 +1,2110 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Glossaire Testing - Vue.js</title>
+    
+    <!-- Vue.js CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <!-- Variables CSS globales -->
+    <style>
+        :root {
+            /* Couleurs principales */
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            
+            /* Couleurs de texte */
+            --text-color: #333;
+            --text-muted: #6c757d;
+            
+            /* Couleurs de fond */
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            
+            /* Bordures */
+            --border-color: #dee2e6;
+            
+            /* Ombres */
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-lg: 0 4px 8px rgba(0,0,0,0.15);
+            
+                    /* Transitions */
+        --transition: all 0.2s ease;
+        --transition-fast: all 0.1s ease;
+        --transition-slow: all 0.3s ease;
+        
+        /* Animations */
+        --bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        --smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        /* Reset des styles par défaut */
+        button, input, select, textarea {
+            font-family: inherit;
+        }
+
+        /* Styles globaux pour l'application */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .controls-section {
+            background: var(--light-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+        }
+
+        /* Styles pour les notifications */
+        .notifications {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        /* Animations pour les notifications */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .notification {
+            animation: slideInRight 0.3s var(--smooth);
+        }
+
+        .notification.removing {
+            animation: slideOutRight 0.3s var(--smooth);
+        }
+
+        .notification {
+            background: white;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--info-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 300px;
+            transition: var(--transition);
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .notification-icon {
+            font-size: 1.2em;
+        }
+
+        .notification-message {
+            flex: 1;
+        }
+
+        .notification-success {
+            border-left-color: var(--success-color);
+        }
+
+        .notification-error {
+            border-left-color: var(--danger-color);
+        }
+
+        .notification-warning {
+            border-left-color: var(--warning-color);
+        }
+
+        .close-notification {
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        /* Styles pour les modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 0;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        /* Styles pour les boutons */
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+            margin: 2px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Styles pour les inputs */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+        /* Styles pour les tableaux */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        /* Animations pour les lignes du tableau */
+        .glossary-table tbody tr {
+            transition: var(--transition);
+        }
+
+        .glossary-table tbody tr:hover {
+            background: #f8f9fa;
+            transform: translateX(2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Animation d'apparition des lignes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glossary-table tbody tr {
+            animation: fadeInUp 0.3s var(--smooth);
+        }
+
+        /* Indicateur de chargement */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Amélioration de la recherche */
+        .search-input {
+            position: relative;
+        }
+
+        .search-input input {
+            padding-right: 40px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .search-input input:focus + .search-icon {
+            color: var(--primary-color);
+        }
+
+        .search-input input.searching {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+        .search-info {
+            margin-top: 5px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Amélioration des boutons */
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn:disabled:hover {
+            opacity: 0.5;
+        }
+
+        .glossary-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .glossary-table th,
+        .glossary-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        .glossary-table .actions-cell {
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        .glossary-table th {
+            background: var(--light-color);
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .glossary-table th:hover {
+            background: #e9ecef;
+        }
+
+        .glossary-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Styles pour les abréviations */
+        .abbreviation-display {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-left: 8px;
+            opacity: 0.8;
+        }
+
+        .abbreviation-display:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .controls-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- L'application Vue.js sera montée ici -->
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        // Composant Header
+        const Header = {
+            template: `
+                <div class="header">
+                    <div class="header-content">
+                        <h1>📚 Glossaire Testing</h1>
+                        <p>{{ subtitle }}</p>
+                    </div>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-number">{{ totalTerms }}</div>
+                            <div>Termes</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">{{ totalCategories }}</div>
+                            <div>Catégories</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">{{ filteredCount }}</div>
+                            <div>Affichés</div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            props: {
+                totalTerms: { type: Number, default: 0 },
+                totalCategories: { type: Number, default: 0 },
+                filteredCount: { type: Number, default: 0 },
+                subtitle: { type: String, default: 'Vue.js - Interface réactive' }
+            }
+        }
+
+        // Composant SearchFilters
+        const SearchFilters = {
+            template: `
+                <div class="search-filters">
+                    <div class="search-row">
+                        <div class="filter-controls">
+                            <select 
+                                v-model="localSelectedCategory" 
+                                @change="handleCategoryChange"
+                                class="form-control"
+                            >
+                                <option value="">Toutes les catégories</option>
+                                <option v-for="category in categories" :key="category" :value="category">
+                                    {{ category }}
+                                </option>
+                            </select>
+                            <select 
+                                v-model="localSelectedSource" 
+                                @change="handleSourceChange"
+                                class="form-control"
+                            >
+                                <option value="">Toutes les sources</option>
+                                <option v-for="source in sources" :key="source" :value="source">
+                                    {{ source }}
+                                </option>
+                            </select>
+                            <button @click="clearFilters" class="btn btn-secondary">
+                                🗑️ Effacer
+                            </button>
+                        </div>
+                        <div class="search-input">
+                            <input 
+                                type="text" 
+                                v-model="localSearchTerm" 
+                                @input="handleSearchInput"
+                                placeholder="Rechercher un terme..."
+                                class="form-control"
+                                :class="{ 'searching': isSearching }"
+                            >
+                            <span class="search-icon">
+                                <span v-if="isSearching" class="loading"></span>
+                                <span v-else>🔍</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div v-if="localSearchTerm && !isSearching" class="search-info">
+                        <small>Recherche en temps réel activée</small>
+                    </div>
+                </div>
+            `,
+            props: {
+                searchTerm: { type: String, default: '' },
+                selectedCategory: { type: String, default: '' },
+                selectedSource: { type: String, default: '' },
+                categories: { type: Array, default: () => [] },
+                sources: { type: Array, default: () => [] }
+            },
+            data() {
+                return {
+                    localSearchTerm: this.searchTerm,
+                    localSelectedCategory: this.selectedCategory,
+                    localSelectedSource: this.selectedSource,
+                    isSearching: false,
+                    searchTimeout: null
+                }
+            },
+            computed: {
+                hasActiveFilters() {
+                    return this.localSearchTerm || this.localSelectedCategory || this.localSelectedSource
+                }
+            },
+            methods: {
+                handleSearchInput() {
+                    this.isSearching = true
+                    
+                    // Annuler la recherche précédente
+                    if (this.searchTimeout) {
+                        clearTimeout(this.searchTimeout)
+                    }
+                    
+                    // Recherche en temps réel avec délai
+                    this.searchTimeout = setTimeout(() => {
+                        this.$emit('search-change', this.localSearchTerm)
+                        this.isSearching = false
+                    }, 300)
+                },
+                
+                handleCategoryChange() {
+                    this.$emit('category-change', this.localSelectedCategory)
+                },
+                
+                handleSourceChange() {
+                    this.$emit('source-change', this.localSelectedSource)
+                },
+                
+                clearFilters() {
+                    this.localSearchTerm = ''
+                    this.localSelectedCategory = ''
+                    this.localSelectedSource = ''
+                    this.isSearching = false
+                    
+                    if (this.searchTimeout) {
+                        clearTimeout(this.searchTimeout)
+                    }
+                    
+                    this.$emit('search-change', '')
+                    this.$emit('category-change', '')
+                    this.$emit('source-change', '')
+                }
+            }
+        }
+
+        // Composant DisplayOptions
+        const DisplayOptions = {
+            template: `
+                <div class="display-options">
+                    <button @click="$emit('open-settings')" class="btn btn-secondary">
+                        ⚙️ Affichage
+                    </button>
+
+                </div>
+            `,
+            props: {
+                showAbbreviations: { type: Boolean, default: true }
+            }
+        }
+
+        // Composant DisplaySettingsModal
+        const DisplaySettingsModal = {
+            template: `
+                <div v-if="show" class="modal-overlay" @click="$emit('close')">
+                    <div class="modal-content settings-modal" @click.stop>
+                        <div class="modal-header">
+                            <h2>⚙️ Affichage</h2>
+                            <button class="close-btn" @click="$emit('close')">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="settings-section">
+                                <h3>Ordre</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Langues :</label>
+                                    <select v-model="localSettings.termOrder" class="form-control">
+                                        <option value="fr-en">Français → Anglais</option>
+                                        <option value="en-fr">Anglais → Français</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-section">
+                                <h3>Séparateur</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Séparateur :</label>
+                                    <select v-model="localSettings.termSeparator" class="form-control">
+                                        <option value=" / ">/</option>
+                                        <option value=" | ">|</option>
+                                        <option value=" - ">-</option>
+                                        <option value=" : ">:</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-section">
+                                <h3>Colonnes</h3>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" v-model="localSettings.showColumns.term">
+                                        <span>Terme</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" v-model="localSettings.showColumns.definition">
+                                        <span>Définition</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" v-model="localSettings.showColumns.category">
+                                        <span>Catégorie</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" v-model="localSettings.showColumns.source">
+                                        <span>Source</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-section">
+                                <h3>Abréviations</h3>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" v-model="localSettings.showAbbreviations">
+                                        <span>Afficher les abréviations dans la colonne terme</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button @click="saveSettings" class="btn btn-success">💾 OK</button>
+                                <button @click="$emit('close')" class="btn btn-secondary">Annuler</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            props: {
+                show: { type: Boolean, default: false },
+                settings: { type: Object, default: () => ({}) }
+            },
+            data() {
+                return {
+                    localSettings: {}
+                }
+            },
+            watch: {
+                settings: {
+                    handler(newSettings) {
+                        this.localSettings = JSON.parse(JSON.stringify(newSettings))
+                    },
+                    immediate: true,
+                    deep: true
+                }
+            },
+            methods: {
+                saveSettings() {
+                    this.$emit('save-settings', this.localSettings)
+                    this.$emit('close')
+                }
+            }
+        }
+
+        // Composant ActionButtons
+        const ActionButtons = {
+            template: `
+                <div class="action-buttons">
+                    <button @click="$emit('add-term')" class="btn btn-success">➕ Ajouter</button>
+                    <button @click="$emit('export-csv')" class="btn btn-primary">📤 Exporter</button>
+                    <button @click="$emit('import-csv')" class="btn btn-primary">📥 Importer</button>
+                    <button @click="$emit('manage-categories')" class="btn btn-secondary">⚙️ Gérer</button>
+                </div>
+            `
+        }
+
+        // Composant GlossaryTable
+        const GlossaryTable = {
+            template: `
+                <div class="table-container">
+                    <table class="glossary-table">
+                        <thead>
+                            <tr>
+                                <th v-if="showColumns.term" @click="sortBy('term')">
+                                    Terme {{ getSortIcon('term') }}
+                                </th>
+                                <th v-if="showColumns.definition" @click="sortBy('definition')">
+                                    Définition {{ getSortIcon('definition') }}
+                                </th>
+                                <th v-if="showColumns.category" @click="sortBy('category')">
+                                    Catégorie {{ getSortIcon('category') }}
+                                </th>
+                                <th v-if="showColumns.source" @click="sortBy('source')">
+                                    Source {{ getSortIcon('source') }}
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(term, index) in sortedData" :key="term.id">
+                                <td v-if="showColumns.term">
+                                    <div v-if="termOrder === 'fr-en'">
+                                        {{ term.term_fr }}{{ termSeparator }}{{ term.term_en }}
+                                        <span v-if="term.abbreviation && showAbbreviations" class="abbreviation-display">({{ term.abbreviation }})</span>
+                                    </div>
+                                    <div v-else>
+                                        {{ term.term_en }}{{ termSeparator }}{{ term.term_fr }}
+                                        <span v-if="term.abbreviation && showAbbreviations" class="abbreviation-display">({{ term.abbreviation }})</span>
+                                    </div>
+                                </td>
+                                <td v-if="showColumns.definition">
+                                    <div><strong>FR:</strong> {{ term.definition_fr || term.definition }}</div>
+                                    <div><strong>EN:</strong> {{ term.definition_en || term.definition }}</div>
+                                </td>
+                                <td v-if="showColumns.category">{{ term.category }}</td>
+                                <td v-if="showColumns.source">{{ term.source }}</td>
+                                <td class="actions-cell">
+                                    <button @click="$emit('edit-term', term)" class="btn btn-sm btn-outline-primary" title="Modifier">✏️</button>
+                                    <button @click="$emit('delete-term', term)" class="btn btn-sm btn-outline-danger" title="Supprimer">🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            props: {
+                data: { type: Array, default: () => [] },
+                showColumns: { type: Object, default: () => ({ term: true, definition: true, category: true, source: true }) },
+                termOrder: { type: String, default: 'fr-en' },
+                termSeparator: { type: String, default: ' / ' },
+                showAbbreviations: { type: Boolean, default: true },
+                currentSort: { type: Object, default: () => ({ field: 'term_fr', direction: 'asc' }) }
+            },
+            computed: {
+                sortedData() {
+                    return [...this.data].sort((a, b) => {
+                        let aVal, bVal
+                        
+                        // Mapping des champs d'affichage vers les champs de données
+                        switch (this.currentSort.field) {
+                            case 'term':
+                                aVal = this.termOrder === 'fr-en' ? 
+                                    `${a.term_fr || ''}${this.termSeparator}${a.term_en || ''}` :
+                                    `${a.term_en || ''}${this.termSeparator}${a.term_fr || ''}`
+                                bVal = this.termOrder === 'fr-en' ? 
+                                    `${b.term_fr || ''}${this.termSeparator}${b.term_en || ''}` :
+                                    `${b.term_en || ''}${this.termSeparator}${b.term_fr || ''}`
+                                break
+                            case 'definition':
+                                aVal = `${a.definition_fr || a.definition || ''} ${a.definition_en || ''}`
+                                bVal = `${b.definition_fr || b.definition || ''} ${b.definition_en || ''}`
+                                break
+                            case 'category':
+                                aVal = a.category || ''
+                                bVal = b.category || ''
+                                break
+                            case 'source':
+                                aVal = a.source || ''
+                                bVal = b.source || ''
+                                break
+                            default:
+                                aVal = a[this.currentSort.field] || ''
+                                bVal = b[this.currentSort.field] || ''
+                        }
+                        
+                        const result = aVal.localeCompare(bVal, 'fr', { sensitivity: 'base' })
+                        return this.currentSort.direction === 'asc' ? result : -result
+                    })
+                }
+            },
+            methods: {
+                sortBy(field) {
+                    const direction = this.currentSort.field === field && this.currentSort.direction === 'asc' ? 'desc' : 'asc'
+                    this.$emit('sort-change', { field, direction })
+                },
+                getSortIcon(field) {
+                    if (this.currentSort.field !== field) return ''
+                    return this.currentSort.direction === 'asc' ? '↑' : '↓'
+                }
+            }
+        }
+
+        // Composant CategorySourceManager
+        const CategorySourceManager = {
+            template: `
+                <div v-if="show" class="modal-overlay" @click="$emit('close')">
+                    <div class="modal-content" @click.stop>
+                        <div class="modal-header">
+                            <h2>⚙️ Gestion des catégories et sources</h2>
+                            <button class="close-btn" @click="$emit('close')">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="manager-tabs">
+                                <button 
+                                    :class="['tab-btn', { active: activeTab === 'categories' }]"
+                                    @click="activeTab = 'categories'"
+                                >
+                                    📂 Catégories
+                                </button>
+                                <button 
+                                    :class="['tab-btn', { active: activeTab === 'sources' }]"
+                                    @click="activeTab = 'sources'"
+                                >
+                                    📚 Sources
+                                </button>
+                            </div>
+                            
+                            <div v-if="activeTab === 'categories'" class="tab-content">
+                                <div class="add-section">
+                                    <h3>Ajouter une catégorie</h3>
+                                    <div class="form-group">
+                                        <input v-model="newCategory.name" placeholder="Nom de la catégorie" class="form-control">
+                                        <input v-model="newCategory.background" type="color" class="form-control color-input">
+                                        <button @click="addCategory" class="btn btn-success">➕ Ajouter</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="list-section">
+                                    <h3>Catégories existantes</h3>
+                                    <div v-for="category in categories" :key="category.id" class="list-item">
+                                        <span class="item-name" :style="{ backgroundColor: category.background, color: category.color }">
+                                            {{ category.name }}
+                                        </span>
+                                        <button @click="deleteCategory(category.id)" class="btn btn-danger btn-sm">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div v-if="activeTab === 'sources'" class="tab-content">
+                                <div class="add-section">
+                                    <h3>Ajouter une source</h3>
+                                    <div class="form-group">
+                                        <input v-model="newSource.name" placeholder="Nom de la source" class="form-control">
+                                        <input v-model="newSource.background" type="color" class="form-control color-input">
+                                        <button @click="addSource" class="btn btn-success">➕ Ajouter</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="list-section">
+                                    <h3>Sources existantes</h3>
+                                    <div v-for="source in sources" :key="source.id" class="list-item">
+                                        <span class="item-name" :style="{ backgroundColor: source.background, color: source.color }">
+                                            {{ source.name }}
+                                        </span>
+                                        <button @click="deleteSource(source.id)" class="btn btn-danger btn-sm">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            props: {
+                show: { type: Boolean, default: false },
+                categories: { type: Array, default: () => [] },
+                sources: { type: Array, default: () => [] }
+            },
+            data() {
+                return {
+                    activeTab: 'categories',
+                    newCategory: { name: '', background: '#007bff', color: '#ffffff' },
+                    newSource: { name: '', background: '#28a745', color: '#ffffff' }
+                }
+            },
+            methods: {
+                addCategory() {
+                    if (this.newCategory.name.trim()) {
+                        const category = {
+                            id: Date.now().toString(),
+                            name: this.newCategory.name.trim(),
+                            background: this.newCategory.background,
+                            color: this.newCategory.color
+                        }
+                        this.$emit('add-category', category)
+                        this.newCategory.name = ''
+                    }
+                },
+                addSource() {
+                    if (this.newSource.name.trim()) {
+                        const source = {
+                            id: Date.now().toString(),
+                            name: this.newSource.name.trim(),
+                            background: this.newSource.background,
+                            color: this.newSource.color
+                        }
+                        this.$emit('add-source', source)
+                        this.newSource.name = ''
+                    }
+                },
+                deleteCategory(id) {
+                    if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
+                        this.$emit('delete-category', id)
+                    }
+                },
+                deleteSource(id) {
+                    if (confirm('Êtes-vous sûr de vouloir supprimer cette source ?')) {
+                        this.$emit('delete-source', id)
+                    }
+                }
+            }
+        }
+
+        // Composant TermModal
+        const TermModal = {
+            template: `
+                <div v-if="show" class="modal-overlay" @click="$emit('close')">
+                    <div class="modal-content" @click.stop>
+                        <div class="modal-header">
+                            <h2>{{ isEditing ? '✏️ Modifier le terme' : '➕ Ajouter un terme' }}</h2>
+                            <button class="close-btn" @click="$emit('close')">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form @submit.prevent="handleSubmit">
+                                <div class="form-group">
+                                    <label class="form-label">Terme français *</label>
+                                    <input v-model="form.term_fr" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Terme anglais *</label>
+                                    <input v-model="form.term_en" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Abréviation</label>
+                                    <input v-model="form.abbreviation" type="text" class="form-control" 
+                                           placeholder="Ex: ISTQB, CTFL, CTAL-TAE">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Définition française</label>
+                                    <textarea v-model="form.definition_fr" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Définition anglaise</label>
+                                    <textarea v-model="form.definition_en" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Catégorie</label>
+                                    <select v-model="form.category" class="form-control">
+                                        <option value="">Sélectionner une catégorie</option>
+                                        <option v-for="category in availableCategories" :key="category" :value="category">
+                                            {{ category }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Source</label>
+                                    <select v-model="form.source" class="form-control">
+                                        <option value="">Sélectionner une source</option>
+                                        <option v-for="source in availableSources" :key="source" :value="source">
+                                            {{ source }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-success">
+                                        {{ isEditing ? 'Modifier' : 'Ajouter' }}
+                                    </button>
+                                    <button type="button" @click="$emit('close')" class="btn btn-secondary">
+                                        Annuler
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            `,
+            props: {
+                show: { type: Boolean, default: false },
+                isEditing: { type: Boolean, default: false },
+                term: { type: Object, default: () => ({}) },
+                availableSources: { type: Array, default: () => [] },
+                availableCategories: { type: Array, default: () => [] }
+            },
+            data() {
+                return {
+                    form: {
+                        term_fr: '',
+                        term_en: '',
+                        abbreviation: '',
+                        definition_fr: '',
+                        definition_en: '',
+                        category: '',
+                        source: ''
+                    }
+                }
+            },
+            watch: {
+                term: {
+                    handler(newTerm) {
+                        if (newTerm && Object.keys(newTerm).length > 0) {
+                            this.form = { ...newTerm }
+                        } else {
+                            this.resetForm()
+                        }
+                    },
+                    immediate: true
+                }
+            },
+            methods: {
+                handleSubmit() {
+                    if (this.isEditing) {
+                        this.$emit('update-term', { ...this.form, id: this.term.id })
+                    } else {
+                        this.$emit('add-term', { ...this.form })
+                    }
+                    this.resetForm()
+                },
+                resetForm() {
+                    this.form = {
+                        term_fr: '',
+                        term_en: '',
+                        abbreviation: '',
+                        definition_fr: '',
+                        definition_en: '',
+                        category: '',
+                        source: ''
+                    }
+                }
+            }
+        }
+
+        // Composant CSVHandler
+        const CSVHandler = {
+            template: `
+                <div class="csv-handler">
+                    <div class="csv-tabs">
+                        <button 
+                            :class="['tab-btn', { active: activeTab === 'import' }]"
+                            @click="activeTab = 'import'"
+                        >
+                            📥 Importer CSV
+                        </button>
+                        <button 
+                            :class="['tab-btn', { active: activeTab === 'export' }]"
+                            @click="activeTab = 'export'"
+                        >
+                            📤 Exporter CSV
+                        </button>
+                    </div>
+                    
+                    <div v-if="activeTab === 'import'" class="tab-content">
+                        <div class="import-section">
+                            <input 
+                                type="file" 
+                                @change="handleFileSelect" 
+                                accept=".csv"
+                                class="file-input"
+                            >
+                            <div v-if="previewData.length > 0" class="preview-section">
+                                <h3>Aperçu des données ({{ previewData.length }} termes)</h3>
+                                <div class="preview-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Terme FR</th>
+                                                <th>Terme EN</th>
+                                                <th>Définition</th>
+                                                <th>Catégorie</th>
+                                                <th>Source</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(term, index) in previewData.slice(0, 5)" :key="index">
+                                                <td>{{ term.term_fr }}</td>
+                                                <td>{{ term.term_en }}</td>
+                                                <td>{{ term.definition }}</td>
+                                                <td>{{ term.category }}</td>
+                                                <td>{{ term.source }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="import-actions">
+                                    <button @click="confirmImport" class="btn btn-success">Confirmer l'import</button>
+                                    <button @click="clearPreview" class="btn btn-secondary">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div v-if="activeTab === 'export'" class="tab-content">
+                        <div class="export-section">
+                            <h3>Exporter les données</h3>
+                            <p>{{ currentData.length }} termes disponibles</p>
+                            <button @click="exportCSV" class="btn btn-primary">📤 Télécharger CSV</button>
+                        </div>
+                    </div>
+                </div>
+            `,
+            props: {
+                currentData: { type: Array, default: () => [] }
+            },
+            data() {
+                return {
+                    activeTab: 'import',
+                    previewData: []
+                }
+            },
+            methods: {
+                handleFileSelect(event) {
+                    const file = event.target.files[0]
+                    if (file) {
+                        const reader = new FileReader()
+                        reader.onload = (e) => {
+                            const csv = e.target.result
+                            this.previewData = this.parseCSV(csv)
+                            this.$emit('import-preview', this.previewData)
+                        }
+                        reader.readAsText(file)
+                    }
+                },
+                parseCSV(csv) {
+                    const lines = csv.split('\n')
+                    const headers = lines[0].split(',').map(h => h.trim())
+                    const data = []
+                    
+                    for (let i = 1; i < lines.length; i++) {
+                        if (lines[i].trim()) {
+                            const values = lines[i].split(',').map(v => v.trim())
+                            const term = {}
+                            headers.forEach((header, index) => {
+                                term[header] = values[index] || ''
+                            })
+                            if (term.term_fr && term.term_en) {
+                                term.id = Date.now() + Math.random()
+                                data.push(term)
+                            }
+                        }
+                    }
+                    return data
+                },
+                confirmImport() {
+                    this.$emit('import-confirm', this.previewData)
+                    this.clearPreview()
+                },
+                clearPreview() {
+                    this.previewData = []
+                },
+                exportCSV() {
+                    const headers = ['term_fr', 'term_en', 'definition', 'category', 'source']
+                    const csvContent = [
+                        headers.join(','),
+                        ...this.currentData.map(term => 
+                            headers.map(header => `"${term[header] || ''}"`).join(',')
+                        )
+                    ].join('\n')
+                    
+                    const blob = new Blob([csvContent], { type: 'text/csv' })
+                    const url = window.URL.createObjectURL(blob)
+                    const a = document.createElement('a')
+                    a.href = url
+                    a.download = `glossaire_${new Date().toISOString().split('T')[0]}.csv`
+                    a.click()
+                    window.URL.revokeObjectURL(url)
+                    
+                    this.$emit('export-success', { 
+                        terms: this.currentData.length, 
+                        filename: a.download 
+                    })
+                }
+            }
+        }
+
+        // Application principale
+        const App = {
+            template: `
+                <div id="app">
+                    <div class="container">
+                        <!-- Header avec statistiques -->
+                        <Header 
+                            :total-terms="stats.totalTerms"
+                            :total-categories="stats.totalCategories"
+                            :filtered-count="filteredData.length"
+                            subtitle="Vue.js - Interface réactive"
+                        />
+                        
+                        <!-- Contrôles de recherche et filtres -->
+                        <div class="controls-section">
+                            <SearchFilters
+                                :search-term="filters.searchTerm"
+                                :selected-category="filters.category"
+                                :selected-source="filters.source"
+                                :categories="stats.categories"
+                                :sources="stats.sources"
+                                @search-change="updateSearch"
+                                @category-change="updateCategory"
+                                @source-change="updateSource"
+                                @clear-filters="clearAllFilters"
+                            />
+                            
+                            <!-- Contrôles d'actions et d'affichage -->
+                            <div class="controls-row">
+                                <!-- Boutons d'actions -->
+                                                            <ActionButtons
+                                @add-term="showAddModal"
+                                @export-csv="showExportModal"
+                                @import-csv="showImportModal"
+                                @manage-categories="showCategoryManager"
+                            />
+                                
+                                <!-- Options d'affichage -->
+                                <DisplayOptions
+                                    :show-abbreviations="displaySettings.showAbbreviations"
+                                    @open-settings="showSettingsModal"
+                                />
+                            </div>
+                        </div>
+                        
+                        <!-- Tableau des données -->
+                        <GlossaryTable
+                            :data="filteredData"
+                            :show-columns="displaySettings.showColumns"
+                            :term-order="displaySettings.termOrder"
+                            :term-separator="displaySettings.termSeparator"
+                            :show-abbreviations="displaySettings.showAbbreviations"
+                            :current-sort="sortSettings"
+                            @sort-change="updateSort"
+                            @edit-term="editTerm"
+                            @delete-term="deleteTerm"
+                        />
+                        
+                        <!-- Modal pour ajouter/éditer un terme -->
+                        <TermModal
+                            :show="modals.termModal.show"
+                            :is-editing="modals.termModal.isEditing"
+                            :term="modals.termModal.term"
+                            :available-sources="stats.sources"
+                            :available-categories="stats.categories"
+                            @close="closeTermModal"
+                            @add-term="addTerm"
+                            @update-term="updateTerm"
+                        />
+                        
+                        <!-- Modal pour import/export CSV -->
+                        <div v-if="modals.csvModal.show" class="modal-overlay" @click="closeCSVModal">
+                            <div class="modal-content csv-modal" @click.stop>
+                                <div class="modal-header">
+                                    <h2>📊 Gestion CSV</h2>
+                                    <button class="close-btn" @click="closeCSVModal">&times;</button>
+                                </div>
+                                <CSVHandler
+                                    :current-data="glossaryData"
+                                    @import-preview="handleImportPreview"
+                                    @import-confirm="handleImportConfirm"
+                                    @export-success="handleExportSuccess"
+                                    @export-error="handleExportError"
+                                />
+                            </div>
+                        </div>
+                        
+                        <!-- Modal pour les options d'affichage -->
+                        <DisplaySettingsModal
+                            :show="modals.settingsModal.show"
+                            :settings="displaySettings"
+                            @close="closeSettingsModal"
+                            @save-settings="saveDisplaySettings"
+                        />
+                        
+                        <!-- Modal pour la gestion des catégories et sources -->
+                        <CategorySourceManager
+                            :show="modals.categoryManager.show"
+                            :categories="categories"
+                            :sources="sources"
+                            @close="closeCategoryManager"
+                            @add-category="addCategory"
+                            @delete-category="deleteCategory"
+                            @add-source="addSource"
+                            @delete-source="deleteSource"
+                        />
+                        
+                        <!-- Modal de confirmation de suppression -->
+                        <div v-if="modals.deleteConfirm.show" class="modal-overlay" @click="closeDeleteConfirm">
+                            <div class="modal-content delete-confirm-modal" @click.stop>
+                                <div class="modal-header">
+                                    <h2>🗑️ Confirmation de suppression</h2>
+                                    <button class="close-btn" @click="closeDeleteConfirm">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Êtes-vous sûr de vouloir supprimer le terme :</p>
+                                    <div class="term-to-delete">
+                                        <strong>{{ modals.deleteConfirm.term?.term_fr }}</strong>
+                                        <span v-if="modals.deleteConfirm.term?.term_en"> / {{ modals.deleteConfirm.term?.term_en }}</span>
+                                    </div>
+                                    <p class="warning-text">⚠️ Cette action est irréversible !</p>
+                                </div>
+                                <div class="form-actions">
+                                    <button @click="confirmDelete" class="btn btn-danger">🗑️ Supprimer</button>
+                                    <button @click="closeDeleteConfirm" class="btn btn-secondary">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Notifications -->
+                        <div v-if="notifications.length > 0" class="notifications">
+                            <div 
+                                v-for="notification in notifications" 
+                                :key="notification.id"
+                                :class="['notification', \`notification-\${notification.type}\`, { 'removing': notification.removing }]"
+                            >
+                                <div class="notification-content">
+                                    <span class="notification-icon">
+                                        <span v-if="notification.type === 'success'">✅</span>
+                                        <span v-else-if="notification.type === 'error'">❌</span>
+                                        <span v-else-if="notification.type === 'warning'">⚠️</span>
+                                        <span v-else>ℹ️</span>
+                                    </span>
+                                    <span class="notification-message">{{ notification.message }}</span>
+                                </div>
+                                <button class="close-notification" @click="removeNotification(notification.id)">
+                                    &times;
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+                            components: {
+                    Header,
+                    SearchFilters,
+                    DisplayOptions,
+                    DisplaySettingsModal,
+                    ActionButtons,
+                    GlossaryTable,
+                    TermModal,
+                    CSVHandler,
+                    CategorySourceManager
+                },
+            data() {
+                return {
+                    // Données du glossaire
+                    glossaryData: [],
+                    
+                    // Catégories et sources
+                    categories: [],
+                    sources: [],
+                    
+                    // Filtres
+                    filters: {
+                        searchTerm: '',
+                        category: '',
+                        source: ''
+                    },
+                    
+                    // Paramètres d'affichage
+                    displaySettings: {
+                        termOrder: 'fr-en',
+                        termSeparator: ' / ',
+                        showColumns: {
+                            term: true,
+                            definition: true,
+                            category: true,
+                            source: true
+                        },
+                        showAbbreviations: true
+                    },
+                    
+                    // Paramètres de tri
+                    sortSettings: {
+                        field: 'term_fr',
+                        direction: 'asc'
+                    },
+                    
+                    // Modals
+                    modals: {
+                        termModal: {
+                            show: false,
+                            isEditing: false,
+                            term: {}
+                        },
+                        csvModal: {
+                            show: false
+                        },
+                        settingsModal: {
+                            show: false
+                        },
+                        categoryManager: {
+                            show: false
+                        },
+                        deleteConfirm: {
+                            show: false,
+                            term: null
+                        }
+                    },
+                    
+                    // Notifications
+                    notifications: [],
+                    notificationId: 0
+                }
+            },
+            computed: {
+                // Statistiques calculées
+                stats() {
+                    const dataCategories = [...new Set(this.glossaryData.map(t => t.category).filter(Boolean))]
+                    const dataSources = [...new Set(this.glossaryData.map(t => t.source).filter(Boolean))]
+                    
+                    return {
+                        totalTerms: this.glossaryData.length,
+                        totalCategories: this.categories.length,
+                        categories: this.categories.map(c => c.name),
+                        sources: this.sources.map(s => s.name)
+                    }
+                },
+                
+                                // Données filtrées
+                filteredData() {
+                    return this.glossaryData.filter(term => {
+                        const searchTerm = this.filters.searchTerm.toLowerCase()
+                        const matchesSearch = !this.filters.searchTerm ||
+                            term.term_fr.toLowerCase().includes(searchTerm) ||
+                            term.term_en.toLowerCase().includes(searchTerm) ||
+                            term.definition_fr.toLowerCase().includes(searchTerm) ||
+                            term.definition_en.toLowerCase().includes(searchTerm) ||
+                            (term.abbreviation && term.abbreviation.toLowerCase().includes(searchTerm))
+                        
+                        const matchesCategory = !this.filters.category || term.category === this.filters.category
+                        const matchesSource = !this.filters.source || term.source === this.filters.source
+                        
+                        return matchesSearch && matchesCategory && matchesSource
+                    })
+                }
+            },
+            mounted() {
+                this.loadData()
+                this.loadCategoriesAndSources()
+            },
+            methods: {
+                // Chargement et sauvegarde des données
+                async loadData() {
+                    try {
+                        // Charger depuis le fichier JSON
+                        const response = await fetch('./data/glossaire.json')
+                        if (response.ok) {
+                            const data = await response.json()
+                            this.glossaryData = data.entries || []
+                            this.saveData() // Sauvegarder en localStorage
+                        } else {
+                            // Fallback vers localStorage
+                            const saved = localStorage.getItem('glossaire-data')
+                            if (saved) {
+                                this.glossaryData = JSON.parse(saved)
+                            } else {
+                                this.glossaryData = []
+                            }
+                        }
+                    } catch (e) {
+                        console.error('Erreur lors du chargement des données:', e)
+                        // Fallback vers localStorage
+                        const saved = localStorage.getItem('glossaire-data')
+                        if (saved) {
+                            this.glossaryData = JSON.parse(saved)
+                        } else {
+                            this.glossaryData = []
+                        }
+                    }
+                    
+                    // Charger les paramètres d'affichage
+                    this.loadDisplaySettings()
+                },
+                
+                saveData() {
+                    localStorage.setItem('glossaire-data', JSON.stringify(this.glossaryData))
+                },
+                
+                // Gestion des paramètres d'affichage
+                loadDisplaySettings() {
+                    const saved = localStorage.getItem('glossaire-display-settings')
+                    if (saved) {
+                        try {
+                            this.displaySettings = JSON.parse(saved)
+                        } catch (e) {
+                            console.error('Erreur lors du chargement des paramètres:', e)
+                        }
+                    }
+                },
+                
+                saveDisplaySettings() {
+                    localStorage.setItem('glossaire-display-settings', JSON.stringify(this.displaySettings))
+                },
+                
+                // Chargement des catégories et sources
+                async loadCategoriesAndSources() {
+                    try {
+                        // Charger depuis localStorage d'abord
+                        const savedCategories = localStorage.getItem('glossaire-categories')
+                        const savedSources = localStorage.getItem('glossaire-sources')
+                        
+                        if (savedCategories) {
+                            this.categories = JSON.parse(savedCategories)
+                        } else {
+                            // Charger depuis les fichiers JSON
+                            const categoriesResponse = await fetch('./data/categories.json')
+                            if (categoriesResponse.ok) {
+                                const categoriesData = await categoriesResponse.json()
+                                this.categories = categoriesData.categories || []
+                            }
+                        }
+                        
+                        if (savedSources) {
+                            this.sources = JSON.parse(savedSources)
+                        } else {
+                            // Charger depuis les fichiers JSON
+                            const sourcesResponse = await fetch('./data/sources.json')
+                            if (sourcesResponse.ok) {
+                                const sourcesData = await sourcesResponse.json()
+                                this.sources = sourcesData.sources || []
+                            }
+                        }
+                    } catch (e) {
+                        console.error('Erreur lors du chargement des catégories/sources:', e)
+                    }
+                },
+                
+                // Gestion des filtres
+                updateSearch(term) {
+                    this.filters.searchTerm = term
+                },
+                
+                updateCategory(category) {
+                    this.filters.category = category
+                },
+                
+                updateSource(source) {
+                    this.filters.source = source
+                },
+                
+                clearAllFilters() {
+                    this.filters.searchTerm = ''
+                    this.filters.category = ''
+                    this.filters.source = ''
+                },
+                
+                // Gestion de l'affichage
+                updateTermOrder(order) {
+                    this.displaySettings.termOrder = order
+                },
+                
+                updateTermSeparator(separator) {
+                    this.displaySettings.termSeparator = separator
+                },
+                
+                updateColumn(column, show) {
+                    this.displaySettings.showColumns[column] = show
+                },
+                
+                // Gestion du tri
+                updateSort(sort) {
+                    this.sortSettings = sort
+                },
+                
+                // Gestion des modals
+                showAddModal() {
+                    this.modals.termModal.isEditing = false
+                    this.modals.termModal.term = {}
+                    this.modals.termModal.show = true
+                },
+                
+                editTerm(term) {
+                    this.modals.termModal.isEditing = true
+                    this.modals.termModal.term = { ...term }
+                    this.modals.termModal.show = true
+                },
+                
+                closeTermModal() {
+                    this.modals.termModal.show = false
+                },
+                
+                // Gestion des termes
+                addTerm(term) {
+                    term.id = Date.now() + Math.random()
+                    this.glossaryData.push(term)
+                    this.saveData()
+                    this.showNotification('Terme ajouté avec succès !', 'success')
+                    this.closeTermModal()
+                },
+                
+                updateTerm(term) {
+                    const index = this.glossaryData.findIndex(t => t.id === term.id)
+                    if (index !== -1) {
+                        this.glossaryData[index] = term
+                        this.saveData()
+                        this.showNotification('Terme modifié avec succès !', 'success')
+                        this.closeTermModal()
+                    }
+                },
+                
+                deleteTerm(term) {
+                    this.modals.deleteConfirm.term = term
+                    this.modals.deleteConfirm.show = true
+                },
+                
+                closeDeleteConfirm() {
+                    this.modals.deleteConfirm.show = false
+                    this.modals.deleteConfirm.term = null
+                },
+                
+                confirmDelete() {
+                    const term = this.modals.deleteConfirm.term
+                    if (term) {
+                        const globalIndex = this.glossaryData.findIndex(t => t.id === term.id)
+                        if (globalIndex !== -1) {
+                            this.glossaryData.splice(globalIndex, 1)
+                            this.saveData()
+                            this.showNotification('Terme supprimé avec succès ! (Sauvegardé en localStorage)', 'success')
+                            console.log('Note: Pour une suppression permanente, téléchargez le fichier JSON mis à jour')
+                        }
+                    }
+                    this.closeDeleteConfirm()
+                },
+                
+                // Gestion CSV
+                showExportModal() {
+                    this.modals.csvModal.show = true
+                },
+                
+                showImportModal() {
+                    this.modals.csvModal.show = true
+                },
+                
+                closeCSVModal() {
+                    this.modals.csvModal.show = false
+                },
+                
+                handleImportPreview(data) {
+                    this.showNotification(`${data.length} termes prêts à importer`, 'info')
+                },
+                
+                handleImportConfirm(data) {
+                    this.glossaryData = [...this.glossaryData, ...data]
+                    this.saveData()
+                    this.showNotification(`${data.length} termes importés avec succès !`, 'success')
+                    this.closeCSVModal()
+                },
+                
+                handleExportSuccess(stats) {
+                    this.showNotification(`${stats.terms} termes exportés dans ${stats.filename}`, 'success')
+                    this.closeCSVModal()
+                },
+                
+                handleExportError(error) {
+                    this.showNotification(`Erreur d'export : ${error}`, 'error')
+                },
+                
+                // Gestion des modales d'affichage
+                showSettingsModal() {
+                    this.modals.settingsModal.show = true
+                },
+                
+                closeSettingsModal() {
+                    this.modals.settingsModal.show = false
+                },
+                
+                saveDisplaySettings(settings) {
+                    this.displaySettings = { ...settings }
+                    this.saveDisplaySettingsToStorage()
+                    this.showNotification('Paramètres d\'affichage sauvegardés !', 'success')
+                },
+                
+                saveDisplaySettingsToStorage() {
+                    localStorage.setItem('glossaire-display-settings', JSON.stringify(this.displaySettings))
+                },
+                
+                // Gestion des catégories et sources
+                showCategoryManager() {
+                    this.modals.categoryManager.show = true
+                },
+                
+                closeCategoryManager() {
+                    this.modals.categoryManager.show = false
+                },
+                
+                addCategory(category) {
+                    this.categories.push(category)
+                    this.saveCategoriesAndSources()
+                    this.showNotification('Catégorie ajoutée avec succès !', 'success')
+                },
+                
+                deleteCategory(id) {
+                    const index = this.categories.findIndex(c => c.id === id)
+                    if (index !== -1) {
+                        this.categories.splice(index, 1)
+                        this.saveCategoriesAndSources()
+                        this.showNotification('Catégorie supprimée avec succès !', 'success')
+                    }
+                },
+                
+                addSource(source) {
+                    this.sources.push(source)
+                    this.saveCategoriesAndSources()
+                    this.showNotification('Source ajoutée avec succès !', 'success')
+                },
+                
+                deleteSource(id) {
+                    const index = this.sources.findIndex(s => s.id === id)
+                    if (index !== -1) {
+                        this.sources.splice(index, 1)
+                        this.saveCategoriesAndSources()
+                        this.showNotification('Source supprimée avec succès !', 'success')
+                    }
+                },
+                
+                saveCategoriesAndSources() {
+                    localStorage.setItem('glossaire-categories', JSON.stringify(this.categories))
+                    localStorage.setItem('glossaire-sources', JSON.stringify(this.sources))
+                },
+                
+                // Gestion des notifications
+                showNotification(message, type = 'info') {
+                    const notification = {
+                        id: ++this.notificationId,
+                        message,
+                        type,
+                        timestamp: Date.now()
+                    }
+                    
+                    this.notifications.push(notification)
+                    
+                    // Auto-suppression après 5 secondes
+                    setTimeout(() => {
+                        this.removeNotification(notification.id)
+                    }, 5000)
+                },
+                
+                removeNotification(id) {
+                    const notification = this.notifications.find(n => n.id === id)
+                    if (notification) {
+                        // Ajouter la classe pour l'animation de sortie
+                        notification.removing = true
+                        
+                        // Supprimer après l'animation
+                        setTimeout(() => {
+                            const index = this.notifications.findIndex(n => n.id === id)
+                            if (index !== -1) {
+                                this.notifications.splice(index, 1)
+                            }
+                        }, 300)
+                    }
+                }
+            }
+        }
+
+        // Création et montage de l'application
+        createApp(App).mount('#app')
+    </script>
+
+    <style>
+        /* Styles pour le header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .header-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header-content p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Styles pour les filtres de recherche */
+        .search-filters {
+            margin-bottom: 20px;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Styles pour les options d'affichage */
+        .display-options {
+            margin-bottom: 20px;
+        }
+
+        .options-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        /* Styles pour les contrôles */
+        .controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 12px 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .display-options {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        /* Styles pour les actions de ligne */
+        .actions-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            justify-content: center;
+            align-items: center;
+            min-width: 80px;
+        }
+
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+
+        .btn-outline-primary {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-outline-danger {
+            background: transparent;
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+        }
+
+        .btn-outline-danger:hover {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        /* Styles pour la modale de confirmation de suppression */
+        .delete-confirm-modal {
+            max-width: 500px;
+        }
+
+        .term-to-delete {
+            background: var(--light-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .warning-text {
+            color: var(--danger-color);
+            font-weight: 600;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        /* Styles pour le gestionnaire de catégories */
+        .manager-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .add-section {
+            margin-bottom: 20px;
+        }
+
+        .add-section h3 {
+            margin-bottom: 10px;
+        }
+
+        .add-section .form-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .color-input {
+            width: 50px;
+            height: 38px;
+            padding: 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .list-section h3 {
+            margin-bottom: 15px;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .item-name {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+
+        /* Styles pour les modals */
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        /* Styles pour le gestionnaire CSV */
+        .csv-handler {
+            padding: 20px;
+        }
+
+        .csv-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: var(--light-color);
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .tab-content {
+            min-height: 200px;
+        }
+
+        .preview-section {
+            margin-top: 20px;
+        }
+
+        .preview-table {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .preview-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .preview-table th,
+        .preview-table td {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 12px;
+        }
+
+        .import-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .file-input {
+            margin-bottom: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .search-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .options-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .controls-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .action-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</body>
+</html>

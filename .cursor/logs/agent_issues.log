@@ -1,0 +1,18 @@
+# Agent Issues Log
+# Format: YYYY-MM-DD HH:MM:SS | Issue Type | Description | Context | Resolution
+
+# Example entries:
+# 2025-08-08 14:05:00 | ERROR | Tool function failed | File editing operation | Retry with different approach
+# 2025-08-08 14:05:00 | WARNING | Ambiguous user request | Testing framework selection | Asked for clarification
+# 2025-08-08 14:05:00 | INFO | New pattern identified | Response structure | Added to best practices
+
+# Log entries will be added here automatically by the agent when issues occur
+
+2025-08-08 14:15:00 | WARNING | Terminal blocking issue | PowerShell commands with pager | Use | cat or | Out-String for commands that might trigger pager
+2025-08-08 14:15:00 | INFO | Solution identified | Terminal commands | Always append | cat to commands that could use pager (git, less, head, tail, more)
+2025-08-08 14:20:00 | ERROR | Terminal corruption | PowerShell | cat command caused binary output corruption
+2025-08-08 14:20:00 | INFO | Better solution | PowerShell commands | Use | Out-String instead of | cat for PowerShell compatibility
+2025-08-08 14:25:00 | SUCCESS | Solution found | Terminal commands | Use Format-Table -AutoSize | Out-String for clean, non-blocking output
+2025-08-08 14:25:00 | INFO | Best practice | PowerShell | Combine Select-Object with Format-Table and Out-String for optimal results
+2025-08-08 14:30:00 | CONFIRMED | Tests completed | Terminal commands | Recommendations work perfectly - no blocking issues with Format-Table -AutoSize | Out-String
+2025-08-08 14:30:00 | WARNING | Git commands | PowerShell | cat doesn't work with git output, use Out-String instead

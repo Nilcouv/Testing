@@ -34,9 +34,3 @@ Internal Validation:
 Verify: "correct Cursor frontmatter applied, naming follows [NNN]-[name].mdc convention, content structured with clear sections, cross-references included, actionable guidance provided, rule documented in registry."
 
 Expected Result: Properly configured Cursor .mdc rules with correct frontmatter, advanced content organization, and optimal structure for both AI consumption and project maintenance.
-
-Active Rules Registry:
-- [010-default-response-standards.mdc](mdc:.cursor/rules/010-default-response-standards.mdc)
-- [031-cursor-specialist.mdc](mdc:.cursor/rules/031-cursor-specialist.mdc)
-- [050-web-search-standards.mdc](mdc:.cursor/rules/050-web-search-standards.mdc)
-- [300-testing-knowledge-base.mdc](mdc:.cursor/rules/300-testing-knowledge-base.mdc)

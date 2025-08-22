@@ -1,0 +1,1742 @@
+{
+  "metadata": {
+    "version": "2.2",
+    "format": "json",
+    "migrated_from": "csv",
+    "total_entries": 192,
+    "last_updated": "2024-01-01"
+  },
+  "entries": [
+    {
+      "id": "charte_test",
+      "term_en": "Test Charter",
+      "term_fr": "Charte de test",
+      "abbreviation": "TC",
+      "definition_en": "",
+      "definition_fr": "Documentation du but ou de l'objectif d'une session de test exploratoire",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "densite_defauts",
+      "term_en": "Defect Density",
+      "term_fr": "Densité de défauts",
+      "abbreviation": "DD",
+      "definition_en": "",
+      "definition_fr": "Le nombre de défauts par unité de mesure d'un produit d'activités",
+      "source": "ISTQB CTAL-TA",
+      "category": "metrics"
+    },
+    {
+      "id": "formal_review",
+      "term_en": "Formal Review",
+      "term_fr": "Revue formelle",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "risque_produit",
+      "term_en": "Product Risk",
+      "term_fr": "Risque produit",
+      "definition_en": "",
+      "definition_fr": "Un risque directement lié Ã  l'objet de test",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "revue_technique",
+      "term_en": "Technical Review",
+      "term_fr": "Revue technique",
+      "definition_en": "",
+      "definition_fr": "Une revue formelle par des experts techniques qui examinent la qualité d'un produit d'activités et identifient les divergences par rapport aux spécifications et aux normes",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "capture_playback",
+      "term_en": "Capture/Playback",
+      "term_fr": "Capture/rejeu",
+      "abbreviation": "C/P",
+      "definition_en": "",
+      "definition_fr": "Approche d'automatisation des tests où les entrées vers l'objet de test sont enregistrées pendant les tests manuels pour générer des scripts automatisés",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "structured_scripting",
+      "term_en": "Structured Scripting",
+      "term_fr": "Script structuré",
+      "definition_en": "",
+      "definition_fr": "Technique de script qui utilise des structures de contrôle et une organisation hiérarchique pour améliorer la maintenabilité",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "test_par_tables_décisions",
+      "term_en": "decision table testing",
+      "term_fr": "test par tables de décisions",
+      "definition_en": "Technique de conception des tests boîte noire dans laquelle les cas de tests sont conçus pour exécuter les combinaisons d'entrées présentes dans une table de décision",
+      "definition_fr": "Black box test design technique where test cases are designed to execute input combinations present in a decision table",
+      "source": "ISTQB CTAL-TA",
+      "category": "techniques"
+    },
+    {
+      "id": "taxonomie_defauts",
+      "term_en": "Defect Taxonomy",
+      "term_fr": "Taxonomie des défauts",
+      "definition_en": "",
+      "definition_fr": "Une liste de catégories conçues pour identifier et classer les défauts",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "conception_des_tests",
+      "term_en": "Test Design",
+      "term_fr": "Conception des tests",
+      "definition_en": "",
+      "definition_fr": "Activité consistant Ã  dériver et Ã  spécifier des cas de test Ã  partir des conditions de test",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "test_adaptation_layer",
+      "term_en": "Test Adaptation Layer",
+      "term_fr": "Couche d'adaptation des tests",
+      "definition_en": "",
+      "definition_fr": "Couche dans une architecture d'automatisation des tests qui fournit les interfaces nécessaires pour interagir avec le système sous test",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "test_fonctionnel",
+      "term_en": "Functional Testing",
+      "term_fr": "Test fonctionnel",
+      "definition_en": "",
+      "definition_fr": "Test réalisé pour évaluer la conformité d'un composant ou d'un système aux exigences",
+      "source": "ISTQB CTAL-TA",
+      "category": "testing-types"
+    },
+    {
+      "id": "gui_testing",
+      "term_en": "GUI Testing",
+      "term_fr": "Tests de l'interface graphique",
+      "definition_en": "",
+      "definition_fr": "Tests réalisés en interagissant avec le logiciel testé via l'interface utilisateur graphique",
+      "source": "ISTQB CTAL-TAE",
+      "category": "testing-types"
+    },
+    {
+      "id": "test_script",
+      "term_en": "test script",
+      "term_fr": "test script",
+      "definition_en": "Une séquence d'instructions pour l'exécution d'un test",
+      "definition_fr": "A sequence of instructions for the execution of a test",
+      "source": "ISTQB CTAL-TAE",
+      "category": "process"
+    },
+    {
+      "id": "driver",
+      "term_en": "Driver",
+      "term_fr": "Pilote",
+      "definition_en": "",
+      "definition_fr": "Un composant logiciel ou outil de tests qui remplace un composant qui contrôle et/ou appelle un composant ou système",
+      "source": "ISTQB CTAL-TAE",
+      "category": "tools"
+    },
+    {
+      "id": "couverture_instructions",
+      "term_en": "Statement Coverage",
+      "term_fr": "Couverture des instructions",
+      "definition_en": "",
+      "definition_fr": "Le pourcentage des instructions exécutables qui ont été exécutées par une suite de tests",
+      "source": "ISTQB CTFL",
+      "category": "metrics"
+    },
+    {
+      "id": "change_related_testing",
+      "term_en": "Change-Related Testing",
+      "term_fr": "Test lié aux changements",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "error",
+      "term_en": "Error (Mistake)",
+      "term_fr": "Erreur",
+      "definition_en": "A human action that results in a defect",
+      "definition_fr": "",
+      "source": "ISTQB",
+      "category": "fundamentals"
+    },
+    {
+      "id": "test_de_cas_d_utilisation",
+      "term_en": "use case testing",
+      "term_fr": "test de cas d'utilisation",
+      "definition_en": "Technique de test boîte noire selon laquelle les cas de tests sont conçus pour exécuter des scénarios de cas d'utilisation",
+      "definition_fr": "Black box test technique where test cases are designed to execute use case scenarios",
+      "source": "ISTQB CTAL-TA",
+      "category": "techniques"
+    },
+    {
+      "id": "controle_tests",
+      "term_en": "Test Control",
+      "term_fr": "Contrôle des tests",
+      "definition_en": "",
+      "definition_fr": "Une tâche de gestion des tests qui traite du développement et de l'application d'un ensemble d'actions correctives pour remettre un projet de test sur les rails quand les métriques de suivi indiquent une déviation par rapport Ã  ce qui a été prévu",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "risk",
+      "term_en": "Risk",
+      "term_fr": "Risque",
+      "definition_en": "",
+      "definition_fr": "Facteur qui pourrait entraîner des conséquences négatives futures",
+      "source": "ISTQB CTFL",
+      "category": "management"
+    },
+    {
+      "id": "processus_verification",
+      "term_en": "Verification Process",
+      "term_fr": "Processus de vérification",
+      "definition_en": "",
+      "definition_fr": "Le processus de vérification est un processus qui permet de déterminer si les produits logiciels d'une activité satisfont les exigences ou les conditions que les activités précédentes leur imposent",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "facilite_remplacement",
+      "term_en": "Replaceability",
+      "term_fr": "Facilité de remplacement",
+      "definition_en": "",
+      "definition_fr": "Degré auquel un produit peut remplacer un autre produit logiciel spécifié pour le même usage dans le même environnement",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "reduction_risques",
+      "term_en": "Risk Reduction",
+      "term_fr": "Réduction des risques",
+      "definition_en": "",
+      "definition_fr": "Le processus par lequel les décisions sont prises et les mesures de protection sont mises en Å“uvre pour réduire ou maintenir les risques Ã  des niveaux spécifiés",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "processus_validation",
+      "term_en": "Validation Process",
+      "term_fr": "Processus de validation",
+      "definition_en": "",
+      "definition_fr": "Le processus de validation est un processus qui permet de déterminer si les exigences et le système ou le produit logiciel finaux satisfont un emploi spécifique visé",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "exerce",
+      "term_en": "Exercised",
+      "term_fr": "Exercé",
+      "definition_en": "",
+      "definition_fr": "Un élément d'un programme est dit être exercé par un cas de test quand les valeurs d'entrée causent l'exécution de cet élément",
+      "source": "tel qu'une instruction",
+      "category": "décision ou autre élément de structure"
+    },
+    {
+      "id": "suite_tests",
+      "term_en": "Test Suite",
+      "term_fr": "Suite de tests",
+      "definition_en": "",
+      "definition_fr": "Ensemble de cas de test ou de procédures de test Ã  exécuter dans un cycle de test spécifique",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "test_automation_architecture",
+      "term_en": "Test Automation Architecture",
+      "term_fr": "Architecture d'automatisation des tests",
+      "definition_en": "",
+      "definition_fr": "Structure organisationnelle et technique d'un système d'automatisation des tests définissant les composants leurs relations et les principes directeurs",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "accessibility",
+      "term_en": "Accessibility",
+      "term_fr": "Accessibilité",
+      "definition_en": "",
+      "definition_fr": "La mesure de la façon dont un composant ou un système peut être utilisé par des personnes couvrant le plus grand nombre de caractéristiques et de capacités pour atteindre un but précis dans un contexte d'utilisation précis",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "back_end_testing",
+      "term_en": "Back End Testing",
+      "term_fr": "Test back-end",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "General Testing",
+      "category": "testing-types"
+    },
+    {
+      "id": "tests_intégration",
+      "term_en": "integration testing",
+      "term_fr": "tests d'intégration",
+      "definition_en": "Tests effectués pour montrer des défauts dans les interfaces et interactions de composants intégrés",
+      "definition_fr": "Tests performed to show defects in interfaces and interactions of integrated components",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "revue_test",
+      "term_en": "Test Review",
+      "term_fr": "Revue de test",
+      "definition_en": "",
+      "definition_fr": "Un type de test statique dans lequel un produit ou un processus de travail est évalué par une ou plusieurs personnes afin de détecter les défauts ou d'apporter des améliorations",
+      "source": "General Testing",
+      "category": "process"
+    },
+    {
+      "id": "test_dihm",
+      "term_en": "IHM Testing",
+      "term_fr": "Test d'IHM",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTAL-TAE",
+      "category": "testing-types"
+    },
+    {
+      "id": "valeur_limite_2",
+      "term_en": "boundary value",
+      "term_fr": "valeur limite",
+      "definition_en": "Une valeur minimale ou maximale d'une partition d'équivalence ordonnée",
+      "definition_fr": "A minimum or maximum value of an ordered equivalence partition",
+      "source": "ISTQB CTFL",
+      "category": "techniques"
+    },
+    {
+      "id": "cas_test_haut_niveau",
+      "term_en": "High Level Test Case",
+      "term_fr": "Cas de test de haut niveau",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTAL-TA",
+      "category": "fundamentals"
+    },
+    {
+      "id": "esthetique_interface",
+      "term_en": "User Interface Aesthetics",
+      "term_fr": "Esthétique de l'interface utilisateur",
+      "definition_en": "",
+      "definition_fr": "Degré auquel une interface utilisateur permet une interaction agréable et satisfaisante pour l'utilisateur",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "model_based_testing",
+      "term_en": "Model-Based Testing",
+      "term_fr": "Tests basés sur des modèles",
+      "definition_en": "",
+      "definition_fr": "Tests basés sur ou impliquant des modèles du système ou de ses composants",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "gtaa",
+      "term_en": "generic Test Automation Architecture",
+      "term_fr": "Architecture générique d'Automatisation de Test",
+      "definition_en": "",
+      "definition_fr": "Fournit un modèle pour des solutions d'automatisation de test",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "test_hook",
+      "term_en": "Test Hook",
+      "term_fr": "Crochet de Test",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTAL-TAE",
+      "category": "tools"
+    },
+    {
+      "id": "linear_scripting",
+      "term_en": "Linear Scripting",
+      "term_fr": "Script linéaire",
+      "definition_en": "",
+      "definition_fr": "Technique de script simple sans structure de contrôle dans les scripts de test",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "inspection",
+      "term_en": "Inspection",
+      "term_fr": "Inspection",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "sut",
+      "term_en": "System Under Test",
+      "term_fr": "Système sous test",
+      "definition_en": "",
+      "definition_fr": "Un type d'objet de test qui est un système",
+      "source": "ISTQB CTAL-TAE",
+      "category": "fundamentals"
+    },
+    {
+      "id": "attenuation_risques",
+      "term_en": "Risk Mitigation",
+      "term_fr": "Atténuation des risques",
+      "definition_en": "",
+      "definition_fr": "Le processus par lequel des décisions sont prises et des mesures de protection sont mises en Å“uvre pour réduire ou maintenir les risques Ã  des niveaux spécifiés",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "interoperabilite",
+      "term_en": "Interoperability",
+      "term_fr": "Interopérabilité",
+      "definition_en": "",
+      "definition_fr": "La mesure selon laquelle deux ou plusieurs composants ou systèmes peuvent échanger de l'information et utiliser l'information qui a été échangée",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "adequation_fonctionnelle",
+      "term_en": "Functional Suitability",
+      "term_fr": "Adéquation fonctionnelle",
+      "definition_en": "",
+      "definition_fr": "Degré auquel les fonctions facilitent l'accomplissement des tâches et des objectifs spécifiés",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "scaling_testing",
+      "term_en": "Scaling Testing",
+      "term_fr": "Scaling Testing",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "General Testing",
+      "category": "testing-types"
+    },
+    {
+      "id": "tests_alpha",
+      "term_en": "Alpha Testing",
+      "term_fr": "Tests Alpha",
+      "definition_en": "",
+      "definition_fr": "Test opérationnel réel ou simulé conduit dans l'environnement de test du développement par des rôles en dehors de ceux de l'organisation en charge du développement",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "gui",
+      "term_en": "Graphical User Interface",
+      "term_fr": "Interface Utilisateur Graphique",
+      "definition_en": "",
+      "definition_fr": "Acronyme de Interface Homme/Machine (IHM)",
+      "source": "ISTQB CTAL-TAE",
+      "category": "tools"
+    },
+    {
+      "id": "keyword_driven_testing",
+      "term_en": "Keyword-Driven Testing",
+      "term_fr": "Tests pilotés par les mots-clés",
+      "definition_en": "",
+      "definition_fr": "Technique de script qui utilise des fichiers de données contenant non seulement les données de test mais aussi des mots-clés liés Ã  l'application testée",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "test_execution_tool",
+      "term_en": "Test Execution Tool",
+      "term_fr": "Test Execution Tool",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "tools"
+    },
+    {
+      "id": "test_context",
+      "term_en": "Test Context",
+      "term_fr": "Contexte de test",
+      "definition_en": "",
+      "definition_fr": "Ensemble des conditions et circonstances dans lesquelles les tests sont planifiés et exécutés",
+      "source": "ISTQB CTFL",
+      "category": "fundamentals"
+    },
+    {
+      "id": "exigence_non_fonctionnelle",
+      "term_en": "Non-Functional Requirement",
+      "term_fr": "Exigence non-fonctionnelle",
+      "definition_en": "",
+      "definition_fr": "Exigence qui décrit comment le composant ou le système réalisera ce qu'il est censé faire",
+      "source": "ISTQB CTAL-TA",
+      "category": "fundamentals"
+    },
+    {
+      "id": "frontend",
+      "term_en": "Frontend",
+      "term_fr": "Interface utilisateur",
+      "definition_en": "",
+      "definition_fr": "Partie visible d'une application accessible via le navigateur web",
+      "source": "General Testing",
+      "category": "technical"
+    },
+    {
+      "id": "test_progress_report",
+      "term_en": "Test Progress Report",
+      "term_fr": "Rapport d'avancement des tests",
+      "definition_en": "",
+      "definition_fr": "Document résumant les activités de test et les résultats obtenus pendant une période donnée",
+      "source": "ISTQB CTAL-TM",
+      "category": "documentation"
+    },
+    {
+      "id": "type_de_test",
+      "term_en": "test type",
+      "term_fr": "type de test",
+      "definition_en": "Groupe d'activités de test basées sur des objectifs de test spécifiques visant des caractéristiques spécifiques d'un composant ou d'un système",
+      "definition_fr": "Group of test activities based on specific test objectives targeting specific characteristics of a component or system",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "test_de_confirmation",
+      "term_en": "Confirmation Testing",
+      "term_fr": "Test de confirmation",
+      "definition_en": "",
+      "definition_fr": "Tests dynamiques effectués après la correction de défauts dans le but de confirmer que les défaillances causées par ces défauts ne se produisent plus",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "tast",
+      "term_en": "Test Automation Strategy",
+      "term_fr": "Stratégie d'Automatisation de Test",
+      "definition_en": "",
+      "definition_fr": "Stratégie d'Automatisation de Test",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "transition_d_état",
+      "term_en": "state transition",
+      "term_fr": "transition d'état",
+      "definition_en": "Une transition entre deux états d'un composant ou système",
+      "definition_fr": "A transition between two states of a component or system",
+      "source": "ISTQB CTFL",
+      "category": "techniques"
+    },
+    {
+      "id": "donnees_de_test",
+      "term_en": "Test Data",
+      "term_fr": "Données de test",
+      "definition_en": "",
+      "definition_fr": "Données créées ou sélectionnées pour satisfaire les préconditions d'exécution et les entrées pour exécuter un ou plusieurs cas de test",
+      "source": "ISTQB CTAL-TA",
+      "category": "fundamentals"
+    },
+    {
+      "id": "couverture_decisions",
+      "term_en": "Decision Coverage",
+      "term_fr": "Couverture des décisions",
+      "definition_en": "",
+      "definition_fr": "La couverture des résultats des décisions",
+      "source": "ISTQB CTFL",
+      "category": "metrics"
+    },
+    {
+      "id": "utilisabilité",
+      "term_en": "utilisabilité",
+      "term_fr": "utilisabilité",
+      "definition_en": "La mesure selon laquelle un composant ou un système peut être utilisé par des utilisateurs spécifiques pour atteindre des objectifs spécifiques",
+      "definition_fr": "The extent to which a component or system can be used by specific users to achieve specific objectives",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "precondition",
+      "term_en": "Precondition",
+      "term_fr": "Précondition",
+      "definition_en": "",
+      "definition_fr": "L'état requis d'un élément de test et de son environnement avant l'exécution d'un cas de test",
+      "source": "ISTQB CTAL-TA",
+      "category": "fundamentals"
+    },
+    {
+      "id": "ta",
+      "term_en": "Test Automation",
+      "term_fr": "Test Automation",
+      "definition_en": "",
+      "definition_fr": "Utilisation de logiciels pour exécuter ou supporter des activités de tests",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "testware",
+      "term_en": "Testware",
+      "term_fr": "Artefacts de test",
+      "definition_en": "",
+      "definition_fr": "Tous les produits de travail créés pendant le processus de test incluant les plans cas de test procédures et données de test",
+      "source": "ISTQB CTFL",
+      "category": "fundamentals"
+    },
+    {
+      "id": "cftl",
+      "term_en": "CFTL",
+      "term_fr": "CFTL",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "General Testing",
+      "category": "process"
+    },
+    {
+      "id": "facilité_d_adaptation",
+      "term_en": "facilité d'adaptation",
+      "term_fr": "facilité d'adaptation",
+      "definition_en": "Degré auquel un produit peut être adapté efficacement Ã  des environnements différents",
+      "definition_fr": "Degree to which a product can be effectively adapted to different environments",
+      "source": "ISTQB CTAL-TA",
+      "category": "technical"
+    },
+    {
+      "id": "scenario_based_review",
+      "term_en": "Scenario-Based Review",
+      "term_fr": "Scenario-Based Review",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "table_decision",
+      "term_en": "Decision Table",
+      "term_fr": "Table de décision",
+      "definition_en": "",
+      "definition_fr": "Un tableau utilisé pour montrer des ensembles de conditions et les actions qui en résultent",
+      "source": "ISTQB CTFL",
+      "category": "techniques"
+    },
+    {
+      "id": "protection_contre_les_erreurs_utilisateur",
+      "term_en": "protection contre les erreurs utilisateur",
+      "term_fr": "protection contre les erreurs utilisateur",
+      "definition_en": "Degré auquel un système protège les utilisateurs contre les erreurs",
+      "definition_fr": "Degree to which a system protects users against errors",
+      "source": "ISTQB CTAL-TA",
+      "category": "technical"
+    },
+    {
+      "id": "sdlc",
+      "term_en": "SDLC (Software Development Life Cycle)",
+      "term_fr": "Cycle de vie du développement logiciel",
+      "definition_en": "",
+      "definition_fr": "Processus structuré de développement logiciel comprenant les phases de planification analyse conception implémentation test déploiement et maintenance. L'automatisation des tests doit être intégrée Ã  travers toutes ces phases pour assurer une qualité continue",
+      "source": "IEEE 12207",
+      "category": "process"
+    },
+    {
+      "id": "cross_browser_testing",
+      "term_en": "Cross Browser Testing",
+      "term_fr": "Test cross-browser",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "General Testing",
+      "category": "testing-types"
+    },
+    {
+      "id": "valeur_limite",
+      "term_en": "valeur limite",
+      "term_fr": "valeur limite",
+      "definition_en": "Une valeur minimale ou maximale d'une partition d'équivalence ordonnée",
+      "definition_fr": "A minimum or maximum value of an ordered equivalence partition",
+      "source": "ISTQB CTAL-TA",
+      "category": "techniques"
+    },
+    {
+      "id": "cli",
+      "term_en": "Command Line Interface",
+      "term_fr": "Interface de ligne de commande",
+      "definition_en": "",
+      "definition_fr": "Interface de ligne de Commande",
+      "source": "ISTQB CTAL-TAE",
+      "category": "tools"
+    },
+    {
+      "id": "walkthrough",
+      "term_en": "Walkthrough",
+      "term_fr": "Walkthrough",
+      "definition_en": "Walkthrough",
+      "definition_fr": "Walkthrough",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "role_based_review",
+      "term_en": "Role-Based Review",
+      "term_fr": "Role-Based Review",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "test_automation_framework",
+      "term_en": "Test Automation Framework (TAF)",
+      "term_fr": "Framework d'automatisation des tests",
+      "definition_en": "",
+      "definition_fr": "Infrastructure logicielle qui fournit les outils bibliothèques et conventions nécessaires pour créer et exécuter des tests automatisés de manière structurée",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "test_automation_solution",
+      "term_en": "Test Automation Solution",
+      "term_fr": "Solution d'automatisation des tests",
+      "definition_en": "",
+      "definition_fr": "Ensemble complet d'outils de processus et de ressources mis en place pour automatiser les activités de test dans un contexte donné",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "user_story",
+      "term_en": "user story",
+      "term_fr": "user story",
+      "definition_en": "Changement centré l'utilisateur final et son expérience. Une exigence d'utilisateur de haut niveau utilisée dans le développement Agile",
+      "definition_fr": "User-centered change focusing on the end user and their experience. A high-level user requirement commonly used in Agile development",
+      "source": "ISTQB CTAL-TA",
+      "category": "methodologies"
+    },
+    {
+      "id": "technique_test_defauts",
+      "term_en": "Defect-Based Testing Technique",
+      "term_fr": "Technique de test basée sur les défauts",
+      "definition_en": "",
+      "definition_fr": "Une technique de test selon laquelle les cas de test sont développés Ã  partir de ce qui est connu sur un type de défaut spécifique",
+      "source": "ISTQB CTAL-TA",
+      "category": "techniques"
+    },
+    {
+      "id": "robustesse",
+      "term_en": "Robustness",
+      "term_fr": "Robustesse",
+      "definition_en": "",
+      "definition_fr": "Le degré pour lequel un composant ou système peut fonctionner correctement en présence de données d'entrée invalides ou de conditions environnementales stressantes",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "portabilite",
+      "term_en": "Portability",
+      "term_fr": "Portabilité",
+      "definition_en": "",
+      "definition_fr": "Facilité avec laquelle un produit logiciel peut être transféré d'un environnement matériel ou logiciel vers un autre",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "analyse_test",
+      "term_en": "Test Analysis",
+      "term_fr": "Analyse de test",
+      "definition_en": "",
+      "definition_fr": "L'activité qui identifie les conditions de test en analysant les bases de test",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "tests_acceptation_contractuelle",
+      "term_en": "contractual acceptance testing",
+      "term_fr": "tests d'acceptation contractuelle",
+      "definition_en": "Tests d'acceptation effectués pour vérifier si un système satisfait Ã  ses exigences contractuelles",
+      "definition_fr": "Acceptance tests performed to verify if a system meets its contractual requirements",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "exactitude",
+      "term_en": "Accuracy",
+      "term_fr": "Exactitude",
+      "definition_en": "",
+      "definition_fr": "Mesure dans laquelle un produit ou un système fournit les bons résultats avec le degré de précision nécessaire",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "ihm",
+      "term_en": "User Interface",
+      "term_fr": "Interface Homme Machine",
+      "definition_en": "",
+      "definition_fr": "Interface Homme Machine",
+      "source": "General Testing",
+      "category": "tools"
+    },
+    {
+      "id": "error",
+      "term_en": "Error",
+      "term_fr": "Erreur",
+      "definition_en": "",
+      "definition_fr": "Action humaine produisant un résultat incorrect. Synonyme : confusion",
+      "source": "ISTQB CTFL",
+      "category": "fundamentals"
+    },
+    {
+      "id": "test_boite_blanche",
+      "term_en": "White-Box Testing",
+      "term_fr": "Test boîte-blanche",
+      "definition_en": "",
+      "definition_fr": "Test basé sur une analyse de la structure interne du composant ou système",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "test_completion_report",
+      "term_en": "Test Completion Report",
+      "term_fr": "Rapport de synthèse de test",
+      "definition_en": "A type of test report produced at completion milestones that provides an evaluation of the corresponding test items against exit criteria",
+      "definition_fr": "",
+      "source": "ISTQB",
+      "category": "documentation"
+    },
+    {
+      "id": "postcondition",
+      "term_en": "Postcondition",
+      "term_fr": "Postcondition",
+      "definition_en": "",
+      "definition_fr": "L'état attendu d'un élément de test et de son environnement Ã  la fin de l'exécution d'un cas de test",
+      "source": "ISTQB CTAL-TA",
+      "category": "fundamentals"
+    },
+    {
+      "id": "facilité_d_installation",
+      "term_en": "facilité d'installation",
+      "term_fr": "facilité d'installation",
+      "definition_en": "Degré d'efficacité avec lequel un produit peut être installé et désinstallé",
+      "definition_fr": "Degree of effectiveness with which a product can be installed and uninstalled",
+      "source": "ISTQB CTAL-TA",
+      "category": "technical"
+    },
+    {
+      "id": "continuous_deployment",
+      "term_en": "Continuous Deployment",
+      "term_fr": "Déploiement continu",
+      "definition_en": "",
+      "definition_fr": "Pratique DevOps où les modifications de code sont automatiquement déployées en production après avoir passé tous les tests automatisés prédéfinis",
+      "source": "DevOps",
+      "category": "devops"
+    },
+    {
+      "id": "static_analysis",
+      "term_en": "Static Analysis",
+      "term_fr": "Static Analysis",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "techniques"
+    },
+    {
+      "id": "resultat_faux_negatif",
+      "term_en": "False Negative Result",
+      "term_fr": "Résultat Faux négatif",
+      "definition_en": "",
+      "definition_fr": "Un résultat de test qui ne parvient pas Ã  identifier la présence d'un défaut qui est réellement présent dans l'objet de test",
+      "source": "ISTQB CTAL-TA",
+      "category": "testing-types"
+    },
+    {
+      "id": "static_analysis",
+      "term_en": "Static Analysis",
+      "term_fr": "Analyse statique",
+      "definition_en": "",
+      "definition_fr": "Analyse du code ou des documents sans exécution du programme pour détecter des défauts potentiels ou vérifier la conformité aux standards",
+      "source": "ISTQB CTFL",
+      "category": "techniques"
+    },
+    {
+      "id": "estimation_erreurs",
+      "term_en": "Error Estimation",
+      "term_fr": "Estimation des erreurs",
+      "definition_en": "",
+      "definition_fr": "Une technique de test selon laquelle les tests sont dérivés sur la base de la connaissance du testeur",
+      "source": "des échecs passés",
+      "category": "ou de la connaissance générale des modes de défaillance"
+    },
+    {
+      "id": "test_step",
+      "term_en": "Test Step",
+      "term_fr": "Étape de test",
+      "definition_en": "",
+      "definition_fr": "Action individuelle la plus petite dans un script de test ou un cas de test",
+      "source": "ISTQB CTAL-TAE",
+      "category": "fundamentals"
+    },
+    {
+      "id": "exigence_testable",
+      "term_en": "Testable Requirement",
+      "term_fr": "Exigence Testable",
+      "definition_en": "",
+      "definition_fr": "Exigence exprimée en des termes permettant le démarrage de la conception des tests et l'exécution des tests pour déterminer si l'exigence a été satisfaite",
+      "source": "ISTQB CTAL-TA",
+      "category": "fundamentals"
+    },
+    {
+      "id": "estimation_d_erreur",
+      "term_en": "error guessing",
+      "term_fr": "estimation d'erreur",
+      "definition_en": "Technique de test qui consiste Ã  dériver les tests sur la base de la connaissance des défaillances passées",
+      "definition_fr": "Test technique that derives tests based on knowledge of past failures",
+      "source": "ISTQB CTFL",
+      "category": "techniques"
+    },
+    {
+      "id": "risque_projet",
+      "term_en": "Project Risk",
+      "term_fr": "Risque projet",
+      "definition_en": "",
+      "definition_fr": "Un risque qui a une incidence sur la réussite du projet",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "test_cli",
+      "term_en": "CLI Testing",
+      "term_fr": "Test de CLI",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTAL-TAE",
+      "category": "testing-types"
+    },
+    {
+      "id": "test_procedure",
+      "term_en": "test procedure",
+      "term_fr": "test procedure",
+      "definition_en": "Une séquence de cas de test dans l'ordre d'exécution et toutes les actions associées",
+      "definition_fr": "A sequence of test cases in execution order and all associated actions",
+      "source": "ISTQB CTAL-TAE",
+      "category": "process"
+    },
+    {
+      "id": "test_des_transitions_d_état",
+      "term_en": "state transition testing",
+      "term_fr": "test des transitions d'état",
+      "definition_en": "Technique de test de boîte-noire utilisant un diagramme états-transitions pour dériver des cas de test",
+      "definition_fr": "Black box test technique using a state transition diagram to derive test cases",
+      "source": "ISTQB CTAL-TA",
+      "category": "techniques"
+    },
+    {
+      "id": "failure",
+      "term_en": "Failure",
+      "term_fr": "Défaillance",
+      "definition_en": "An event in which a component or system does not meet its requirements within specified limits during its execution",
+      "definition_fr": "Événement dans lequel un composant ou un système n'exécute pas une fonction requise dans les limites spécifiées",
+      "source": "ISTQB",
+      "category": "fundamentals"
+    },
+    {
+      "id": "vérification",
+      "term_en": "vérification",
+      "term_fr": "vérification",
+      "definition_en": "Confirmation par l'examen et la fourniture de preuves objectives que des exigences spécifiées ont été satisfaites",
+      "definition_fr": "Confirmation by examination and provision of objective evidence that specified requirements have been satisfied",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "tas",
+      "term_en": "TAS (Test Automation Solution)",
+      "term_fr": "Solution d'automatisation des tests",
+      "definition_en": "",
+      "definition_fr": "Ensemble complet d'outils de processus et de ressources mis en place pour automatiser les activités de test dans un contexte donné",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "test_de_performance",
+      "term_en": "Performance Testing",
+      "term_fr": "Test de performance",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "General Testing",
+      "category": "testing-types"
+    },
+    {
+      "id": "aptitude_usage",
+      "term_en": "Usability",
+      "term_fr": "Aptitude Ã  l'usage",
+      "definition_en": "",
+      "definition_fr": "La capacité d'un produit système Ã  fournir un ensemble approprié de fonctions pour une tâche et des objectifs utilisateurs spécifiés",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "information_review",
+      "term_en": "Informal Review",
+      "term_fr": "Revue informelle",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "test_d_acceptation",
+      "term_en": "acceptance testing",
+      "term_fr": "test d'acceptation",
+      "definition_en": "Test formel conduit par le business déterminant si le système satisfait aux critères d'acceptance",
+      "definition_fr": "Formal test conducted by business determining if the system meets acceptance criteria",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "emte",
+      "term_en": "Equivalent Manual Test Effort",
+      "term_fr": "Effort de Test Manuel Équivalent",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTAL-TAE",
+      "category": "metrics"
+    },
+    {
+      "id": "backend",
+      "term_en": "Backend",
+      "term_fr": "Arrière-plan",
+      "definition_en": "",
+      "definition_fr": "Partie serveur d'une application qui gère la logique métier et les données",
+      "source": "General Testing",
+      "category": "technical"
+    },
+    {
+      "id": "securite",
+      "term_en": "Security",
+      "term_fr": "Sécurité",
+      "definition_en": "",
+      "definition_fr": "La mesure selon laquelle une composante ou un système protège l'information et les données afin que les personnes ou d'autres composantes ou systèmes aient le degré d'accès approprié Ã  leurs types et niveaux d'autorisation",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "analysis",
+      "term_en": "Analysis",
+      "term_fr": "Analyse",
+      "definition_en": "",
+      "definition_fr": "Processus d'examen détaillé d'un élément pour identifier ses composants leurs relations et leurs principes d'organisation",
+      "source": "ISTQB CTFL",
+      "category": "fundamentals"
+    },
+    {
+      "id": "taux_defaillance",
+      "term_en": "Failure Rate",
+      "term_fr": "Taux de défaillance",
+      "definition_en": "",
+      "definition_fr": "Rapport entre le nombre de défaillances d'une catégorie donnée et une unité de mesure donnée",
+      "source": "ISTQB CTAL-TA",
+      "category": "metrics"
+    },
+    {
+      "id": "defect",
+      "term_en": "Defect (Bug",
+      "term_fr": "Fault)",
+      "definition_en": "Défaut (Bug",
+      "definition_fr": "Faute)",
+      "source": "An imperfection or deficiency in a work product where it does not meet its requirements or specifications or impairs its intended use",
+      "category": ""
+    },
+    {
+      "id": "test_script",
+      "term_en": "Test Script",
+      "term_fr": "Script de test",
+      "definition_en": "",
+      "definition_fr": "Séquence d'instructions qui peut être exécutée par un outil d'exécution de test",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "planning_d_exécution_des_tests",
+      "term_en": "planning d'exécution des tests",
+      "term_fr": "planning d'exécution des tests",
+      "definition_en": "Planning of test execution activities",
+      "definition_fr": "Planification des activités d'exécution des tests",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "istqb",
+      "term_en": "ISTQB",
+      "term_fr": "ISTQB",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "General Testing",
+      "category": "process"
+    },
+    {
+      "id": "identification_risques",
+      "term_en": "Risk Identification",
+      "term_fr": "Identification des risques",
+      "definition_en": "",
+      "definition_fr": "Le processus consistant Ã  trouver",
+      "source": "reconnaître et décrire les risques",
+      "category": "ISTQB CTAL-TA"
+    },
+    {
+      "id": "review",
+      "term_en": "Review",
+      "term_fr": "Review",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "rapport_synthese_test",
+      "term_en": "Test Summary Report",
+      "term_fr": "Rapport de synthèse de test",
+      "definition_en": "",
+      "definition_fr": "Un rapport de test qui fournit une évaluation des éléments de test en comparaison avec les critères de sortie",
+      "source": "ISTQB CTFL",
+      "category": "documentation"
+    },
+    {
+      "id": "confirmation_testing",
+      "term_en": "Confirmation Testing (Retest)",
+      "term_fr": "Test de confirmation (retest)",
+      "definition_en": "A type of change-related testing performed after fixing a defect to confirm that a failure caused by that defect does not reoccur",
+      "definition_fr": "",
+      "source": "ISTQB",
+      "category": "testing-types"
+    },
+    {
+      "id": "test_d_intégration_de_composants",
+      "term_en": "component integration testing",
+      "term_fr": "test d'intégration de composants",
+      "definition_en": "Test effectué pour découvrir des défauts dans les interfaces et interactions entre composants intégrés",
+      "definition_fr": "Test performed to discover defects in interfaces and interactions between integrated components",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "analyse_risques",
+      "term_en": "Risk Analysis",
+      "term_fr": "Analyse des risques",
+      "definition_en": "",
+      "definition_fr": "Le processus général d'identification et d'évaluation des risques",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "test_boite_noir",
+      "term_en": "Black-Box Testing",
+      "term_fr": "Test boîte-noir",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "General Testing",
+      "category": "testing-types"
+    },
+    {
+      "id": "test_management_tool",
+      "term_en": "Test Management Tool",
+      "term_fr": "Test Management Tool",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "tools"
+    },
+    {
+      "id": "critere_entree",
+      "term_en": "Entry Criteria",
+      "term_fr": "Critère d'entrée",
+      "definition_en": "",
+      "definition_fr": "L'ensemble des conditions pour le démarrage formel d'une tâche définie",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "qualite_logicielle",
+      "term_en": "Software Quality",
+      "term_fr": "Qualité logicielle",
+      "definition_en": "",
+      "definition_fr": "La totalité des fonctionnalités et caractéristiques d'un produit logiciel qui influent sur sa capacité Ã  satisfaire des besoins déclarés ou implicites",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "analyse_valeurs_limites",
+      "term_en": "Boundary Value Analysis",
+      "term_fr": "Analyse des valeurs limites",
+      "definition_en": "",
+      "definition_fr": "Une technique de conception de tests boîte noire dans laquelle les cas de tests sont conçus sur la base des valeurs limites",
+      "source": "ISTQB CTAL-TA",
+      "category": "techniques"
+    },
+    {
+      "id": "tests_basés_expérience",
+      "term_en": "tests basés sur l'expérience",
+      "term_fr": "tests basés sur l'expérience",
+      "definition_en": "Test basé sur l'expérience les connaissances et l'intuition du testeur",
+      "definition_fr": "Test based on the tester's experience knowledge and intuition",
+      "source": "ISTQB CTAL-TA",
+      "category": "techniques"
+    },
+    {
+      "id": "tests_systeme",
+      "term_en": "System Testing",
+      "term_fr": "Tests système",
+      "definition_en": "",
+      "definition_fr": "Tester un système intégré pour vérifier qu'il répond aux exigences spécifiées",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "test_de_penetration",
+      "term_en": "Penetration Testing",
+      "term_fr": "Test de pénétration",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "General Testing",
+      "category": "testing-types"
+    },
+    {
+      "id": "gtu",
+      "term_en": "GTU",
+      "term_fr": "GTU",
+      "definition_en": "",
+      "definition_fr": "Environnement d'acceptance",
+      "source": "General Testing",
+      "category": "process"
+    },
+    {
+      "id": "validation",
+      "term_en": "validation",
+      "term_fr": "validation",
+      "definition_en": "Confirmation par l'examen et la fourniture de preuves objectives que les exigences ont été satisfaites",
+      "definition_fr": "Confirmation by examination and provision of objective evidence that requirements have been satisfied",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "api",
+      "term_en": "API",
+      "term_fr": "Interface de programmation",
+      "definition_en": "",
+      "definition_fr": "Interface qui permet Ã  différents logiciels de communiquer entre eux",
+      "source": "General Testing",
+      "category": "technical"
+    },
+    {
+      "id": "test_de_composant",
+      "term_en": "Component Testing",
+      "term_fr": "Test de composant",
+      "definition_en": "",
+      "definition_fr": "Le test de composants logiciels individuels",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "test_statique",
+      "term_en": "static test",
+      "term_fr": "test statique",
+      "definition_en": "Test qui n'implique pas l'exécution d'un élément de test",
+      "definition_fr": "Test that does not involve execution of a test item",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "tests_intégration_système",
+      "term_en": "system integration testing",
+      "term_fr": "tests d'intégration système",
+      "definition_en": "Tester la combinaison et l'interaction des systèmes",
+      "definition_fr": "Testing the combination and interaction of systems",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "ui",
+      "term_en": "user interface",
+      "term_fr": "UI",
+      "definition_en": "Interface Utilisateur",
+      "definition_fr": "User Interface",
+      "source": "ISTQB CTAL-TAE",
+      "category": "tools"
+    },
+    {
+      "id": "vsts",
+      "term_en": "visual studio team system",
+      "term_fr": "VSTS",
+      "definition_en": "Visual Studio Team System",
+      "definition_fr": "Visual Studio Team System",
+      "source": "General Testing",
+      "category": "tools"
+    },
+    {
+      "id": "measure",
+      "term_en": "Measure",
+      "term_fr": "Mesure",
+      "definition_en": "",
+      "definition_fr": "Nombre ou catégorie assigné Ã  un attribut d'une entité par le biais d'une mesure",
+      "source": "ISTQB CTAL-TM",
+      "category": "metrics"
+    },
+    {
+      "id": "assurance_qualite",
+      "term_en": "Quality Assurance",
+      "term_fr": "Assurance qualité",
+      "definition_en": "",
+      "definition_fr": "Partie de la gestion de la qualité visant Ã  fournir l'assurance que les exigences qualité seront atteintes",
+      "source": "ISTQB CTFL",
+      "category": "quality"
+    },
+    {
+      "id": "test_harness",
+      "term_en": "Test Harness",
+      "term_fr": "Harnais de tests",
+      "definition_en": "",
+      "definition_fr": "Collection d'outils logiciels et de données de test configurés pour tester un programme en simulant l'environnement d'exécution",
+      "source": "IEEE 610",
+      "category": "tools"
+    },
+    {
+      "id": "technique_test_boite_blanche",
+      "term_en": "White-Box Test Technique",
+      "term_fr": "Technique de test boîte-blanche",
+      "definition_en": "",
+      "definition_fr": "Procédure permettant de dériver et/ou de sélectionner des cas de test sur la base d'une analyse de la structure interne d'un composant ou d'un système",
+      "source": "ISTQB CTFL",
+      "category": "techniques"
+    },
+    {
+      "id": "bdd",
+      "term_en": "Behavior-Driven Development",
+      "term_fr": "Développement piloté par les comportements",
+      "definition_en": "",
+      "definition_fr": "Approche collaborative de développement où l'équipe se concentre sur la livraison du comportement attendu d'un composant pour le client",
+      "source": "Agile Testing",
+      "category": "methodologies"
+    },
+    {
+      "id": "critere_sortie",
+      "term_en": "Exit Criteria",
+      "term_fr": "Critère de sortie",
+      "definition_en": "",
+      "definition_fr": "L'ensemble des conditions pour la completion formelle d'une tâche définie",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "test_condition",
+      "term_en": "Test Condition",
+      "term_fr": "Condition de test",
+      "definition_en": "",
+      "definition_fr": "Un aspect testable d'un composant ou d'un système identifié comme une base pour les tests",
+      "source": "ISTQB CTAL-TA",
+      "category": "fundamentals"
+    },
+    {
+      "id": "tst",
+      "term_en": "technical system testing",
+      "term_fr": "TST",
+      "definition_en": "Technical system testing",
+      "definition_fr": "Technical system testing",
+      "source": "General Testing",
+      "category": "testing-types"
+    },
+    {
+      "id": "regression_testing",
+      "term_en": "Regression Testing",
+      "term_fr": "Test de non-régression",
+      "definition_en": "A type of change-related testing to detect whether defects have been introduced or uncovered in unchanged areas of the software",
+      "definition_fr": "",
+      "source": "ISTQB",
+      "category": "testing-types"
+    },
+    {
+      "id": "api_testing",
+      "term_en": "API Testing",
+      "term_fr": "Tests d'API",
+      "definition_en": "",
+      "definition_fr": "Tests réalisés en soumettant des commandes au logiciel testé via les interfaces de programmation de l'application directement",
+      "source": "ISTQB CTAL-TAE",
+      "category": "testing-types"
+    },
+    {
+      "id": "traçabilité",
+      "term_en": "traceability",
+      "term_fr": "traçabilité",
+      "definition_en": "La mesure dans laquelle une relation peut être établie entre deux ou plusieurs produits d'activités",
+      "definition_fr": "The extent to which a relationship can be established between two or more work products",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "evaluation_risques",
+      "term_en": "Risk Evaluation",
+      "term_fr": "Évaluation des risques",
+      "definition_en": "",
+      "definition_fr": "Le processus d'examen des risques identifiés et de détermination du niveau de risque",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "facilité_d_apprentissage",
+      "term_en": "facilité d'apprentissage",
+      "term_fr": "facilité d'apprentissage",
+      "definition_en": "Degré auquel un produit peut être utilisé pour atteindre des objectifs d'apprentissage",
+      "definition_fr": "Degree to which a product can be used to achieve learning objectives",
+      "source": "ISTQB CTAL-TA",
+      "category": "technical"
+    },
+    {
+      "id": "schema_validation",
+      "term_en": "Schema Validation",
+      "term_fr": "Validation de schéma",
+      "definition_en": "",
+      "definition_fr": "Processus de vérification qu'un document ou une structure de données respecte un schéma prédéfini",
+      "source": "API Testing",
+      "category": "technical"
+    },
+    {
+      "id": "front_end_testing",
+      "term_en": "Front End Testing",
+      "term_fr": "Test front-end",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "General Testing",
+      "category": "testing-types"
+    },
+    {
+      "id": "produit_d_activité",
+      "term_en": "work product",
+      "term_fr": "produit d'activité",
+      "definition_en": "Product created during test activities",
+      "definition_fr": "Produit créé pendant les activités de test",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "approche_test",
+      "term_en": "Test Approach",
+      "term_fr": "Approche du test",
+      "definition_en": "",
+      "definition_fr": "L'implémentation de la stratégie de test pour un projet spécifique",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "test_histogram",
+      "term_en": "Test Histogram",
+      "term_fr": "Histogramme de test",
+      "definition_en": "",
+      "definition_fr": "Représentation graphique de la distribution des résultats de test ou des métriques de test sur une période donnée",
+      "source": "ISTQB CTAL-TAE",
+      "category": "metrics"
+    },
+    {
+      "id": "test_suite",
+      "term_en": "Test Suite",
+      "term_fr": "Suite de test",
+      "definition_en": "A set of test scripts or test procedures to be executed in a specific test run",
+      "definition_fr": "",
+      "source": "ISTQB",
+      "category": "fundamentals"
+    },
+    {
+      "id": "tests_acceptation_opérationnelle",
+      "term_en": "operational acceptance testing",
+      "term_fr": "tests d'acceptation opérationnelle",
+      "definition_en": "Test opérationnel en phase de test d'acceptation généralement effectué dans un environnement opérationnel",
+      "definition_fr": "Operational test in acceptance testing phase usually performed in an operational environment",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "partition_d_équivalence",
+      "term_en": "equivalence partitioning",
+      "term_fr": "partition d'équivalence",
+      "definition_en": "Portion d'un domaine d'entrée ou de sortie pour laquelle le comportement est supposé être le même",
+      "definition_fr": "Portion of an input or output domain for which behavior is assumed to be the same",
+      "source": "ISTQB CTAL-TA",
+      "category": "techniques"
+    },
+    {
+      "id": "test_logging",
+      "term_en": "Test Logging",
+      "term_fr": "Journalisation des tests",
+      "definition_en": "",
+      "definition_fr": "Enregistrement automatique des activités et résultats de test pour faciliter l'analyse et le débogage",
+      "source": "ISTQB CTAL-TAE",
+      "category": "techniques"
+    },
+    {
+      "id": "metric",
+      "term_en": "Metric",
+      "term_fr": "Métrique",
+      "definition_en": "",
+      "definition_fr": "Échelle de mesure et méthode utilisée pour la mesure",
+      "source": "ISTQB CTAL-TM",
+      "category": "metrics"
+    },
+    {
+      "id": "reconnaissance_pertinence",
+      "term_en": "Relevance Recognition",
+      "term_fr": "Reconnaissance de la pertinence",
+      "definition_en": "",
+      "definition_fr": "Degré auquel les utilisateurs peuvent reconnaître si un produit ou un système est approprié Ã  leurs besoins",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "test_non_fonctionnel",
+      "term_en": "non-functional testing",
+      "term_fr": "test non-fonctionnel",
+      "definition_en": "Test effectué pour évaluer la conformité d'un composant ou d'un système avec les exigences non fonctionnelles",
+      "definition_fr": "Test performed to evaluate compliance of a component or system with non-functional requirements",
+      "source": "ISTQB CTAL-TA",
+      "category": "testing-types"
+    },
+    {
+      "id": "tam",
+      "term_en": "Test Automation Manager",
+      "term_fr": "Manager de l'Automatisation de Test",
+      "definition_en": "",
+      "definition_fr": "La personne responsable de la planification et de la supervision du développement et de l'évolution d'une TAS",
+      "source": "ISTQB CTAL-TAE",
+      "category": "roles"
+    },
+    {
+      "id": "test_base_sessions",
+      "term_en": "Session-Based Testing",
+      "term_fr": "Test basé sur des sessions",
+      "definition_en": "",
+      "definition_fr": "Approche du test dans laquelle des activités de test sont planifiées comme les sessions ininterrompues de conception de tests et d'exécution",
+      "source": "ISTQB CTAL-TA",
+      "category": "testing-types"
+    },
+    {
+      "id": "taf",
+      "term_en": "Test Automation Framework",
+      "term_fr": "Framework d'Automatisation de Test",
+      "definition_en": "",
+      "definition_fr": "Environnement requis pour l'automatisation de test incluant harnais et artefacts de test tels les bibliothèques de test",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "exigence_fonctionnelle",
+      "term_en": "Functional Requirement",
+      "term_fr": "Exigence fonctionnelle",
+      "definition_en": "",
+      "definition_fr": "Une exigence qui spécifie une fonction qu'un composant ou système doit être capable de remplir",
+      "source": "ISTQB CTAL-TA",
+      "category": "fundamentals"
+    },
+    {
+      "id": "cicd_pipeline",
+      "term_en": "CI/CD Pipeline",
+      "term_fr": "Pipeline d'intégration et déploiement continus",
+      "definition_en": "",
+      "definition_fr": "Série d'étapes automatisées utilisées par les équipes de développement et d'opérations pour compiler tester et déployer le code logiciel de manière plus rapide et fiable. Le pipeline automatise les processus d'intégration continue (CI) et de livraison continue (CD) pour améliorer la qualité du code et accélérer les cycles de livraison",
+      "source": "DevOps",
+      "category": "devops"
+    },
+    {
+      "id": "implementation_tests",
+      "term_en": "Test Implementation",
+      "term_fr": "Implémentation des tests",
+      "definition_en": "",
+      "definition_fr": "L'activité qui prépare le testware nécessaire Ã  l'exécution des tests sur la base de l'analyse et de la conception des tests",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "incident",
+      "term_en": "Incident",
+      "term_fr": "Incident",
+      "definition_en": "",
+      "definition_fr": "Tout événement arrivant pendant les tests qui requiert une vérification. Divergence entre le résultat obtenu et le résultat attendu lors de l'exécution d'un test",
+      "source": "ISTQB",
+      "category": "fundamentals"
+    },
+    {
+      "id": "test_par_paires",
+      "term_en": "Pairwise Testing",
+      "term_fr": "Test par paires",
+      "definition_en": "",
+      "definition_fr": "Une technique de test boîte noire selon laquelle les cas de test sont conçus pour exercer des paires de paramètres-valeurs",
+      "source": "ISTQB CTAL-TA",
+      "category": "techniques"
+    },
+    {
+      "id": "test_tool",
+      "term_en": "test tool",
+      "term_fr": "test tool",
+      "definition_en": "Produit logiciel qui supporte une ou plusieurs activités de test",
+      "definition_fr": "Software product that supports one or more test activities",
+      "source": "ISTQB CTAL-TAE",
+      "category": "tools"
+    },
+    {
+      "id": "tdd",
+      "term_en": "Test-Driven Development",
+      "term_fr": "Développement piloté par les tests",
+      "definition_en": "",
+      "definition_fr": "Pratique de développement où les tests sont écrits avant le code de production",
+      "source": "Agile Testing",
+      "category": "methodologies"
+    },
+    {
+      "id": "static_testing",
+      "term_en": "Static Testing",
+      "term_fr": "Test statique",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "testing-types"
+    },
+    {
+      "id": "tester",
+      "term_en": "Tester",
+      "term_fr": "Tester",
+      "definition_en": "Un professionnel qualifié qui participe aux tests d'un composant ou d'un système",
+      "definition_fr": "Un professionnel qualifié qui participe aux tests d'un composant ou d'un système",
+      "source": "ISTQB CTFL",
+      "category": "roles"
+    },
+    {
+      "id": "rapport_d_avancement_de_test",
+      "term_en": "test progress report",
+      "term_fr": "rapport d'avancement de test",
+      "definition_en": "Rapport produit Ã  intervalles réguliers sur l'état d'avancement des activités de test",
+      "definition_fr": "Report produced at regular intervals on the progress status of test activities",
+      "source": "ISTQB CTFL",
+      "category": "documentation"
+    },
+    {
+      "id": "testability",
+      "term_en": "Testability",
+      "term_fr": "Testabilité",
+      "definition_en": "Le degré d'efficacité et d'efficience avec lequel les tests peuvent être conçus et exécutés",
+      "definition_fr": "Degré d'efficacité et d'efficience avec lequel les critères de test peuvent être établis pour un système et les tests peuvent être effectués",
+      "source": "ISTQB CTFL",
+      "category": "fundamentals"
+    },
+    {
+      "id": "article_test",
+      "term_en": "Test Item",
+      "term_fr": "Article de test",
+      "definition_en": "",
+      "definition_fr": "Une partie d'un objet de test utilisée dans le processus de test",
+      "source": "ISTQB CTAL-TA",
+      "category": "fundamentals"
+    },
+    {
+      "id": "scenario_testing",
+      "term_en": "Scenario Testing",
+      "term_fr": "Scenario testing",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTAL-TAE",
+      "category": "testing-types"
+    },
+    {
+      "id": "sdlc",
+      "term_en": "Software Development Life Cycle",
+      "term_fr": "SDLC",
+      "definition_en": "",
+      "definition_fr": "Software Development Life Cycle",
+      "source": "General Testing",
+      "category": "process"
+    },
+    {
+      "id": "cas_d_utilisation",
+      "term_en": "use case",
+      "term_fr": "cas d'utilisation",
+      "definition_en": "Séquence de transactions dans un dialogue entre un acteur et un composant ou un système avec un résultat concret",
+      "definition_fr": "Sequence of transactions in a dialogue between an actor and a component or system with a concrete result",
+      "source": "ISTQB CTAL-TA",
+      "category": "techniques"
+    },
+    {
+      "id": "ad_hoc_review",
+      "term_en": "Ad-hoc Review",
+      "term_fr": "Revue ad-hoc",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "process"
+    },
+    {
+      "id": "exigence",
+      "term_en": "Requirement",
+      "term_fr": "Exigence",
+      "definition_en": "",
+      "definition_fr": "Une stipulation qui énonce des critères Ã  satisfaire",
+      "source": "ISTQB CTAL-TA",
+      "category": "fundamentals"
+    },
+    {
+      "id": "risque_qualite",
+      "term_en": "Quality Risk",
+      "term_fr": "Risque qualité",
+      "definition_en": "",
+      "definition_fr": "Un risque Produit lié Ã  une caractéristique de qualité",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "keyword_driven_testing",
+      "term_en": "Keyword-Driven Testing",
+      "term_fr": "Test piloté par mots-clés",
+      "definition_en": "",
+      "definition_fr": "",
+      "source": "ISTQB CTFL",
+      "category": "automation"
+    },
+    {
+      "id": "planification_test",
+      "term_en": "Test Planning",
+      "term_fr": "Planification de test",
+      "definition_en": "",
+      "definition_fr": "Activité de définition ou de mise Ã  jour d'un plan de test",
+      "source": "ISTQB CTAL-TA",
+      "category": "process"
+    },
+    {
+      "id": "technique_test",
+      "term_en": "Test Technique",
+      "term_fr": "Technique de test",
+      "definition_en": "",
+      "definition_fr": "Procédure utilisée pour dériver et/ou sélectionner les cas de test",
+      "source": "ISTQB CTFL",
+      "category": "techniques"
+    },
+    {
+      "id": "completude_fonctionnelle",
+      "term_en": "Functional Completeness",
+      "term_fr": "Complétude fonctionnelle",
+      "definition_en": "",
+      "definition_fr": "Degré auquel l'ensemble des fonctions couvre toutes les tâches spécifiées et les objectifs de l'utilisateur",
+      "source": "ISTQB CTAL-TA",
+      "category": "quality"
+    },
+    {
+      "id": "resultat_faux_positif",
+      "term_en": "False Positive Result",
+      "term_fr": "Résultat Faux positif",
+      "definition_en": "",
+      "definition_fr": "Un résultat de test dans lequel un défaut est signalé alors qu'aucun défaut n'existe réellement dans l'objet de test",
+      "source": "ISTQB CTAL-TA",
+      "category": "testing-types"
+    },
+    {
+      "id": "test_level",
+      "term_en": "Test Level",
+      "term_fr": "Niveau de test",
+      "definition_en": "A specific instantiation of a test process",
+      "definition_fr": "",
+      "source": "ISTQB",
+      "category": "process"
+    }
+  ]
+}
