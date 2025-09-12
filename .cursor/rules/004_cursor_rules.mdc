@@ -1,0 +1,122 @@
+---
+description: Rules for creating and managing Cursor rules
+globs: .cursor/rules/*.mdc
+alwaysApply: false
+---
+# Cursor Rules Creation Guide
+
+## .mdc File Structure
+
+- Description: Concise summary (1 line)
+- Globs: File patterns to target
+- Content: short concise actionable lines, markdown format
+
+## Numbering System
+
+- 001-099: Core/workspace rules
+- 100-199: Integration rules
+- 200-299: Pattern rules
+- Higher numbers = higher priority
+
+## Content Guidelines
+
+- Use markdown formatting
+- Include specific, actionable rules
+- Reference files with @ symbol
+- Use description for context, not repetition
+- Focus on actionable directives only
+- Use bullet points for clarity
+- Keep content concise and focused
+- Prioritize "what to do" over "why"
+
+## Rule Activation Types
+
+- **Always Rule**: `alwaysApply: true` - Applies globally
+- **Auto Rule**: `globs` specified - Applies to file patterns
+- **Agent Rule**: `description` specified - Applies based on context
+- **Manual Rule**: Empty fields - Applied only when referenced with @
+
+## YAML Header Format
+
+### Always Rule (global)
+
+```yaml
+---
+alwaysApply: true
+---
+```
+
+### Auto Rule (file patterns)
+
+```yaml
+---
+globs: pattern1, pattern2
+alwaysApply: false
+---
+```
+
+### Agent Rule (context-based)
+
+```yaml
+---
+description: Context and purpose
+alwaysApply: false
+---
+```
+
+### Manual Rule (referenced with @)
+
+```yaml
+---
+description: 
+globs: 
+---
+```
+
+## Rule Template Examples
+
+### Auto Rule (with globs)
+
+```markdown
+---
+globs: pattern1, pattern2
+alwaysApply: false
+---
+# Rule Title
+
+## Key Directives
+- Specific actions to take
+- Important constraints
+- Essential requirements
+
+## Process
+- Step-by-step approach
+- Critical methodology points
+
+## Validation
+- How to verify completion
+- Quality checks
+```
+
+### Agent Rule (with description)
+
+```markdown
+---
+description: "Context and purpose of the rule"
+alwaysApply: false
+---
+# Rule Title
+
+## Key Directives
+- Specific actions to take
+- Important constraints
+- Essential requirements
+
+## Process
+- Step-by-step approach
+- Critical methodology points
+
+## Validation
+- How to verify completion
+- Quality checks
+```

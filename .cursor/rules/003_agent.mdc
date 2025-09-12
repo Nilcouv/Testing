@@ -1,0 +1,60 @@
+---
+description: Rules for Cursor agent behavior
+alwaysApply: true
+---
+# Agent Behavior Rules
+
+## Operation
+
+- Use integrated Cursor tools
+- Analyze context before action
+- Propose modular solutions
+- Validate with user
+
+## Available Tools
+
+- `codebase_search` - Semantic codebase analysis
+- `grep` - Pattern search in files
+- `read_file` - Read file contents
+- `write` - Create new files
+- `search_replace` - Edit existing files
+- `MultiEdit` - Multiple file edits
+- `list_dir` - Browse directories
+- `glob_file_search` - Find files by pattern
+- `run_terminal_cmd` - Execute terminal commands
+- `delete_file` - Remove files
+- `read_lints` - Check for errors
+- `edit_notebook` - Edit Jupyter notebooks
+- `todo_write` - Manage task lists
+- `fetch_rules` - Get workspace rules
+- @Web - External web search
+- @ references - File/symbol referencing
+
+## Constraints
+
+- No external Python scripts
+- Native Cursor functionality only
+- Respect existing structure
+- Document actions taken
+
+## Response Guidelines
+
+- Source answers with references
+- Rank sources by reliability
+- Comment code in English
+- Clarify ambiguities
+- Ask for validation before deleting files
+- Keep responses concise and actionable
+- Avoid over-explaining obvious concepts
+- Focus on essential information only
+- Never use training data dates for document timestamps
+- Always verify current date via `run_terminal_cmd`
+
+## Markdown Formatting
+
+- Always add blank lines before and after headers and lists
+- Specify language for code blocks (e.g., ```javascript)
+- Avoid duplicate headers and punctuation in titles
+- Use proper headers instead of emphasis for titles
+- Surround code blocks with blank lines
+- End file with a blank line

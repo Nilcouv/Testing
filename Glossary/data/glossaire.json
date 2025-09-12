@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "version": "2.2",
+    "version": "2.3",
     "format": "json",
     "migrated_from": "csv",
-    "total_entries": 192,
-    "last_updated": "2024-01-01"
+    "total_entries": 194,
+    "last_updated": "2025-01-27"
   },
   "entries": [
     {
@@ -338,6 +338,7 @@
       "id": "model_based_testing",
       "term_en": "Model-Based Testing",
       "term_fr": "Tests basés sur des modèles",
+      "abbreviation": "MBT",
       "definition_en": "",
       "definition_fr": "Tests basés sur ou impliquant des modèles du système ou de ses composants",
       "source": "ISTQB CTFL",
@@ -959,6 +960,7 @@
       "id": "test_de_performance",
       "term_en": "Performance Testing",
       "term_fr": "Test de performance",
+      "abbreviation": "PT",
       "definition_en": "",
       "definition_fr": "",
       "source": "General Testing",
@@ -1310,6 +1312,7 @@
       "id": "bdd",
       "term_en": "Behavior-Driven Development",
       "term_fr": "Développement piloté par les comportements",
+      "abbreviation": "BDD",
       "definition_en": "",
       "definition_fr": "Approche collaborative de développement où l'équipe se concentre sur la livraison du comportement attendu d'un composant pour le client",
       "source": "Agile Testing",
@@ -1355,6 +1358,7 @@
       "id": "api_testing",
       "term_en": "API Testing",
       "term_fr": "Tests d'API",
+      "abbreviation": "API",
       "definition_en": "",
       "definition_fr": "Tests réalisés en soumettant des commandes au logiciel testé via les interfaces de programmation de l'application directement",
       "source": "ISTQB CTAL-TAE",
@@ -1580,6 +1584,7 @@
       "id": "tdd",
       "term_en": "Test-Driven Development",
       "term_fr": "Développement piloté par les tests",
+      "abbreviation": "TDD",
       "definition_en": "",
       "definition_fr": "Pratique de développement où les tests sont écrits avant le code de production",
       "source": "Agile Testing",
@@ -1737,6 +1742,26 @@
       "definition_fr": "",
       "source": "ISTQB",
       "category": "process"
+    },
+    {
+      "id": "data_driven_testing",
+      "term_en": "Data-Driven Testing",
+      "term_fr": "Test piloté par les données",
+      "abbreviation": "DDT",
+      "definition_en": "",
+      "definition_fr": "Technique de script qui stocke les données de test et les résultats attendus dans un tableau, permettant à un script de contrôle d'exécuter tous les tests",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
+    },
+    {
+      "id": "generic_test_automation_architecture",
+      "term_en": "Generic Test Automation Architecture",
+      "term_fr": "Tests génériques d'Automatisation des tests",
+      "abbreviation": "gTAA",
+      "definition_en": "",
+      "definition_fr": "Représentation des couches, composants et interfaces d'une architecture d'automatisation des tests, permettant une approche structurée et modulaire",
+      "source": "ISTQB CTAL-TAE",
+      "category": "automation"
     }
   ]
 }
