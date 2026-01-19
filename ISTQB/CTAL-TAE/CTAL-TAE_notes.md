@@ -76,64 +76,79 @@ Il y a huit chapitres dont le contenu peut faire l'objet d'un examen. Le syllabu
 
 ## Chapitre 1 : Introduction et objectifs de l'Automatisation des tests (45 minutes - K2)
 
-### **Mots-clés**
+### Objectifs
+
+Dans ce chapitre vous en apprendrez plus sur :
+- **Les objectifs de l'Automatisation des tests**
+  - Que ce soit les avantages ou les inconvénients de l'Automatisation des tests (*TAE-1.1.1 (K2)*)
+- **L'Automatisation des tests dans les différents modèles de cycle de vie du développement logiciel**
+  - Comment l'Automatisation des tests est appliquée dans les différents modèles de cycle de vie du développement logiciel (*TAE-1.2.1 (K2)*)
+  - Comment sélectionner les outils d'Automatisation des tests appropriés pour un "système sous test" (*SUT - System Under Test*) donné (*TAE-1.2.2 (K2)*)
+
+### Mots-clés
 
 | **Mot** | **Définition** |
 |---------------|-----------------|
-| **système sous test** | Système qui est testé pour un fonctionnement correct. Selon ISTQB, il s'agit de l'objet de test. |
-| **Automatisation des tests** | Utilisation de logiciels pour effectuer ou soutenir les activités de test, par exemple la gestion des tests, la conception des tests, l'exécution des tests et la vérification des résultats. |
-| **ingénieur en Automatisation des tests** | Professionnel spécialisé dans la conception, le développement et la maintenance de solutions d'automatisation des tests. |
+| **Système sous test** <br> (*SUT - System Under Test*) | Système qui est testé pour un fonctionnement correct. Selon ISTQB, il s'agit de l'objet de test. |
+| **Automatisation des tests** <br> (*TA - Test Automation*) | Utilisation de logiciels pour effectuer ou soutenir les activités de test, par exemple la gestion des tests, la conception des tests, l'exécution des tests et la vérification des résultats. |
+| **Ingénieur en Automatisation des tests** <br> (*TAE - Test Automation Engineer*) | Professionnel spécialisé dans la conception, le développement et la maintenance de solutions d'automatisation des tests. |
 
 ### 1.1 Objectif de l'Automatisation des tests
 
 #### **TAE-1.1.1 (K2)** : Expliquer les avantages et les inconvénients de l'Automatisation des tests
 
-L'Automatisation des tests comprend :
-- l'**utilisation d'outils logiciels** pour contrôler et mettre en place des suites de tests,
-- l'**exécution automatisée** des tests,
-- la **comparaison automatique** des résultats réels aux résultats attendus.
+L'Automatisation des tests implique :
 
-Cette approche couvre divers types de SUT (System avec/sans UI, applications mobiles, protocoles réseau) et va au-delà des simples "frameworks" pour constituer un écosystème complet d'outils incluant l'établissement automatisé de rapports.
+- Le contrôle et la mise en place de suites de test par l'utilisation d'outils logiciels,
+- L'exécution automatisée de ces tests, sans intervention manuelle,
+- La comparaison automatique des résultats réels aux résultats attendus.
 
-| **AVANTAGES** | **Description** | **Exemple concret** |
+Dans le but :
+
+- D'accroître l'efficacité des tests (*volume accru, temps réduit, déclenchement automatique via CI/CD*),
+- D'contenir les coûts de test (*coûts optimisés, réduction des ressources humaines requises*),
+- D'augmenter la fiabilité des tests (*réduction des erreurs d'exécution, couverture accrue des tests*),
+- De réaliser des tests qui sont non-réalisables manuellement (*performance, charge, etc.*).
+
+Et est réalisé par un **ingénieur en Automatisation des tests** (*TAE - Test Automation Engineer*), dont la responsabilité couvre :
+
+- La conception,
+- Le développement et
+- La maintenance des solutions d'Automatisation des tests (*TAS - Test Automation Solution*).
+
+Les avantages et inconvénients de l'Automatisation des tests sont les suivants :
+
+| **AVANTAGES** | **Description** | **Exemple** |
 |---------------|-----------------|-------------------|
-| **Plus de tests par build** | Exécution massive automatisée | 5000 tests vs 50 manuels |
-| **Tests impossibles manuellement** | Capacités dépassant l'humain | Tests temps réel <1ms, 10k utilisateurs simultanés |
-| **Tests plus complexes** | Scénarios sophistiqués | Intégration multi-systèmes |
-| **Rapidité d'exécution** | Vitesse supérieure | 2h vs 40h pour régression |
-| **Réduction erreurs humaines** | Élimination variations manuelles | Saisie 1000 jeux de données sans erreur |
-| **Efficience des ressources** | Optimisation temps/coût/personnel | 1 TAE remplace 5 testeurs manuels |
-| **Feedback rapide** | Retour immédiat sur qualité | Résultats en temps réel |
-| **Amélioration fiabilité** | Disponibilité et récupération | Tests de robustesse continus |
-| **Cohérence d'exécution** | Standardisation des tests | Même séquence à chaque fois |
+| **Efficience accrue** | Capacité d'exécuter un volume massif de tests par build | Passage de 50 tests manuels/jour à des milliers de tests en quelques minutes |
+| **Tester l'impossible** | Réalisation de tests non réalisables manuellement | Tests de charge (1000 utilisateurs simultanés), vérification de réponses en millisecondes, exécution multi-dispositifs/multi-sites |
+| **Scénarios complexes** | Création et exécution de cas de test très sophistiqués | Flux métier multi-systèmes avec nombreuses conditions et variations |
+| **Rapidité d'exécution** | Vitesse d'exécution largement supérieure aux tests manuels | Test exécuté en quelques secondes au lieu de 5 minutes manuellement |
+| **Élimination des erreurs humaines** | Exécution identique à chaque itération, sans oubli ni distraction | Saisie de milliers de combinaisons de données sans erreur de frappe |
+| **Rentabilité à long terme** | Investissement initial élevé mais coût réduit dans la durée | Coûts récurrents diminués par rapport aux tests manuels répétés |
+| **Cohérence et fiabilité** | Exécution standardisée sans fatigue ni variation | Même séquence de 200 étapes exécutée identiquement à chaque fois, 24/7 |
 
-| **INCONVÉNIENTS** | **Description** | **Impact** |
+| **INCONVÉNIENTS** | **Description** | **Exemple** |
 |-------------------|-----------------|------------|
-| **Coûts supplémentaires** | TAE, matériel, formation | Investissement initial élevé |
-| **Temps développement** | Création et maintenance | ROI différé |
-| **Objectifs clairs requis** | Définition précise nécessaire | Risque d'échec si flou |
-| **Rigidité des tests** | Moins d'adaptabilité | Maintenance lors changements SUT |
-| **Défauts supplémentaires** | Bugs dans l'automatisation | Faux positifs/négatifs |
+| **Investissement initial élevé** | Coûts importants de démarrage (TAE spécialisés, outils, matériel, formation) | Recrutement d'ingénieurs automation, achat de licences d'outils, formation de l'équipe existante |
+| **Temps de mise en place** | Construction d'un framework robuste nécessite patience et temps | Création des fondations (architecture, bibliothèques, standards) avant l'automatisation effective |
+| **Maintenance continue** | Les scripts de test nécessitent une maintenance régulière | Mise à jour des tests à chaque évolution de l'application pour maintenir leur validité |
+| **Rigidité face aux changements** | Sensibilité aux modifications fréquentes de l'application | Petits changements d'UI causant l'échec de tests même si la fonctionnalité est correcte |
+| **Introduction de nouveaux défauts** | Les scripts d'automatisation peuvent contenir des bugs | Faux positifs/négatifs dus à des erreurs dans le code de test, feedback erroné aux équipes |
 
-| **LIMITES** | **Description** | **Exemples** |
+Toutefois, l'Automatisation des tests présente également des limites :
+| **LIMITES** | **Description** | **Exemple** |
 |-------------|-----------------|--------------|
-| **Automatisation partielle** | Tous tests manuels non automatisables | Tests exploratoires, utilisabilité |
-| **Portée limitée** | Ne vérifie que ce pour quoi programmé | Pas de découverte fortuite |
-| **Oracle machine uniquement** | Résultats interprétables par machine | Pas d'évaluation esthétique/ergonomique |
-| **Caractéristiques qualité** | Certains aspects non testables | Intuitivité, ressenti utilisateur |
+| **Automatisation partielle** | Tests nécessitant un jugement humain non automatisables | Évaluation de l'intuitivité d'une interface utilisateur, ressenti utilisateur global |
+| **Portée restreinte** | Chaque test vérifie uniquement le scénario spécifique pour lequel il est conçu | Nombreuses zones à vérifier mais test limité à un scénario précis, laissant d'autres scénarios non vérifiés |
+| **Interprétation limitée** | Vérification limitée à ce que la machine peut interpréter techniquement | Incapacité à juger si un élément "paraît correct" ou "semble agréable" à l'utilisateur |
+| **Oracle de test complexe** | Difficulté à définir automatiquement les critères de succès/échec | Situations avec plusieurs réponses valides possibles, ou données changeant en temps réel (ex: disponibilité de vols) |
 
-#### **Analyse comparative des coûts**
+**En conclusion :**
 
-L'évolution des coûts entre tests manuels et automatisation suit des trajectoires opposées selon la complexité et la durée de vie du système :
+L'automatisation des tests est un outil puissant, mais ce n'est pas une solution magique. La clé du succès réside dans l'**équilibre approprié entre tests automatisés et tests manuels**, adapté au contexte spécifique de chaque projet.
 
-```mermaid
-xychart-beta
-    title "Évolution des coûts : Tests Manuels vs Automatisation"
-    x-axis "Projet" 0 --> 4
-    y-axis "Coût" 0 --> 4
-    line "Tests Manuels" [0, 0.05, 0.08, 0.1, 0.12, 0.15, 0.18, 0.2, 0.22, 0.25, 0.28, 0.3, 0.32, 0.35, 0.38, 0.4, 0.45, 0.5, 0.6, 0.8, 1.2, 2.0, 3.5, 6.2]
-    line "Automatisation" [0, 0.5, 0.8, 1.0, 1.2, 1.35, 1.48, 1.58, 1.67, 1.75, 1.82, 1.88, 1.93, 1.98, 2.02, 2.06, 2.09, 2.12, 2.15, 2.17, 2.19, 2.21, 2.23, 2.24, 2.25, 2.26, 2.27, 2.28]
-```
+Une automatisation efficace agit comme un **collaborateur fiable** qui prend en charge les tâches répétitives, libérant ainsi les testeurs humains pour se concentrer sur des activités à plus forte valeur ajoutée : tests exploratoires, évaluation de l'expérience utilisateur, et analyse critique nécessitant le jugement humain.
 
 ### 1.2 L'Automatisation des tests dans le cycle de vie du développement logiciel
 
@@ -196,6 +211,15 @@ La sélection d'outils d'automatisation appropriés nécessite une analyse multi
 - Évolutivité selon croissance projet
 
 ## Chapitre 2 : Se préparer à l'Automatisation des tests (180 minutes - K4)
+
+### Objectifs
+
+En apprendre plus sur :
+
+- La conception pour la testabilité du SUT (observabilité, contrôlabilité, transparence de l'architecture)
+- L'Automatisation des tests dans différents environnements
+- Les exigences nécessaires à l'audit d'une solution d'Automatisation des tests appropriée
+- Les considérations techniques nécessaires pour développer des recommandations sur l'Automatisation des tests
 
 ### **Mots-clés**
 
@@ -428,15 +452,15 @@ Après l'analyse du SUT et la collecte des exigences, l'évaluation des outils n
 
 **Tableau comparatif d'évaluation :**
 
-```markdown
-| Exigence | Outil A | Outil B | Outil C | Priorité |
-|----------|---------|---------|---------|----------|
-| Compatibilité Java | ✅ | ⚠️ | ❌ | Haute |
-| Tests API | ✅ | ✅ | ⚠️ | Haute |
-| Intégration CI/CD | ✅ | ✅ | ✅ | Moyenne |
-| Coût licence | ❌ | ✅ | ✅ | Moyenne |
-| Formation requise | ⚠️ | ✅ | ❌ | Basse |
-```
+Exemple:
+| Exigence (priorité) | Outil A | Outil B | Outil C |
+|---------------------|---------|---------|---------|
+| Compatibilité Java (haute) | ✅ | ⚠️ | ❌ |
+| Tests API (haute) | ✅ | ✅ | ⚠️ |
+| Intégration CI/CD (moyenne) | ✅ | ✅ | ✅ |
+| Coût licence (moyenne) | ❌ | ✅ | ✅ |
+| Formation requise (basse) | ⚠️ | ✅ | ❌ |
+
 
 **Processus de décision :**
 
@@ -473,6 +497,15 @@ Après l'analyse du SUT et la collecte des exigences, l'évaluation des outils n
 - Planification de l'évolution technologique
 
 ## Chapitre 3 : Architecture d'Automatisation des tests (210 minutes - K3)
+
+### Objectifs
+
+En apprendre plus sur :
+
+- L'architecture d'Automatisation des tests et ses composants menant à une solution d'Automatisation des tests
+- Les couches d'un framework d'Automatisation des tests et leur application
+- Les approches d'utilisation des outils d'Automatisation des tests
+- L'application des principes de conception et des canevas de conception à l'Automatisation des tests
 
 ### **Mots-clés**
 
@@ -706,6 +739,14 @@ Cette architecture à double façade améliore l'abstraction et la maintenabilit
 
 ## Chapitre 4 : Implémentation de l'Automatisation des tests (150 minutes - K4)
 
+### Objectifs
+
+En apprendre plus sur :
+
+- La planification et le déploiement d'un projet pilote d'Automatisation des tests
+- Les risques de déploiement et les stratégies d'atténuation
+- Les facteurs qui améliorent la maintenabilité du code d'Automatisation des tests
+
 ### **Mots-clés**
 
 | **Mot** | **Définition** |
@@ -840,95 +881,219 @@ Les types suivants permettent d'avoir une vision exhaustive de l'ensemble des é
 
 **Facteurs influençant la maintenabilité :**
 
-La maintenabilité est fortement influencée par :
+La maintenabilité est fortement influencée par les normes de programmation et les attentes des TAE les uns envers les autres.
 
-- **Normes de programmation** : Standards établis par l'équipe
-- **Attentes des TAE** : Conventions partagées entre ingénieurs
+### **A. Problèmes qui AFFECTENT la maintenabilité :**
 
-**Principes du "Clean Code" (Robert C. Martin, 2008) :**
+**1. Codage en dur :**
+Valeurs intégrées directement dans le code sans possibilité de modification externe (ex. `password123` vs `user.password`), ce qui:
 
-| **Principe** | **Description** | **Application en automatisation** |
-|--------------|-----------------|-----------------------------------|
-| **Convention de nommage** | Noms significatifs pour classes, méthodes, variables | `loginButton`, `resetPasswordButton` |
-| **Structure de projet** | Organisation logique et commune | Dossiers par fonctionnalité, séparation des couches |
-| **Éviter le codage en dur** | Valeurs configurables plutôt que fixes | Variables d'environnement, fichiers de configuration |
-| **Paramètres limités** | Éviter trop de paramètres d'entrée | Méthodes avec 3-4 paramètres maximum |
-| **Méthodes courtes** | Éviter méthodes longues et complexes | Une méthode = une responsabilité |
-| **Logging approprié** | Utilisation systématique du logging | Niveaux adaptés selon le contexte |
-| **Patterns de conception** | Utilisation de canevas appropriés | Page Object Model, Façade, Singleton |
-| **Testabilité** | Code facilement testable | Séparation des responsabilités |
+- contraint à réaliser des modifications manuelles du code à chaque changement,
+- rend les tests non portables,
+- rend la maintenance coûteuse.
 
-**Stratégies anti-codage en dur :**
+**2. Manque de standards :**
+Absence de conventions et de règles communes pour l'écriture du code (ex. `btnLogin` vs `login_button`), ce qui:
 
-**❌ Problèmes du codage en dur :**
-- Valeurs intégrées sans modification directe possible
-- Maintenance difficile lors des changements fréquents
-- Temps de développement réduit mais maintenance coûteuse
+- complique la compréhension du code par l'équipe
+- augmente le temps de formation des nouveaux développeurs
+- rend le code difficile à déboguer et maintenir
 
-**✅ Solutions recommandées :**
-- **Tests pilotés par les données** : Source commune maintenable
-- **Constantes** : Variables non fréquemment modifiées
-- **Configuration centralisée** : Réduction des sources à maintenir
+**3. Outils inadéquats :**
+Absence ou utilisation inappropriée d'outils de développement et de qualité (ex. pas d'analyseurs statiques, branches Git désorganisées), ce qui:
 
-**Outils de qualité du code :**
+- retarde la détection des problèmes de qualité
+- produit un code peu lisible et mal formaté
+- complique la collaboration avec risque de perte de code
 
-| **Outil** | **Fonction** | **Bénéfice** |
-|-----------|--------------|--------------|
-| **Analyseurs statiques** | Vérification automatique du code | Détection précoce des problèmes |
-| **Formateurs de code** | Mise en forme automatique | Lisibilité améliorée |
-| **IDE intégrés** | Outils de développement | Productivité et qualité |
+### **B. Solutions qui SOUTIENNENT la maintenabilité :**
 
-**Gestion de version et structure :**
+**1. Principes "Clean Code" (Robert C. Martin, 2008) :**
 
-**🌿 Stratégie de branches :**
+Le "Clean Code" est une approche de programmation qui vise à écrire du code lisible, maintenable et de qualité. Ces principes permettent d'établir des standard partagés au sein de l'équipe, rendant le code compréhensible et modifiable par tous.
+
+| **Principe** | **Application** | **Bénéfice** |
+|--------------|-----------------|--------------|
+| **Convention de nommage** | Noms significatifs (`loginButton`, `resetPasswordButton`) | Identification claire des composants |
+| **Structure de projet** | Organisation logique et commune | Navigation facilitée |
+| **Éviter le codage en dur** | Variables d'environnement, configuration | Flexibilité |
+| **Paramètres limités** | 3-4 paramètres maximum | Lisibilité |
+| **Méthodes courtes** | Une méthode = une responsabilité | Compréhension |
+| **Logging approprié** | Niveaux adaptés selon le contexte | Diagnostic |
+| **Patterns de conception** | Page Object Model, Façade, Singleton | Code structuré |
+| **Testabilité** | Séparation des responsabilités | Qualité |
+
+**2. Stratégies anti-codage en dur :**
+
+Le codage en dur (voir A.1) consiste à intégrer des valeurs directement dans le code sans pouvoir les modifier. La solution consiste à créer des "alias" (références) vers des sources externes :
+
+| **Solution** | **Méthode** | **Bénéfice** |
+|--------------|-------------|-------------|
+| **Tests pilotés par les données** | Créer des alias vers des sources de données externes (CSV, base) | Données maintenues dans une source commune, modification facile |
+| **Constantes centralisées** | Créer des alias vers des constantes dans un fichier de configuration | Réduction des sources à maintenir, modification en un seul endroit |
+| **Configuration externalisée** | Créer des alias vers des variables d'environnement | Adaptation sans recompilation, maintenance simplifiée |
+
+**3. Outils de qualité :**
+
+| **Outil** | **Fonction** |
+|-----------|--------------|
+| **Analyseurs statiques** | Vérification automatique du code |
+| **Formateurs de code** | Mise en forme automatique |
+| **IDE intégrés** | Outils de développement |
+
+**4. Gestion de version :**
+
 - **Branches de fonctionnalités** : Développement de nouvelles features
-- **Branches de versions** : Gestion des releases
+- **Branches de versions** : Gestion des releases  
 - **Branches de corrections** : Fixes de bugs
-- **Avantage** : Compréhension claire du contenu des branches
+- **Structure de projet** : Organisation logique
 
-**Architecture recommandée :**
-```
-📁 Projet TAF
-├── 📁 src/
-│   ├── 📁 tests/           # Scripts de tests
-│   ├── 📁 business/        # Logique métier
-│   ├── 📁 libraries/       # Bibliothèques principales
-│   └── 📁 utils/           # Utilitaires
-├── 📁 config/              # Configuration
-├── 📁 data/                # Données de test
-└── 📁 reports/             # Rapports
-```
+**5. Patterns de conception :**
 
-**Facteurs de succès de la maintenabilité :**
-
-**✅ Standards de code :**
-- Conventions de nommage cohérentes
-- Structure de projet logique
-- Documentation du code
-
-**✅ Outils de qualité :**
-- Analyseurs statiques intégrés
-- Formateurs de code automatiques
-- Tests unitaires du code d'automatisation
-
-**✅ Gestion de version :**
-- Branches appropriées pour chaque type de changement
-- Documentation des modifications
-- Code review systématique
+L'utilisation de canevas de conception est fortement recommandée. Les patterns - tels que décrits au point 3.1.5 - permettent d'implémenter un code d'Automatisation des tests structuré et correctement maintenable, à condition qu'ils soient utilisés correctement.
 
 ## Chapitre 5 : Stratégies d'implémentation et de déploiement (90 minutes - K3)
 
-### **Mots-clés**
-- test de contrat
+### Objectifs
 
-### **Objectifs d'apprentissage**
+En apprendre plus sur :
 
-#### 5.1 Intégration aux pipelines CI/CD
-- **TAE-5.1.1 (K3)** : Appliquer l'Automatisation des tests à différents niveaux de test dans les pipelines
-- **TAE-5.1.2 (K2)** : Expliquer la gestion de configuration pour les testware
-- **TAE-5.1.3 (K2)** : Expliquer les dépendances de l'Automatisation des tests pour une infrastructure API
+- Les pipelines CI/CD et l'éxécution des tests dans les différents niveaux de test
+- La gestion de la configuration pour les composants de l'automatisation (testware)
+- les dépendances liées aux tests d'API et aux tests de contrat
+
+### Mots-clés
+
+| **Mot** | **Définition** |
+|---------|----------------|
+| **test de contrat** | Type de test d'intégration vérifiant que les interfaces sont utilisées comme spécifié dans leurs contrats. |
+
+### Introduction
+
+Quand le produit croît, la complexité explose tandis que les ressources restent finies: la qualité manuelle ne tient pas. La solution est un système d'automatisation autonome, maintenable, ancré dans les pipelines CI/CD, qui contrôle la qualité à chaque changement de façon traçable et reproductible. 
+
+Ce chapitre traite trois aspects stratégiques de ce déploiement: le **placement** des tests dans le flux CI/CD (5.1.1), la **configuration** permettant de tourner sur tout environnement (5.1.2), et la **maîtrise des dépendances** en infrastructure API (5.1.3).
+
+### 5.1 Intégration aux pipelines CI/CD
+
+Les tests automatisés s'exécutent sans surveillance: on peut donc les intégrer aux pipelines CI/CD ou les planifier périodiquement. Le défi est de déterminer **où** les exécuter (à quelle étape du pipeline), **comment** les déclencher (sur chaque push, merge, ou déploiement), et **avec quelle politique de blocage** (point de contrôle bloquant ou informatif). La réponse à ces trois questions transforme un ensemble de scripts en garde‑fou opérationnel.
+
+### **5.1.1 (K3) : Appliquer l'automatisation à différents niveaux de test dans les pipelines**
+
+Principes
+- Exécuter chaque niveau de test à l’étape du pipeline où il apporte le meilleur rapport «contrôle qualité / coût et délai».
+- Utiliser des points de contrôle bloquants là où un échec doit empêcher la progression (merge ou déploiement).
+
+Intégration par niveau
+
+| **Niveau** | **Étape du pipeline** | **Point de contrôle (bloquant)** | **Déclencheur** | **Objectif** |
+|------------|-----------------------|-------------------------------|------------------|-------------|
+| Config TAF/TAS | Build | Oui | à chaque push/PR | Fail‑fast (chemins/fichiers/configs valides) |
+| Composant | Build | Oui | à chaque push/PR | Qualité des unités/bibliothèques |
+| Intégration composant | Build/Intégration | Oui (si bas niveau) | à chaque push/merge | Interfaces entre composants |
+| Système | Déploiement (CD) | Oui (si bloque release) | au déploiement | Dernier garde‑fou du SUT |
+| Intégration système / Acceptation | Livraison | Oui/Non (contexte) | à la livraison | Fonctionnement bout‑à‑bout |
+
+Modes d’intégration des tests système/acceptation
+1) En phase de déploiement (bloquant): échec ⇒ déploiement annulé/rollback; limite: relancer implique redéployer.
+2) Pipeline séparé (non bloquant): utile si suites longues/variées; prévoir une procédure de rollback/feature‑flag.
+
+Exécutions périodiques
+- Régression nocturne (suites longues) pour fournir un état de santé chaque matin.
+- Non‑fonctionnels (ex. performance) en continu ou en pipeline dédié pour la surveillance.
+
+À retenir
+- Placer les tests là où ils protègent au meilleur coût; rendre bloquants ceux qui doivent empêcher la progression.
+- Choisir déploiement (bloquant) vs pipeline séparé (non bloquant) selon l’enjeu et la durée.
+- Programmer des exécutions périodiques pour la régression longue et les non‑fonctionnels.
+
+Bonnes pratiques (5.1.1)
+- Tests rapides en build; lents/longs hors chemin critique (mais référencés).
+- Quality gates explicites (seuils, critères d’échec, ownership).
+- Environnements éphémères, artefacts immuables, données seed contrôlées.
+
+Anti‑patterns (5.1.1)
+- Tout miser sur des E2E lents et fragiles.
+- Absence de gates (tests “informés” mais non bloquants par erreur).
+- Flaky non traités, envs partagés et non isolés.
+
+**→ Transition :** Une fois le placement défini, il faut garantir que l’automatisation tourne partout: place à la **gestion de la configuration**.
+
+### **5.1.2 (K2) : Expliquer la gestion de configuration pour les testware**
+
+Contexte/Problème/Objectif/Solution
+- Contexte: mêmes tests, environnements et versions multiples.
+- Problème: dérive de config/données → échecs non reproductibles.
+- Objectif: portabilité et traçabilité du testware.
+- Solution: checklists Env/Données/Suites + versioning.
+
+Checklists de configuration
+
+Environnements
+- URLs, credentials et secrets externalisés (pas dans le code)
+- Conventions de nommage, variables standardisées, stockage versionné
+- Environnements éphémères quand possible
+
+Données de test
+- Jeux par environnement/release, stratégie seed/refresh
+- Anonymisation/pseudonymisation si données réelles
+- Ownership clair et traçabilité des datasets
+
+Suites de tests
+- Suites taggées par objectif: smoke, régression, acceptation, non‑fonctionnels
+- Mapping suites ↔ étapes du pipeline
+- Temps cible par suite (rapide vs longue)
+
+Stratégies de versioning
+- Feature toggles: pour activer/neutraliser des features selon release/env
+- Versioning aligné SUT↔testware via tags/branches quand compatibilité stricte
+
+**→ Transition :** La configuration étant en place, la fiabilité en architectures API dépend des **dépendances**: contrats, auth, données et observabilité.
+
+### **5.1.3 (K2) : Expliquer les dépendances pour une infrastructure API**
+
+Contexte/Problème/Objectif/Solution
+- Contexte: microservices, interfaces inter‑équipes, fournisseurs.
+- Problème: intégrations instables sans contrats/données/observabilité.
+- Objectif: fiabilité mesurable des tests API.
+- Solution: checklist dépendances + contract testing opérationnel.
+
+Checklist dépendances API
+- Contrats (OpenAPI/AsyncAPI) versionnés et partagés
+- Authentification/autorisation (modes, scopes) documentées
+- Idempotence, limites, timeouts, ordonnancement d’appels
+- Mocks/stubs/virtualisation disponibles pour intégration
+- Données seed de référence et jeux contrôlés
+- Observabilité: logs corrélables, métriques, traces
+
+Contract testing (quand/comment)
+- Quand: microservices, interfaces inter‑équipes, fournisseurs externes, SLA stricts.
+- Consumer‑driven: besoins client priment; Provider‑driven: surface stable, forte réutilisation.
+- “Done”: contrat versionné + vérifié en CI; rupture de contrat = gate fail.
+
+Exemple end‑to‑end (compact)
+- PR: unit + config (gate < 10 min).
+- Merge: intégration composant (gate < 15 min).
+- Deploy: smoke système (gate), rollback auto si échec.
+- Nuit: régression longue + perf (non‑gate), rapports au matin.
+
+Mini‑glossaire (chapitre)
+- Gate: test bloquant qui empêche merge/déploiement s’il échoue.
+- Delivery vs Deploy: livraison (release) vs déploiement (mise en env).
+- Éphémère: environnement recréé à chaque exécution.
+- Artefact immuable: build signé, non modifié après création.
+- Seed: initialisation contrôlée des données de test.
+- Contract testing: vérifie qu’un service respecte les interactions convenues.
 
 ## Chapitre 6 : Reporting et métriques (150 minutes - K4)
+
+### Objectifs
+
+En apprendre plus sur :
+
+- Les sources de données (SUT et Automatisation) pour l'analyse et le reporting
+- L'analyse des données pour découvrir les causes des défaillances
+- L'utilisation des rapports de test et tableaux de bord pour informer les parties prenantes
 
 ### **Mots-clés**
 - mesure
@@ -946,6 +1111,15 @@ La maintenabilité est fortement influencée par :
 
 ## Chapitre 7 : Vérifier la solution d'Automatisation des tests (135 minutes - K3)
 
+### Objectifs
+
+En apprendre plus sur :
+
+- L'examen et la vérification du bon fonctionnement des composants et de l'environnement d'Automatisation des tests
+- Les mesures pour s'assurer que les scripts et suites de tests s'exécutent correctement
+- Le moment où effectuer une analyse des causes racines
+- Les techniques d'analyse de la qualité du code d'Automatisation des tests
+
 ### **Mots-clés**
 - analyse statique
 
@@ -958,6 +1132,15 @@ La maintenabilité est fortement influencée par :
 - **TAE-7.1.4 (K2)** : Expliquer comment l'analyse statique peut contribuer à la qualité du code d'Automatisation des tests
 
 ## Chapitre 8 : Amélioration continue (210 minutes - K4)
+
+### Objectifs
+
+En apprendre plus sur :
+
+- D'autres domaines d'analyse de données pour l'amélioration des cas de test
+- Les façons d'apporter des améliorations et des mises à niveau à une solution d'Automatisation des tests et à ses composants
+- L'identification et les moyens de consolider et rationaliser l'Automatisation des tests
+- La contribution des outils d'Automatisation des tests au soutien et à la mise en place des tests
 
 ### **Mots-clés**
 - validation de schéma
