@@ -105,10 +105,10 @@ L'Automatisation des tests implique :
 
 Dans le but :
 
-- D'accroître l'efficacité des tests (*volume accru, temps réduit, déclenchement automatique via CI/CD*),
-- D'contenir les coûts de test (*coûts optimisés, réduction des ressources humaines requises*),
+- D'accroître l'efficacité des tests (*volume accru, temps d'exécution réduit, déclenchement automatique via CI/CD, etc.*),
+- De contenir les coûts de test (*coûts optimisés, réduction des ressources humaines requises*),
 - D'augmenter la fiabilité des tests (*réduction des erreurs d'exécution, couverture accrue des tests*),
-- De réaliser des tests qui sont non-réalisables manuellement (*performance, charge, etc.*).
+- De réaliser des tests qui sont non-réalisables manuellement (*test de performance, de charge, etc.*).
 
 Et est réalisé par un **ingénieur en Automatisation des tests** (*TAE - Test Automation Engineer*), dont la responsabilité couvre :
 
@@ -121,8 +121,8 @@ Les avantages et inconvénients de l'Automatisation des tests sont les suivants 
 | **AVANTAGES** | **Description** | **Exemple** |
 |---------------|-----------------|-------------------|
 | **Efficience accrue** | Capacité d'exécuter un volume massif de tests par build | Passage de 50 tests manuels/jour à des milliers de tests en quelques minutes |
-| **Tester l'impossible** | Réalisation de tests non réalisables manuellement | Tests de charge (1000 utilisateurs simultanés), vérification de réponses en millisecondes, exécution multi-dispositifs/multi-sites |
-| **Scénarios complexes** | Création et exécution de cas de test très sophistiqués | Flux métier multi-systèmes avec nombreuses conditions et variations |
+| **Tester l'impossible** | Exécution de tests non réalisables manuellement | Tests de charge (1000 utilisateurs simultanés), vérification de réponses en millisecondes, exécution multi-dispositifs/multi-sites |
+| **Scénarios complexes** | Création et exécution de cas de test sophistiqués | Flux métier multi-systèmes avec nombreuses conditions et variations |
 | **Rapidité d'exécution** | Vitesse d'exécution largement supérieure aux tests manuels | Test exécuté en quelques secondes au lieu de 5 minutes manuellement |
 | **Élimination des erreurs humaines** | Exécution identique à chaque itération, sans oubli ni distraction | Saisie de milliers de combinaisons de données sans erreur de frappe |
 | **Rentabilité à long terme** | Investissement initial élevé mais coût réduit dans la durée | Coûts récurrents diminués par rapport aux tests manuels répétés |
@@ -139,8 +139,8 @@ Les avantages et inconvénients de l'Automatisation des tests sont les suivants 
 Toutefois, l'Automatisation des tests présente également des limites :
 | **LIMITES** | **Description** | **Exemple** |
 |-------------|-----------------|--------------|
-| **Automatisation partielle** | Tests nécessitant un jugement humain non automatisables | Évaluation de l'intuitivité d'une interface utilisateur, ressenti utilisateur global |
-| **Portée restreinte** | Chaque test vérifie uniquement le scénario spécifique pour lequel il est conçu | Nombreuses zones à vérifier mais test limité à un scénario précis, laissant d'autres scénarios non vérifiés |
+| **Automatisation partielle** | Tests nécessitant un jugement humain sont non-automatisables | Évaluation de l'intuitivité d'une interface utilisateur, ressenti utilisateur global |
+| **Portée restreinte** | Chaque test vérifie uniquement le scénario spécifique pour lequel il est conçu | Nombreuses zones à vérifier mais test limité à un scénario précis, laissant d'autres scénarios non-vérifiés |
 | **Interprétation limitée** | Vérification limitée à ce que la machine peut interpréter techniquement | Incapacité à juger si un élément "paraît correct" ou "semble agréable" à l'utilisateur |
 | **Oracle de test complexe** | Difficulté à définir automatiquement les critères de succès/échec | Situations avec plusieurs réponses valides possibles, ou données changeant en temps réel (ex: disponibilité de vols) |
 
@@ -155,13 +155,149 @@ Une automatisation efficace agit comme un **collaborateur fiable** qui prend en 
 #### **TAE-1.2.1 (K2)** : Expliquer comment l'Automatisation des tests est appliquée dans les différents modèles de cycle de vie du développement logiciel
 
 
-L'implémentation de l'automatisation varie selon le modèle SDLC utilisé. Chaque approche présente des caractéristiques spécifiques qui influencent la stratégie d'automatisation :
+L'implémentation de l'automatisation varie selon le modèle de cycle de vie du développement logiciel (*SDLC - Software Development Life Cycle*) utilisé. Chaque approche présente des caractéristiques spécifiques qui influencent la stratégie d'automatisation.
 
-| **Modèle SDLC** | **Caractéristiques clés** | **Implémentation TA** | **Exécution TA** |
-|-----------------|----------------------|----------------------------------|------------------------|
-| **Cascade** | • Modèle linéaire et séquentiel<br>• Phases distinctes (exigences, conception, implémentation, vérification, maintenance)<br>• Documentation approuvée à chaque phase<br>• Processus rigide, changements coûteux | En parallèle ou après la phase d'implémentation | Phase de vérification uniquement |
-| **Modèle en V** | • Modèle séquentiel<br>• construit par niveau d'exigence (haut -> bas)<br>• Activités de test validant chaque niveau (composant, intégration, système, intégration système, acceptation) | TAF spécifique pour chaque niveau | À chaque niveau |
-| **Agile** | • Possibilités d'automatisation innombrables<br>• Planification décidée par TAE + représentants métier<br>• Pas de silos (développeurs, testeurs, BA, etc. travaillent ensemble. Ex : revues code, programmation binôme)<br>• Automatisation in-sprint | Intégrée dans chaque sprint<br>Couverture tous niveaux de test | Exécutions (intégration, acceptation, régression) à chaque sprint |
+##### 1.2.1.1 Modèle en Cascade (*Waterfall*)
+
+**Principe :**
+
+> Le développement en cascade se déroule dans un ordre séquentiel spécifique, où il faut d'abord compléter une phase avant de passer à la phase suivante (ex. construction d'une maison).
+
+<table>
+<tr>
+<td width="20%">
+
+```mermaid
+flowchart TD
+    A["1. Requirements"]
+    B["2. Design"]
+    C["3. Implementation"]
+    D["4. Verification"]
+    E["5. Maintenance"]
+    
+    A --> B --> C --> D --> E
+    
+    style A fill:#3b82f6,stroke:#2563eb,color:#fff
+    style B fill:#8b5cf6,stroke:#7c3aed,color:#fff
+    style C fill:#ec4899,stroke:#db2777,color:#fff
+    style D fill:#f59e0b,stroke:#d97706,color:#fff
+    style E fill:#10b981,stroke:#059669,color:#fff
+```
+
+</td>
+<td>
+
+| **Phase** | **Description** | **Analogie (maison)** |
+|-----------|-----------------|----------------------|
+| **Requirements<br/>(Exigences)** | Collecte et analyse des exigences | Définir les attentes : pièces, normes, budget, délais |
+| **Design<br/>(Conception)** | Conception détaillée du système | Réaliser les plans architecturaux et techniques |
+| **Implementation<br/>(Implémentation)** | Développement du code | Construire la maison selon les plans |
+| **Verification<br/>(Vérification)** | Tests et validation du système | Inspecter la conformité aux normes et exigences |
+| **Maintenance<br/>(Maintenance)** | Corrections et améliorations | Entretenir : peinture, filtres, désherbage |
+
+</td>
+</tr>
+</table>
+
+**Implémentation et exécution de l'automatisation :**
+
+- **Implémentation** : Pendant ou après la phase d'implémentation
+- **Exécution** : Uniquement pendant la phase de vérification
+
+L'automatisation intervient **tardivement** car on ne peut tester un système qu'une fois qu'il est développé (comme une voiture qui ne peut être testée qu'une fois assemblée). Cette approche retarde la détection des défauts, les rendant plus coûteux à corriger.
+
+**Avantages et inconvénients pour l'automatisation :**
+
+|  | ✅ **Avantages** | ❌ **Inconvénients** |  |
+|-----------------|------------------|----------------------|-----------------|
+| Permet de développer des tests automatisés complets sans se soucier de changements constants | **Stabilité des exigences** | **Retours tardifs** | Les défauts détectés tardivement (phase de vérification) sont coûteux à corriger |
+| Une documentation complète facilite la conception de tests détaillés et précis | **Documentation exhaustive** | **Structure rigide** | Difficulté de mettre à jour le code et les tests une fois les phases précédentes validées |
+
+**💡 Exemple concret : Système de traitement des taxes**
+
+Dans un projet de système de traitement des taxes utilisant le modèle Cascade, les contraintes suivantes ont été rencontrées :
+
+**Contraintes du modèle :**
+
+- Possibilité d'exécution des tests automatisés seulement à partir du **4ème mois** (après l'implémentation)
+- Tous les tests automatisés exécutés **par gros morceaux** pendant la phase de vérification
+- Documentation complète obligatoire, **chaque phase nécessitait une validation formelle** avant de passer à la suivante
+
+**Problématique majeure :**
+
+Tout défaut majeur découvert en phase de vérification nécessitant une réparation, impose de **revenir à la phase d'origine du défaut** (Requirements, Design ou Implementation) puis de **re-valider toutes les phases suivantes**. Plus le défaut est précoce, plus l'impact est important.
+
+> 💭 *Ex. un vice majeur dans les fondations d'une maison construite, nécessitant de démolir tout ou en partie la maison; Pour ensuite réaliser les réparations, avant de pouvoir continuer la construction. L'impact est donc très important en temps et en coût.*
+
+##### 1.2.1.2 Modèle en V (*V-Model*)
+
+**Principe :**
+
+Le modèle en V est une approche séquentielle où chaque niveau de développement (descendant) est associé à un niveau de test correspondant (ascendant), formant un "V". Le développement progresse du haut (exigences de haut niveau) vers le bas (code détaillé), puis remonte avec les tests.
+
+**Phases et niveaux de test associés :**
+- **Exigences métier** ↔ Test d'acceptation
+- **Spécifications système** ↔ Test système
+- **Architecture** ↔ Test d'intégration
+- **Conception détaillée** ↔ Test de composant
+- **Implémentation** (base du V)
+
+**Implémentation de l'automatisation :**
+
+Un TAF (*Test Automation Framework*) spécifique est développé pour chaque niveau de test. L'automatisation est planifiée dès la phase de conception, permettant de préparer les tests en parallèle du développement.
+
+**Avantages :**
+
+- **Planification précoce** : L'automatisation est planifiée dès la conception, réduisant les surprises
+- **TAF spécialisés** : Frameworks adaptés à chaque niveau de test (composant, intégration, système, acceptation)
+- **Couverture structurée** : Progression logique du test de composant jusqu'à l'acceptation
+- **Traçabilité** : Association claire entre exigences et tests à chaque niveau
+
+**Inconvénients :**
+
+- **Développement coûteux** : Création de multiples TAF pour chaque niveau de test est longue et coûteuse
+- **Rigidité** : Comme le modèle Cascade, difficile de s'adapter aux changements d'exigences
+- **Maintenance complexe** : Maintenir plusieurs frameworks à différents niveaux augmente la complexité
+- **Expertise requise** : Nécessite des compétences techniques élevées pour gérer les TAF multi-niveaux
+
+##### 1.2.1.3 Modèle Agile (*Agile/Scrum*)
+
+**Principe :**
+
+Le développement Agile est une approche itérative et incrémentale où le logiciel est développé par cycles courts appelés "sprints" (généralement 2-4 semaines). Chaque sprint produit un incrément fonctionnel potentiellement livrable du produit.
+
+**Caractéristiques clés :**
+- **Collaboration continue** : Équipes pluridisciplinaires travaillant ensemble (développeurs, testeurs, analystes métier)
+- **Livraisons fréquentes** : Incrément fonctionnel à chaque sprint
+- **Adaptation rapide** : Changements d'exigences acceptés et intégrés rapidement
+- **Automatisation in-sprint** : Tests automatisés développés dans le même sprint que les fonctionnalités
+
+**Implémentation de l'automatisation :**
+
+L'automatisation est intégrée dès le début du projet (*shift-left testing*) et fait partie intégrante de chaque sprint. Il n'y a pas de silos : développeurs et testeurs collaborent étroitement (revues de code, programmation en binôme, TDD/BDD).
+
+**Avantages :**
+
+- **Feedback rapide** : Tests exécutés continuellement, détection précoce des défauts
+- **Shift-left** : Tests intégrés dès le début, réduction des coûts de correction
+- **Collaboration étroite** : Développeurs et testeurs travaillent ensemble, meilleure qualité du code et des tests
+- **Adaptation rapide** : Capacité à modifier les tests rapidement en fonction des changements
+- **Couverture complète** : Tous les niveaux de tests (unitaires, intégration, système) couverts par sprint
+
+**Inconvénients :**
+
+- **Pression temporelle** : Développer l'automatisation in-sprint peut créer une pression sur l'équipe
+- **Maintenance continue** : Les tests doivent être maintenus à chaque sprint, risque d'accumulation
+- **Compétences élevées** : Nécessite des testeurs avec de solides compétences techniques en automatisation
+- **Dette technique** : Si mal géré, risque d'accumulation de tests fragiles ou mal conçus
+
+##### Tableau comparatif récapitulatif
+
+| **Modèle SDLC** | **Quand automatiser** | **Exécution des tests** | **Points clés** |
+|-----------------|----------------------|------------------------|-----------------|
+| **Cascade** | Pendant/après implémentation | Phase de vérification uniquement | Documentation exhaustive, feedback tardif, changements coûteux |
+| **Modèle en V** | Planifié dès la conception | À chaque niveau de test | TAF multi-niveaux, couverture structurée, maintenance complexe |
+| **Agile** | Intégré dans chaque sprint | Exécution continue (CI/CD) | Feedback rapide, shift-left, collaboration étroite, pression temporelle |
 
 
 #### **TAE-1.2.2 (K2)** : Sélectionner les outils d'Automatisation des tests appropriés pour un système sous test donné
