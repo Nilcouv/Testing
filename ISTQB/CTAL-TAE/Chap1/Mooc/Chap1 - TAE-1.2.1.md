@@ -1,10 +1,10 @@
-# MOOC
+# Mooc
 
 ## Explain how test automation is applied to across different SDLC Models
 
 ### Screen
 
-> Waterfall development
+> **Waterfall development**
 >
 > Need to complete each phase before moving to the next one.
 > In waterfall, everything happens in a specific order:
@@ -15,101 +15,118 @@
 > 4. Verification (Inspection)
 > 5. Maintenance (Upkeep)
 
-> Test Automation in Waterfall
+---
+
+> **Test Automation in Waterfall**
 >
 > Start in or after the Implementation phase
-> 
+>
 > Like testing a car, it's only possible when it's mostly built
 >
 > Eg. government test project
-> 
-> - Couldn't start automation until the 4th month
-> - Test automation happened in a big chunk during verification
-> - Required documentation for everything
-> - Each phase needed formal approval
+>
+> * Couldn't start automation until the 4th month
+> * Test automation happened in a big chunk during verification
+> * Required documentation for everything
+> * Each phase needed formal approval
 
-> test Automation in Waterfall
+---
+
+> **Test Automation in Waterfall**
 >
 > If we found major issues during automation going back to fix them was expensive and time-consuming
 >
-> like finding foundation problems in a new home after you've already built the whole house
+> Like finding foundation problems in a new home after you've already built the whole house
 
-> Waterfall - Pros and Cons
->
-> - Pros
->   - Stability of requirements - let us build automation tests without worrying about changes
->   - Documentation - Lots of documentation helps design thorough tests
->
-> - Cons
->   - Late feedback - Issues discovered late are costly
->   - Rigid structure - Hard to update code and tests
+---
 
-> V-model
-> 
+> **Waterfall - Pros and Cons**
+>
+> * Pros
+>   * Stability of requirements - let us build automation tests without worrying about changes
+>   * Documentation - Lots of documentation helps design thorough tests
+> * Cons
+>   * Late feedback - Issues discovered late are costly
+>   * Rigid structure - Hard to update code and tests
+
+---
+
+> **V-model**
+>
 > 1. User requirements --(Planning and design)--> Acceptance testing execution
 > 2. System requirements --(Planning and design)--> System testing execution
 > 3. Global design --(Planning and design)--> Integration testing execution
 > 4. Detailed design --(Planning and design)--> Component testing execution
 > 5. Coding
 
-> Test Automation in V-model
-> 
+---
+
+> **Test Automation in V-model**
+>
 > Automation framework created for each test level
 > Using house analogy, it's like having specialized tools for house inspections
 >
-> Eg. Projec using V-model for medical device
-> 
-> - automated unit tests for individual component
-> - Automated integration tests for component combinations
-> - Automated systems tests for the entire device
-> - Semi-automated acceptance tests for regulatory compliance
+> Eg. Project using V-model for medical device
+>
+> * Automated unit tests for individual component
+> * Automated integration tests for component combinations
+> * Automated systems tests for the entire device
+> * Semi-automated acceptance tests for regulatory compliance
 
-> V-model - pros and cons
->
-> - Pros
->   - Early bug detection
->   - structured approach - clear mapping between dev and testing
->
-> - Cons
->   - increased planning effort
->   - potential for redundancy in tests across levels
+---
 
-> Agile Developement
+> **V-model - Pros and Cons**
 >
-> Cycle ; 1. Requirements, Analysis and design, implementation, test, evaluation
+> * Pros
+>   * Early bug detection
+>   * Structured approach - clear mapping between dev and testing
+> * Cons
+>   * Increased planning effort
+>   * Potential for redundancy in tests across levels
+
+---
+
+> **Agile Development**
+>
+> Cycle: 1. Requirements, Analysis and design, implementation, test, evaluation
 >
 > Adaptation and improvisation while maintaining quality:
-> 
-> - Continuous test automation
-> - Cross functional collaboration
-> - In-sprint automation
-> - code review and pair programming
+>
+> * Continuous test automation
+> * Cross functional collaboration
+> * In-sprint automation
+> * Code review and pair programming
 
-> Agile Automation Example
+---
+
+> **Agile Automation Example**
 >
 > Ecommerce project
 >
-> - Developpers wrote unit tests as they coded
-> - Automation engineers created UI tests post-feature
-> - All automated tests ran nightly
-> - Failed tests fixed first thing in the morning
-> - Could release to production multiple time per day
+> * Developers wrote unit tests as they coded
+> * Automation engineers created UI tests post-feature
+> * All automated tests ran nightly
+> * Failed tests fixed first thing in the morning
+> * Could release to production multiple times per day
 
-> Agile model - pros and cons
+---
+
+> **Agile model - Pros and Cons**
 >
-> - pros
->   - immediate feedback - allowing for rapid fixes
->   - flexibility - framework adapt to change
->   - Collaboration - automation  is a team effort
-> 
-> - cons
->   - High maintenance - frequent changes break tests
->   - resource intensive - testers need strong coding skills and sprint time
+> * Pros
+>   * Immediate feedback - allowing for rapid fixes
+>   * Flexibility - framework adapt to change
+>   * Collaboration - automation is a team effort
+> * Cons
+>   * High maintenance - frequent changes break tests
+>   * Resource intensive - testers need strong coding skills and sprint time
 
-> conclusion
+---
+
+> **Conclusion**
 >
 > 1. No one-size-fits-all approach
-> 2. adapt your automation strategy to your development model
+> 2. Adapt your automation strategy to your development model
 > 3. Whether it's Waterfall, V-model, or Agile -- Timing and strategy matter
 > 4. Implement automation thoughtfully
 

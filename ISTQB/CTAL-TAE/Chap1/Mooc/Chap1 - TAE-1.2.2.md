@@ -1,105 +1,120 @@
 # Mooc
 
-## Select suitable test automation tools for a given system under test.
+## Select suitable test automation tools for a given system under test
 
 ### Screen
 
-> Understanding the system under test
+> **Understanding the system under test**
 >
 > Don't pick tools before what you are testing
 >
-> eg. UI tool bought before realizing 80% if testing was API
+> Eg. UI tool bought before realizing 80% of testing was API
 
-> Analysis Steps - Project requirements
->
-> Ask yourself: 
-> 
-> - What types of testing do you need ? -- (UI, API, Performance, etc.)
-> - what platforms are you testing ? (Web, Mobile, Desktop)
-> - What's your timeline looking like?
-> - What's your budget situation ?
->
-> Eg. healtcare project
->
-> Needed to :
->
-> - test web and mobile
-> - Verify complex calculation
-> - Ensure HIPAA compliance (Health insurance Portability and Accountability Act)
-> - Integrate with multiple third-party systems
->
-> Ended up using mutliple tools
->
-> - Selenium -- Web UI testing
-> - Appium -- for mobile testing
-> - Postman -- API testing
-> - Custsom scripts -- calculation verification
+---
 
-> Technical Experience Consideration
+> **Analysis Steps - Project requirements**
+>
+> Ask yourself:
+>
+> * What types of testing do you need? -- (UI, API, Performance, etc.)
+> * What platforms are you testing? (Web, Mobile, Desktop)
+> * What's your timeline looking like?
+> * What's your budget situation?
+>
+> Eg. healthcare project
+>
+> Needed to:
+>
+> * Test web and mobile
+> * Verify complex calculation
+> * Ensure HIPAA compliance (Health Insurance Portability and Accountability Act)
+> * Integrate with multiple third-party systems
+>
+> Ended up using multiple tools
+>
+> * Selenium -- Web UI testing
+> * Appium -- for mobile testing
+> * Postman -- API testing
+> * Custom scripts -- calculation verification
+
+---
+
+> **Technical Experience Consideration**
 >
 > For teams with limited programming experience:
 >
-> - look for low-/co-code solutions
-> - Consider tools with record-and-playback features
-> - Focus on tools with good GUI interfaces
+> * Look for low-/no-code solutions
+> * Consider tools with record-and-playback features
+> * Focus on tools with good GUI interfaces
 >
 > For Technical teams:
 >
-> - Consider tools that use the same language as your application
-> - Look for tools with good API documentation
-> - Evaluate the framework's extensibility
+> * Consider tools that use the same language as your application
+> * Look for tools with good API documentation
+> * Evaluate the framework's extensibility
 >
 > Eg. Startup project - QA team selected Testcafe because:
 >
-> - Easy learning curve
-> - Provided good record-and-playback features
-> - Still allowed for custom code when needed
-> - Had great documentation
+> * Easy learning curve
+> * Provided good record-and-playback features
+> * Still allowed for custom code when needed
+> * Had great documentation
 
-> Cross-team benefits
+---
+
+> **Cross-team benefits**
 >
 > Matching dev stack and tools = Faster debugging
 >
 > Eg.
 >
-> - Java --> TestNG/JUnit
-> - Javascript --> Cypress/ Playwright
-> - Python --> Robot Framework/ Pytest
+> * Java --> TestNG/JUnit
+> * Javascript --> Cypress/Playwright
+> * Python --> Robot Framework/Pytest
 
-> Common Pitfalls to Avoid
+---
+
+> **Common Pitfalls to Avoid**
 >
 > 1. Swiss Army Knife Trap -- Trying to do everything
 > 2. Following the Crowd -- using tools just because others do
 > 3. The "Budget Blinder" Error -- Cheapest often becomes costly
 
-> Evaluation Process
+---
+
+> **Evaluation Process**
 >
 > 1. Create a comparison matrix -- Requirements in rows, tools in columns
 > 2. Run a pilot project -- Try 2-3 tools on small project, get team feedback, check maintenance needs
 
-> Pro tips
->
-> When evaluating opensource tools:
->
-> - Check the community activité
-> - Look at the last release date
-> - Review outstanding issues
-> - Check documentation quality
+---
 
-> Pro tips
+> **Pro tips - Open source**
+>
+> When evaluating open source tools:
+>
+> * Check the community activity
+> * Look at the last release date
+> * Review outstanding issues
+> * Check documentation quality
+
+---
+
+> **Pro tips - Commercial**
 >
 > When evaluating commercial tools:
 >
-> - Ask for extended trial period
-> - Get training quote
-> - Check support response times
-> - Verify licensing models
+> * Ask for extended trial period
+> * Get training quote
+> * Check support response times
+> * Verify licensing models
 
-> Conclusion
+---
+
+> **Conclusion**
 >
 > 1. Choosing the right tool is crucial for long-term success
 > 2. Don't rush - Better to spend time now than regret later
-
 
 ### Transcript
 

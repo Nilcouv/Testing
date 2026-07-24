@@ -1,47 +1,58 @@
-# MOOC
+# Mooc
 
 ## Explain the advantages and disadvantages of tests automation
 
 ### Screen
 
-> What is Test Test automation
-> using specialized software tools to :
-> - control and setup test suite to run automatically using purpose-built software tools
-> - Execute those tests without manual intervention
-> - Compare what actually happened with what we expected to happen
+> **What is Test Automation**
 >
-> Ex. E-commeerce website
-> at every change, needs to verify functionnalies, such as the ability to log in as user, add products to the cart, the payment processing, order confirmation and email notification
+> Using specialized software tools to:
+>
+> * Control and setup test suite to run automatically using purpose-built software tools
+> * Execute those tests without manual intervention
+> * Compare what actually happened with what we expected to happen
+>
+> Ex. E-commerce website
+>
+> At every change, needs to verify functionalities, such as the ability to log in as user, add products to the cart, the payment processing, order confirmation and email notification
 
-> Advantages of Test Automation
-> 
-> 1. efficency - ability to run more tests per build compare to manual testing
-> 2. testing the impossible - test impossible to run manually (eg. simulating 1000 simultaneous users, verifying the responses time in milliseconds, running tests accross multiple devices at the same time, testing systems remotely in different locations)
-> 3. Complex Test Cases - ability to create complex tests scenarios hard to execute manually
-> 4. Speed - automated test Execution is much faster than human (eg. few second compare to 5-minutes manually)
-> 5. Remove Human Error - more consistant and repeatable, no forgetting steps, getting distracted or making a typo
-> 6. Cost effeciency - more cost effective over time. initial investment higher but running automation is cheaper than manual testing
+---
+
+> **Advantages of Test Automation**
+>
+> 1. Efficiency - ability to run more tests per build compared to manual testing
+> 2. Testing the impossible - tests impossible to run manually (eg. simulating 1000 simultaneous users, verifying the response time in milliseconds, running tests across multiple devices at the same time, testing systems remotely in different locations)
+> 3. Complex Test Cases - ability to create complex test scenarios hard to execute manually
+> 4. Speed - automated test execution is much faster than human (eg. few seconds compared to 5 minutes manually)
+> 5. Remove Human Error - more consistent and repeatable, no forgetting steps, getting distracted or making a typo
+> 6. Cost efficiency - more cost effective over time. Initial investment higher but running automation is cheaper than manual testing
 > 7. Consistency & reliability - Automation tests don't get tired, distracted or make mistakes
 
-> Disadvantages of tests automation
->
-> 1. Cost considerations - initial expense higher by hirering specialized automation engineer, buying hardware or tools, training the existing team
-> 2. Time investment - Need setup time for the framework (eg. like building the solid house foundation before starting to add bedrooms )
-> 3. Maintenance - Test scripts need regular maintenance to work, automation tests must change with application changes
-> 4. Rigidity of tests - less flexible than manual testing, can break due to small application changes. keep tests in sync with evolving codebase can be challenging
-> 5. Potential for introducing new bugs - Test scripts are code too, bugs in scripts can cause false positives or negatives. can be source of frustration and be time consuming 
+---
 
-> Limitation of Test Automation
+> **Disadvantages of Test Automation**
 >
-> 1. not everything can be automated - Human judgement still needed (eg. evaluating if a user interface is intuitive)
+> 1. Cost considerations - initial expense higher by hiring specialized automation engineer, buying hardware or tools, training the existing team
+> 2. Time investment - Need setup time for the framework (eg. like building the solid house foundation before starting to add bedrooms)
+> 3. Maintenance - Test scripts need regular maintenance to work, automation tests must change with application changes
+> 4. Rigidity of tests - less flexible than manual testing, can break due to small application changes. Keep tests in sync with evolving codebase can be challenging
+> 5. Potential for introducing new bugs - Test scripts are code too, bugs in scripts can cause false positives or negatives. Can be source of frustration and be time consuming
+
+---
+
+> **Limitation of Test Automation**
+>
+> 1. Not everything can be automated - Human judgement still needed (eg. evaluating if a user interface is intuitive)
 > 2. Verifying only what automated tests are programmed to do - limited to specific scenarios, other areas may go unverified
 > 3. Machine interpretation - Can only verify what machines can interpret. Can't assess if something "looks right" or "feels right"
-> 4. Test Oracle Challenge - Need a way to verify result automatically. Difficult when : "Mutliple valid answer exist" or "availability changes in real-time (eg. flight booking system)
+> 4. Test Oracle Challenge - Need a way to verify result automatically. Difficult when: "Multiple valid answers exist" or "availability changes in real-time" (eg. flight booking system)
 
-> Conclusion
+---
+
+> **Conclusion**
 >
 > 1. Test automation is powerful, but not a magic solution
-> 2. Key : find the right balance between automated and manual testing 
+> 2. Key: find the right balance between automated and manual testing
 > 3. Good test automation = Reliable co-worker handling repetitive tasks
 > 4. Human testers focus on creative and exploratory testing
 
