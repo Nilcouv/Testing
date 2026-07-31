@@ -14,7 +14,7 @@
 
 > **Generic Test Automation Architecture (gTAA)**
 >
-> The fTAA is a high-level design concept that gives us an abstract view of how our test automation communicates with other systems.
+> The gTAA is a high-level design concept that gives us an abstract view of how our test automation communicates with other systems.
 >
 > It shows us the big picture of how everything connects together.
 
@@ -23,6 +23,7 @@
 > **Key connections in gTAA**
 >
 > Test Automation Framework
+>
 > - includes the layers "Test Generation", "Test Definition", "Test Execution" and "Test Adaptations"
 > - Connects to "The SUT (System Under Test)", "Project Management", "Test management" and "Configuration management"
 
@@ -66,7 +67,7 @@
 > 
 > **Test Execution**
 >
-> Runs, tests, logs results, handles parallel execution
+> Runs tests, logs results, handles parallel execution
 >
 > Example: E-commerce project ran 500+ nightly in 2 hours
 
@@ -101,7 +102,7 @@
 >
 > 1. gTAA provides abstract view of automation communication
 > 2. Four key interfaces: SUT, Project/test/configuration management
-> 4. Core capabilities: Test generation, Test definition, Test execution, Test adaptation
+> 3. Core capabilities: Test generation, Test definition, Test execution, Test adaptation
 
 ### Transcript
 
@@ -119,9 +120,9 @@ So let's break down what we mean by test automation architecture and explore its
 
 which are basically the fundamental functions that make our automation work effectively.
 
-First, let's talk about what we call the Generic Test Automation Architecture, or GTA for short.
+First, let's talk about what we call the Generic Test Automation Architecture, or gTAA for short.
 
-The GTA is basically a high level design concept that gives us an abstract view of how our test automation
+The gTAA is basically a high level design concept that gives us an abstract view of how our test automation
 
 communicates with other systems.
 
@@ -137,13 +138,13 @@ from scratch.
 
 We needed to understand how our automation would interact with not just the banking application itself,
 
-but also with our test management system, the CI CD pipeline, and our configuration management system.
+but also with our test management system, the CI/CD pipeline, and our configuration management system.
 
-The GT-R helped us visualize these connections and plan accordingly.
+The gTAA helped us visualize these connections and plan accordingly.
 
-Now, if we look at this diagram of the GT-R, we can see that it shows connections between test automation
+Now, if we look at this diagram of the gTAA, we can see that it shows connections between test automation
 
-Animation and several other systems.
+and several other systems.
 
 The system under test.
 
@@ -159,13 +160,13 @@ of these systems.
 
 Let's explore these interfaces a bit more.
 
-The interfaces of G.t.r.
+The interfaces of gTAA.
 
 So what are these interfaces actually about?
 
 Well, they're basically the communication channels between our test automation and other systems.
 
-The Sut interface.
+The SUT interface.
 
 This describes how our test automation framework connects to the system we're testing.
 
@@ -199,7 +200,7 @@ This interface helps us maintain that relationship.
 
 Configuration management interface.
 
-This describes our CI, CD pipelines, environments and test where it helps us manage versioning and
+This describes our CI/CD pipelines, environments and testware. It helps us manage versioning and
 
 deployment of our automation code.
 
@@ -223,7 +224,7 @@ These are the essential functions that allow us to build and maintain effective 
 
 Test generation.
 
-Test iteration is about automatically designing test cases based on a test model.
+Test generation is about automatically designing test cases based on a test model.
 
 This is an optional capability, but it can be super powerful when implemented properly.
 
@@ -251,9 +252,9 @@ But when you're dealing with complex systems with many possible paths, it can be
 
 Test definition.
 
-Test definition supports the definition and implementation of test cases and or test suites.
+Test definition supports the definition and implementation of test cases and/or test suites.
 
-This capability separates the test definition from the Sut and or test tools.
+This capability separates the test definition from the SUT and/or test tools.
 
 In simpler terms, it's where we define what we want to test.
 
@@ -273,7 +274,7 @@ It's like the recipe we follow to create our automated tests.
 
 For instance, in a healthcare project I worked on, we had a comprehensive test definition layer that
 
-allowed business analysts to define tests in Excel using a keyword driven approach, which are automation
+allowed business analysts to define tests in Excel using a keyword driven approach, which our automation
 
 framework then translated into executable code.
 
@@ -307,17 +308,15 @@ and environments.
 
 Without this capability, the same tests would have taken days to run sequentially.
 
-Tests.
-
-Adaptation.
+Test Adaptation.
 
 Last but definitely not least, test adaptation provides the necessary functionality to adapt our automated
 
-tests for various components or interfaces of the Sut.
+tests for various components or interfaces of the SUT.
 
 Think of it as the layer that allows our tests to communicate with different parts of the system.
 
-It provides different adapters for connecting to the Sut via APIs, protocols, and services.
+It provides different adapters for connecting to the SUT via APIs, protocols, and services.
 
 For example, if you're testing a system that has both a web interface and a mobile app, your test
 
@@ -329,7 +328,7 @@ In my experience, a well-designed test adaptation layer can be the difference be
 
 solution that breaks with every UI change, and a robust solution that can withstand frequent changes
 
-to the Sut.
+to the SUT.
 
 On a healthcare project I worked on, we built a test adaptation layer that abstracted away the details
 
@@ -365,9 +364,7 @@ We'd set up our framework to execute these tests automatically, perhaps as part 
 
 process and generate reports.
 
-Test.
-
-Adaptation.
+Test Adaptation.
 
 We create adapters that allow our tests to interact with the web interface, mobile app, and APIs of
 
@@ -381,7 +378,7 @@ So to wrap up, the major capabilities in the test automation architecture includ
 
 architecture that provides an abstract view of communication between test automation and connected systems.
 
-Well-defined interfaces for connecting with the Sut.
+Well-defined interfaces for connecting with the SUT.
 
 Project management.
 
@@ -393,7 +390,7 @@ Test definition, test execution, and test adaptation.
 
 Understanding these capabilities is crucial for designing an effective test automation solution that
 
-can scale with your project and adapt to changes in the Sut.
+can scale with your project and adapt to changes in the SUT.
 
 In the next video, we'll dive deeper into how to design a test automation solution that incorporates
 

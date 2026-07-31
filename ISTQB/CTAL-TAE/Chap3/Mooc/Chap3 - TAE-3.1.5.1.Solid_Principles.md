@@ -9,11 +9,11 @@
 > 1. **SRP (Single Responsibility Principle)**
 >
 > - A class should have only one reason to change - only one job or responsibility
-> - Like you would't want your chef to also be your plumber - Different skills, different problems.
+> - Like you wouldn't want your chef to also be your plumber - Different skills, different problems.
 >
 > **Example:**
 > 
-> ``` Java
+> ```java
 > // This violates SRP - too many responsibilities
 > public class TestUtils {
 >     // Database operations
@@ -35,11 +35,11 @@
 > }
 > ```
 > 
-> ``` Java
+> ```java
 > // Following SRP - each class has a single responsibility
 > public class DatabaseUtils {
->     public void connect() {/ *... */ }
->     public ResultSet executeQuery(String query) { / *... */ }
+>     public void connect() { /* ... */ }
+>     public ResultSet executeQuery(String query) { /* ... */ }
 > }
 > 
 > public class FileUtils {
@@ -75,16 +75,16 @@
 > **Example:**
 > 
 > 
-> ``` Java
+> ```java
 > // Without OCP
 > public class Validator {
 >     public boolean validate(String input, String type) {
 >         if (type.equals("email")) {
 >         // Email validation logic
->             return input.matches("[a-zA-Z0-9.%+-]+@[a-zA-Z0-9 .- ]+\\.[a-zA-Z]{2,}");
+>             return input.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
 >         }else if (type.equals("phone")) {
 >             // Phone validation logic
->             return input.matches("\\d{10}|( ?: \\d{3}-){2}\\d{4}/\\(\\d{3}\\)\\d{3} -?\\d{4}");
+>             return input.matches("\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}");
 >         } else if (type.equals("zipcode")) {
 >             // Zipcode validation logic
 >             return input.matches("\\d{5}|\\d{5}-\\d{4}");
@@ -97,7 +97,7 @@
 > // we have to modify the existing Validator class
 > ```
 > 
-> ```Java
+> ```java
 > // Following OCP
 > public abstract class Validator {
 >     public abstract boolean validate(String input);
@@ -106,17 +106,17 @@
 > public class EmailValidator extends Validator {
 >     @Override
 >     public boolean validate(String input) {
->         return input.matches("[a-zA-Z0-9 ._ %+-]+@[a-zA-Z0-9 .- ]+\\.[a-zA-Z]{2,}");
+>         return input.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
 >     }
 > }
-> 
+>
 > public class PhoneValidator extends Validator {
 >     @Override
 >     public boolean validate(String input) {
->         return input.matches("\\d{10}|( ?: \\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3} -? \\d{4}");
+>         return input.matches("\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}");
 >     }
 > }
-> 
+>
 > public class ZipCodeValidator extends Validator {
 >     @Override
 >     public boolean validate(String input) {
@@ -128,7 +128,7 @@
 >     @Override
 >     public boolean validate(String input) {
 >         // Credit card validation logic
->         return input.matches("^( ?: 4[0-9]{12}( ?: [0-9]{3})?| ... )$");
+>         return input.matches("^(?:4[0-9]{12}(?:[0-9]{3})?|...)$");
 >     }
 > }
 > 
@@ -150,7 +150,7 @@
 >
 > **Example:**
 > 
-> ``` Java 
+> ```java
 > class Rectangle {
 >     protected int width;
 >     protected int height;
@@ -175,7 +175,7 @@
 >         this.width = width;
 >         this.height = width; // Also set height to maintain square properties
 >     }
->     @0verride
+>     @Override
 >     public void setHeight(int height) {
 >         this.height = height;
 >         this.width = height; // Also set width to maintain square properties
@@ -189,7 +189,7 @@
 > }
 > ```
 > 
-> ``` Java
+> ```java
 > interface Browser {
 >     void navigate(String url);
 >     WebElement findElement(String locator);
@@ -197,10 +197,11 @@
 > 
 > class ChromeBrowser implements Browser {
 >     private WebDriver driver;
-> 
-> public ChromeBrowser() {
->     driver = new ChromeDriver();
-> 
+>
+>     public ChromeBrowser() {
+>         driver = new ChromeDriver();
+>     }
+>
 >     @Override
 >     public void navigate(String url) {
 >         driver.get(url);
@@ -239,7 +240,7 @@
 > }
 > ```
 > 
-> - ChromeBrowser and FirefoxBrowser can be substitued for each other in the test because they both properly implement the Browser interface.
+> - ChromeBrowser and FirefoxBrowser can be substituted for each other in the test because they both properly implement the Browser interface.
 
 ---
 
@@ -253,7 +254,7 @@
 > 
 > **Example:**
 > 
-> ``` Java
+> ```java
 > // Violating ISP - one big interface
 > interface Page {
 >     void navigate();
@@ -277,13 +278,12 @@
 >     public void search(String keyword) { throw new UnsupportedOperationException(); }
 >     public void sort(String criterion) { throw new UnsupportedOperationException(); }
 >     public void filter(Map<String, String> filters) { throw new UnsupportedOperationException(); }
->     public void addToCart(String productId) { throw new UnsupportedOperationException();
-> }
-> // And so on ...
+>     public void addToCart(String productId) { throw new UnsupportedOperationException(); }
+>     // And so on ...
 > }
 > ```
 > 
-> ``` Java
+> ```java
 > // Following ISP with focused interfaces
 > interface Navigable {
 >     void navigate();
@@ -320,7 +320,7 @@
 > - I had a project where we had a Reporter interface with methods for starting reports, adding results, capturing screenshots, and generating different report formats.
 > - Some reporting tools we integrated with didn't support screenshots, so they had empty implementations that did nothing
 > - By applying ISP, we split into BasicReporter, ScreenshotCapable, and MultiFormatReporter interfaces.
-> - This made it much clearer which reporters supported which featured, and we didn't have to implement placeholder methods for unsupported features.
+> - This made it much clearer which reporters supported which features, and we didn't have to implement placeholder methods for unsupported features.
 
 ---
 
@@ -335,7 +335,7 @@
 > 
 > **Example:**
 
-``` Java
+```java
 // Violating DIP - direct dependency on concrete class
 class LoginTest {
     private ChromeDriver driver; // Directly depends on ChromeDriver
@@ -351,7 +351,7 @@ class LoginTest {
 }
 ```
 
-``` Java
+```java
 // Following DIP - depend on abstractions
 interface WebDriver {
     void get(String url);
@@ -384,7 +384,7 @@ LoginTest chromeTest = new LoginTest(new ChromeDriver());
 LoginTest firefoxTest = new LoginTest(new FirefoxDriver());
 ```
 
-- Originally, tests depended directly on Selenium Webdriver.
+- Originally, tests depended directly on Selenium WebDriver.
 - Switching to Appium was difficult because of API differences.
 - Refactoring introduced a Driver interface implemented by both Selenium and Appium wrappers.
 - Switching drivers became trivial -- same tests run on web and mobile by injecting different driver implementations.
@@ -439,7 +439,7 @@ Liskov substitution principle.
 
 The Liskov substitution principle, named after computer scientist Barbara Liskov, states that objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program.
 
-In simpler terms, if class B is a subclass of class A, then you should be able to use B anywhere you use A without things breaking or behaving unexpectedly. It's like if you have a recipe that calls for any citrus fruit. An orange should work just as well as a lemon without having to change the recipe. Even though they taste different, they're both citrus fruits with similar properties.Let's look at a classic example that violates LSP.
+In simpler terms, if class B is a subclass of class A, then you should be able to use B anywhere you use A without things breaking or behaving unexpectedly. It's like if you have a recipe that calls for any citrus fruit. An orange should work just as well as a lemon without having to change the recipe. Even though they taste different, they're both citrus fruits with similar properties. Let's look at a classic example that violates LSP.
 
 This example violates LSP because you can't substitute a square for a rectangle without breaking the code that expects rectangle behavior.
 
@@ -453,13 +453,13 @@ Now here's a test automation example that does follow LSP.
 
 In this example, ChromeBrowser and FirefoxBrowser can be substituted for each other in other tests because they both properly implement the browser interface.
 
-Interface Segregation Principle. The Interface Segregation Principle states that clients should not be forced to depend on interfaces they don't use. In other words, it's better to have many specific interfaces than one general-purpose interface. In test automation, this might mean creating focus interfaces for different aspects of your application rather than one giant interface.
+Interface Segregation Principle. The Interface Segregation Principle states that clients should not be forced to depend on interfaces they don't use. In other words, it's better to have many specific interfaces than one general-purpose interface. In test automation, this might mean creating focused interfaces for different aspects of your application rather than one giant interface.
 
 Here's an example of violating ISP. So as you can see, we had this one big page interface, and then every page class that uses it must implement all of the methods even if they don't need them.
 
 Now let's refactor the code to follow ISP by creating specific interfaces.
 
-Now in this refactored code, we have focus interfaces like navigable, searchable and purchasable,
+Now in this refactored code, we have focused interfaces like navigable, searchable and purchasable,
 
 and pages that implement these interfaces only have to implement the ones where they have
 
@@ -471,7 +471,7 @@ I had a project where we had a reporter interface with methods for starting repo
 
 Some reporting tools we integrated with didn't support screenshots, so they had empty implementations that did nothing.
 
-By applying ISP, we split it into basic reporter, screenshot-capable, and multi-format reporter interfaces. This made it much clearer which reports supported which features, and we didn't have to implement placeholder methods for unsupported features.
+By applying ISP, we split it into basic reporter, screenshot-capable, and multi-format reporter interfaces. This made it much clearer which reporters supported which features, and we didn't have to implement placeholder methods for unsupported features.
 
 Dependency Inversion Principle. The Dependency Inversion Principle states that high-level modules should not depend on low-level modules.
 
@@ -489,7 +489,7 @@ Now let's refactor that code to follow DIP.
 
 So in this refactored version, we are depending on abstractions. So we have our WebDriver interface and then each of our browser drivers can implement the WebDriver and have their own specific implementation.
 
-And then in our login tests, we can inject the dependency that we need through the classes constructor.
+And then in our login tests, we can inject the dependency that we need through the class's constructor.
 
 I once worked on a project where we directly depended on Selenium WebDriver throughout our tests. When we needed to switch some tests to use Appium for mobile testing, it was a huge effort because Appium has a slightly different API. After refactoring to follow DIP by creating our own driver interface that both our Selenium and Appium wrappers implemented, switching between them became trivial.
 

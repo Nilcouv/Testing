@@ -6,7 +6,7 @@
 
 > **Introduction to Test Automation Approaches**
 >
-> Multiples approaches exist (beyond simple scripting)
+> Multiple approaches exist (beyond simple scripting)
 >
 > **Trade-offs:** Simplicity vs. long-term maintainability
 >
@@ -34,7 +34,7 @@
 >
 > **Cons**
 >
-> - These tests are usually very fragile -- if anything changes in your application, the test break
+> - These tests are usually very fragile -- if anything changes in your application, the tests break
 > - It's hard to scale this approach as your application grows
 > - When tests fail, it can be difficult to understand why
 > - You need the application to be available and working when you create the tests.
@@ -79,14 +79,14 @@
 >
 > **Pros**
 >
-> - It's relatively to get started - definitely easier than some of the more advanced approaches
+> - It's relatively easy to get started - definitely easier than some of the more advanced approaches
 > - The scripts are straightforward to understand because they follow the test step by step
 > - You have more control compared to capture/playback because you're writing the code
 >
 > **Cons**
 >
 > - There's a lot of duplication - if multiple tests need to log in, you're copying and pasting that code
-> - Maintenance becomes a huge issues as your test suite grows.
+> - Maintenance becomes a huge issue as your test suite grows.
 > - When the application changes, you might need to update the code in multiple places.
 > - You need some programming knowledge, though not advanced skills.
 
@@ -96,7 +96,7 @@
 >
 > - Professional approach with reusable elements: libraries, steps, user journeys.
 > - Reusable functions/methods (e.g., login() function)
-> - Requires more programming knowledge but improve maintainability.
+> - Requires more programming knowledge but improves maintainability.
 > - Changes (e.g., login page) update in one place, not every test.
 >
 > **Example:**
@@ -113,10 +113,10 @@
 >     login_button = driver.find_element_by_id("login_button")
 >     login_button.click()
 > 
-> # Now our test become:
+> # Now our tests become:
 > driver = webdriver.Chrome()
 > driver.get("https://www.example.com")
-> login(driver, "testuser", "password1233")
+> login(driver, "testuser", "password123")
 > assert "Welcome" in driver.page_source
 > ```
 
@@ -129,7 +129,7 @@
 > - Much better maintainability - changes to the application only require update in one place
 > - Reusability across tests reduces duplication
 > - Easier to understand and troubleshoot
-> - More scalable as you test suite grows
+> - More scalable as your test suite grows
 >
 > **Cons**
 >
@@ -141,18 +141,18 @@
 
 > **TDD (Test-Driven Development)**
 >
-> - Development approach that result in automated tests
+> - Development approach that results in automated tests
 > - Revolutionary concept: Write tests BEFORE writing the code they test
 >
-> **Red-Green-Refactory cycle:**
+> **Red-Green-Refactor cycle:**
 > 
 > - **Red** : Write a failing test for the functionality you want to develop
-> - **Green** ; Write a minimum code necessary to make the test pass
+> - **Green** : Write a minimum code necessary to make the test pass
 > - **Refactor** : Clean up the code while ensuring the test still passes
 >
 > **Example:**
 >
-> ``` python
+> ```python
 > # Red phase
 > def test_email_validation():
 >    # This test will initially fail because the validate_email function doesn't exist yet
@@ -167,7 +167,7 @@
 >    # Simple implementation that checks for @ symbol and a dot in the domain
 >   if not email:
 >        return False
->   return @ in email and "." in email.split("@")[1] if lend(email.split("@")) > 1 else False
+>   return "@" in email and "." in email.split("@")[1] if len(email.split("@")) > 1 else False
 > 
 > # Refactor phase
 > import re
@@ -177,7 +177,7 @@
 >   if not email:
 >       return False
 >
->   pattern = r'^[a-zA-Z0-9._%+-]+\.[a-zA-Z]{2,}$'
+>   pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 >   return bool(re.match(pattern, email))
 > ```
 
@@ -189,7 +189,7 @@
 >
 > - **Improves code quality and structure:** When you write tests first, you naturally design more modular, testable code
 > - **Enhances testability from the start:** Your code is inherently testable because that's how it was designed
-> - **Archives better code coverage:** You're writing tests for all functionality as you go
+> - **Achieves better code coverage:** You're writing tests for all functionality as you go
 > - **Reduces defects propagating to higher test levels:** You catch issues at the unit level before they become system-level problems.
 > - **Improves communication:** Writing tests first forces clarity about what the code should do.
 >
@@ -217,20 +217,21 @@
 > ("invaliduser", "password123", "failure"),
 > ("", "", "failure"),
 > ("testuser<script>", "password123", "failure") # Testing XSS attempt
-> 
+> ]
+>
 > @pytest.mark.parametrize( "username,password, expected_result", test_data)
 > def test_login(username, password, expected_result, setup_browser):
 > driver = setup_browser
-> 
+>
 > # Navigate to login page
 > driver.get("https://www.example.com/login")
-> 
+>
 > # Enter credentials
 > username_field = driver.find_element_by_id( "username")
-> username_field. send_keys(username)
-> 
+> username_field.send_keys(username)
+>
 > password_field = driver.find_element_by_id("password")
-> password_field. send_keys(password)
+> password_field.send_keys(password)
 > 
 > # Click login button
 > login_button = driver.find_element_by_id("login_button")
@@ -243,19 +244,19 @@
 > assert "Error" in driver.page_source, f"Login should fail with{username}/{password}"
 > ```
 > 
-> Usually data come from a csv file
-> ``` python
+> Usually data comes from a csv file
+> ```python
 > import pytest
 > import csv
 > 
 > def load_test_data():
 >     data = []
 >     with open('login_test_data.csv', 'r') as f:
->         reader = csv. reader(f)
+>         reader = csv.reader(f)
 >         next(reader) # Skip header row
 >         for row in reader:
 >             username, password, expected_result = row
->             data. append( (username, password, expected_result))
+>             data.append( (username, password, expected_result))
 >     return data
 > 
 > @pytest.mark.parametrize( "username, password, expected_result", load_test_data())
@@ -282,9 +283,9 @@
 > **Pros**
 >
 > - **Reduces code duplication:** You write the test logic once and reuse it with different data
-> - **Make test maintenance easier:** When the application changes, you only need to update one test script.
-> - **Enables non-programmers to contribute:** Test analysts can add new test cases by addind data to a spreadsheet
-> - **Improves test coverage:** It's easy to test more scenarios without writign more code.
+> - **Makes test maintenance easier:** When the application changes, you only need to update one test script.
+> - **Enables non-programmers to contribute:** Test analysts can add new test cases by adding data to a spreadsheet
+> - **Improves test coverage:** It's easy to test more scenarios without writing more code.
 > - **Separates concerns:** Test logic and test data are kept separate, following good software design principles.
 >
 > **Cons**
@@ -300,12 +301,12 @@
 > In this approach:
 >
 > - Define high-level keywords that represent actions or verifications in your application.
-> - Test become a sequence of these keywords with associated data.
+> - Tests become a sequence of these keywords with associated data.
 > - Pre-defined actions like "login", "SearchProduct", "AddToCart"
 >
 > **Example:**
 > 
-> ``` python
+> ```robotframework
 > *** Settings ***
 > Documentation       Example of keyword-driven testing with Robot Framework
 > Library             SeleniumLibrary
@@ -356,11 +357,11 @@
 > 
 > Error Message Should Be Displayed
 >     Page Should Contain     Invalid username or password
->     Page Should Contain Element     class :error-message
+>     Page Should Contain Element     class:error-message
 > ```
 >
-> - The Setting section sets up the libraries we need.
-> - The Variable section defines common values we'll use.
+> - The Settings section sets up the libraries we need.
+> - The Variables section defines common values we'll use.
 > - The Test Cases section contains our actual tests, which are sequences of keywords.
 > - The Keywords section defines custom keywords that our tests use.
 
@@ -370,9 +371,9 @@
 >
 > **Real-World Example**
 >
-> - Work at a company where Business analyst could write test
+> - Worked at a company where business analysts could write tests
 > 
-> ``` python
+> ```robotframework
 > *** Test Cases ***
 > Customer Can Purchase Auto Insurance
 >     Login As        john.doe@example.com    password123
@@ -394,18 +395,18 @@
 >
 > **Pros**
 >
-> - **Business-readable tests:** Tests are expressed in language that business stakeholder can understand
+> - **Business-readable tests:** Tests are expressed in language that business stakeholders can understand
 > - **Reusable components:** Keywords can be reused across many test cases.
 > - **Non-technical participation:** Business analysts and manual testers can contribute to automation
 > - **Framework for collaboration:** Provides a common language between technical and non-technical team members.
-> - **Separatte of concerns:** Implementers focus on keywords; test designer focus on test flows
+> - **Separation of concerns:** Implementers focus on keywords; test designers focus on test flows
 >
 > **Cons**
 >
 > - **Initial setup effort:** Creating a robust keyword library takes time.
 > - **Maintenance overhead:** As the application changes, keywords need to be updated.
 > - **Finding the right granularity:** Keywords that are too specific aren't reusable; keywords that are too general aren't meaningful.
-> - **Learning curve:** New team members needs to learn the available keywords.
+> - **Learning curve:** New team members need to learn the available keywords.
 
 ---
 
@@ -418,7 +419,7 @@
 > 
 > - BDD scenario for login:
 > 
-> ``` python
+> ```gherkin
 > Feature: User Login
 >     As a registered user
 >     I want to log in to the application
@@ -434,7 +435,7 @@
 >
 > Scenario is mapped to the following code:
 >
-> ``` python
+> ```python
 > 
 > @given("I am on the login page")
 > def navigate_to_login_page(context):
@@ -443,7 +444,7 @@
 > @when('I enter "{username}" as username' )
 > def enter_username(context, username):
 >     username_field = context.driver.find_element_by_id( "username")
->     username_field. send_keys(username)
+>     username_field.send_keys(username)
 > 
 > # And so on for the other steps
 > ```
@@ -513,7 +514,7 @@
 > - Capture/playback: Easy to start but hard to maintain
 > - Linear Scripting: Simple programming but prone to duplication
 > - Structured Scripting: Reusable components improve maintainability
-> - Sest-Driven Development: Write Tests before code for better quality
+> - Test-Driven Development: Write Tests before code for better quality
 > - Data-Driven Testing: Separate test logic from test data
 > - Keyword-Driven Testing: Use high-level keywords for business-readable test
 > - Behavior-Driven Development: Natural language scenario bridge technical and business worlds.
@@ -526,7 +527,7 @@ Let's take a look at the different approaches you can use when automating your t
 
 You know, when I first started in test automation, I thought there was just one way to do it write
 
-some code that clicks, buttons and fills in fields, right?
+some code that clicks buttons and fills in fields, right?
 
 But actually there are several different approaches, each with their own strengths and weaknesses.
 
@@ -548,7 +549,7 @@ It's kind of like recording a video of yourself testing, except the tool actuall
 
 that can repeat your exact actions.
 
-There are tools out there that can do this, like Solidium IDE or Katalon recorder.
+There are tools out there that can do this, like Selenium IDE or Katalon recorder.
 
 These tools watch what you do, click in buttons, type in text selecting options, and then generate
 
@@ -616,7 +617,7 @@ It's like writing a story from start to finish without organizing it into chapte
 
 The difference between this and capture playback is that you're actually writing the code yourself,
 
-rather than having a tool generated for you.
+rather than having a tool generate it for you.
 
 Though to be honest, many people start with capture playback and then modify the generated scripts,
 
@@ -784,9 +785,9 @@ Your code is inherently testable because that's how it was designed.
 
 We can achieve better code coverage.
 
-Your writing tests for all functionality as you go.
+You're writing tests for all functionality as you go.
 
-It reduces defects propagate into higher test levels.
+It reduces defects propagating to higher test levels.
 
 You catch issues at the unit level before they become system level problems.
 
@@ -850,7 +851,7 @@ The data typically comes from external sources like CSV files, Excel spreadsheet
 
 XML files.
 
-Here's a simple example of data driven testing in Python using py tests.
+Here's a simple example of data driven testing in Python using pytest.
 
 In this example, we define a list of test data of tuples, each containing a username, password,
 
@@ -930,7 +931,7 @@ When a test fails, this helps you quickly identify which scenario had the issue.
 
 Keyword driven testing.
 
-Now let's explore keyword driven testing or Kate.
+Now let's explore keyword driven testing or KDT.
 
 Keyword driven testing takes the concept of separating test logic and test data even further.
 
@@ -948,7 +949,7 @@ Instead of sculpting from clay, you use standardized pieces to build something c
 
 The robot framework is a popular open source framework for keyword driven testing.
 
-So let's see how Kate works using robot as an example.
+So let's see how KDT works using robot as an example.
 
 In the robot framework, a test case might look like this.
 
@@ -956,7 +957,7 @@ Let's break down what's happening here.
 
 The settings section sets up the libraries we need.
 
-The variables section defines common valuables.
+The variables section defines common values.
 
 We'll use.
 
@@ -1014,7 +1015,7 @@ Implementers focus on keywords.
 
 Test designers focus on test flows.
 
-Designs include.
+Cons include.
 
 Initial setup effort.
 
@@ -1042,7 +1043,7 @@ The lesson was keep your keywords at a consistent level of abstraction that bala
 
 clarity.
 
-The most successful CD implementations I've seen start with a small set of well-designed keywords and
+The most successful KDT implementations I've seen start with a small set of well-designed keywords and
 
 grow organically as needed.
 
@@ -1116,7 +1117,7 @@ Well, like most things in software, the answer is it depends.
 
 Let's look at how these approaches compare in terms of key factors.
 
-Entry barrier low would be capture playback in linear scripting.
+Entry barrier low would be capture playback and linear scripting.
 
 Medium would be structured scripting and data driven testing.
 

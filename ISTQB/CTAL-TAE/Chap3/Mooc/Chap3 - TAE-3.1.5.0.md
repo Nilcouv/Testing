@@ -8,7 +8,7 @@
 >
 > - Something that might sound a bit theoretical but is actually super practical - design principles and design patterns in test automation.
 > - Proven solution to common problem in software design.
-> - Like blueprints that have been tested by thousands developers over many years.
+> - Like blueprints that have been tested by thousands of developers over many years.
 
 ---
 
@@ -22,7 +22,7 @@
 > - LoginPage.login("user", "pass") - The usernameField, passwordField, and loginButton fields are all private, meaning they can't be directly accessed from outside the class.
 > - If the login process changes later, you only need to update it in one place.
 > 
-> ``` Javascript
+> ```java
 > public class LoginPage {
 >     private WebElement usernameField;
 >     private WebElement passwordField;
@@ -31,8 +31,8 @@
 >     // Constructor and initialization code here
 > 
 >     public void login(String username, String password) {
->     usernameField. sendKeys(username);
->     passwordField. sendKeys(password);
+>     usernameField.sendKeys(username);
+>     passwordField.sendKeys(password);
 >     loginButton.click();
 >     }
 > }
@@ -42,10 +42,10 @@
 
 > **Object-Oriented Programming Principles**
 >
->  2. **Abstraction** - Abstraction is about simplifying complex system by modeling classes based on the essential properties and behaviors, while hiding unnecessary details.
+>  2. **Abstraction** - Abstraction is about simplifying complex systems by modeling classes based on the essential properties and behaviors, while hiding unnecessary details.
 >
 > - It's like using a TV remote - you press buttons without needing to understand the electrical signals
-> - In test automation, abstraction helps us focus on what we need for test, without getting bogged down in implementation details.
+> - In test automation, abstraction helps us focus on what we need for testing, without getting bogged down in implementation details.
 >
 > **Example:**
 >
@@ -56,7 +56,7 @@
 > - This interface is an abstraction of the concept of a "page" - it doesn't specify how the operations happen.
 > - The HomePage class implements this interface and contains the actual implementation details ( WebDriver, URLs, element IDs, etc.)
 > 
-> ``` Javascript
+> ```java
 > // implementation
 > public interface Page {
 >     void navigate();
@@ -76,7 +76,7 @@
 >     }
 > 
 >     public boolean isDisplayed() {
->         return driver.findElement(By. id("home-header")).isDisplayed();
+>         return driver.findElement(By.id("home-header")).isDisplayed();
 >     }
 > 
 >     public String getTitle() {
@@ -87,7 +87,7 @@
 > 
 > - Our tests don't need to know implementation details -- they just work with the Page interface.
 > 
-> ``` Java
+> ```java
 > // Test
 > public void testPageNavigation(Page page) {
 >     page.navigate();
@@ -107,21 +107,21 @@
 >  3. **Inheritance** - Inheritance allows a class to inherit **properties and methods** from another class.
 >
 > - It creates a **parent-child relationship**, where the child class can also add its own capabilities.
-> - **Like biological inheritance** - you inherit traits but also have uniques ones.
+> - **Like biological inheritance** - you inherit traits but also have unique ones.
 >
 > In **test automation**, inheritance helps avoid **code duplication** by using **base classes** with common functionality.
 >
 > **Example:**
 >
-> - Basepage contains common functionality like:
+> - BasePage contains common functionality like:
 >   - Waiting for a page to load
 >   - Taking screenshots
 >   - Scrolling to elements
-> - Productpage uses extends basepage to inherit all those methods without rewriting them.
+> - ProductPage uses extends BasePage to inherit all those methods without rewriting them.
 > - Super(driver) calls the parent constructor to handle initialization.
 > - Refactoring to use a base class reduced the codebase size by ~30% and made maintenance much faster.
 
-``` Javascript
+```java
 public class BasePage {
     protected WebDriver driver;
 
@@ -176,7 +176,7 @@ public class ProductPage extends BasePage {
 
     public void setQuantity(int quantity) {
         quantityField.clear();
-        quantityField.sendKeys(String.value0f(quantity));
+        quantityField.sendKeys(String.valueOf(quantity));
     }
 }
 ```
@@ -192,39 +192,41 @@ public class ProductPage extends BasePage {
 >
 > **Example:**
 >
-> - If our application has different types of alerts or nbotifications that need to be handled in different ways, we can write something like this:
+> - If our application has different types of alerts or notifications that need to be handled in different ways, we can write something like this:
 > 
-> ``` Javascript
+> ```java
 > // Base interface
 > public interface Notification {
 >     void acknowledge();
 >     String getMessage();
+> }
 > ```
-> 
+>
 > - In this code snippet, we start with an interface notification that defines the common behaviors - acknowledging the notification and getting its message.
-> 
-> ``` Javascript
+>
+> ```java
 > // Implementation for info notifications
 > public class InfoNotification implements Notification {
 >     private String message;
-> 
+>
 >     public InfoNotification(String message) {
 >         this.message = message;
 >     }
-> 
+>
 >     @Override
 >     public void acknowledge() {
 >         // Find and click the "OK" button
->         WebElement okButton = driver. findElement(By. id("info-ok-button"));
+>         WebElement okButton = driver.findElement(By.id("info-ok-button"));
 >         okButton.click();
 >         System.out.println("Info notification acknowledged");
 >     }
-> 
+>
 >     @Override
 >     public String getMessage() {
 >         return this.message;
 >     }
-> 
+> }
+>
 > // Implementation for error notifications
 > public class ErrorNotification implements Notification {
 >     private String message;
@@ -241,9 +243,9 @@ public class ProductPage extends BasePage {
 >         System.out.println("Error occurred: " + errorCode);
 > 
 >         // Find and click the "Close" button
->         WebElement closeButton = driver.findElement(By. id("error-close-button"));
+>         WebElement closeButton = driver.findElement(By.id("error-close-button"));
 >         closeButton.click();
->         System.out.println("Error notification acknowledged");.
+>         System.out.println("Error notification acknowledged");
 >     }
 > 
 >     @Override
@@ -274,7 +276,7 @@ Object-oriented programming principles. Let's start with the foundations, object
 
 There are four major ones that you should know about. Encapsulation. Encapsulation is all about bundling data and the methods that work on the data within a single unit, like a class, and restricting direct access to some of the object's components. In plain English, it means hiding the complex stuff inside a class and only exposing what's necessary through public methods. It's like your car. You don't need to know how the engine works internally. You just need to know how to use the steering wheel, the pedals, and gears. For example, in test automation, let's say you have a login functionality. With encapsulation, you might create a login page class that handles all of the internal details of logging in.
 
-Now your tests only needs to call the LoginPage.login method without worrying about how it happens internally. In addition, the username field, password field, and login button fields are all private, meaning they can't be directly accessed from outside the class. And if the login process changes later, you only need to update it in one place.
+Now your tests only need to call the LoginPage.login method without worrying about how it happens internally. In addition, the username field, password field, and login button fields are all private, meaning they can't be directly accessed from outside the class. And if the login process changes later, you only need to update it in one place.
 
 Abstraction.
 
@@ -306,15 +308,15 @@ Abstraction is incredibly powerful for creating maintainable test code because i
 
 Inheritance.
 
-Inheritance allows a class to inherit properties and methods from another class.It creates a parent-child relationship between classes, where the child class inherits features from the parent class, while also being able to add its own unique capabilities. Think of it like biological inheritance. A child inherits certain characteristics from their parents, but can also have their own unique traits. For example, you might inherit your eye color from your mom, but develop your own unique interests and skills. In test automation, inheritance help us avoid code duplication by creating base classes with common functionality that other classes can inherit from.
+Inheritance allows a class to inherit properties and methods from another class. It creates a parent-child relationship between classes, where the child class inherits features from the parent class, while also being able to add its own unique capabilities. Think of it like biological inheritance. A child inherits certain characteristics from their parents, but can also have their own unique traits. For example, you might inherit your eye color from your mom, but develop your own unique interests and skills. In test automation, inheritance helps us avoid code duplication by creating base classes with common functionality that other classes can inherit from.
 
 This lets us write shared code once in a parent class, rather than repeating it in multiple places.
 
 For example, we might have a base class that contains common methods that all page objects will need.
 
-In this code snippet, first, we have a base page class that contains common functionality any page in our application might need, like waiting for a page to load, taking screenshots, and scrolling to elements. These are operations we'd need to do many different pages.
+In this code snippet, first, we have a base page class that contains common functionality any page in our application might need, like waiting for a page to load, taking screenshots, and scrolling to elements. These are operations we'd need to do on many different pages.
 
-Then we have a productPage class that uses the extends keyword to inherit from BasePage. This means productPage automatically has all the methods to find the base page without us having to rewrite them. Notice how the productPage constructor calls super with driver passed in, and this invokes the parent class's constructor to handle the initialization logic defined there. And in the addProductToCart method, we call the inherited scrollToElement method. The productPage class didn't have to implement this method itself. It just leverages what it inherited from the base page. I once joined a project where they didn't use inheritance at all, and every page class had duplicate code for waiting mechanisms, screenshot handling, and error logging. About 50 to 60 lines of identical code copied and pasted in each of their 30-plus page classes. When they needed to update their waiting mechanism to handle a specific situation, they had to change it in all 30 files, which was tedious and error-prone.
+Then we have a productPage class that uses the extends keyword to inherit from BasePage. This means productPage automatically has all the methods from the base page without us having to rewrite them. Notice how the productPage constructor calls super with driver passed in, and this invokes the parent class's constructor to handle the initialization logic defined there. And in the addProductToCart method, we call the inherited scrollToElement method. The productPage class didn't have to implement this method itself. It just leverages what it inherited from the base page. I once joined a project where they didn't use inheritance at all, and every page class had duplicate code for waiting mechanisms, screenshot handling, and error logging. About 50 to 60 lines of identical code copied and pasted in each of their 30-plus page classes. When they needed to update their waiting mechanism to handle a specific situation, they had to change it in all 30 files, which was tedious and error-prone.
 
 By refactoring to use a base class with inheritance, we reduced the code base size by about 30% and made it much easier to maintain. When we later needed to enhance the screenshot functionality to include timestamps, we only had to update it in one place, the basePage class. And all page classes automatically got the improved functionality. Polymorphism. Polymorphism allows objects of different classes to be treated as objects of a common base class, with the specific implementation to use determined at runtime.
 
@@ -334,9 +336,9 @@ Then we have two different implementations, InfoNotification and ErrorNotificati
 
 The info notification simply clicks an okay button, while the error notification logs an error code and clicks a close button.
 
-The magic of polymorphism happens in the handle any notification method. This method accepts any object that accepts the notification interface, and it doesn't need to know which specific type it received. It just calls Notification.acknowledge, and the correct implementation is chosen at runtime based on the actual type of object passed.
+The magic of polymorphism happens in the handle any notification method. This method accepts any object that implements the notification interface, and it doesn't need to know which specific type it received. It just calls Notification.acknowledge, and the correct implementation is chosen at runtime based on the actual type of object passed.
 
-This means we can write a single method that works for multiple layers of notifications without using if L statements to check the type.
+This means we can write a single method that works for multiple types of notifications without using if/else statements to check the type.
 
 I once worked on an e-commerce application where we had to handle different types of product pages, physical products, digital downloads, subscription services, and bundled products. Instead of writing separate test methods for each product type with duplicated code, we used polymorphism. We created a product page interface with methods like add to cart and get price, then implemented specific versions for each product type.
 

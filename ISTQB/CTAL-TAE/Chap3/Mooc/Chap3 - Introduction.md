@@ -22,7 +22,7 @@ We'll start by examining the generic test Automation architecture and its major 
 
 provides a high level framework for understanding how test automation communicates with other systems.
 
-Then In, we'll learn how to design a comprehensive test automation solution based on functional, non-functional,
+Then, we'll learn how to design a comprehensive test automation solution based on functional, non-functional,
 
 and technical requirements.
 

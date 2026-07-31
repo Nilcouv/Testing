@@ -20,24 +20,24 @@
 
 > **Implementing a TAS - Tool Options**
 >
-> Implementations options:
+> Implementation options:
 >
 > - Commercial tools (paid)
-> - Open-soucre tools (free)
+> - Open-source tools (free)
 > - Combination of both (most common)
 >
 > Healthcare project used Tricentis Tosca (UI) + JMeter (performance)
-> Custom components/adaptators are almost always needed
+> Custom components/adapters are almost always needed
 
 ---
 
-> **The Role of Test Automatiion Architecture**
+> **The Role of Test Automation Architecture**
 >
 > TAA defines the technical design for the automation solution
 >
 > **Key aspects to address:**
 >
-> - Selectiong tools/libraries
+> - Selecting tools/libraries
 > - Developing plugins/components
 > - Identify connectivity/interface requirements
 > - Connecting to test/defect management tools
@@ -65,7 +65,7 @@
 
 > **The Role of Test Automation Architecture**
 >
-> **Developping Custom Plugins/Components**
+> **Developing Custom Plugins/Components**
 >
 > Extend tool functionality for unique SUT needs
 >
@@ -80,7 +80,7 @@
 > **Often overlooked** - includes:
 >
 > - Firewall configurations
-> - Datavase connections
+> - Database connections
 > - URL/endpoint
 > - Mocks/stubs
 > - Message queues
@@ -119,7 +119,7 @@
 > **Requirements:**
 >
 > _Functional:_ Browse product, checkout
-> _Non-funtional_: Holiday traffic, <2s load time
+> _Non-functional_: Holiday traffic, <2s load time
 > _Technical:_ Chrome/Firefox/Safari + mobile
 >
 > **Tools**
@@ -144,12 +144,12 @@
 
 ---
 
-> **Common Pitfalls to Avoir**
+> **Common Pitfalls to Avoid**
 >
-> 1. **Tool-first approach** : Starting with a tool and the figuring out how to make it work for your needs, rather than starting with your needs and finding the right tool.
+> 1. **Tool-first approach** : Starting with a tool and then figuring out how to make it work for your needs, rather than starting with your needs and finding the right tool.
 > 2. **Ignoring maintainability** : Creating an automation solution that works now but will be a nightmare to maintain as the application evolves.
 > 3. **Insufficient abstraction** : Coupling your test too tightly to the implementation details of the SUT, so they break with every UI change.
-> 4. **Neglecting reporting** : Not infesting enough in good reporting capabilities, making it hard to interpret test result
+> 4. **Neglecting reporting** : Not investing enough in good reporting capabilities, making it hard to interpret test result
 > 5. **Siloed approach** : Designing the automation solution in isolation from the development process, rather than integrating it with your overall SDLC.
 
 ---
@@ -177,7 +177,7 @@ It's much more comprehensive than that.
 
 A test automation solution is defined by understanding three key types of requirements functional requirements
 
-of the system under tests, non-functional requirements of the system under test and technical requirements.
+of the system under test, non-functional requirements of the system under test and technical requirements.
 
 Plus you'll need to know about existing tools or tools you'll need to implement your solution.
 
@@ -281,13 +281,13 @@ I worked on an e-commerce project where the application had a unique checkout pr
 
 standard tools could properly interact with.
 
-We had to develop a custom component that understood the specific Dom structure of the checkout page,
+We had to develop a custom component that understood the specific DOM structure of the checkout page,
 
 and could reliably interact with it.
 
 This is pretty common.
 
-No matter how comprehensive your tools are, there will were almost always be some aspect of your study
+No matter how comprehensive your tools are, there will almost always be some aspect of your SUT
 
 that requires custom handling, identifying connectivity and interface requirements.
 
@@ -313,7 +313,7 @@ Message queues?
 
 Is your system using asynchronous messaging protocols?
 
-What communication protocols does your Sut use?
+What communication protocols does your SUT use?
 
 Let me share a painful lesson from my own experience.
 
@@ -337,7 +337,7 @@ For example, when a test fails, you might want it to automatically create a defe
 
 system like Jira.
 
-Or you might want to update the status of test cases in your test management tool like test fail based
+Or you might want to update the status of test cases in your test management tool like TestRail based
 
 on the results of your automated test.
 
@@ -361,7 +361,7 @@ Establishing branching strategies and defining processes for code reviews and me
 
 This might seem like standard software development practice, and it is.
 
-But test automation is also sold for development and the same practices apply.
+But test automation is also software development and the same practices apply.
 
 On one project, we didn't properly plan our repository structure, and we ended up with a monolithic
 
@@ -377,7 +377,7 @@ E-commerce.
 
 Website automation.
 
-Let me tell this together with a comprehensive example.
+Let me tie this together with a comprehensive example.
 
 Imagine we're designing a test automation solution for an e-commerce website.
 
@@ -443,17 +443,17 @@ Before we wrap up, let me share some common pitfalls I've seen teams fall into w
 
 test automation solution.
 
-Tool first approach, starting with a tool and then figured out how to make it work for your needs.
+Tool first approach, starting with a tool and then figuring out how to make it work for your needs.
 
 Rather than starting with your needs and finding the right tool.
 
-Ignoring Ignore maintainability.
+Ignoring maintainability.
 
 Creating an automation solution that works now, but will be a nightmare to maintain as the application
 
 evolves.
 
-Insufficient abstraction coupling your tests too tightly to the implementation details of the Sut so
+Insufficient abstraction coupling your tests too tightly to the implementation details of the SUT so
 
 they break with every UI change.
 
@@ -473,7 +473,7 @@ So, to wrap things up, designing the test automation solution is about much more
 
 a tool and writing some scripts.
 
-It requires a thoughtful approach that considers the specific requirements of your Sut, the right mix
+It requires a thoughtful approach that considers the specific requirements of your SUT, the right mix
 
 of tools and custom components.
 

@@ -1,6 +1,6 @@
 # Mooc
 
-## Apply Layering Of Test Automation Framerwork
+## Apply Layering Of Test Automation Framework
 
 ### Screen
 
@@ -23,7 +23,7 @@
 > - Test scripts are the actual automated tests themselves - the step-by-step instructions that verify your application works correctly
 > - Test suites are collections of related test scripts that you run together.
 >
-> Layering prevents maintenance nightmares (e.g., monolithic 2000-lines scripts)
+> Layering prevents maintenance nightmares (e.g., monolithic 2000-line scripts)
 
 ---
 
@@ -51,16 +51,16 @@
 > - Top layer; Defines WHAT to test (e.g., login, checkout)
 >
 > **Example**
-> ```
+> ```python
 > def test_valid_login():
->    # This calls methods form the Business Logic layer
+>    # This calls methods from the Business Logic layer
 >    login_page.enter_username("testuser")
 >    login_page.enter_password("password123")
->    login_page.Click_login_button
+>    login_page.click_login_button()
 >
 >    # Verify the result
 >    assert dashboard_page.is_displayed(),   "Dashboard should be displayed after login"
->```
+> ```
 
 ---
 
@@ -69,14 +69,14 @@
 > - Middle layer; defines HOW to test for the specific SUT
 >
 > Customized for the application
-> ```
+> ```python
 > class LoginPage(BasePage):   # Inherits from a class in Core Libraries
 >    def enter_username(self, username):
 >       self.find_element(By.ID, "username_field").send_keys(username)
-> 
+>
 >    def enter_password(self, password):
 >       self.find_element(By.ID, "password_field").send_keys(password)
-> 
+>
 >    def click_login_button(self):
 >       self.find_element(By.ID, "login_button").click()
 > ```
@@ -87,10 +87,10 @@
 >
 > - Bottom layer; reusable, SUT-agnostic tools (e.g., WebDriver, API clients)
 >
-> ```
+> ```python
 > class BasePage:
 >    def __init__(self, driver):
->       self,driver = driver
+>       self.driver = driver
 >
 >    def find_element(self, by, value):
 >       return self.driver.find_element(by, value)
@@ -114,7 +114,7 @@
 
 > **Scaling Test Automation**
 >
-> ```
+> ```text
 >        ──────── PROJECT #1 ────────        ── PROJECT #2 ──
 > ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
 > │ App #1           │ │ App #2           │ │ App #3           │
@@ -134,12 +134,12 @@
 >                └──────────────────────────┘
 > ```
 >
-> Core libraries enable reuse across project:
+> Core libraries enable reuse across projects:
 > 
 > - Project #1: TAFs for App #1 and App #2
 > - Project #2: TAF for App #3 (Same Core libraries)
 >
-> Example : Financial services compagny with centralized Test Engineer team
+> Example : Financial services company with centralized Test Engineer team
 
 ---
 
@@ -164,7 +164,7 @@
 > In our Business Logic Layer, we'd have classes specific to our e-commerce site:
 >
 > - HomePage (with methods like search_for_product, navigate_to_category, etc)
-> - ProductPage (with methds like add_to_cart, select_sier, etc.)
+> - ProductPage (with methods like add_to_cart, select_size, etc.)
 > - CartPage (with methods like proceed_to_checkout, update_quantity, etc.)
 > - CheckoutPage (with methods like enter_shipping_info, enter_payment_info, etc.)
 >
@@ -185,7 +185,7 @@
 > - Reusability - Core libraries shared across projects
 > - Scalability - Easy to add new test scripts
 > - Readability - Test scripts focus on business logic
-> - Division of labor - Technical vs. domain experts work on different layer.
+> - Division of labor - Technical vs. domain experts work on different layers.
 
 ---
 
@@ -193,22 +193,22 @@
 >
 > **Challenges**
 > 
-> - **Initial Investement** - Setting up a layered framework takes more time upfront compared to writing simple scripts. But the payoff comes in maintenance and scalability.
+> - **Initial Investment** - Setting up a layered framework takes more time upfront compared to writing simple scripts. But the payoff comes in maintenance and scalability.
 > - **Learning Curve** - Team members need to understand the layering concept and follow the patterns consistently.
-> - **Over-engineering** - it's easy to make the framework to complex with too many layers or abstractions.
+> - **Over-engineering** - it's easy to make the framework too complex with too many layers or abstractions.
 >
 > **Best Practices**
 >
-> - **Start Simple** - Begin with three main layer we discussed. You can add more complexity later if needed
+> - **Start Simple** - Begin with three main layers we discussed. You can add more complexity later if needed
 > - **Document Well** - Make sure everyone understands the purpose of each layer and how they should interact
-> - **Use Design Patterns** - Patterns like Path Object Model work well with this layered approach.
+> - **Use Design Patterns** - Patterns like Page Object Model work well with this layered approach.
 > - **Code Reviews** - Regular reviews help ensure everyone is following the layering principles correctly.
 
 ---
 
 > **Conclusion**
 >
-> 1. Layering creates maintainability, reusable, scalable automation
+> 1. Layering creates maintainable, reusable, scalable automation
 > 2. 3 layers: Test Script (What), Business Logic (how), Core Libraries (Tools)
 > 3. Saves long-term time despite upfront investment.
 
@@ -224,7 +224,7 @@ automation.
 
 The concept of layering in test automation frameworks.
 
-You know how when you're building a house, you don't destroy everything together in one big pile,
+You know how when you're building a house, you don't throw everything together in one big pile,
 
 right?
 
@@ -234,9 +234,9 @@ Well, test automation frameworks work the same way.
 
 Layering helps us organize our automation code to make it more maintainable, reusable, and scalable.
 
-Before we jump into layering, Erwin, let's quickly talk about what a test automation framework or
+Before we jump into layering, let's quickly talk about what a test automation framework or
 
-Taff actually is.
+TAF actually is.
 
 A test automation framework is essentially the foundation of your entire test automation solution.
 
@@ -276,11 +276,11 @@ That's why layering is so important.
 
 It helps us avoid these kind of maintenance nightmares.
 
-Understanding Taff layers.
+Understanding TAF layers.
 
 So what do we mean by layers in a test automation framework?
 
-Taff layers define distinct borders between classes of code that have similar purposes.
+TAF layers define distinct borders between classes of code that have similar purposes.
 
 It's like organizing your kitchen.
 
@@ -352,7 +352,7 @@ They implement the how of your testing.
 
 Continuing with our login example, the business logic layer might have a login page class like this.
 
-This layer is also used to set up the Taff to run against your specific system under tests, and to
+This layer is also used to set up the TAF to run against your specific system under test, and to
 
 handle any additional configurations needed.
 
@@ -406,7 +406,7 @@ If the application changes, for example, if the ID of the username field changes
 
 update the business logic layer.
 
-The test scripts and core libraries can say exactly the same.
+The test scripts and core libraries can stay exactly the same.
 
 Scaling.
 
@@ -416,7 +416,7 @@ Now here's where things get really interesting.
 
 Let's look at how this layered approach helps us scale our test automation efforts.
 
-This diagram shows a great example of how core libraries provide a reusable base for multiple tafs.
+This diagram shows a great example of how core libraries provide a reusable base for multiple TAFs.
 
 Let me describe this for you.
 
@@ -430,13 +430,13 @@ Project number two on the right side has one application that needs testing app 
 
 number one.
 
-We have one test automation engineer who builds two separate tafes, one for each app, on top of the
+We have one test automation engineer who builds two separate TAFs, one for each app, on top of the
 
 same set of core libraries in project number two.
 
-A different test automation engineer builds a Toph for app number three.
+A different test automation engineer builds a TAF for app number three.
 
-But instead of started from scratch, they leverage the same core libraries that were used in project
+But instead of starting from scratch, they leverage the same core libraries that were used in project
 
 number one.
 
@@ -468,7 +468,7 @@ Core libraries layer in our core libraries.
 
 We might have a WebDriver wrapper that handles browser initialization, navigation, finding elements,
 
-etc. a Rest client for API testing, a database connector for verifying data, a login utility, and
+etc. a Rest client for API testing, a database connector for verifying data, a logging utility, and
 
 a reporting utility.
 
@@ -504,7 +504,7 @@ Maintainability.
 
 When your application changes, you usually only need to update one layer.
 
-Typically the business layer logic.
+Typically the business logic layer.
 
 This makes maintenance much easier.
 
@@ -554,7 +554,7 @@ start simple, begin with the three main layers we discussed.
 
 You can add more complexity later if needed.
 
-Document will make sure everyone understands the purpose of each layer and how they should interact.
+Document well. Make sure everyone understands the purpose of each layer and how they should interact.
 
 Use design patterns.
 
