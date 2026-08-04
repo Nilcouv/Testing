@@ -19,7 +19,7 @@ This chapter explores architecture concepts of Test Automation Implementation, s
 
 ### gTAA (Generic Test Automation Architecture)
 
-gTAA (Generic Test Automation Architecture) is a high-level design concept that gives an abstract view of how test automation communicates with other systems. (It shows the big picture of how everything is connected together)
+gTAA (Generic Test Automation Architecture) is a high-level design concept that gives an abstract view of how test automation communicates with connected systems — like an aerial photo of the ecosystem showing how everything connects together (SUT, project management, test management, configuration management). It also provides the capabilities that need to be covered when designing a TAA.
 
 Ex. Designing a TAA (Test Automation Architecture) for a banking application. It helps to understand how automation interacts with the banking application, but also the test management system, CI/CD pipeline and our configuration management system. It helps to visualize those connections and plan accordingly.
 
@@ -35,13 +35,13 @@ flowchart LR
         SUT["System<br/>under test"]
     end
 
-    subgraph TAF["Test Automation Framework"]
-        subgraph Layers["TAF Layers"]
-            direction TB
-            Gen["Test<br/>generation"]
-            Def["Test<br/>definition"]
-            Exec["Test<br/>execution"]
-            Adapt["Test<br/>adaptation"]
+    subgraph TAF["TAF"]
+        subgraph Layers["Layers / Capabilities"]
+            direction LR
+            Gen["Test generation"]
+            Def["Test definition"]
+            Exec["Test execution"]
+            Adapt["Test adaptation"]
         end
     end
 
@@ -51,18 +51,18 @@ flowchart LR
     SUT <--> TAF
 ```
 
-gTAA represents multiple interfaces interacting with the test automation framework.
+gTAA represents multiple interfaces interacting with the TAF, whose internal layers provide the core automation capabilities.
 
 ### The interfaces of gTAA
 
-- SUT interface: It connects the framework to the system being tested (ex. web elements, APIs). Ex. for a banking application, this interface defines how automation interacts with web elements of a web application (frontend), and API calls (backend).
-- Project management interface: Tracks automation progress (ex. Jira integration)
-- Test management interface: Maps manual test cases to automated tests. It helps to maintain relationships between initial manual test cases after automation is implemented.
-- Configuration management interface: Manages CI/CD pipelines, environments, and versioning. It helps to manage versioning and deployment for automation code. Ex. project where the test management interface is not properly defined. Tracing automated tests with manual test cases becomes difficult, wasting weeks to reconcile the information.
+- **SUT interface**: Describes the connectivity between the SUT and the TAF (e.g., web elements, APIs). Ex. banking application: UI elements (frontend) and API calls (backend).
+- **Project management interface**: Describes how we track the *development progress of the automation itself* (stories, tasks, sprint status) — not test run results. Concretely: connection to tools like Jira/Azure DevOps where automation user stories and tasks are managed.
+- **Test management interface**: Describes the mapping between test case definitions and automated test cases (traceability). Concretely: link IDs between a test management tool (e.g., TestRail, Xray, ALM) and automated scripts/suites, so each automated test remains tied to its original test case definition. Ex. poorly defined interface → weeks spent reconciling which automated tests correspond to which (manual) test cases.
+- **Configuration management interface**: Describes CI/CD pipelines, environments, and testware. Helps manage versioning and deployment of automation code.
 
-### Layers of the TAF (Test Automation Framework)
+### Capabilities provided by test automation tools and libraries
 
-Capabilities provided by test automation tools and libraries:
+These are the core capabilities a TAA should cover (shown as layers inside the TAF in the gTAA diagram). They are selected from available tools according to project requirements.
 
 - Test generation capability: Automatically designs test cases from models (e.g., model-based testing — approach modeling the system behavior to generate automatically test cases from the model with a tool. Like asking a computer to find all the paths for a given map. Ex. telecommunication project where hundreds of test cases were generated from a state model of how calls should be routed for a complex call routing system, saving weeks of work and covering all possible scenarios. Test generation is optional because not all projects require this level of sophistication)
 - Test definition capability: Supports definition and implementation of test cases and/or test suites (ex. separation of test definition and SUT/tools). This capability separates the definition from the SUT and/or test tools (define what we want to test). It separates high-level tests (ex. login, logout) from low-level tests (ex. enter username, password, etc.). It creates the blueprint for automation (it's like a recipe to follow to create the automated test). Ex. healthcare project, comprehensive test definition layers allowing BA (Business Analyst) to define tests in Excel using a keyword-driven approach, which the Test Automation Framework translates into executable code. This separation allows non-technical team members to contribute to the test definition process.
@@ -98,310 +98,306 @@ Understanding these capabilities is crucial for designing effective TAS, able to
 
 ### What is a TAS (Test Automation Solution)?
 
-Is the complete package / everything you need for automating testing activities (beyond just tools/scripts) and defined by 3 types of requirements:
+A TAS is the complete package / everything you need for automating testing activities (beyond just tools/scripts). It is defined by understanding:
 
-1. Functional requirements of SUT
-2. Non-functional requirements of SUT
-3. Technical requirements
+1. Functional requirements of the SUT
+2. Non-functional requirements of the SUT
+3. Technical requirements of the SUT
+4. Existing or required tools needed to implement the solution
 
-Ex. healthcare application,
+Ex. healthcare application:
 
-- functional requirements are like "users must be able to schedule appointment" and "doctors must be able to view patient records"
-- non-functional requirements are like "security: must be compliant with HIPAA" and "performance: must handle 10 000 concurrent users"
-- technical requirements are like "compatibility: support specific browsers and operating systems"
+- Functional: "users must be able to schedule appointments", "doctors must be able to view patient records"
+- Non-functional: security (HIPAA compliant), performance (handle 10 000 concurrent users)
+- Technical: compatibility with specific browsers and operating systems
+
+All of these requirements influence how the TAS is designed.
 
 ### Implementing a TAS
 
-- Tool Options:
-  - Commercial tools (paid)
-  - Open-source tools (free)
-  - Combination of both (most common - no single tool can cover all testing activities needs)
+Implementation options:
 
-Ex. healthcare project, used 2 tools: Tricentis Tosca (UI testing - strong support for healthcare industry regulations), JMeter (performance testing - good at simulating heavy user loads)
+- Commercial tools (paid)
+- Open-source tools (free)
+- Combination of both (most common — no single tool covers all needs)
 
-Note: Always need to develop some custom components or adapters specific to your SUT. (Every application has its unique characteristics. Off-the-shelf tools won't perfectly address all your needs)
+Ex. healthcare project: Tricentis Tosca (UI testing — strong healthcare regulation support) + JMeter (performance — heavy user load simulation).
+
+Note: Custom components/adapters specific to the SUT are almost always needed (off-the-shelf tools never cover every unique characteristic).
 
 ### Role of TAA (Test Automation Architecture)
 
-Defines the technical design for the automation solution (like blueprint/master plan for automation efforts).
+The TAA defines the technical design for the overall TAS (blueprint / master plan for automation efforts).
 
-TAA must address the following key aspects:
+It must address:
 
-- Selecting tools/libraries
-- Developing plugins/components
-- Identifying connectivity/interfaces requirements
-- Connecting to test/defect management tools
-- Utilizing version control
+- Selecting test automation tools and libraries
+- Developing plugins / extensions / components
+- Identifying connectivity and interface requirements
+- Connecting to test management and defect management tools
+- Utilizing version control and repositories
 
-#### Selecting tools/libraries
+#### Selecting tools and libraries
 
-Most critical decision.
+One of the most critical decisions.
 
-Ex. A project, tool selected based on team familiarity, tool was not adapted for API testing representing a major part of the testing effort. Ended up by switching to another tool mid-project, costing a lot of time and effort.
+Ex. Tool selected based on team familiarity, but poorly suited to API testing. Tool unsuitability significantly increased testing effort and forced the team to switch to another tool mid-project (failure), costing a lot of time and effort.
 
 When selecting, consider:
 
-- Application type (web, mobile, API, etc.)
+- Application type (web, mobile, desktop)
 - Testing needs (UI, API, performance, security, etc.)
 - Team skills
 - Budget
-- Integration capabilities
+- Integration capabilities with the existing toolset
 
-Ex. For testing React frontend and REST API, you may select:
+Ex. React frontend + REST API:
 
-- Selenium and RestAssured, if the team is familiar with Java
-- Cypress and Postman, if the team is familiar with JavaScript
+- Selenium + RestAssured (if the team prefers Java)
+- Cypress + Postman (if the team prefers JavaScript)
 
-#### Developing plugins/components
+#### Developing plugins / components
 
-Project may require to develop custom plugins/components to extend the tool functionality and capabilities to cover specific SUT needs. Pretty common, no off-the-shelf solution can cover all specific needs of SUT.
+No off-the-shelf solution covers all project needs. Almost always requires developments of custom plugins/components to extend the tool's functionality to the specific needs of the SUT/project.
 
-Ex. E-commerce project, application had unique checkout process, selected testing tool unable to properly interact with those processes, was forced to develop a custom component understanding the specific DOM structure of the checkout page to reliably interact with.
+Ex. E-commerce project: unique checkout process that the selected tool could not interact with properly → custom component developed to understand the page structure (DOM = Document Object Model, the tree of HTML elements in the page) and interact reliably with the checkout page.
 
-### Identifying connectivity/interfaces requirements
+#### Identifying connectivity and interface requirements
 
-Often overlooked until it's too late. Have to identify all connectivity and interfaces requirements from the get-go for TAS.
+Often overlooked until too late. Must define connectivity/interface requirements from the start, to avoid late surprises and redesigns.
 
 Includes:
 
-- Firewall configurations (does testing require access to systems across firewall?)
-- Database connections (does automation need to verify data in database?)
-- URL/endpoints (what endpoints does automation need to access?)
-- Mocks/stubs (Do you need to simulate unavailable components?)
-- Message queues (is system using asynchronous messaging?)
-- Protocols (What communication protocols does SUT use?)
+- Firewall configurations (do the tests need access to systems across firewalls?)
+- Database connections (does automation need to verify data in databases?)
+- URL / endpoints (which endpoints must automation reach?)
+- Mocks / stubs (do you need to simulate unavailable components?)
+- Message queues (is the system using asynchronous messaging?)
+- Protocols (what communication protocols does the SUT use?)
 
-Ex. setting up TAF (Test Automation Framework), some of the connections were blocked by firewall, had to redesign part of the TAS to comply with customer security constraints.
+Ex. TAF worked in development, but corporate firewall blocked required connections → had to redesign to fit security constraints.
 
-### Connecting to test/defect management tools
+#### Connecting to test management and defect management tools
 
-TAS doesn't exist in isolation, have to connect to test management (TestRail) and defect management (Jira) tools.
+Automation does not exist in isolation — connect it to test management tools (e.g., TestRail, Xray, ALM) and defect management tools (e.g., Jira, Azure DevOps).
 
-Ex. On test failures, auto-create Jira tickets with screenshots/logs AND/OR update test cases status in TestRail. (save time and increase testing reliability)
+Ex. When automated tests fail: auto-create a Jira ticket with screenshots/logs **and** update the test case status in TestRail. Saves time and reduces gaps.
 
-### Utilizing version control
+#### Utilizing version control and repositories
 
-Have to consider how to manage automation code (like development), which implies selecting:
+Automation requires code management, like software development. This goes through a code management strategy including:
 
-- version control system (Git, SVN, etc.)
-- organized repository structure
-- Establishing branching strategy (feature, release, hotfix)
-- defining processes for code reviews, merges, and releases
+- Version control system (e.g., Git, SVN, Mercurial)
+- Organized repository structure (e.g., by test level: unit, API, UI)
+- Branching strategies (e.g., feature, release, hotfix)
+- Processes for code reviews, merges, and releases
 
-Ex. Project where repository structure was badly planned, ended up with unwieldy monolithic repository, problem increased as the project grew, had to refactor into multiple repositories organized by test level, unit, API and UI.
+Ex. Project with an unplanned monolithic repository: repo became unwieldy → team obligated to painfully refactor into multiple repos by test level (unit, API, UI).
 
-### Real world example
+### Real-world example: E-commerce website automation
 
-E-commerce website automation:
-
-- Requirements:
-  - Functional: Browse products, checkout
-  - Non-functional: Holiday traffic, <2sec load time
-  - Technical: Chrome/Firefox/Safari, Mobile
-- Tools:
-  - Selenium WebDriver (UI testing)
-  - JMeter (performance testing)
-  - RestAssured (API testing)
-  - BrowserStack (cross-browser testing)
-- Custom components:
-  - Shopping cart wrapper
-  - Custom reporting (aggregate results from different test types)
-- Connectivity requirements:
-  - DB access (verify order placement)
-  - Mock payment gateway (checkout testing)
-  - API endpoint (product catalog testing)
-- Tool integration:
-  - Jira (tickets manager to manage defects)
-  - TestRail (test manager to manage test cases)
-- Version control:
-  - Git (repository organized by test type)
-  - Jenkins (CI/CD pipeline for continuous integration)
-  - Docker (create controlled environments)
+- **Requirements**
+  - Functional: browse products, add to cart, checkout
+  - Non-functional: handle holiday traffic, pages load in under 2s
+  - Technical: Chrome / Firefox / Safari + responsive mobile
+- **Tools**: Selenium WebDriver (UI), JMeter (performance), RestAssured (API), BrowserStack (cross-browser)
+- **Custom components**: shopping cart wrapper; custom reporting (aggregate results across test types)
+- **Connectivity**: DB access (verify order placement), mock payment gateway (checkout), API endpoints (product catalog)
+- **Integration**: Jira (defect management), TestRail (test cases management)
+- **Version control / CI**: Git (version control, repos organized by test type), Jenkins (continuous integration / CI pipeline), Docker (consistent, controlled test environments)
 
 ### Common pitfalls to avoid
 
-1. Tool-first approach - selection based on tool usage rather than testing needs
-2. Ignoring maintainability - Bad TAS architecture planning making it unmaintainable and hard to scale
-3. Insufficient abstraction - Granular tests creation, limiting test reuse and maintainability. Break with every UI change.
-4. Neglecting reporting - minimal investment limiting reporting capabilities and increasing difficulty to interpret test results.
-5. Siloed approach - TAS development not integrated with development process / SDLC.
+1. **Tool-first approach** — selection based on tool usage rather than testing needs
+2. **Ignoring maintainability** — bad TAS architecture planning making it unmaintainable and hard to scale as the application evolves
+3. **Insufficient abstraction** — tests creation too granular, limiting test reuse and maintainability as any UI change breaks it.
+4. **Neglecting reporting** — minimal investment limiting reporting capabilities and increasing difficulty to interpret test results
+5. **Siloed approach** — TAS development not integrated with the development process / SDLC
 
 ### Conclusion
 
-TAS design is more than selecting tools and writing scripts. It requires:
+TAS design is more than picking a tool and writing scripts. It requires:
 
-* Understanding SUT requirements
-* Right mix of tools + custom components
-* Comprehensive connectivity planning
-* Integration with testing/dev ecosystem
-* Proper code management
+- Understanding SUT requirements (+ existing/required tools)
+- Right mix of tools + custom components
+- Comprehensive connectivity / interface planning
+- Integration with the testing and development ecosystem
+- Proper code management (version control & repositories)
 
 Test Automation is a journey, not a destination (evolve with the application, emergence of new techniques, etc.)
+
 
 ## TAE-3.1.3 (K3) : Apply Layering of Test Automation Frameworks
 
 ### What is a TAF (Test Automation Framework)?
 
-TAF (Test Automation Framework) is the frame of a TAS (Test Automation Solution). It's like a house's blueprint determining the placement and the function of each room. It includes:
+TAF is the foundation of a TAS (Test Automation Solution). It often includes:
 
-- Test harness/runner - is the component executing the tests (like the conductor of an orchestra telling when to start and coordinating everything)
-- Test libraries - are the collection of reusable code, that help to perform common actions of the tests (ex. fill a field, click a button, etc.). You may have several libraries to handle different types of actions, like interacting with a database, or for handling complex UI components.
-- Test scripts - are the automated tests (step-by-step instructions verifying the application works as expected)
-- Test suites - are the collection of test scripts, that are run together.
+- **Test harness / runner** — component that executes the tests (like the conductor of an orchestra: tells when to start and how to coordinate)
+- **Test libraries** — collections of reusable code for common test actions (e.g., fill a field, click a button). You may have **several libraries** for different needs (e.g., one for DB interaction, another for complex UI components).
+- **Test scripts** — the automated tests themselves (step-by-step instructions verifying the application works as expected / correctly)
+- **Test suites** — collections of related test scripts run together
 
-Layering avoids monolithic test scripts (ex. 2000-line script), promoting maintainability and reusability of test code.
+Layering organizes automation code to avoid maintenance nightmares (e.g., monolithic 2000-line scripts) and improve maintainability, reusability, and scalability.
 
 ### The Three Main Layers
 
 #### TAF layers
 
 ```mermaid
-flowchart TD
-    A["Test Scripts"] --> B["Business Logic"] --> C["Core Libraries"]
+flowchart TB
+    subgraph TAF["TAF Layers"]
+        direction TB
+        ST["Test Scripts"]
+        BL["Business Logic"]
+        CL["Core Libraries"]
+        ST --> BL
+        BL --> CL
+    end
 ```
 
-Layers are distinct borders for code with similar purposes (like organizing a kitchen where plates, glasses and utensils are stored separately). The goal is to organize test automation code by similar functions to improve maintainability and reusability of code. The industry standard is to use 3 main layers (Keep it simple), which are:
+**Layering** = organizing code into layers by purpose, each at a different abstraction level (high: what to test → mid: how on this SUT → low: tech tools), so code stays reusable and maintainable. Start with these **3 layers**; add more only if really necessary.
 
-- Test scripts layer - Sits at the top of the framework. Focus on WHAT to test. Its purpose is to provide a repository of SUT test cases and organize them into test suites. It contains test scripts verifying specific functionality of the application. (Ex. testing e-commerce site, test script for login functionality, product search, adding items to cart, checkout process, etc.). Must call the services of the business logic layer to perform the tests, never the core libraries layer.
+| Layer | Purpose | Examples |
+|---|---|---|
+| Test scripts | **WHAT** to test | sign-up, login, purchase scenario|
+| Business logic | **HOW** on this SUT (pages / flows) | HomePage, LoginPage, CartPage class with specific methods |
+| Core libraries | **Tools** (tech, SUT-agnostic) | browser, API, DB helpers |
+
+- **Test scripts layer** (top) — Focus on **WHAT** to test. Provides a repository of SUT test cases and organizes them into test suites. Contains scripts verifying specific functionality (e.g., login, product search, add to cart, checkout). Calls services of the business logic layer (test steps, user flows, or API calls). **Must never call core libraries directly.**
 
 ```python
 def test_valid_login():
   # This calls methods from business logic layer
-  login_page.enter_username("test@example.com")
-  login_page.enter_password("password")
-  login_page.click_login_button()
+  login_page.enter_username("test@example.com")  # type username via BL layer
+  login_page.enter_password("password")          # type password via BL layer
+  login_page.click_login_button()                # submit login via BL layer
 
   # Verify the result
-  assert dashboard_page.is_displayed(), "Dashboard should be displayed after login"
+  assert dashboard_page.is_displayed(), "Dashboard should be displayed after login"  # check expected outcome
 ```
 
-- Business logic layer - Sits at the middle of the framework. Focus on HOW to test for the specific SUT. Contains all the libraries specific to the application, which inherit or use the core libraries, and are customized to the SUT. Layer also used to set up the TAF (Test Automation Framework) under specific SUT and handle specific configurations.
+- **Business logic layer** (middle) — Focus on **HOW** to test for this specific SUT. In practice: page/screen objects and SUT-specific actions (e.g., `LoginPage.enter_username()`, `CartPage.proceed_to_checkout()`). Contains all **SUT-dependent** libraries (customized for the application). These inherit from core library classes or use façades provided by them (see 3.1.5). Also used to configure the TAF to run against the SUT and handle additional configurations.
 
 ```python
 class LoginPage(BasePage): # Inherits from a class in Core Libraries.
   def enter_username(self, username):
-    self.find_element(By.ID, "username_field").send_keys(username)
+    self.find_element(By.ID, "username_field").send_keys(username)  # find field + type text (core)
 
   def enter_password(self, password):
-    self.find_element(By.ID, "password_field").send_keys(password)
+    self.find_element(By.ID, "password_field").send_keys(password)  # find field + type text (core)
 
   def click_login_button(self):
-    self.find_element(By.ID, "login_button").click()
+    self.find_element(By.ID, "login_button").click()                # find button + click (core)
 ```
 
-- Core libraries layer - Sits at the base of the framework. Contains all the libraries independent/non-specific to any SUT. Are the generic reusable components usable in any project with the same technology stack (SUT-agnostic tools. Ex. WebDriver, API clients.). May have several specific libraries for specific uses and needs (interacting with web browser, making API calls, working with database, or logging test results, etc.).
+- **Core libraries layer** (bottom) — The shared toolkit that talks to technology (browser, API, DB, logging) **without knowing your application**. In practice: find an element, type text, click, wait, open a browser, call an API — reusable in any project with the same tech stack. Once built, reusable across multiple projects/applications.
 
 ```python
 class BasePage:
   def __init__(self, driver):
-    self.driver = driver
+    self.driver = driver                        # store WebDriver instance
 
   def find_element(self, by, value):
-    return self.driver.find_element(by, value)
+    return self.driver.find_element(by, value)  # locate element in the page
 
   def wait_for_element(self, by, value, timeout=10):
     # implement wait logic
-    pass
+    pass                                        # wait until element is ready (placeholder)
 ```
 
 ### How these layers interact
 
-- Test scripts layer defines WHAT to test (login process)
-- Business logic layer defines HOW to test (enter username, password, click login button)
-- Core libraries layer provide the tools to perform the actions (find element, enter text, click button, etc.)
+- Test scripts layer: **WHAT** to test (e.g., valid login)
+- Business logic layer: **HOW** to test on this SUT (enter username/password, click login)
+- Core libraries layer: **tools** to perform actions (find element, enter text, click, wait)
 
-This approach separates responsibilities, makes code more maintainable and flexible.
-Ex. ID username change, only business logic must be updated. Test scripts and core libraries remain unchanged.
+This approach separates responsibilities, making the framework more flexible and easier to maintain.
+Ex. username field ID changes → update **only** the business logic layer; test scripts and core libraries stay unchanged.
 
 ### Scaling test automation
 
 ```mermaid
-flowchart LR
-
+flowchart TB
     subgraph P1["Project #1"]
-        A1["App #1 Test Scripts"] --> B1["App #1 Business Logic"]
-        A2["App #2 Test Scripts"] --> B2["App #2 Business Logic"]
+        subgraph TAF1["TAF App #1"]
+            A1["App #1 Test Scripts"] --> B1["App #1 Business Logic"]
+        end
+        subgraph TAF2["TAF App #2"]
+            A2["App #2 Test Scripts"] --> B2["App #2 Business Logic"]
+        end
     end
+
+    C["Core Libraries<br/>(shared)"]
 
     subgraph P2["Project #2"]
-        A3["App #3 Test Scripts"] --> B3["App #3 Business Logic"]
+        subgraph TAF3["TAF App #3"]
+            A3["App #3 Test Scripts"] --> B3["App #3 Business Logic"]
+        end
     end
 
-    C["Core Libraries"]
     B1 --> C
     B2 --> C
     B3 --> C
 ```
 
-Core libraries enable reuse across projects (ex. new project, instead of starting from scratch, they leverage the same core libraries).
+Core libraries provide a reusable base for **multiple TAFs**:
 
-Ex. Financial services company, centralize a test engineer team for all the organization maintaining a core library, each product team builds specific business logic and test scripts on top of these core libraries. Allow to get up and running test automation much faster for new projects.
+- Project #1: two TAFs (App #1, App #2) built on the same core libraries (typically by one TAE)
+- Project #2: a separate TAE builds a TAF for App #3 by leveraging the **existing** core libraries (no start from scratch)
 
-### Real World Example: E-commerce testing
+Ex. Financial services company: a central test engineering team maintains the core libraries; each product team builds its own business logic and test scripts on top → new projects get automation running much faster.
 
-Building TAF for e-commerce website:
+### Real-world example: E-commerce testing
 
-1) Scripting layer with test cases such as:
+Building a TAF for an e-commerce website:
 
-  - Test_search_functionality,
-  - Test_add_to_cart,
-  - Test_checkout_process,
-  - Test_account_creation.
+1. **Core libraries layer** (reusable, know nothing about the e-commerce site):
+   - WebDriver wrapper (browser init, navigation, find elements)
+   - REST client (API testing)
+   - Database connector (verify data)
+   - Logging utility
+   - Reporting utility
 
-2) Business logic layer have classes specific to SUT:
+2. **Business logic layer** (SUT-specific **classes** using core libraries; each class exposes **methods**):
+   - Class `HomePage` — methods: `search_for_product`, `navigate_to_category`, etc.
+   - Class `ProductPage` — methods: `add_to_cart`, `select_size`, etc.
+   - Class `CartPage` — methods: `proceed_to_checkout`, `update_quantity`, etc.
+   - Class `CheckoutPage` — methods: `enter_shipping_info`, `enter_payment_info`, etc.
 
-- HomePage with methods such as:
-  - search_for_product,
-  - navigate_to_category,
-  - etc.
-- ProductPage with methods such as:
-  - add_to_cart,
-  - select_size,
-  - etc.
-- CartPage with methods such as:
-  - Proceed_to_checkout,
-  - Update_quantity,
-  - etc.
-- CheckoutPage with methods such as:
-  - enter_shipping_info,
-  - enter_payment_info,
-  - etc.
-
-3) Core libraries layer includes:
-
-  - A WebDriver wrapper handling browser initialization, navigation, finding elements, etc.
-  - A REST client for API testing.
-  - A database connector for verifying data.
-  - A Logging utility
-  - A reporting utility
+3. **Test scripts layer** (actual test cases calling business logic):
+   - `test_search_functionality`
+   - `test_add_to_cart`
+   - `test_checkout_process`
+   - `test_account_creation`
 
 ### Benefits of layering
 
-- Maintainability: updates usually limited to one layer
-- Reusability: Core libraries shared across projects
-- Scalability: Easy to add new test scripts
-- Readability: Test scripts focus on business logic
-- Division of labor: Technical vs domain experts work on different layers.
+- **Maintainability**: when the application changes, usually only one layer needs an update (typically the business logic layer)
+- **Reusability**: core libraries shared across projects
+- **Scalability**: easy to add new test scripts without changing the underlying framework
+- **Readability**: test scripts focus on intent / business flow, not implementation details
+- **Division of labor**: e.g., technical experts on core libraries, domain experts on test scripts
 
 ### Challenges and best practices
 
 #### Challenges
 
-- Initial investment: higher upfront cost in time and money, but higher maintainability and scalability in the long term.
-- Learning curve: higher complexity as team members have to understand layering concepts, and follow the patterns.
-- Over-engineering: risk of creating too many layers or abstractions.
+- **Initial investment**: more time upfront than simple scripts; payoff in maintenance and scalability
+- **Learning curve**: higher complexity — team must understand layering and follow patterns consistently
+- **Over-engineering**: risk of creating too many layers or abstractions
 
 #### Best practices
 
-- Start simple: Start small with the 3 layers discussed, and add more layers as needed.
-- Document well: Assure team understand the purpose of each layer, and how they interact with each other.
-- Use design patterns: such as Page Object Model, work well with layered approach.
-- Code reviews: Ensure layering principles are followed correctly.
+- **Start simple**: begin with the 3 main layers; add complexity later if needed
+- **Document well**: ensure everyone understands the purpose of each layer and how they interact with each other
+- **Use design patterns**: e.g., Page Object Model works well with the layered approach (organizing code in the 3 layers above; see later topics)
+- **Code reviews**: ensure layering principles are followed
 
 ### Conclusion
 
 1. Layering creates maintainable, reusable, and scalable automation.
-2. 3 layers: Test scripts (what), Business logic (how), Core libraries (tools).
+2. Three layers: Test scripts (what), Business logic (how), Core libraries (tools).
 3. Saves long-term time despite upfront investment.
 
 ## TAE-3.1.4 (K3) : Apply Different Approaches to Automate Test Cases
@@ -438,25 +434,25 @@ Step-by-step scripts written without any custom libraries or functions, like wri
 
 ```python
 # Open the browser
-driver = webdriver.Chrome()
+driver = webdriver.Chrome()                     # start Chrome WebDriver
 
 # Go to the website
-driver.get("https://www.example.com")
+driver.get("https://www.example.com")           # navigate to URL
 
 # Find the username field and type a username
-username_field = driver.find_element_by_id("username")
-username_field.send_keys("testuser")
+username_field = driver.find_element_by_id("username")  # locate username field
+username_field.send_keys("testuser")            # type username
 
 # Find the password field and type a password
-password_field = driver.find_element_by_id("password")
-password_field.send_keys("password123")
+password_field = driver.find_element_by_id("password")  # locate password field
+password_field.send_keys("password123")         # type password
 
 # Click on the login button
-login_button = driver.find_element_by_id("login_button")
-login_button.click()
+login_button = driver.find_element_by_id("login_button")  # locate login button
+login_button.click()                            # click to submit
 
 # Check if login was successful
-assert "Welcome" in driver.page_source
+assert "Welcome" in driver.page_source          # pass if page contains "Welcome"
 ```
 
 Ex. Project inherited with about 200 linear scripts. When the login page was redesigned, the login sequence had to be manually updated in almost every single script, costing days of tedious work that a more structured approach would have avoided.
@@ -479,21 +475,21 @@ Ex. Project inherited with about 200 linear scripts. When the login page was red
 Professional approach introducing reusable elements: test libraries, test steps and user journeys shared across multiple scripts. It requires more programming knowledge but produces much more maintainable code. Instead of writing the login sequence in every test, a reusable `login()` function is created and called by any test.
 
 ```python
-def login(driver, username, password):
+def login(driver, username, password):          # reusable login helper
     username_field = driver.find_element_by_id("username")
-    username_field.send_keys(username)
+    username_field.send_keys(username)          # type given username
 
     password_field = driver.find_element_by_id("password")
-    password_field.send_keys(password)
+    password_field.send_keys(password)          # type given password
 
     login_button = driver.find_element_by_id("login_button")
-    login_button.click()
+    login_button.click()                        # submit login
 
 # Now the test becomes:
-driver = webdriver.Chrome()
-driver.get("https://www.example.com")
-login(driver, "testuser", "password123")
-assert "Welcome" in driver.page_source
+driver = webdriver.Chrome()                     # start browser
+driver.get("https://www.example.com")           # open app
+login(driver, "testuser", "password123")        # call reusable function (no duplicated steps)
+assert "Welcome" in driver.page_source          # verify success
 ```
 
 Ex. E-commerce project with dozens of tests needing to add products to the cart. Creating a reusable `add_to_cart` function saved countless hours of maintenance when the cart functionality was later updated. This is typically the minimum level of organization recommended for any serious test automation project.
@@ -522,24 +518,24 @@ Development approach (rather than strictly a test automation approach) that resu
 ```python
 # Red phase - fails because validate_email doesn't exist yet
 def test_email_validation():
-    assert validate_email("test@example.com") == True
-    assert validate_email("not-an-email") == False
-    assert validate_email("") == False
+    assert validate_email("test@example.com") == True   # valid email → expect True
+    assert validate_email("not-an-email") == False      # no proper @domain → expect False
+    assert validate_email("") == False                  # empty string → expect False
 
 # Green phase - simplest implementation making the test pass
 def validate_email(email):
-    if not email:
+    if not email:                                       # empty / None → invalid
         return False
-    return "@" in email and "." in email.split("@")[1]
+    return "@" in email and "." in email.split("@")[1]  # has @ AND a '.' in the part after @
 
 # Refactor phase - more robust implementation
-import re
+import re                                               # regex module for pattern matching
 
 def validate_email(email):
-    if not email:
+    if not email:                                       # empty / None → invalid
         return False
-    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    return bool(re.match(pattern, email))
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'  # local@domain.ext
+    return bool(re.match(pattern, email))               # True if email matches the pattern
 ```
 
 Ex. Project developing a critical medication dosage calculator. Tests were written for all edge cases (pediatric doses, elderly patients, renal impairment adjustments) before any calculation logic, resulting in code far more robust because every scenario had already been considered.
@@ -565,24 +561,24 @@ Separates test logic from test data, so the same test template runs with differe
 ```python
 import pytest
 
-test_data = [
-    ("testuser", "password123", "success"),
-    ("testuser", "wrongpassword", "failure"),
-    ("invaliduser", "password123", "failure"),
+test_data = [                                   # data sets: (username, password, expected)
+    ("testuser", "password123", "success"),     # valid credentials → success
+    ("testuser", "wrongpassword", "failure"),   # wrong password → failure
+    ("invaliduser", "password123", "failure"),  # unknown user → failure
 ]
 
-@pytest.mark.parametrize("username,password,expected_result", test_data)
+@pytest.mark.parametrize("username,password,expected_result", test_data)  # run test once per row
 def test_login(username, password, expected_result, setup_browser):
-    driver = setup_browser
-    driver.get("https://www.example.com/login")
-    driver.find_element_by_id("username").send_keys(username)
-    driver.find_element_by_id("password").send_keys(password)
-    driver.find_element_by_id("login_button").click()
+    driver = setup_browser                      # browser fixture
+    driver.get("https://www.example.com/login") # open login page
+    driver.find_element_by_id("username").send_keys(username)   # type username from data
+    driver.find_element_by_id("password").send_keys(password)   # type password from data
+    driver.find_element_by_id("login_button").click()           # submit
 
     if expected_result == "success":
-        assert "Welcome" in driver.page_source
+        assert "Welcome" in driver.page_source  # success path check
     else:
-        assert "Error" in driver.page_source
+        assert "Error" in driver.page_source    # failure path check
 ```
 
 In real scenarios, data is usually loaded from an external file rather than hard-coded:
@@ -591,15 +587,16 @@ In real scenarios, data is usually loaded from an external file rather than hard
 import csv
 
 def load_test_data():
-    data = []
-    with open('login_test_data.csv', 'r') as f:
-        reader = csv.reader(f)
-        next(reader)  # Skip header row
-        for row in reader:
-            data.append(tuple(row))
-    return data
+    data = []                                   # list that will hold all data sets
+    with open('login_test_data.csv', 'r') as f: # open CSV (relative path) in read mode → file object f
+        reader = csv.reader(f)                  # reader that yields each CSV row as a list
+        next(reader)                            # skip header row (column names)
+        for row in reader:                      # each remaining row = one list of cell values
+            data.append(tuple(row))             # store row as tuple, e.g. ("testuser", "pwd", "success")
+    return data                                 # return list of tuples for parametrize
 
 @pytest.mark.parametrize("username,password,expected_result", load_test_data())
+# ↑ for each tuple: 1st value → username, 2nd → password, 3rd → expected_result (positional match)
 def test_login(username, password, expected_result, setup_browser):
     # Same test code as before
     ...
@@ -623,45 +620,55 @@ Ex. Mortgage calculator project needing to verify hundreds of loan scenarios (am
 
 Tip: always include a descriptive test name or ID in each row of test data, to quickly identify which scenario failed.
 
+Ex. CSV columns: `test_id,username,password,expected_result`
+
+| test_id | username | password | expected_result |
+|---|---|---|---|
+| TC01_valid_login | testuser | password123 | success |
+| TC02_wrong_password | testuser | wrongpassword | failure |
+
+On failure, the report shows `TC02_wrong_password` instead of an anonymous row index.
+
+
 ### KDT (Keyword-Driven Testing)
 
 Takes the separation of test logic and test data even further by defining high-level keywords representing actions or verifications (ex. `login`, `SearchProduct`, `AddToCart`), which tests then assemble as a sequence, like building with Lego blocks instead of sculpting from clay. Robot Framework is a popular open-source framework for this approach.
 
 ```robotframework
 *** Settings ***
-Library             SeleniumLibrary
+Library             SeleniumLibrary              # load browser automation library
 
 *** Variables ***
-${URL}             https://www.example.com
-${BROWSER}         chrome
+${URL}             https://www.example.com       # app URL (reusable variable)
+${BROWSER}         chrome                        # browser to use
 
 *** Test Cases ***
-Valid Login Test
-    Open Browser To Login Page
-    Input Username    testuser
-    Input Password    password123
-    Submit Credentials
-    Welcome Page Should Be Open
-    [Teardown]  Close Browser
+Valid Login Test                                 # high-level test: sequence of keywords only
+    Open Browser To Login Page                   # custom keyword → open site + check form
+    Input Username    testuser                   # custom keyword → type username
+    Input Password    password123                # custom keyword → type password
+    Submit Credentials                           # custom keyword → click login
+    Welcome Page Should Be Open                  # custom keyword → assert welcome message
+    [Teardown]  Close Browser                    # always close browser at end (even if fail)
 
-*** Keywords ***
-Open Browser To Login Page
-    Open Browser        ${URL}  ${BROWSER}
-    Page Should Contain Element     id:login-form
+*** Keywords ***                                 # definitions of the custom keywords above
+Open Browser To Login Page                       # keyword: open app + check login form
+    Open Browser        ${URL}  ${BROWSER}       # SeleniumLibrary: launch browser at URL
+    Page Should Contain Element     id:login-form  # assert login form is present
 
-Input Username
-    [Arguments]     ${username}
-    Input Text      id:username     ${username}
+Input Username                                   # keyword: type username
+    [Arguments]     ${username}                  # receives username from the test case
+    Input Text      id:username     ${username}  # type into field id=username
 
-Input Password
-    [Arguments]     ${password}
-    Input Text      id:password     ${password}
+Input Password                                   # keyword: type password
+    [Arguments]     ${password}                  # receives password from the test case
+    Input Text      id:password     ${password}  # type into field id=password
 
-Submit Credentials
-    Click Button    id:login-button
+Submit Credentials                               # keyword: click login
+    Click Button    id:login-button              # click button id=login-button
 
-Welcome Page Should Be Open
-    Page Should Contain     Welcome to your account
+Welcome Page Should Be Open                      # keyword: verify success message
+    Page Should Contain     Welcome to your account  # assert text is visible on page
 ```
 
 The Settings section sets up needed libraries, Variables defines common values, Test Cases contains sequences of keywords, and Keywords defines the custom keywords used by the tests. Behind the scenes, a keyword is implemented either as a custom keyword or as a built-in keyword from a library (ex. `Open Browser` from SeleniumLibrary).
@@ -670,13 +677,13 @@ Ex. Insurance company where business analysts with no programming experience imp
 
 ```robotframework
 *** Test Cases ***
-Customer Can Purchase Auto Insurance
+Customer Can Purchase Auto Insurance             # business-readable flow (no code)
     Login As        john.doe@example.com    password123
     Navigate To     Auto Insurance
     Select Coverage Type    Comprehensive
     Calculate Premium
     Complete Purchase
-    Confirmation Should Be Displayed
+    Confirmation Should Be Displayed             # final business check
 ```
 
 **Pros:**
@@ -701,27 +708,27 @@ Ex. Project that went overboard with keyword abstraction, ending up with hundred
 Extension of TDD focusing on the behavior of the system from the user's perspective, using natural language "Given-When-Then" scenarios so non-technical stakeholders can understand them. Scenarios are stored in feature files, and tools such as Cucumber, SpecFlow or JBehave translate them into executable tests.
 
 ```gherkin
-Feature: User Login
-    As a registered user
-    I want to log in to the application
-    So that I can access my account
+Feature: User Login                              # feature under test
+    As a registered user                         # who
+    I want to log in to the application          # what
+    So that I can access my account              # why (business value)
 
 Scenario: Successful login with valid credentials
-    Given I am on the login page
-    When I enter "testuser" as username
-    And I enter "password123" as password
-    And I click the login button
-    Then I should see the welcome message
+    Given I am on the login page                 # precondition
+    When I enter "testuser" as username          # action
+    And I enter "password123" as password        # action
+    And I click the login button                 # action
+    Then I should see the welcome message        # expected result
 ```
 
 ```python
-@given("I am on the login page")
+@given("I am on the login page")                # bind Gherkin step → Python
 def navigate_to_login_page(context):
-    context.driver.get("https://www.example.com")
+    context.driver.get("https://www.example.com")  # open login URL
 
-@when('I enter "{username}" as username')
+@when('I enter "{username}" as username')       # capture username from scenario text
 def enter_username(context, username):
-    context.driver.find_element_by_id("username").send_keys(username)
+    context.driver.find_element_by_id("username").send_keys(username)  # type it
 
 # And so on for the other steps
 ```
@@ -775,8 +782,693 @@ Ex. E-commerce project combining TDD for back-end unit tests, structured scripti
 
 ## TAE-3.1.5.0 (K3) : Object Oriented Programming Principles
 
+Design principles and design patterns can sound theoretical, but are actually proven solutions to common problems in software design, like blueprints tested by thousands of developers over many years. Object-oriented programming principles are the foundation on which SOLID principles and design patterns are built.
+
+### Encapsulation
+
+Bundling data and the methods that work on that data within a single unit, restricting direct access to some of its components, like a car where the driver only needs the steering wheel, pedals and gears without knowing how the engine works internally. In test automation, it means hiding the complex stuff inside a class and only exposing what's necessary through public methods.
+
+Ex. A `LoginPage` class handling all the internal details of logging in. Tests only call `LoginPage.login("user", "pass")`, without worrying how it happens internally. The `usernameField`, `passwordField` and `loginButton` fields are private and can't be accessed directly from outside the class, so if the login process changes later, only one place needs to be updated.
+
+```java
+public class LoginPage {
+    private WebElement usernameField;   // hidden: not accessible from outside
+    private WebElement passwordField;   // hidden
+    private WebElement loginButton;     // hidden
+
+    public void login(String username, String password) {  // only public API for tests
+        usernameField.sendKeys(username);  // type username
+        passwordField.sendKeys(password);  // type password
+        loginButton.click();               // submit
+    }
+}
+```
+
+### Abstraction
+
+Simplifying complex systems by modeling classes based on essential properties and behaviors, while hiding unnecessary details, like using a TV remote: pressing a button without needing to understand the electrical signals sent to the TV. In test automation, abstraction helps create models of the application's components focused on what's needed for testing, without getting bogged down in implementation details.
+
+Ex. A `Page` interface defines the operations any page should perform (navigating, checking it's displayed, getting its title), without specifying how they happen. A `HomePage` class implements this interface and contains the actual implementation details (WebDriver, URLs, element IDs).
+
+```java
+public interface Page {                 // contract: what any page must support
+    void navigate();
+    boolean isDisplayed();
+    String getTitle();
+}
+
+public class HomePage implements Page { // concrete implementation of Page
+    private WebDriver driver;
+
+    public HomePage(WebDriver driver) {
+        this.driver = driver;           // inject browser driver
+    }
+
+    public void navigate() {
+        driver.get("https://www.example.com/home");  // open home URL
+    }
+
+    public boolean isDisplayed() {
+        return driver.findElement(By.id("home-header")).isDisplayed();  // header visible?
+    }
+
+    public String getTitle() {
+        return driver.getTitle();       // browser tab title
+    }
+}
+```
+
+Tests then only work with the `Page` interface, focusing on the behavior to verify rather than on how to interact with specific web elements:
+
+```java
+public void testPageNavigation(Page page) {     // works with any Page implementation
+    page.navigate();                            // go to page
+    assertTrue(page.isDisplayed());             // page is shown
+    assertEquals("Expected Title", page.getTitle());  // title matches
+}
+```
+
+Ex. Project needing to test the same functionality on both a web application and a mobile app. Creating an abstraction of the user interface that both implementations could follow made it possible to write the tests once and run them against both platforms. Abstraction separates what needs to be tested from how to interact with the system, making test code more maintainable.
+
+### Inheritance
+
+Allows a class to inherit properties and methods from another class, creating a parent-child relationship where the child class can also add its own capabilities, like biological inheritance: traits are inherited, but unique ones exist too. In test automation, inheritance helps avoid code duplication by using base classes with common functionality.
+
+Ex. A `BasePage` class contains common functionality (waiting for a page to load, taking screenshots, scrolling to elements). `ProductPage extends BasePage` to inherit all those methods without rewriting them, `super(driver)` calling the parent constructor to handle initialization.
+
+```java
+public class BasePage {
+    protected WebDriver driver;                 // shared by child pages
+
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void waitForPageToLoad() {           // wait until document ready
+        new WebDriverWait(driver, 10).until(
+            webDriver -> ((JavascriptExecutor) webDriver)
+                .executeScript("return document.readyState").equals("complete"));
+    }
+
+    public void takeScreenshot(String filename) {  // capture screen to file
+        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(screenshot, new File("./screenshots/" + filename + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void scrollToElement(WebElement element) {  // scroll element into view
+        ((JavascriptExecutor) driver).executeScript(
+            "arguments[0].scrollIntoView(true);", element);
+    }
+}
+
+public class ProductPage extends BasePage {     // inherits BasePage methods
+    private WebElement addToCartButton;
+    private WebElement quantityField;
+
+    public ProductPage(WebDriver driver) {
+        super(driver);                          // init parent with driver
+        addToCartButton = driver.findElement(By.id("add-to-cart"));
+        quantityField = driver.findElement(By.id("quantity"));
+    }
+
+    // Inherits waitForPageToLoad, takeScreenshot, scrollToElement from BasePage
+
+    public void addProductToCart() {
+        scrollToElement(addToCartButton); // Using inherited method
+        addToCartButton.click();                // then click add to cart
+    }
+
+    public void setQuantity(int quantity) {
+        quantityField.clear();                  // clear old value
+        quantityField.sendKeys(String.valueOf(quantity));  // type new quantity
+    }
+}
+```
+
+Ex. Project without inheritance, where every one of 30+ page classes duplicated about 50 to 60 lines of identical code for waiting mechanisms, screenshots and error logging. Updating the waiting mechanism required changing all 30 files. Refactoring to a base class with inheritance reduced the codebase size by about 30%, and later enhancing the screenshot functionality only required a change in `BasePage`, automatically benefiting every page class.
+
+### Polymorphism
+
+Allows objects of different classes to be treated as objects of a common base class, with the specific implementation used determined at runtime, like a TV remote's power button working the same way across different TV brands. In test automation, polymorphism helps write flexible code without complex conditionals.
+
+Ex. Different types of alerts or notifications need to be handled in different ways:
+
+```java
+public interface Notification {                 // common contract for all notifications
+    void acknowledge();
+    String getMessage();
+}
+
+public class InfoNotification implements Notification {
+    private String message;
+
+    public InfoNotification(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public void acknowledge() {
+        WebElement okButton = driver.findElement(By.id("info-ok-button"));
+        okButton.click();                       // info: click OK
+    }
+
+    @Override
+    public String getMessage() {
+        return this.message;                    // return plain message
+    }
+}
+
+public class ErrorNotification implements Notification {
+    private String message;
+    private String errorCode;
+
+    public ErrorNotification(String message, String errorCode) {
+        this.message = message;
+        this.errorCode = errorCode;
+    }
+
+    @Override
+    public void acknowledge() {
+        WebElement closeButton = driver.findElement(By.id("error-close-button"));
+        closeButton.click();                    // error: click Close (different UI)
+    }
+
+    @Override
+    public String getMessage() {
+        return this.message + " (Error code: " + errorCode + ")";  // message + code
+    }
+}
+```
+
+`InfoNotification` and `ErrorNotification` both implement the same interface but handle `acknowledge()` differently. Calling `notification.acknowledge()` runs the correct version at runtime based on the actual object, avoiding if-else statements.
+
+Ex. E-commerce application with different product page types (physical, digital, subscription, bundled). A common `ProductPage` interface with methods like `addToCart` and `getPrice` let tests work with any product type without knowing its specific details. When a new product type was added later, only a new implementation of the interface was needed, and all existing tests kept working without any changes.
+
+### Conclusion
+
+1. Encapsulation hides implementation details behind public methods, so internal changes stay isolated.
+2. Abstraction separates what to test from how to interact with the system, enabling reuse across implementations or platforms.
+3. Inheritance avoids code duplication by sharing common functionality through base classes.
+4. Polymorphism lets different objects respond to the same call in different ways, avoiding complex conditional logic.
+
 ## TAE-3.1.5.1 (K3) : Solid Principles
+
+SOLID principles are fundamental object-oriented design principles introduced by Robert C. Martin ("Uncle Bob"). Each letter of the acronym represents a principle, and following them makes code more maintainable, flexible and easier to understand, like following the rules for building a stable house that won't collapse as it's extended or renovated.
+
+### SRP (Single Responsibility Principle)
+
+A class should have only one reason to change, only one job or responsibility, like not wanting the same person to be both chef and plumber: different skills, different problems. In test automation, each class should focus on testing one specific aspect of the application.
+
+```java
+// Violates SRP - too many responsibilities
+public class TestUtils {
+    public void connectToDatabase() { /* ... */ }           // DB
+    public ResultSet executeQuery(String query) { /* ... */ } // DB
+    public void saveScreenshot(String filename) { /* ... */ } // files
+    public String readTestData(String filepath) { /* ... */ } // files
+    public void launchBrowser(String browser) { /* ... */ }   // browser
+    public void clickElement(String locator) { /* ... */ }    // browser
+    public void startTestReport() { /* ... */ }               // reporting
+    public void logTestResult(String testName, boolean result) { /* ... */ } // reporting
+}
+```
+
+```java
+// Following SRP - each class has a single responsibility
+public class DatabaseUtils {                    // only DB
+    public void connect() { /* ... */ }
+    public ResultSet executeQuery(String query) { /* ... */ }
+}
+
+public class FileUtils {                        // only files
+    public void saveScreenshot(String filename) { /* ... */ }
+    public String readTestData(String filepath) { /* ... */ }
+}
+
+public class BrowserUtils {                     // only browser
+    public void launch(String browser) { /* ... */ }
+    public void clickElement(String locator) { /* ... */ }
+}
+
+public class ReportUtils {                      // only reporting
+    public void startReport() { /* ... */ }
+    public void logResult(String testName, boolean result) { /* ... */ }
+}
+```
+
+Ex. Project with a 3000-line `TestHelper` class handling database connections, UI interactions and report generation. Fixing a bug in one area risked breaking unrelated features, so touching the class was avoided. Refactoring to follow SRP produced smaller, focused classes; updating the database logic afterward only required changing `DatabaseUtils`, with no risk to the rest of the system.
+
+### OCP (Open-Closed Principle)
+
+Software should be open for extension but closed for modification: new functionality should be addable without changing existing code. In test automation, this means building frameworks that can be extended without modifying their core.
+
+```java
+// Without OCP - adding a new type means modifying this class
+public class Validator {
+    public boolean validate(String input, String type) {
+        if (type.equals("email")) {             // email rule inside
+            return input.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+        } else if (type.equals("phone")) {      // phone rule inside
+            return input.matches("\\d{10}");
+        }
+        return false;                           // unknown type → false
+    }
+}
+```
+
+```java
+// Following OCP - new validators are added without touching existing code
+public abstract class Validator {
+    public abstract boolean validate(String input);  // extension point
+}
+
+public class EmailValidator extends Validator {
+    @Override
+    public boolean validate(String input) {
+        return input.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");  // email rule
+    }
+}
+
+public class PhoneValidator extends Validator {
+    @Override
+    public boolean validate(String input) {
+        return input.matches("\\d{10}");        // phone rule
+    }
+}
+
+// Adding credit card validation just creates a new class:
+public class CreditCardValidator extends Validator {
+    @Override
+    public boolean validate(String input) {
+        return input.matches("^4[0-9]{12}(?:[0-9]{3})?$");  // new type = new class only
+    }
+}
+```
+
+Ex. Reporting system initially supporting only HTML reports. Adding PDF support by modifying the existing reporting class broke some HTML reporting features. Refactoring to a `ReportGenerator` interface with separate HTML and PDF implementations allowed a later Excel report request to be added as a new implementation, without touching existing code.
+
+### LSP (Liskov Substitution Principle)
+
+Subclass objects should be replaceable with superclass objects without breaking the program: if class B is a subclass of class A, B should be usable anywhere A is used, like a recipe calling for any citrus fruit, orange or lemon, without needing to change the recipe.
+
+```java
+// Violates LSP
+class Rectangle {
+    protected int width;
+    protected int height;
+
+    public void setWidth(int width) { this.width = width; }
+    public void setHeight(int height) { this.height = height; }
+    public int getArea() { return width * height; }     // area = w × h
+}
+
+class Square extends Rectangle {
+    @Override
+    public void setWidth(int width) {
+        this.width = width;
+        this.height = width; // Also sets height to keep square properties
+    }
+    @Override
+    public void setHeight(int height) {
+        this.height = height;
+        this.width = height; // Also sets width to keep square properties
+    }
+}
+
+void testRectangle(Rectangle r) {
+    r.setWidth(5);
+    r.setHeight(4);
+    assert r.getArea() == 20; // Fails if r is a Square!  (would be 16)
+}
+```
+
+```java
+// Follows LSP - implementations can be substituted for each other
+interface Browser {
+    void navigate(String url);
+    WebElement findElement(String locator);
+}
+
+class ChromeBrowser implements Browser {
+    private WebDriver driver = new ChromeDriver();
+
+    @Override
+    public void navigate(String url) { driver.get(url); }  // Chrome navigation
+    @Override
+    public WebElement findElement(String locator) { return driver.findElement(By.cssSelector(locator)); }
+}
+
+class FirefoxBrowser implements Browser {
+    private WebDriver driver = new FirefoxDriver();
+    // Same behavior as ChromeBrowser              // interchangeable with Chrome
+}
+
+class LoginTest {
+    private Browser browser;                        // depend on interface, not Chrome/Firefox
+
+    @BeforeEach
+    void setUp() {
+        // ChromeBrowser could be substituted with FirefoxBrowser without changing the test below
+        browser = new ChromeBrowser();
+    }
+
+    @Test
+    void testValidLogin() {
+        browser.navigate("https://example.com/login");  // works with any Browser impl
+    }
+}
+```
+
+`ChromeBrowser` and `FirefoxBrowser` can be substituted for each other in tests because they both properly implement the `Browser` interface, unlike `Square`, which breaks the behavior expected from `Rectangle`.
+
+### ISP (Interface Segregation Principle)
+
+Clients should not be forced to implement methods they don't use; smaller, specific interfaces are better than one bloated one. In test automation, this means splitting interfaces by functionality (ex. `LoginAction`, `SearchAction`, `CartAction`) instead of one massive `AppAction` interface.
+
+```java
+// Violates ISP - one big interface
+interface Page {
+    void navigate();
+    void search(String keyword);
+    void addToCart(String productId);
+    void checkout();
+    // And many more methods ...
+}
+
+// Every page must implement ALL methods, even unused ones
+class AboutUsPage implements Page {
+    public void navigate() { /* implementation */ }
+    public void search(String keyword) { throw new UnsupportedOperationException(); }      // forced dummy
+    public void addToCart(String productId) { throw new UnsupportedOperationException(); } // forced dummy
+    public void checkout() { throw new UnsupportedOperationException(); }                  // forced dummy
+}
+```
+
+```java
+// Following ISP with focused interfaces
+interface Navigable {
+    void navigate();                            // only navigation
+}
+
+interface Searchable {
+    void search(String keyword);                // only search
+}
+
+interface Purchasable {
+    void addToCart(String productId);           // only purchase flow
+    void checkout();
+}
+
+// Pages implement only the interfaces they need
+class AboutUsPage implements Navigable {
+    public void navigate() { /* implementation */ }  // only what it needs
+}
+
+class ProductPage implements Navigable, Purchasable {
+    public void navigate() { /* implementation */ }
+    public void addToCart(String productId) { /* implementation */ }
+    public void checkout() { /* implementation */ }
+}
+```
+
+Ex. A `Reporter` interface with methods for starting reports, adding results, capturing screenshots and generating formats. Some reporting tools didn't support screenshots and ended up with empty, do-nothing implementations. Applying ISP split it into `BasicReporter`, `ScreenshotCapable` and `MultiFormatReporter` interfaces, making it clear which reporters supported which features, without placeholder methods for unsupported ones.
+
+### DIP (Dependency Inversion Principle)
+
+High-level modules should not depend on low-level modules; both should depend on abstractions, and abstractions should not depend on details, details should depend on abstractions. In practice: depend on interfaces or abstract classes, not concrete implementations, like plugging a device into an electrical outlet without needing to know how electricity is generated.
+
+```java
+// Violates DIP - direct dependency on a concrete class
+class LoginTest {
+    private ChromeDriver driver = new ChromeDriver(); // Hardcoded dependency
+
+    public void testLogin() {
+        driver.get("https://example.com/login");  // locked to Chrome
+    }
+}
+```
+
+```java
+// Follows DIP - depends on an abstraction
+interface WebDriver {
+    void get(String url);
+    WebElement findElement(By by);
+}
+
+class ChromeDriver implements WebDriver { /* Chrome-specific implementation */ }
+class FirefoxDriver implements WebDriver { /* Firefox-specific implementation */ }
+
+class LoginTest {
+    private WebDriver driver; // Depends on the abstraction
+
+    // Dependency injected through the constructor
+    public LoginTest(WebDriver driver) {
+        this.driver = driver;                   // inject any WebDriver impl
+    }
+
+    public void testLogin() {
+        driver.get("https://example.com/login");  // works with Chrome or Firefox
+    }
+}
+
+// Usage:
+LoginTest chromeTest = new LoginTest(new ChromeDriver());   // inject Chrome
+LoginTest firefoxTest = new LoginTest(new FirefoxDriver()); // inject Firefox
+```
+
+Ex. Tests originally depending directly on Selenium WebDriver. Switching some tests to Appium for mobile was a major effort due to API differences. Introducing a `Driver` interface implemented by both Selenium and Appium wrappers made switching drivers trivial, running the same tests on web and mobile by injecting a different driver implementation.
+
+### Conclusion
+
+1. SRP: a class should have only one reason to change.
+2. OCP: open for extension, closed for modification, new functionality is added rather than existing code changed.
+3. LSP: subclasses must be substitutable for their superclass without breaking behavior.
+4. ISP: prefer small, focused interfaces over large, general-purpose ones.
+5. DIP: depend on abstractions (interfaces), not concrete implementations.
 
 ## TAE-3.1.5.2 (K3) : Design Patterns
 
-## Test Automation Architecture Q&A
+Design patterns are proven solutions to common problems in software design, like recipes or blueprints tested by thousands of developers over many years. The following patterns are particularly useful in test automation.
+
+### Facade Pattern
+
+Provides a simplified interface to a complex system or set of classes, like a hotel's front desk coordinating housekeeping, maintenance and the restaurant so guests only ever talk to one point of contact. In test automation, it hides the complexity of test libraries and exposes only what testers need to create test cases.
+
+```java
+// Complex subsystem classes
+class WebElementFinder {
+    public WebElement findById(String id) { /* implementation */ }  // locate element
+}
+
+class WebElementInteractor {
+    public void click(WebElement element) { /* implementation */ }  // click
+    public void type(WebElement element, String text) { /* implementation */ }  // type text
+}
+
+class WaitManager {
+    public void waitForClickable(WebElement element, int seconds) { /* implementation */ }
+    public void waitForVisible(WebElement element, int seconds) { /* implementation */ }
+    public void waitForPageLoad(int seconds) { /* implementation */ }
+}
+
+// Facade that simplifies the interface
+class UserActions {
+    private WebElementFinder finder = new WebElementFinder();
+    private WebElementInteractor interactor = new WebElementInteractor();
+    private WaitManager waiter = new WaitManager();
+
+    public void clickButton(String id) {
+        WebElement button = finder.findById(id);       // find
+        waiter.waitForClickable(button, 10);           // wait
+        interactor.click(button);                      // click
+    }
+
+    public void enterText(String fieldId, String text) {
+        WebElement field = finder.findById(fieldId);   // find
+        waiter.waitForVisible(field, 10);              // wait
+        interactor.type(field, text);                  // type
+    }
+
+    public void login(String username, String password) {
+        enterText("username", username);               // high-level login steps
+        enterText("password", password);
+        clickButton("loginButton");
+        waiter.waitForPageLoad(10);
+    }
+}
+
+// Client code - much simpler!
+public void testLogin() {
+    UserActions actions = new UserActions();
+    actions.login("testuser", "password123");          // one call hides complexity
+}
+```
+
+Instead of dealing with finding elements, waiting and interacting separately, the test just calls `login()`. Ex. Manual testers intimidated by the complexity of Selenium WebDriver were eased into automation gradually thanks to a simple facade wrapping the common actions: they started with high-level methods like `login()` and `searchForProduct()`, then learned the more complex underlying APIs as they gained confidence.
+
+### Singleton Pattern
+
+Ensures a class has only one instance and provides a global access point to it, like having only one principal at a school: one person in charge that everyone knows how to find. In test automation, it's often used for driver management, configuration and logging.
+
+```java
+public class DriverManager {
+    private static DriverManager instance;      // unique instance
+    private WebDriver driver;
+
+    private DriverManager() {
+        // No instantiation outside this class
+    }
+
+    public static synchronized DriverManager getInstance() {
+        if (instance == null) {
+            instance = new DriverManager();     // create once
+        }
+        return instance;                        // always return the same instance
+    }
+
+    public WebDriver getDriver() {
+        if (driver == null) {
+            driver = new ChromeDriver();        // create browser once
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        }
+        return driver;
+    }
+
+    public void quitDriver() {
+        if (driver != null) {
+            driver.quit();                      // close browser
+            driver = null;                      // allow recreate later
+        }
+    }
+}
+
+// Usage in tests
+public void testSearch() {
+    WebDriver driver = DriverManager.getInstance().getDriver();  // shared driver
+    driver.get("https://example.com");
+}
+```
+
+This ensures all tests use the same WebDriver instance, preventing issues like multiple browser windows open at once, and helping with resource management. Be careful with singletons though: they can make testing harder, since dependencies can't easily be swapped out, and they create hidden dependencies, so use them judiciously.
+
+Ex. Project where each test used to create its own browser instance; running tests in parallel opened dozens of Chrome windows and bogged down the test machine. Implementing a singleton `DriverManager` allowed controlling browser creation and reusing instances when appropriate, making tests run much faster.
+
+### POM (Page Object Model)
+
+Probably the most widely used design pattern in UI test automation. It creates a separate class for each page of the application, containing the page elements and the methods to interact with them, separating test logic from page-specific details.
+
+```typescript
+// Base page class with common functionality
+export abstract class BasePage {
+    protected page: Page;
+
+    constructor(page: Page) {
+        this.page = page;                       // store Playwright page
+    }
+
+    async navigateTo(url: string): Promise<void> {
+        await this.page.goto(url);              // open URL
+    }
+}
+
+export class LoginPage extends BasePage {
+    readonly usernameInput = () => this.page.locator('#username');  // username field
+    readonly passwordInput = () => this.page.locator('#password');  // password field
+    readonly loginButton = () => this.page.locator('#loginBtn');    // login button
+
+    async loginWithCredentials(username: string, password: string): Promise<void> {
+        await this.usernameInput().fill(username);  // type username
+        await this.passwordInput().fill(password);  // type password
+        await this.loginButton().click();           // submit
+    }
+}
+```
+
+```typescript
+import { test, expect } from '@playwright/test';
+
+test('should login successfully with valid credentials', async ({ page }) => {
+    const loginPage = new LoginPage(page);      // page object for login
+    await loginPage.navigateTo('https://example.com/login');
+    await loginPage.loginWithCredentials('testuser', 'password123');  // high-level action
+    // Assertions ...
+});
+```
+
+If the login page changes, only the `LoginPage` class needs updating, not every test that uses it. Ex. Login button ID changing from `loginBtn` to `submitLogin` only requires updating the `loginButton` locator in the `LoginPage` class, in one place.
+
+### Flow Model Pattern
+
+An expansion of the Page Object Model, adding a layer of abstraction over page objects that stores the user flows interacting with multiple pages: page objects represent the "pages" of the application, flow models represent the "journeys" users take through those pages.
+
+```java
+// Flow class for login-related flows
+public class LoginFlow {
+    private LoginPage loginPage;
+    private DashboardPage dashboardPage;
+
+    public LoginFlow(WebDriver driver) {
+        this.loginPage = new LoginPage(driver);         // compose page objects
+        this.dashboardPage = new DashboardPage(driver);
+    }
+
+    public boolean loginWithValidCredentials(String username, String password) {
+        loginPage.navigateToLoginPage();                // open login
+        dashboardPage = loginPage.loginWithCredentials(username, password);  // login → dashboard
+        return dashboardPage.isWelcomeMessageDisplayed();  // business check
+    }
+
+    // Combines logging in and navigating to reports into a single call
+    public void loginAndNavigateToReports() {
+        loginWithValidCredentials("testuser", "password123");
+        dashboardPage.navigateToReports();              // multi-page journey
+    }
+}
+```
+
+The flow encapsulates navigation between pages, the test doesn't need to know that going to reports happens on the dashboard page after login. A more complex `ShoppingFlow` can manage a larger set of page objects (`HomePage`, `SearchResultsPage`, `ProductPage`, `CartPage`, `CheckoutPage`) and provide methods at different levels of granularity, from small flows like `searchForProduct()` to complete flows like `searchAndBuyProduct()`:
+
+```java
+// Test using flow models
+@Test
+public void testCompletePurchase() {
+    WebDriver driver = DriverManager.getInstance().getDriver();
+    ShoppingFlow shoppingFlow = new ShoppingFlow(driver);  // multi-page flow
+
+    OrderConfirmation confirmation = shoppingFlow.searchAndBuyProduct("smartphone", 2);  // full journey
+
+    assertTrue(confirmation.isOrderSuccessful());  // order OK?
+    assertEquals(2, confirmation.getQuantity());   // quantity OK?
+}
+```
+
+Without the flow model, this would require the test to directly interact with five different page objects and manage every transition between them. The flow can also handle data creation (ex. credit card and address objects) internally, keeping tests focused on the business scenario rather than test data setup.
+
+Ex. E-commerce project with complicated checkout flows involving multiple pages and different paths depending on customer type, payment method and shipping options. Flow models encapsulated these into easy-to-use methods like `completePurchaseWithCreditCard()` or `completePurchaseWithPayPal()`, making tests focused on business scenarios rather than navigation mechanics. The double layer of abstraction gives a clear separation between the *how* of interacting with page elements (page objects), the *what* of completing business processes (flow models), and the *why* of verifying application behavior (the tests).
+
+### Common pitfalls
+
+- **Over-engineering** - start simple and refactor as needed, don't build complex abstractions just for the sake of it.
+- **Rigid framework** - don't build frameworks so rigid they can't adapt to changing requirements.
+- **Forgetting the goal** - the goal is to test the application, not to build a perfect framework; if a design makes tests harder to write or understand, reconsider it.
+- **Ignoring context** - what works for a large enterprise application might be overkill for a simple website, choose patterns appropriate to the context.
+
+### Best practices
+
+- **Use proven patterns** - start with established patterns like Page Object Model before experimenting with custom solutions.
+- **Prioritize readability** - tests should tell a story about how the application is used, not get lost in implementation details.
+- **Refactor incrementally** - improve the framework gradually as understanding evolves, to avoid regressions.
+- **Maintain independence** - each test should be able to run independently of others, avoiding dependencies between tests.
+- **Balance abstraction** - too much abstraction can make code hard to understand, too little can make it hard to maintain.
+
+### Conclusion
+
+1. Test automation is a software development activity, so software design principles apply to it.
+2. The four OOP principles (encapsulation, abstraction, inheritance, polymorphism) provide the foundation for good test automation design.
+3. SOLID principles (SRP, OCP, LSP, ISP, DIP) help create more maintainable and flexible code.
+4. Key design patterns for test automation: Facade, Singleton, Page Object Model, and Flow Model.
+5. OOP + SOLID + Patterns lead to maintainable automation; POM + Flow models lead to scalable UI testing.
