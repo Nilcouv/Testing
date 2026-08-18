@@ -1,242 +1,69 @@
+## Q&A
 
+### Question 1 - TAE-3.1.1 (K2) Explain the major capabilities in a test automation architecture
 
+> [!question] In the gTAA (Generic Test Automation Architecture), which capability is responsible for adapting automated tests to the various components or interfaces of the SUT (System Under Test)?
 
+- A) Test Generation
+- B) Test Definition
+- C) Test Adaptation
+- D) Test Execution
 
-### Question  - 
-
-Question 1 - TAE-3.1.1 (K2) Explain the major capabilities in a test automation architecture
-
-In the Generic Test Automation Architecture (gTAA), which capability is responsible for adapting
-automated tests to the various components or interfaces of the System Under Test?
-
-A) Test Generation.
-
-B) Test Definition.
-
-C) Test Adaptation.
-
-D) Test Execution.
-
-> [!question] 
-
-- A) 
-- B) 
-- C) 
-- D) 
-
-> [!answer] )
+> [!answer] C)
 >
 > [!Explanation]
-> A is
-> B is 
-> C is 
-> D is 
+> A is incorrect because test generation is an optional capability that supports the automated design of test cases based on a test model. It is focused on creating tests, not adapting them to interfaces.
+> B is incorrect because test definition supports the definition and implementation of test cases and/or test suites. It separates the test definition from the SUT and/or test tools, but does not handle adapting tests to interfaces.
+> C is correct because the test adaptation capability provides the necessary functionality to adapt the automated tests for the various components or interfaces of the SUT. It provides different adapters for connecting to the SUT via APIs, protocols and services, and serves as the bridge between the TAF (Test Automation Framework) and the SUT.
+> D is incorrect because test execution supports test execution and test logging. It provides a test execution tool to run selected tests automatically, and a test logging and reporting component, but does not handle adapting tests to different interfaces.
 
-### Question  - 
+### Question 2 - TAE-3.1.2 (K2) Explain how to design a test automation solution
 
-> [!question] 
+> [!question] When designing a TAS (Test Automation Solution), which of the following is NOT a key aspect that should be addressed in the TAA (Test Automation Architecture)?
 
-- A) 
-- B) 
-- C) 
-- D) 
+- A) Selecting test automation tools and tool-specific libraries
+- B) Identifying connectivity and interface requirements
+- C) Creating manual test cases for edge case scenarios
+- D) Connecting to test management and defect management tools
 
-> [!answer] )
+> [!answer] C)
 >
 > [!Explanation]
-> A is
-> B is 
-> C is 
-> D is 
+> A is incorrect because selecting test automation tools and tool-specific libraries is a crucial aspect of the TAA: the tools and libraries provide the foundation for the automation solution.
+> B is incorrect because identifying connectivity and interface requirements (firewalls, database connections, URLs/connections, mocks and stubs, message queues and protocols) is an essential part of designing the automation architecture.
+> C is correct because creating manual test cases is not part of designing a test automation architecture. The TAA focuses specifically on the technical design of the automation solution, not on creating manual test cases.
+> D is incorrect because connecting to test management and defect management tools is an important part of the TAA: it enables integration between the TAF (Test Automation Framework) and testing or defect-tracking processes.
 
-### Question  - 
+### Question 3 - TAE-3.1.3 (K3) Apply layering of test automation frameworks
 
-> [!question] 
+> [!question] In a layered TAF (Test Automation Framework), if an engineer wanted to add support for a new API (Application Programming Interface) authentication method across all applications being tested, which layer should they modify?
 
-- A) 
-- B) 
-- C) 
-- D) 
+- A) Test Scripts layer
+- B) Business Logic layer
+- C) Core Libraries layer
+- D) Test Execution layer
 
-> [!answer] )
+> [!answer] C)
 >
 > [!Explanation]
-> A is
-> B is 
-> C is 
-> D is 
+> A is incorrect because the test scripts layer contains specific test cases for the SUT (System Under Test). Adding authentication functionality here would not make it reusable across applications.
+> B is incorrect because the business logic layer contains libraries specific to a particular application or SUT. Implementing the authentication method here would limit it to one application instead of making it available across all applications.
+> C is correct because the core libraries layer contains libraries that are independent of any specific SUT and can be reused across multiple projects or applications. A new API authentication method used across all applications should be implemented there to enable reuse.
+> D is incorrect because the test execution layer is not one of the standard layers in the TAF layering pattern discussed in the syllabus. The typical layers are test scripts, business logic and core libraries.
 
-### Question  - 
+### Question 4 - TAE-3.1.4 (K3) Apply different approaches for automating test cases
 
-> [!question] 
+> [!question] A test team wants to automate their regression test suite for an e-commerce application. They have a mix of technical and non-technical testers, and they want business analysts to be able to contribute to the automation effort. Which approach would be MOST suitable for their needs?
 
-- A) 
-- B) 
-- C) 
-- D) 
+- A) Linear Scripting
+- B) Capture/Playback
+- C) Keyword-Driven Testing
+- D) Test-Driven Development
 
-> [!answer] )
+> [!answer] C)
 >
 > [!Explanation]
-> A is
-> B is 
-> C is 
-> D is 
-
-
-
-"Section quiz question one.
-
-In the generic test automation architecture, which capability is responsible for adapting automated
-
-tests to the various components or interfaces of the system under test?
-
-A test generation B test definition C test adaptation or D test execution.
-
-The correct answer is C test adaptation.
-
-The test adaptation capability provides the necessary functionality to adapt the automated tests for
-
-the various components or interfaces of the Sut.
-
-It provides different adapters for connecting to the Sut via APIs, protocols, and services.
-
-This capability serves as the bridge between your test automation framework and the system under test.
-
-Answer choice A test generation is an optional capability that supports the automated design of test
-
-cases based on a test model is focused on creating tests, not adapting them to interfaces.
-
-Answer choice B test definition supports the definition and implementation of test cases and our test
-
-suites.
-
-It separates the test definition from the Sut and or test tools, but doesn't handle adapting tests
-
-to interfaces.
-
-An answer choice D test execution supports test execution and test login.
-
-It provides a test execution tool to run a selected test automatically, and a test login and reporting
-
-component, but doesn't handle adapting tests to different interfaces.
-
-Question two.
-
-When designing a test automation solution.
-
-Which of the following is not a key aspect that should be addressed in the automation architecture?
-
-A selecting test automation tools and tool specific libraries.
-
-B identifying connectivity and interface requirements.
-
-C creating manual test cases for edge case scenarios.
-
-Or D connecting to test management and defect management tools.
-
-The correct answer is C creating manual test cases for edge case scenarios.
-
-Creating manual test cases is not part of designing a test automation architecture.
-
-The TR focuses specifically on the technical design of automation solution, not on creating manual
-
-test cases.
-
-Answer a select and test automation tools and tools.
-
-Specific libraries is a crucial aspect of the Tar, as the tools and libraries provide the foundation
-
-for your automation solution.
-
-Answer choice B identifying connectivity and interface requirements such as firewalls, database connections,
-
-URLs, connections, mocks and stubs, message queues, and protocols is an essential part of designing
-
-your automation architecture in answer choice D.
-
-Connecting to test management and defect management tools is an important part of the Tar, as it enables
-
-integration between your automation framework and your testing or defect tracking processes.
-
-Question three in a layer test automation framework, if an engineer wanted to add support for a new
-
-API authentication method across all applications being tested.
-
-Which layers should they modify?
-
-A test scripts layer B Business logic layer, C core libraries layer or D test execution layer.
-
-The correct answer is C core Libraries layer.
-
-The Core Libraries layer contains libraries that are independent of any specific system under test,
-
-and can be reused across multiple projects or applications.
-
-If you want to add support for a new API authentication method that will be used across all applications,
-
-this functionality should be implemented in the core libraries layer to enable reuse.
-
-Answer choice A test scripts layer is inappropriate because this layer contains specific test cases
-
-for the Sut.
-
-Adding authentication functionality here would not make it reusable across applications.
-
-Answer choice B.
-
-Business Logic Layer contains libraries specific to a particular application or Sut.
-
-So implementing it here would limit with the new authentication method to just one application instead
-
-of making it available across all applications.
-
-An answer choice D.
-
-Test execution layer is not one of the standard layers in the TAF layer and pattern discussed in syllabus.
-
-The typical layers are test scripts, business logic, and core libraries.
-
-Question for a test team wants to automate the regression test suite for an e-commerce application.
-
-They have a mix of technical and non-technical testers, and they want business analysts to be able
-
-to contribute to the automation effort.
-
-Which approach would be most suitable for their needs.
-
-A linear scripting, b capture playback, C keyword driven testing, or D test driven development.
-
-The correct answer is C keyword driven testing.
-
-Keyword driven testing is the most suitable approach for this team, because it allows both technical
-
-and non-technical team members to contribute in Cdti.
-
-Test cases are defined as a list or table of keywords and test data.
-
-These keywords are defined from a user's perspective, making it possible for business analysts and
-
-non-technical testers to create automated test cases by following the Cdti approach.
-
-The technical team members can focus on implementing the keywords, while non-technical team members
-
-can focus on designing test cases using those keywords.
-
-Answer choice A linear scripting requires programming knowledge and doesn't provide a good way for non-technical
-
-team members to contribute.
-
-It's also hard to maintain and scale.
-
-Answer choice B capture playback is easy to start with, but very difficult to maintain for a regression
-
-suite, which typically needs to be run regularly and maintained over time.
-
-It's also not a collaborative approach that would allow business analysts to contribute effectively.
-
-An answer choice d test driven development is a development approach primarily used by developers,
-
-not a testing approach that would allow non-technical testers and business analysts to contribute to
-
-the automation effort."
+> A is incorrect because linear scripting requires programming knowledge and does not provide a good way for non-technical team members to contribute. It is also hard to maintain and scale.
+> B is incorrect because capture/playback is easy to start with, but very difficult to maintain for a regression suite that needs to be run regularly and maintained over time. It is also not a collaborative approach that would allow business analysts to contribute effectively.
+> C is correct because KDT (Keyword-Driven Testing) allows both technical and non-technical team members to contribute. Test cases are defined as a list or table of keywords and test data, from a user's perspective, so business analysts and non-technical testers can create automated test cases. Technical team members implement the keywords; non-technical members design tests using those keywords.
+> D is incorrect because TDD (Test-Driven Development) is a development approach primarily used by developers, not a testing approach that would allow non-technical testers and business analysts to contribute to the automation effort.
