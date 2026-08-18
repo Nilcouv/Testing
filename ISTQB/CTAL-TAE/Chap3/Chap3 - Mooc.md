@@ -751,14 +751,22 @@ Ex. Weekly "Three Amigos" sessions where a developer, a tester and a business an
 
 ### Comparing the approaches
 
-- **Entry barrier** - Low: Capture/Playback, Linear Scripting. Medium: Structured Scripting, DDT. High: TDD, KDT, BDD.
-- **Maintainability** - Low: Capture/Playback, Linear Scripting. Medium: Structured Scripting, DDT. High: TDD, KDT, BDD.
-- **Scalability** - Low: Capture/Playback, Linear Scripting. Medium: Structured Scripting. High: DDT, TDD, KDT, BDD.
-- **Business involvement** - Low: Capture/Playback, Linear Scripting, Structured Scripting. Medium: DDT, TDD. High: KDT, BDD.
+| Criterion | Low | Medium | High |
+|---|---|---|---|
+| Entry barrier | Capture/Playback, Linear Scripting | Structured Scripting, DDT | TDD, KDT, BDD |
+| Maintainability | Capture/Playback, Linear Scripting | Structured Scripting, DDT | TDD, KDT, BDD |
+| Scalability | Capture/Playback, Linear Scripting | Structured Scripting | DDT, TDD, KDT, BDD |
+| Business involvement | Capture/Playback, Linear Scripting, Structured Scripting | DDT, TDD | KDT, BDD |
 
 ### Evolution and combination of approaches
 
-Each approach represents an evolution addressing the limitations of the previous one: structured scripting solves linear scripting's maintenance problems, DDT separates test data from test logic, and KDT makes tests accessible to non-programmers. Teams typically start with simpler approaches and gradually move to more sophisticated ones as their automation maturity grows.
+Each approach represents an evolution addressing the limitations of the previous one:
+
+- structured scripting solves linear scripting's maintenance problems,
+- DDT separates test data from test logic,
+- and KDT makes tests accessible to non-programmers.
+
+Teams typically start with simpler approaches and gradually move to more sophisticated ones as their automation maturity grows.
 
 The best strategy often combines several approaches based on the need at hand:
 
@@ -812,27 +820,27 @@ Ex. A `Page` interface defines the operations any page should perform (navigatin
 
 ```java
 public interface Page {                 // contract: what any page must support
-    void navigate();
-    boolean isDisplayed();
-    String getTitle();
+    void navigate();                    // go to this page
+    boolean isDisplayed();              // is the page currently shown?
+    String getTitle();                  // return the page/browser title
 }
 
 public class HomePage implements Page { // concrete implementation of Page
-    private WebDriver driver;
+    private WebDriver driver;           // browser driver (Selenium)
 
     public HomePage(WebDriver driver) {
         this.driver = driver;           // inject browser driver
     }
 
-    public void navigate() {
+    public void navigate() {            // Page.navigate() implementation
         driver.get("https://www.example.com/home");  // open home URL
     }
 
-    public boolean isDisplayed() {
+    public boolean isDisplayed() {      // Page.isDisplayed() implementation
         return driver.findElement(By.id("home-header")).isDisplayed();  // header visible?
     }
 
-    public String getTitle() {
+    public String getTitle() {          // Page.getTitle() implementation
         return driver.getTitle();       // browser tab title
     }
 }
@@ -857,54 +865,54 @@ Allows a class to inherit properties and methods from another class, creating a 
 Ex. A `BasePage` class contains common functionality (waiting for a page to load, taking screenshots, scrolling to elements). `ProductPage extends BasePage` to inherit all those methods without rewriting them, `super(driver)` calling the parent constructor to handle initialization.
 
 ```java
-public class BasePage {
-    protected WebDriver driver;                 // shared by child pages
+public class BasePage {                         // parent class: shared tools for all pages
+    protected WebDriver driver;                 // browser controller, reusable by child classes
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
+    public BasePage(WebDriver driver) {         // constructor: runs when a BasePage is created
+        this.driver = driver;                   // store the browser driver for later use
     }
 
-    public void waitForPageToLoad() {           // wait until document ready
-        new WebDriverWait(driver, 10).until(
+    public void waitForPageToLoad() {           // wait until the page finished loading
+        new WebDriverWait(driver, 10).until(    // wait up to 10 seconds...
             webDriver -> ((JavascriptExecutor) webDriver)
-                .executeScript("return document.readyState").equals("complete"));
+                .executeScript("return document.readyState").equals("complete"));  // ...until browser says "complete"
     }
 
-    public void takeScreenshot(String filename) {  // capture screen to file
-        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+    public void takeScreenshot(String filename) {  // save a screenshot of the current screen
+        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);  // capture image
         try {
-            FileUtils.copyFile(screenshot, new File("./screenshots/" + filename + ".png"));
-        } catch (IOException e) {
-            e.printStackTrace();
+            FileUtils.copyFile(screenshot, new File("./screenshots/" + filename + ".png"));  // write file to disk
+        } catch (IOException e) {               // if saving fails...
+            e.printStackTrace();                // ...print the error
         }
     }
 
-    public void scrollToElement(WebElement element) {  // scroll element into view
+    public void scrollToElement(WebElement element) {  // scroll the page until the element is visible
         ((JavascriptExecutor) driver).executeScript(
-            "arguments[0].scrollIntoView(true);", element);
+            "arguments[0].scrollIntoView(true);", element);  // ask the browser to scroll to that element
     }
 }
 
-public class ProductPage extends BasePage {     // inherits BasePage methods
-    private WebElement addToCartButton;
-    private WebElement quantityField;
+public class ProductPage extends BasePage {     // child class: product page + all BasePage tools
+    private WebElement addToCartButton;         // "Add to cart" button on the page
+    private WebElement quantityField;           // quantity input field
 
-    public ProductPage(WebDriver driver) {
-        super(driver);                          // init parent with driver
-        addToCartButton = driver.findElement(By.id("add-to-cart"));
-        quantityField = driver.findElement(By.id("quantity"));
+    public ProductPage(WebDriver driver) {      // constructor: runs when ProductPage is created
+        super(driver);                          // step 1: initialize parent (sets driver)
+        addToCartButton = driver.findElement(By.id("add-to-cart"));  // step 2: find cart button
+        quantityField = driver.findElement(By.id("quantity"));       // step 3: find quantity field
     }
 
-    // Inherits waitForPageToLoad, takeScreenshot, scrollToElement from BasePage
+    // Inherits waitForPageToLoad, takeScreenshot, scrollToElement from BasePage (no rewrite needed)
 
-    public void addProductToCart() {
-        scrollToElement(addToCartButton); // Using inherited method
-        addToCartButton.click();                // then click add to cart
+    public void addProductToCart() {            // business action: add product to cart
+        scrollToElement(addToCartButton);       // step 1: scroll to button (inherited method)
+        addToCartButton.click();                // step 2: click the button
     }
 
-    public void setQuantity(int quantity) {
-        quantityField.clear();                  // clear old value
-        quantityField.sendKeys(String.valueOf(quantity));  // type new quantity
+    public void setQuantity(int quantity) {     // business action: set product quantity
+        quantityField.clear();                  // step 1: erase old value
+        quantityField.sendKeys(String.valueOf(quantity));  // step 2: type the new number
     }
 }
 ```
@@ -918,48 +926,48 @@ Allows objects of different classes to be treated as objects of a common base cl
 Ex. Different types of alerts or notifications need to be handled in different ways:
 
 ```java
-public interface Notification {                 // common contract for all notifications
-    void acknowledge();
-    String getMessage();
+public interface Notification {                 // contract: any notification must support these 2 actions
+    void acknowledge();                         // dismiss / close the notification
+    String getMessage();                        // return the text shown to the user
 }
 
-public class InfoNotification implements Notification {
-    private String message;
+public class InfoNotification implements Notification {  // info popup (implements the contract)
+    private String message;                     // text of the info message
 
-    public InfoNotification(String message) {
-        this.message = message;
+    public InfoNotification(String message) {   // create an info notification with this text
+        this.message = message;                 // store the message for later
     }
 
-    @Override
+    @Override                                   // provides InfoNotification's version of acknowledge()
     public void acknowledge() {
-        WebElement okButton = driver.findElement(By.id("info-ok-button"));
-        okButton.click();                       // info: click OK
+        WebElement okButton = driver.findElement(By.id("info-ok-button"));  // find the OK button
+        okButton.click();                       // click OK to close the info popup
     }
 
-    @Override
+    @Override                                   // provides InfoNotification's version of getMessage()
     public String getMessage() {
-        return this.message;                    // return plain message
+        return this.message;                    // return the plain info text
     }
 }
 
-public class ErrorNotification implements Notification {
-    private String message;
-    private String errorCode;
+public class ErrorNotification implements Notification {  // error popup (same contract, different behavior)
+    private String message;                     // text of the error
+    private String errorCode;                   // technical error code (e.g. ERR-404)
 
-    public ErrorNotification(String message, String errorCode) {
-        this.message = message;
-        this.errorCode = errorCode;
+    public ErrorNotification(String message, String errorCode) {  // create error with text + code
+        this.message = message;                 // store error text
+        this.errorCode = errorCode;             // store error code
     }
 
-    @Override
+    @Override                                   // provides ErrorNotification's version of acknowledge()
     public void acknowledge() {
-        WebElement closeButton = driver.findElement(By.id("error-close-button"));
-        closeButton.click();                    // error: click Close (different UI)
+        WebElement closeButton = driver.findElement(By.id("error-close-button"));  // find Close (different UI)
+        closeButton.click();                    // click Close to dismiss the error
     }
 
-    @Override
+    @Override                                   // provides ErrorNotification's version of getMessage()
     public String getMessage() {
-        return this.message + " (Error code: " + errorCode + ")";  // message + code
+        return this.message + " (Error code: " + errorCode + ")";  // return text + code combined
     }
 }
 ```
@@ -984,39 +992,39 @@ SOLID principles are fundamental object-oriented design principles introduced by
 A class should have only one reason to change, only one job or responsibility, like not wanting the same person to be both chef and plumber: different skills, different problems. In test automation, each class should focus on testing one specific aspect of the application.
 
 ```java
-// Violates SRP - too many responsibilities
-public class TestUtils {
-    public void connectToDatabase() { /* ... */ }           // DB
-    public ResultSet executeQuery(String query) { /* ... */ } // DB
-    public void saveScreenshot(String filename) { /* ... */ } // files
-    public String readTestData(String filepath) { /* ... */ } // files
-    public void launchBrowser(String browser) { /* ... */ }   // browser
-    public void clickElement(String locator) { /* ... */ }    // browser
-    public void startTestReport() { /* ... */ }               // reporting
-    public void logTestResult(String testName, boolean result) { /* ... */ } // reporting
+// Violates SRP - too many responsibilities in ONE class (DB + files + browser + reporting)
+public class TestUtils {                        // "god class": does everything → hard to maintain
+    public void connectToDatabase() { /* ... */ }             // responsibility 1: open DB connection
+    public ResultSet executeQuery(String query) { /* ... */ } // responsibility 1: run SQL query
+    public void saveScreenshot(String filename) { /* ... */ } // responsibility 2: save screenshot file
+    public String readTestData(String filepath) { /* ... */ } // responsibility 2: read data file
+    public void launchBrowser(String browser) { /* ... */ }   // responsibility 3: start browser
+    public void clickElement(String locator) { /* ... */ }    // responsibility 3: click UI element
+    public void startTestReport() { /* ... */ }               // responsibility 4: start report
+    public void logTestResult(String testName, boolean result) { /* ... */ } // responsibility 4: log pass/fail
 }
 ```
 
 ```java
-// Following SRP - each class has a single responsibility
-public class DatabaseUtils {                    // only DB
-    public void connect() { /* ... */ }
-    public ResultSet executeQuery(String query) { /* ... */ }
+// Following SRP - split into 4 classes, each with ONE job
+public class DatabaseUtils {                    // ONLY database work
+    public void connect() { /* ... */ }         // open DB connection
+    public ResultSet executeQuery(String query) { /* ... */ }  // run SQL query
 }
 
-public class FileUtils {                        // only files
-    public void saveScreenshot(String filename) { /* ... */ }
-    public String readTestData(String filepath) { /* ... */ }
+public class FileUtils {                        // ONLY file work
+    public void saveScreenshot(String filename) { /* ... */ }  // save screenshot
+    public String readTestData(String filepath) { /* ... */ }  // read test data file
 }
 
-public class BrowserUtils {                     // only browser
-    public void launch(String browser) { /* ... */ }
-    public void clickElement(String locator) { /* ... */ }
+public class BrowserUtils {                     // ONLY browser / UI work
+    public void launch(String browser) { /* ... */ }           // start Chrome/Firefox/...
+    public void clickElement(String locator) { /* ... */ }     // click an element
 }
 
-public class ReportUtils {                      // only reporting
-    public void startReport() { /* ... */ }
-    public void logResult(String testName, boolean result) { /* ... */ }
+public class ReportUtils {                      // ONLY reporting work
+    public void startReport() { /* ... */ }                    // start a test report
+    public void logResult(String testName, boolean result) { /* ... */ }  // log pass/fail
 }
 ```
 
@@ -1027,44 +1035,44 @@ Ex. Project with a 3000-line `TestHelper` class handling database connections, U
 Software should be open for extension but closed for modification: new functionality should be addable without changing existing code. In test automation, this means building frameworks that can be extended without modifying their core.
 
 ```java
-// Without OCP - adding a new type means modifying this class
+// Without OCP - adding a new type means modifying THIS class (risky)
 public class Validator {
-    public boolean validate(String input, String type) {
-        if (type.equals("email")) {             // email rule inside
-            return input.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
-        } else if (type.equals("phone")) {      // phone rule inside
-            return input.matches("\\d{10}");
+    public boolean validate(String input, String type) {  // input = value to check, type = "email"/"phone"/...
+        if (type.equals("email")) {             // case 1: validate as email
+            return input.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");  // True if email format OK
+        } else if (type.equals("phone")) {      // case 2: validate as phone
+            return input.matches("\\d{10}");    // True if exactly 10 digits
         }
-        return false;                           // unknown type → false
-    }
+        return false;                           // unknown type → invalid
+    }                                           // problem: new type (e.g. credit card) = edit this method
 }
 ```
 
 ```java
-// Following OCP - new validators are added without touching existing code
-public abstract class Validator {
-    public abstract boolean validate(String input);  // extension point
+// Following OCP - new validators are added as NEW classes (existing code stays untouched)
+public abstract class Validator {               // shared "template": every validator must implement validate()
+    public abstract boolean validate(String input);  // extension point: each child defines its own rule
 }
 
-public class EmailValidator extends Validator {
-    @Override
+public class EmailValidator extends Validator { // email-only validator
+    @Override                                   // provide this class's version of validate()
     public boolean validate(String input) {
-        return input.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");  // email rule
+        return input.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");  // True if email format OK
     }
 }
 
-public class PhoneValidator extends Validator {
+public class PhoneValidator extends Validator { // phone-only validator
     @Override
     public boolean validate(String input) {
-        return input.matches("\\d{10}");        // phone rule
+        return input.matches("\\d{10}");        // True if exactly 10 digits
     }
 }
 
-// Adding credit card validation just creates a new class:
-public class CreditCardValidator extends Validator {
+// Adding credit card validation just creates a new class (no change to Email/Phone validators):
+public class CreditCardValidator extends Validator {  // credit-card-only validator
     @Override
     public boolean validate(String input) {
-        return input.matches("^4[0-9]{12}(?:[0-9]{3})?$");  // new type = new class only
+        return input.matches("^4[0-9]{12}(?:[0-9]{3})?$");  // True if Visa-like number format
     }
 }
 ```
@@ -1076,69 +1084,69 @@ Ex. Reporting system initially supporting only HTML reports. Adding PDF support 
 Subclass objects should be replaceable with superclass objects without breaking the program: if class B is a subclass of class A, B should be usable anywhere A is used, like a recipe calling for any citrus fruit, orange or lemon, without needing to change the recipe.
 
 ```java
-// Violates LSP
+// Violates LSP - Square looks like a Rectangle but breaks Rectangle expectations
 class Rectangle {
-    protected int width;
-    protected int height;
+    protected int width;                        // rectangle width
+    protected int height;                       // rectangle height
 
-    public void setWidth(int width) { this.width = width; }
-    public void setHeight(int height) { this.height = height; }
-    public int getArea() { return width * height; }     // area = w × h
+    public void setWidth(int width) { this.width = width; }     // set width only
+    public void setHeight(int height) { this.height = height; } // set height only
+    public int getArea() { return width * height; }             // area = width × height
 }
 
-class Square extends Rectangle {
-    @Override
+class Square extends Rectangle {                // Square inherits from Rectangle (problematic)
+    @Override                                   // redefine setWidth
     public void setWidth(int width) {
-        this.width = width;
-        this.height = width; // Also sets height to keep square properties
+        this.width = width;                     // set width
+        this.height = width;                    // ALSO force height = width (square rule)
     }
-    @Override
+    @Override                                   // redefine setHeight
     public void setHeight(int height) {
-        this.height = height;
-        this.width = height; // Also sets width to keep square properties
+        this.height = height;                   // set height
+        this.width = height;                    // ALSO force width = height (square rule)
     }
 }
 
-void testRectangle(Rectangle r) {
-    r.setWidth(5);
-    r.setHeight(4);
-    assert r.getArea() == 20; // Fails if r is a Square!  (would be 16)
+void testRectangle(Rectangle r) {               // expects a real rectangle behavior
+    r.setWidth(5);                              // step 1: width = 5
+    r.setHeight(4);                             // step 2: height = 4
+    assert r.getArea() == 20;                   // expect 5×4=20 — FAILS if r is a Square (becomes 4×4=16)
 }
 ```
 
 ```java
-// Follows LSP - implementations can be substituted for each other
-interface Browser {
-    void navigate(String url);
-    WebElement findElement(String locator);
+// Follows LSP - Chrome and Firefox can replace each other without breaking the test
+interface Browser {                             // contract: any browser must navigate + find elements
+    void navigate(String url);                  // open a URL
+    WebElement findElement(String locator);     // find an element on the page
 }
 
-class ChromeBrowser implements Browser {
-    private WebDriver driver = new ChromeDriver();
+class ChromeBrowser implements Browser {        // Chrome version of Browser
+    private WebDriver driver = new ChromeDriver();  // real Chrome browser controller
 
     @Override
-    public void navigate(String url) { driver.get(url); }  // Chrome navigation
+    public void navigate(String url) { driver.get(url); }  // open URL in Chrome
     @Override
-    public WebElement findElement(String locator) { return driver.findElement(By.cssSelector(locator)); }
+    public WebElement findElement(String locator) { return driver.findElement(By.cssSelector(locator)); }  // find element in Chrome
 }
 
-class FirefoxBrowser implements Browser {
-    private WebDriver driver = new FirefoxDriver();
-    // Same behavior as ChromeBrowser              // interchangeable with Chrome
+class FirefoxBrowser implements Browser {       // Firefox version of Browser (same contract)
+    private WebDriver driver = new FirefoxDriver();  // real Firefox browser controller
+    // Same navigate() / findElement() behavior as Chrome → interchangeable
 }
 
 class LoginTest {
-    private Browser browser;                        // depend on interface, not Chrome/Firefox
+    private Browser browser;                    // test depends on Browser contract, NOT on Chrome/Firefox
 
-    @BeforeEach
+    @BeforeEach                                 // runs before each test
     void setUp() {
-        // ChromeBrowser could be substituted with FirefoxBrowser without changing the test below
-        browser = new ChromeBrowser();
+        // Could swap to: browser = new FirefoxBrowser(); — test code below stays identical
+        browser = new ChromeBrowser();          // choose Chrome for this run
     }
 
     @Test
     void testValidLogin() {
-        browser.navigate("https://example.com/login");  // works with any Browser impl
+        browser.navigate("https://example.com/login");  // works with any Browser implementation
     }
 }
 ```
@@ -1150,48 +1158,49 @@ class LoginTest {
 Clients should not be forced to implement methods they don't use; smaller, specific interfaces are better than one bloated one. In test automation, this means splitting interfaces by functionality (ex. `LoginAction`, `SearchAction`, `CartAction`) instead of one massive `AppAction` interface.
 
 ```java
-// Violates ISP - one big interface
+// Violates ISP - one fat interface forces every page to implement everything
 interface Page {
-    void navigate();
-    void search(String keyword);
-    void addToCart(String productId);
-    void checkout();
-    // And many more methods ...
+    void navigate();                            // go to the page
+    void search(String keyword);                // search products
+    void addToCart(String productId);           // add product to cart
+    void checkout();                            // pay / checkout
+    // And many more methods ...                // even more forced methods
 }
 
-// Every page must implement ALL methods, even unused ones
+// About Us page has NO search/cart/checkout — but must still implement them
 class AboutUsPage implements Page {
-    public void navigate() { /* implementation */ }
-    public void search(String keyword) { throw new UnsupportedOperationException(); }      // forced dummy
-    public void addToCart(String productId) { throw new UnsupportedOperationException(); } // forced dummy
-    public void checkout() { throw new UnsupportedOperationException(); }                  // forced dummy
+    public void navigate() { /* implementation */ }  // OK: About Us can navigate
+    public void search(String keyword) { throw new UnsupportedOperationException(); }      // dummy: not supported
+    public void addToCart(String productId) { throw new UnsupportedOperationException(); } // dummy: not supported
+    public void checkout() { throw new UnsupportedOperationException(); }                  // dummy: not supported
 }
 ```
 
 ```java
-// Following ISP with focused interfaces
+// Following ISP - small interfaces; pages pick only what they need
 interface Navigable {
-    void navigate();                            // only navigation
+    void navigate();                            // ONLY: go to a page
 }
 
 interface Searchable {
-    void search(String keyword);                // only search
+    void search(String keyword);                // ONLY: search
 }
 
 interface Purchasable {
-    void addToCart(String productId);           // only purchase flow
-    void checkout();
+    void addToCart(String productId);           // ONLY: add to cart
+    void checkout();                            // ONLY: checkout
 }
 
-// Pages implement only the interfaces they need
+// About Us: navigation only — no fake search/cart methods
 class AboutUsPage implements Navigable {
-    public void navigate() { /* implementation */ }  // only what it needs
+    public void navigate() { /* implementation */ }  // only what this page really does
 }
 
+// Product page: can navigate AND buy
 class ProductPage implements Navigable, Purchasable {
-    public void navigate() { /* implementation */ }
-    public void addToCart(String productId) { /* implementation */ }
-    public void checkout() { /* implementation */ }
+    public void navigate() { /* implementation */ }              // open product page
+    public void addToCart(String productId) { /* implementation */ }  // add item
+    public void checkout() { /* implementation */ }              // go to checkout
 }
 ```
 
@@ -1202,53 +1211,55 @@ Ex. A `Reporter` interface with methods for starting reports, adding results, ca
 High-level modules should not depend on low-level modules; both should depend on abstractions, and abstractions should not depend on details, details should depend on abstractions. In practice: depend on interfaces or abstract classes, not concrete implementations, like plugging a device into an electrical outlet without needing to know how electricity is generated.
 
 ```java
-// Violates DIP - direct dependency on a concrete class
+// Violates DIP — test hardcodes Chrome,
 class LoginTest {
-    private ChromeDriver driver = new ChromeDriver(); // Hardcoded dependency
+    private ChromeDriver driver = new ChromeDriver(); // always Chrome, unable to use other browser.
 
     public void testLogin() {
-        driver.get("https://example.com/login");  // locked to Chrome
+        driver.get("https://example.com/login");      // locked to Chrome
     }
 }
 ```
 
 ```java
-// Follows DIP - depends on an abstraction
-interface WebDriver {
-    void get(String url);
-    WebElement findElement(By by);
+// Follows DIP — test depends on a contract; browser is plugged in from outside
+interface WebDriver {                                 // contract: any browser must be able to...
+    void get(String url);                             // ...open a URL
+    WebElement findElement(By by);                    // ...find an element
 }
 
-class ChromeDriver implements WebDriver { /* Chrome-specific implementation */ }
-class FirefoxDriver implements WebDriver { /* Firefox-specific implementation */ }
+class ChromeDriver implements WebDriver { /* Chrome implementation */ }
+class FirefoxDriver implements WebDriver { /* Firefox implementation */ }
 
 class LoginTest {
-    private WebDriver driver; // Depends on the abstraction
+    private WebDriver driver;                         // holds any WebDriver (not Chrome-only)
 
-    // Dependency injected through the constructor
-    public LoginTest(WebDriver driver) {
-        this.driver = driver;                   // inject any WebDriver impl
+    public LoginTest(WebDriver driver) {              // receive browser from outside
+        this.driver = driver;                         // store it for the test
     }
 
     public void testLogin() {
-        driver.get("https://example.com/login");  // works with Chrome or Firefox
+        driver.get("https://example.com/login");      // same test code, any plugged-in browser
     }
 }
 
-// Usage:
-LoginTest chromeTest = new LoginTest(new ChromeDriver());   // inject Chrome
-LoginTest firefoxTest = new LoginTest(new FirefoxDriver()); // inject Firefox
+// Same idea, expanded:
+// 1) new ChromeDriver()     → creates a Chrome instance, returns it
+// 2) new LoginTest(...)     → creates a LoginTest object, receives that Chrome instance (injection)
+// 3) chromeTest = ...       → store that object in variable chromeTest
+LoginTest chromeTest = new LoginTest(new ChromeDriver());
+LoginTest firefoxTest = new LoginTest(new FirefoxDriver()); // same pattern with Firefox
 ```
 
 Ex. Tests originally depending directly on Selenium WebDriver. Switching some tests to Appium for mobile was a major effort due to API differences. Introducing a `Driver` interface implemented by both Selenium and Appium wrappers made switching drivers trivial, running the same tests on web and mobile by injecting a different driver implementation.
 
 ### Conclusion
 
-1. SRP: a class should have only one reason to change.
-2. OCP: open for extension, closed for modification, new functionality is added rather than existing code changed.
-3. LSP: subclasses must be substitutable for their superclass without breaking behavior.
-4. ISP: prefer small, focused interfaces over large, general-purpose ones.
-5. DIP: depend on abstractions (interfaces), not concrete implementations.
+1. **SRP** (Single Responsibility Principle): a class should have only one reason to change.
+2. **OCP** (Open-Closed Principle): open for extension, closed for modification, new functionality is added rather than existing code changed.
+3. **LSP** (Liskov Substitution Principle): subclasses must be substitutable for their superclass without breaking behavior.
+4. **ISP** (Interface Segregation Principle): prefer small, focused interfaces over large, general-purpose ones.
+5. **DIP** (Dependency Inversion Principle): depend on abstractions (interfaces), not concrete implementations.
 
 ## TAE-3.1.5.2 (K3) : Design Patterns
 
@@ -1259,52 +1270,52 @@ Design patterns are proven solutions to common problems in software design, like
 Provides a simplified interface to a complex system or set of classes, like a hotel's front desk coordinating housekeeping, maintenance and the restaurant so guests only ever talk to one point of contact. In test automation, it hides the complexity of test libraries and exposes only what testers need to create test cases.
 
 ```java
-// Complex subsystem classes
+// Complex subsystem classes (low-level tools — hard for beginners to use directly)
 class WebElementFinder {
-    public WebElement findById(String id) { /* implementation */ }  // locate element
+    public WebElement findById(String id) { /* implementation */ }  // find element by its id
 }
 
 class WebElementInteractor {
-    public void click(WebElement element) { /* implementation */ }  // click
-    public void type(WebElement element, String text) { /* implementation */ }  // type text
+    public void click(WebElement element) { /* implementation */ }           // click an element
+    public void type(WebElement element, String text) { /* implementation */ }  // type text into a field
 }
 
 class WaitManager {
-    public void waitForClickable(WebElement element, int seconds) { /* implementation */ }
-    public void waitForVisible(WebElement element, int seconds) { /* implementation */ }
-    public void waitForPageLoad(int seconds) { /* implementation */ }
+    public void waitForClickable(WebElement element, int seconds) { /* implementation */ }  // wait until clickable
+    public void waitForVisible(WebElement element, int seconds) { /* implementation */ }    // wait until visible
+    public void waitForPageLoad(int seconds) { /* implementation */ }                       // wait until page loaded
 }
 
-// Facade that simplifies the interface
+// Facade = simple front desk that hides the 3 complex classes above
 class UserActions {
-    private WebElementFinder finder = new WebElementFinder();
-    private WebElementInteractor interactor = new WebElementInteractor();
-    private WaitManager waiter = new WaitManager();
+    private WebElementFinder finder = new WebElementFinder();         // tool 1: find elements
+    private WebElementInteractor interactor = new WebElementInteractor();  // tool 2: click/type
+    private WaitManager waiter = new WaitManager();                   // tool 3: waits
 
-    public void clickButton(String id) {
-        WebElement button = finder.findById(id);       // find
-        waiter.waitForClickable(button, 10);           // wait
-        interactor.click(button);                      // click
+    public void clickButton(String id) {            // simple action: click a button by id
+        WebElement button = finder.findById(id);    // step 1: find the button
+        waiter.waitForClickable(button, 10);        // step 2: wait until it can be clicked
+        interactor.click(button);                   // step 3: click it
     }
 
-    public void enterText(String fieldId, String text) {
-        WebElement field = finder.findById(fieldId);   // find
-        waiter.waitForVisible(field, 10);              // wait
-        interactor.type(field, text);                  // type
+    public void enterText(String fieldId, String text) {  // simple action: type into a field
+        WebElement field = finder.findById(fieldId);      // step 1: find the field
+        waiter.waitForVisible(field, 10);                 // step 2: wait until visible
+        interactor.type(field, text);                     // step 3: type the text
     }
 
-    public void login(String username, String password) {
-        enterText("username", username);               // high-level login steps
-        enterText("password", password);
-        clickButton("loginButton");
-        waiter.waitForPageLoad(10);
+    public void login(String username, String password) { // high-level action: full login
+        enterText("username", username);            // step 1: type username
+        enterText("password", password);            // step 2: type password
+        clickButton("loginButton");                 // step 3: click login
+        waiter.waitForPageLoad(10);                 // step 4: wait for page to load
     }
 }
 
-// Client code - much simpler!
+// Client code - much simpler! Test only talks to the facade
 public void testLogin() {
-    UserActions actions = new UserActions();
-    actions.login("testuser", "password123");          // one call hides complexity
+    UserActions actions = new UserActions();        // create the simple front desk
+    actions.login("testuser", "password123");       // one call — find/wait/click stay hidden
 }
 ```
 
@@ -1315,41 +1326,41 @@ Instead of dealing with finding elements, waiting and interacting separately, th
 Ensures a class has only one instance and provides a global access point to it, like having only one principal at a school: one person in charge that everyone knows how to find. In test automation, it's often used for driver management, configuration and logging.
 
 ```java
-public class DriverManager {
-    private static DriverManager instance;      // unique instance
-    private WebDriver driver;
+public class DriverManager {                    // manages ONE shared browser for the whole suite
+    private static DriverManager instance;      // the single DriverManager object (or null at start)
+    private WebDriver driver;                   // the shared browser
 
-    private DriverManager() {
+    private DriverManager() {                   // private constructor: nobody else can do "new DriverManager()"
         // No instantiation outside this class
     }
 
-    public static synchronized DriverManager getInstance() {
-        if (instance == null) {
-            instance = new DriverManager();     // create once
+    public static synchronized DriverManager getInstance() {  // global access point
+        if (instance == null) {                 // first call?
+            instance = new DriverManager();     // create the only instance
         }
-        return instance;                        // always return the same instance
+        return instance;                        // always return that same instance
     }
 
-    public WebDriver getDriver() {
-        if (driver == null) {
-            driver = new ChromeDriver();        // create browser once
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    public WebDriver getDriver() {              // get the shared browser
+        if (driver == null) {                   // browser not created yet?
+            driver = new ChromeDriver();        // create Chrome once
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);  // default wait 10s
         }
-        return driver;
+        return driver;                          // return the same browser to all callers
     }
 
-    public void quitDriver() {
+    public void quitDriver() {                  // close the shared browser
         if (driver != null) {
-            driver.quit();                      // close browser
-            driver = null;                      // allow recreate later
+            driver.quit();                      // shut down the browser window
+            driver = null;                      // reset so a later getDriver() can recreate it
         }
     }
 }
 
 // Usage in tests
 public void testSearch() {
-    WebDriver driver = DriverManager.getInstance().getDriver();  // shared driver
-    driver.get("https://example.com");
+    WebDriver driver = DriverManager.getInstance().getDriver();  // get the shared browser
+    driver.get("https://example.com");          // open the site
 }
 ```
 
@@ -1362,40 +1373,40 @@ Ex. Project where each test used to create its own browser instance; running tes
 Probably the most widely used design pattern in UI test automation. It creates a separate class for each page of the application, containing the page elements and the methods to interact with them, separating test logic from page-specific details.
 
 ```typescript
-// Base page class with common functionality
+// Base page class with common functionality shared by all pages
 export abstract class BasePage {
-    protected page: Page;
+    protected page: Page;                       // Playwright page (= browser tab)
 
-    constructor(page: Page) {
-        this.page = page;                       // store Playwright page
+    constructor(page: Page) {                   // when creating a page object...
+        this.page = page;                       // ...store the browser tab to use
     }
 
     async navigateTo(url: string): Promise<void> {
-        await this.page.goto(url);              // open URL
+        await this.page.goto(url);              // open the given URL
     }
 }
 
-export class LoginPage extends BasePage {
-    readonly usernameInput = () => this.page.locator('#username');  // username field
-    readonly passwordInput = () => this.page.locator('#password');  // password field
-    readonly loginButton = () => this.page.locator('#loginBtn');    // login button
+export class LoginPage extends BasePage {       // page object for the login screen
+    readonly usernameInput = () => this.page.locator('#username');  // locator: username field
+    readonly passwordInput = () => this.page.locator('#password');  // locator: password field
+    readonly loginButton = () => this.page.locator('#loginBtn');    // locator: login button
 
     async loginWithCredentials(username: string, password: string): Promise<void> {
-        await this.usernameInput().fill(username);  // type username
-        await this.passwordInput().fill(password);  // type password
-        await this.loginButton().click();           // submit
+        await this.usernameInput().fill(username);  // step 1: type username
+        await this.passwordInput().fill(password);  // step 2: type password
+        await this.loginButton().click();           // step 3: click login
     }
 }
 ```
 
 ```typescript
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test';  // Playwright test framework
 
 test('should login successfully with valid credentials', async ({ page }) => {
-    const loginPage = new LoginPage(page);      // page object for login
-    await loginPage.navigateTo('https://example.com/login');
-    await loginPage.loginWithCredentials('testuser', 'password123');  // high-level action
-    // Assertions ...
+    const loginPage = new LoginPage(page);      // create page object for login screen
+    await loginPage.navigateTo('https://example.com/login');  // step 1: open login URL
+    await loginPage.loginWithCredentials('testuser', 'password123');  // step 2: login (details hidden in LoginPage)
+    // Assertions ...                           // step 3: verify expected result
 });
 ```
 
@@ -1406,26 +1417,26 @@ If the login page changes, only the `LoginPage` class needs updating, not every 
 An expansion of the Page Object Model, adding a layer of abstraction over page objects that stores the user flows interacting with multiple pages: page objects represent the "pages" of the application, flow models represent the "journeys" users take through those pages.
 
 ```java
-// Flow class for login-related flows
+// Flow class = user journey across several pages (not just one page)
 public class LoginFlow {
-    private LoginPage loginPage;
-    private DashboardPage dashboardPage;
+    private LoginPage loginPage;                // page object: login screen
+    private DashboardPage dashboardPage;        // page object: dashboard screen
 
     public LoginFlow(WebDriver driver) {
-        this.loginPage = new LoginPage(driver);         // compose page objects
-        this.dashboardPage = new DashboardPage(driver);
+        this.loginPage = new LoginPage(driver);         // create login page helper
+        this.dashboardPage = new DashboardPage(driver); // create dashboard page helper
     }
 
     public boolean loginWithValidCredentials(String username, String password) {
-        loginPage.navigateToLoginPage();                // open login
-        dashboardPage = loginPage.loginWithCredentials(username, password);  // login → dashboard
-        return dashboardPage.isWelcomeMessageDisplayed();  // business check
+        loginPage.navigateToLoginPage();                // step 1: open login page
+        dashboardPage = loginPage.loginWithCredentials(username, password);  // step 2: login → land on dashboard
+        return dashboardPage.isWelcomeMessageDisplayed();  // step 3: check welcome message is shown
     }
 
     // Combines logging in and navigating to reports into a single call
     public void loginAndNavigateToReports() {
-        loginWithValidCredentials("testuser", "password123");
-        dashboardPage.navigateToReports();              // multi-page journey
+        loginWithValidCredentials("testuser", "password123");  // step 1: login
+        dashboardPage.navigateToReports();              // step 2: go to reports (multi-page journey)
     }
 }
 ```
@@ -1433,16 +1444,17 @@ public class LoginFlow {
 The flow encapsulates navigation between pages, the test doesn't need to know that going to reports happens on the dashboard page after login. A more complex `ShoppingFlow` can manage a larger set of page objects (`HomePage`, `SearchResultsPage`, `ProductPage`, `CartPage`, `CheckoutPage`) and provide methods at different levels of granularity, from small flows like `searchForProduct()` to complete flows like `searchAndBuyProduct()`:
 
 ```java
-// Test using flow models
+// Test using flow models — test describes the business scenario, not page-by-page clicks
 @Test
 public void testCompletePurchase() {
-    WebDriver driver = DriverManager.getInstance().getDriver();
-    ShoppingFlow shoppingFlow = new ShoppingFlow(driver);  // multi-page flow
+    WebDriver driver = DriverManager.getInstance().getDriver();  // get shared browser
+    ShoppingFlow shoppingFlow = new ShoppingFlow(driver);        // create shopping journey helper
 
-    OrderConfirmation confirmation = shoppingFlow.searchAndBuyProduct("smartphone", 2);  // full journey
+    OrderConfirmation confirmation = shoppingFlow.searchAndBuyProduct("smartphone", 2);
+    // ↑ one call runs the full journey: search → product → cart → checkout → confirmation
 
-    assertTrue(confirmation.isOrderSuccessful());  // order OK?
-    assertEquals(2, confirmation.getQuantity());   // quantity OK?
+    assertTrue(confirmation.isOrderSuccessful());  // check: order succeeded?
+    assertEquals(2, confirmation.getQuantity());   // check: quantity is 2?
 }
 ```
 
