@@ -1,4 +1,4 @@
-# Notes
+# Synthesis
 
 ## Test Automation Architecture - Introduction
 
