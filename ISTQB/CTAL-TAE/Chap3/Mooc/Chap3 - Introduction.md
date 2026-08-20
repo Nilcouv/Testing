@@ -4,6 +4,34 @@
 
 ### Screen
 
+> **Recap — previous section**
+>
+> * Infrastructure configuration needs across environments (development, build, integration, production)
+> * Analyze the SUT (System Under Test) to choose the right automation solution
+> * Evaluate tools against specific project requirements
+
+---
+
+> **This section — architectural concepts**
+>
+> Backbone of any successful test automation implementation
+
+---
+
+> **What we will explore**
+>
+> * **gTAA (Generic Test Automation Architecture)** and its major capabilities — high-level view of how automation communicates with other systems
+> * Design a comprehensive **TAS (Test Automation Solution)** based on functional, non-functional and technical requirements
+> * **Layering of TAF (Test Automation Framework)** — test scripts, business logic, core libraries → maintainability and reusability
+> * Approaches to automate test cases: capture/playback, linear scripting, structured scripting, DDT (Data-Driven Testing), BDD (Behavior-Driven Development)
+> * Design principles and patterns — elevate automation code from functional to professional
+
+---
+
+> **Key takeaway**
+>
+> Architecture is the foundation: structure code and choose approaches so automation stays maintainable, reusable and professional
+
 ### Transcript
 
 "In a previous section, we explored how to prepare for test automation by understanding infrastructure
