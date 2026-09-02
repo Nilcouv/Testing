@@ -29,7 +29,7 @@
 
 ---
 
-> **Deployment Risks: Firewell Openings**
+> **Deployment Risks: Firewall Openings**
 >
 > - Often overlook, catching team by surprise
 > - Example : Tests tuning perfectly in development environment, but consistently failing in test environment due to corporate firewall. Easily solved by a firewall rule change.
@@ -75,7 +75,7 @@
 
 > **Technical Deployment Risks: Test Structuring**
 >
-> - Teh test harness and fixtures are crucial for test automation solutions
+> - The test harness and fixtures are crucial for test automation solutions
 > - Test fixtures control the test environment and test data
 > - They define preconditions and post-conditions for test execution.
 > - Fixtures group test cases into test suites for structured testing.

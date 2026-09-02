@@ -6,7 +6,7 @@
 
 > **What is Maintainability**
 >
-> Maintainability is how easy (or difficult) it is to leep your test automation working as your application changes over time.
+> Maintainability is how easy (or difficult) it is to keep your test automation working as your application changes over time.
 
 ---
 
