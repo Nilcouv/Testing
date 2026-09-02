@@ -34,11 +34,11 @@
 
 > **Tool selection Strategy**
 >
-> - **Wev Testing** - Selenium, Cypress, Playwright
+> - **Web Testing** - Selenium, Cypress, Playwright
 > - **API Testing** - Postman, RestAssured, Karate
 > - **Mobile Testing** - Appium, XCUITest, Expresso
 >
-> eg. Team choosed commercial tool with amazing record and playback features (look easy to use) > had to start over 6 months later (Tool couldn't handled complex wbe application with dynamic elements)
+> eg. Team choosed commercial tool with amazing record and playback features (look easy to use) > had to start over 6 months later (Tool couldn't handled complex web application with dynamic elements)
 
 ---
 
@@ -78,7 +78,7 @@
 > - **Linear scripting** - Simple scripts without much reusable code (quick to start, hard to maintain)
 > - **Structured scripting** - Creating reusable functions and libraries
 > - **Data-driven testing** - Separating test data from test logic
-> -**Keyword-driven testing** - Defining keyword that represent actions
+> - **Keyword-driven testing** - Defining keyword that represent actions
 > - **Behavior-driven development (BDD)** - Using natural language specifications (_allow collaboration with stakeholder, more setup_)
 
 ---
@@ -143,7 +143,7 @@
 > **Evaluating the Pilot**
 >
 > - Did the chosen tools and approaches work for your specific application?
-> - How difficult was it to crate and maintain the automated tests?
+> - How difficult was it to create and maintain the automated tests?
 > - Did the tests provide reliable results, or were there many flaky tests?
 > - How well did the solution integrate with your existing tools and processes?
 > - What was the learning curve like for your team ?
