@@ -74,9 +74,7 @@ La corrélation des résultats de l'Automatisation des tests avec les logs du SU
 - Au démarrage d'un système, les informations relatives à la configuration doivent être loggées dans un fichier, comprenant, par exemple, les différentes versions du logiciel/micrologiciel, la configuration du SUT et la configuration du système d'exploitation
 - Grâce à l'Automatisation des tests, les logs des tests peuvent être facilement consultables. Une défaillance identifiée dans le log de test par la TAS devrait être facilement identifiée dans le log de test du SUT, et vice versa, avec ou sans outils supplémentaires. La synchronisation de divers logs de test avec un horodatage facilite la corrélation de ce qui s'est passé lorsqu'une défaillance est rapportée
 
-#### Intégration avec d'autres outils tiers
-
-Par exemple, feuilles de calcul, XML, documents, bases de données et outils de reporting.
+#### Intégration avec d'autres outils tiers (Par exemple, feuilles de calcul, XML, documents, bases de données et outils de reporting.)
 
 Lorsque les informations issues de l'exécution des cas de test automatisés sont utilisées dans d'autres outils pour le suivi et le reporting (par exemple, la mise à jour des informations de traçabilité), il est possible de fournir les informations dans un format adapté aux outils tiers. Cela est souvent possible grâce aux fonctionnalités existantes des outils de test (par exemple, les formats d'exportation pour les rapports de test) ou en créant des rapports personnalisés qui sont produits dans un format compatible avec d'autres logiciels.
 
@@ -128,7 +126,7 @@ Le rapport de test doit être publié à l'intention de toutes les parties prena
 
 Une option consiste à identifier les parties problématiques du SUT, et à conserver un historique des rapports de test, de sorte que des statistiques sur les cas de test ou les suites de tests présentant des régressions fréquentes puissent être rassemblées pour l'analyse des tendances.
 
-Les parties prenantes auxquelles il faut rendre compte comprennent :
+**Les parties prenantes auxquelles il faut rendre compte comprennent :**
 
 - Les parties prenantes du management :
   - Rôles typiques : architecte de solutions ou d'entreprise, chef de projet/de livraison, gestionnaire de programme, Test Manager ou directeur de test
