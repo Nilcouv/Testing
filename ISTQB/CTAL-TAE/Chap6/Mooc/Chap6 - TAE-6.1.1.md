@@ -24,7 +24,7 @@
 > - Web servers.
 > - Database servers.
 >
-> **Example:** E-commerce project - transaction randomly failing. Discovered root cause was the timeout configurations, which were different between test and production environment, by examining database server logs.
+> **Example:** E-commerce checkout failed randomly. Database server logs showed different timeout settings between test and production; aligning them fixed the issue.
 
 ---
 
