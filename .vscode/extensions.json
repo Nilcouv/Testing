@@ -3,7 +3,17 @@
         "davidanson.vscode-markdownlint",
         "bierner.markdown-mermaid",
         "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
-        "jasew.anki",
-        "ms-vscode.live-server"
+        "ms-vscode.live-server",
+        "anthropic.claude-code",
+        "yzhang.markdown-all-in-one",
+        "jebbs.plantuml",
+        "ms-vscode.powershell",
+        "esbenp.prettier-vscode",
+        "mechatroner.rainbow-csv",
+        "tomoki1207.pdf",
+        "dotjoshjohnson.xml",
+        "redhat.vscode-yaml",
+        "github.vscode-github-actions",
+        "github.vscode-pull-request-github"
     ]
 }
