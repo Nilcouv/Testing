@@ -211,7 +211,9 @@ As test results must be consistent under the same conditions every time, unrelia
 
 ### Consider the intrusiveness of automated test tools
 
-For compatibility of interactions, the TAS and the SUT are often tightly coupled. That close integration often means both run in the same environment. But the TAS then puts load on the SUT (e.g. RAM, CPU), which can change SUT behavior and test results compared with a manual session, undermining test repeatability. That effect is called TAS intrusiveness.
+For compatibility of interactions, the TAS and the SUT are often tightly coupled. That close integration puts a constraint on the SUT (e.g. extra RAM or CPU load), as both are using the same resources. The constraint can cascade by changing SUT expected behavior for different result than the manual session. That effect is called TAS intrusiveness.
+
+Yet the goal of automation is repeatable processes in a controlled environment, so that SUT quality can be assessed with confidence. Monitoring and minimizing TAS intrusiveness is therefore critical: otherwise the automation itself undermines the overall quality objective.
 
 ```mermaid
 %%{init: {'flowchart': {'nodeSpacing': 80, 'rankSpacing': 10}}}%%
@@ -237,8 +239,6 @@ flowchart TB
     style D1 fill:none,stroke:none
     style D2 fill:none,stroke:none
 ```
-
-A high level of intrusion can introduce failures absente in production test, which undermine confidence in the TAS.
 
 ### Real-world example: finding the right balance
 
