@@ -1,4 +1,4 @@
-## Chapitre 2 : Se préparer à l'Automatisation des tests (180 minutes - K4)
+﻿## Chapitre 2 : Se préparer à l'Automatisation des tests (180 minutes - K4)
 
 ### Objectifs
 
@@ -13,9 +13,9 @@ En apprendre plus sur :
 
 | **Mot** | **Définition** |
 |---------------|-----------------|
-| **Tests d'API** | Tests réalisés en soumettant des commandes au logiciel testé via les interfaces de programmation de l'application directement. |
-| **Tests de l'interface graphique** | Tests réalisés en interagissant avec le logiciel testé via l'interface utilisateur graphique. |
-| **Testabilité** | Degré d'efficacité et d'efficience avec lequel les critères de test peuvent être établis pour un système et les tests peuvent être effectués. |
+| **Tests d'API** <br> (*API Testing*) | Tests réalisés en soumettant des commandes au logiciel testé via les interfaces de programmation de l'application directement. |
+| **Tests de l'interface graphique** <br> (*GUI Testing*) | Tests réalisés en interagissant avec le logiciel testé via l'interface utilisateur graphique. |
+| **Testabilité** <br> (*Testability*) | Degré d'efficacité et d'efficience avec lequel les critères de test peuvent être établis pour un composant ou un système, et avec lequel les tests peuvent être effectués pour déterminer si ces critères sont satisfaits. |
 
 ### 2.1 Comprendre la configuration d'une infrastructure permettant l'Automatisation des tests
 

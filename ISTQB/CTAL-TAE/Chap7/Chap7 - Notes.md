@@ -1,4 +1,4 @@
-## Chapitre 7 : Vérifier la solution d'Automatisation des tests (135 minutes - K3)
+﻿## Chapitre 7 : Vérifier la solution d'Automatisation des tests (135 minutes - K3)
 
 ### Objectifs
 
@@ -10,7 +10,10 @@ En apprendre plus sur :
 - Les techniques d'analyse de la qualité du code d'Automatisation des tests
 
 ### **Mots-clés**
-- analyse statique
+
+| **Mot** | **Définition** |
+|---------|----------------|
+| **analyse statique** <br> (*Static Analysis*) | Analyse d'artefacts de développement logiciel (ex. exigences ou code) effectuée sans exécution de ces artefacts. L'analyse statique peut identifier des défauts potentiels (ex. non-respect des standards de codage). |
 
 ### **Objectifs d'apprentissage**
 

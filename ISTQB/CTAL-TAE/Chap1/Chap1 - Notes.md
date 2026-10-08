@@ -1,4 +1,4 @@
-## Chapitre 1 : Introduction et objectifs de l'Automatisation des tests (45 minutes - K2)
+﻿## Chapitre 1 : Introduction et objectifs de l'Automatisation des tests (45 minutes - K2)
 
 ### Objectifs
 
@@ -13,9 +13,9 @@ Dans ce chapitre vous en apprendrez plus sur :
 
 | **Mot** | **Définition** |
 |---------------|-----------------|
-| **Système sous test** <br> (*SUT - System Under Test*) | Système qui est testé pour un fonctionnement correct. Selon ISTQB, il s'agit de l'objet de test. |
-| **Automatisation des tests** <br> (*TA - Test Automation*) | Utilisation de logiciels pour effectuer ou soutenir les activités de test, par exemple la gestion des tests, la conception des tests, l'exécution des tests et la vérification des résultats. |
-| **Ingénieur en Automatisation des tests** <br> (*TAE - Test Automation Engineer*) | Professionnel spécialisé dans la conception, le développement et la maintenance de solutions d'automatisation des tests. |
+| **système sous test** <br> (*SUT - System Under Test*) | Type d'objet de test qui est un système. |
+| **Automatisation des tests** <br> (*Test Automation*) | Utilisation de logiciels pour exécuter ou soutenir des activités de test (ex. gestion des tests, conception des tests, exécution des tests et vérification des résultats). |
+| **ingénieur en Automatisation des tests** <br> (*TAE - Test Automation Engineer*) | Personne responsable de la conception, de l'implémentation et de la maintenance d'une architecture d'Automatisation des tests, ainsi que de l'évolution technique de la solution d'Automatisation des tests résultante. |
 
 ### 1.1 Objectif de l'Automatisation des tests
 

@@ -1,4 +1,4 @@
-# Synthesis
+﻿# Synthesis
 
 ## Continuous Improvement Opportunities for Test Automation - Introduction
 
@@ -16,6 +16,13 @@ This chapter covers continuous improvement of the test automation solution, thro
 Getting the TAS working is only the beginning; this chapter is about making it better over time.
 
 Sequence: discover improvement opportunities from data (8.1.1), analyse and recommend TAS improvements (8.1.2), restructure testware when the SUT changes (8.1.3), then broaden tool use beyond traditional testing (8.1.4).
+
+### Keywords
+
+| **Term** | **Definition** |
+|----------|-------------------------------------------------------------------------------------------|
+| **Schema Validation** | Checking that a data structure (API response, database record, etc.) conforms to a predefined schema (mandatory elements, types, value ranges). |
+| **Test Histogram** | A visual report of test data as a histogram, used to identify trends and improvement areas (e.g. fragile test cases). |
 
 ## TAE-8.1.1 (K3) : Discover Opportunities for Improving Test Cases Through Data Collection and Analysis
 

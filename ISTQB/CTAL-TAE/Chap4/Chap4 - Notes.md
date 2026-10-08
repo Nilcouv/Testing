@@ -1,4 +1,4 @@
-## Chapitre 4 : Implémentation de l'Automatisation des tests (150 minutes - K4)
+﻿## Chapitre 4 : Implémentation de l'Automatisation des tests (150 minutes - K4)
 
 ### Objectifs
 
@@ -12,8 +12,8 @@ En apprendre plus sur :
 
 | **Mot** | **Définition** |
 |---------|----------------|
-| **risque** | A factor that could result in future negative consequences. |
-| **contexte de test** | Environnement dans lequel un test est exécuté, incluant les préconditions, les données de test et les configurations nécessaires. |
+| **risque** <br> (*Risk*) | Facteur qui pourrait entraîner des conséquences négatives futures. |
+| **contexte de test** <br> (*Test Context*) | Ensemble des conditions et circonstances dans lesquelles les tests sont planifiés et exécutés (préconditions, données, configuration), permettant des tests automatisés répétables et atomiques. |
 
 ### 4.1 Développement de l'Automatisation des tests
 

@@ -1,4 +1,4 @@
-# Synthesis
+﻿# Synthesis
 
 ## Test Automation Architecture - Introduction
 
@@ -14,6 +14,26 @@ This chapter explores architecture concepts of Test Automation Implementation, s
 *From capture/replay, Linear Scripting to Structured Scripting, DDT (Data-Driven Testing) and BDD (Behavior-Driven Development).*
 - Design principles and patterns
 *to professionalize code writing*
+
+### Keywords
+
+| **Term** | **Definition** |
+|----------|------------------------------------------------------------------------|
+| **Behavior-Driven Development** *(BDD)* | A collaborative approach to development in which the team focuses on delivering expected behaviour of a component or system for the customer. |
+| **Capture/Playback** | A test automation approach where inputs to the test object are recorded during manual testing in order to generate automated test scripts that can be executed later. |
+| **Generic Test Automation Architecture** *(gTAA)* | Representation of the layers, components, and interfaces of a test automation architecture, allowing for a structured and modular approach to implement test automation. |
+| **Test Automation Architecture** *(TAA)* | An instantiation of the generic test automation architecture to define the architecture of a test automation solution (layers, components, services and interfaces). |
+| **Keyword-Driven Testing** *(KDT)* | A scripting technique that uses data files to contain not only test data and expected results, but also keywords related to the application being tested. |
+| **Linear Scripting** | A simple scripting technique without any control structure in the test scripts. |
+| **Model-Based Testing** *(MBT)* | Testing based on or involving models. |
+| **Structured Scripting** | A scripting technique that builds and utilizes a library of reusable (parts of) scripts. |
+| **Test Adaptation Layer** | The layer in a test automation architecture which provides the necessary code to adapt test scripts on an abstract level to the various components, configurations or interfaces of the SUT. |
+| **Test Harness** | A test environment comprised of stubs and drivers needed to execute a test. |
+| **Data-Driven Testing** *(DDT)* | A scripting technique that stores test input and expected results in a table or spreadsheet, so that a single control script can execute all of the tests in the table. |
+| **Test Step** | A single interaction between an actor and the test object consisting of an input, an action, and an expected result. |
+| **Test Automation Solution** *(TAS)* | A realization/implementation of a test automation architecture, i.e. a combination of components implementing a specific test automation assignment. |
+| **Test-Driven Development** *(TDD)* | A software development approach in which test cases are developed, and often automated, before the software is developed to make those test cases pass. |
+| **Test Script** | A sequence of instructions for the execution of a test; commonly used to refer to a test procedure specification, especially an automated one. |
 
 ## TAE-3.1.1 (K2) : Explain the Major Capabilities in a Test Automation Architecture
 

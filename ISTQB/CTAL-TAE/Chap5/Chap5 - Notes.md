@@ -1,4 +1,4 @@
-## Chapitre 5 : Stratégies d'implémentation et de déploiement (90 minutes - K3)
+﻿## Chapitre 5 : Stratégies d'implémentation et de déploiement (90 minutes - K3)
 
 ### Objectifs
 
@@ -12,7 +12,7 @@ En apprendre plus sur :
 
 | **Mot** | **Définition** |
 |---------|----------------|
-| **test de contrat** | Type de test d'intégration vérifiant que les interfaces sont utilisées comme spécifié dans leurs contrats. |
+| **test de contrat** <br> (*Contract Testing*) | Type de test d'intégration vérifiant que les services peuvent communiquer entre eux et que les données partagées entre les services sont conformes à un ensemble de règles spécifiées (le contrat). |
 
 ### Introduction
 

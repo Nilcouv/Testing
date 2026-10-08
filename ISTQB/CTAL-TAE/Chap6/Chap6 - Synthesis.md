@@ -1,4 +1,4 @@
-# Synthesis
+﻿# Synthesis
 
 ## Test Automation Reporting and Metrics - Introduction
 
@@ -12,6 +12,16 @@ This chapter covers collection, analysis, and reporting of test automation data 
 *How to turn detailed logs into stakeholder-ready progress reports: content, publication channels, audience-specific views, modern dashboards, and AI-assisted log analysis*
 
 Sequence: collect data from the TAS and the SUT (6.1.1), analyze it to understand results (6.1.2), then construct and publish effective test progress reports (6.1.3).
+
+### Keywords
+
+| **Term** | **Definition** |
+|----------|------------------------------------------------------------------------|
+| **Measure** | The number or category assigned to an attribute of an entity by making a measurement. |
+| **Metric** | A measurement scale and the method used for measurement. |
+| **Test Logging** | The process of recording information about tests executed into a test log. |
+| **Test Progress Report** | A type of periodic test report that includes the progress of test activities against a baseline, risks, and alternatives requiring a decision. |
+| **Test Completion** | The activity that makes test assets available for later use, leaves test environments in a satisfactory condition and communicates the results of testing to relevant stakeholders. |
 
 ## TAE-6.1.1 (K3) : Apply Data Collection Methods from the Test Automation Solution and the System Under Test
 

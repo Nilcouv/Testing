@@ -1,4 +1,4 @@
-# Synthesis
+﻿# Synthesis
 
 ## Verifying the Test Automation Solution - Introduction
 
@@ -16,6 +16,12 @@ This chapter covers verification of the test automation infrastructure, through 
 If test automation is the safety net that catches SUT issues, this chapter is about checking the safety net itself.
 
 Sequence: verify the environment and tools (7.1.1), verify script and suite behaviour (7.1.2), diagnose unexpected results (7.1.3), then raise automation-code quality with static analysis (7.1.4).
+
+### Keywords
+
+| **Term** | **Definition** |
+|----------|------------------------------------------------------------------------|
+| **Static Analysis** | Analysis of software development artifacts (e.g. requirements or code) carried out without execution of these artifacts. Static analysis can identify potential defects (e.g. deviations from coding standards). |
 
 ## TAE-7.1.1 (K3) : Plan to Verify the Test Automation Environment Including Test Tool Setup
 

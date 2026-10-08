@@ -1,4 +1,4 @@
-# Synthesis
+﻿# Synthesis
 
 ## Test Automation Implementation - Introduction
 
@@ -12,6 +12,13 @@ This chapter explores how to put the test automation architecture into practice,
 *Factors that keep the TAS working as the SUT evolves: clean code,  design patterns, static analysis, branching — a pilot evaluation criterion and a long-term investment*
 
 The three themes form a sequence: the pilot (4.1) reveals deployment risks (4.2) and tests maintainability (4.3) before scaling.
+
+### Keywords
+
+| **Term** | **Definition** |
+|----------|------------------------------------------------------------------------|
+| **Risk** | A factor that could result in future negative consequences. |
+| **Test Context** | The set of conditions and circumstances under which tests are planned and executed (preconditions, data, configuration), enabling automated tests that are repeatable and atomic. |
 
 ## TAE-4.1.1 (K3) : Apply Guidelines that Support Effective Test Automation Pilot and Deployment Activities
 

@@ -1,4 +1,4 @@
-# Synthesis
+﻿# Synthesis
 
 ## Test Automation Implementation and Deployment Strategies - Introduction
 
@@ -12,6 +12,12 @@ This chapter covers integration to CI/CD pipelines (syllabus §5.1), through thr
 *API connections and documentation as baselines for automation, plus contract testing (consumer- vs provider-driven) to catch integration defects early*
 
 Sequence: apply automation at each test level within pipelines (5.1.1), explain testware configuration management (5.1.2), then explain API automation dependencies and contracts (5.1.3).
+
+### Keywords
+
+| **Term** | **Definition** |
+|----------|-------------------------------------------------------------------------------------------|
+| **Contract Testing** | A type of integration testing verifying that services can communicate with each other and that the data shared between the services conforms to a specified set of rules (the contract). |
 
 ## TAE-5.1.1 (K3) : Apply Test Automation at Different Test Levels within Pipelines
 

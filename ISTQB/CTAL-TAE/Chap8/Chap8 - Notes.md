@@ -1,4 +1,4 @@
-## Chapitre 8 : Amélioration continue (210 minutes - K4)
+﻿## Chapitre 8 : Amélioration continue (210 minutes - K4)
 
 ### Objectifs
 
@@ -10,8 +10,11 @@ En apprendre plus sur :
 - La contribution des outils d'Automatisation des tests au soutien et à la mise en place des tests
 
 ### **Mots-clés**
-- validation de schéma
-- histogramme de test
+
+| **Mot** | **Définition** |
+|---------|----------------|
+| **validation de schéma** <br> (*Schema Validation*) | Vérification qu'une structure de données (réponse API, enregistrement base de données, etc.) respecte un schéma prédéfini (éléments obligatoires, types, plages de valeurs). |
+| **histogramme de test** <br> (*Test Histogram*) | Rapport visuel des données de test sous forme d'histogramme, permettant d'identifier des tendances et des domaines d'amélioration (ex. cas de test fragiles). |
 
 ### **Objectifs d'apprentissage**
 

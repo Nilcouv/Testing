@@ -1,4 +1,12 @@
-# Chapitre 2
+﻿# Chapitre 2
+
+### Keywords
+
+| **Term** | **Definition** |
+|----------|------------------------------------------------------------------------|
+| **API Testing** | Testing performed by submitting commands to the software under test using programming interfaces of the application directly. |
+| **GUI Testing** | Testing performed by interacting with the software under test via the graphical user interface. |
+| **Testability** | The degree of effectiveness and efficiency with which test conditions can be established for a component or system, and tests can be performed to determine whether those conditions have been met. |
 
 ## Mooc - 2 Describe the configuration needs of an infrastructure that enable implemantion of test automation
 

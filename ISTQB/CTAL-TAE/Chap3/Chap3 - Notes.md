@@ -1,4 +1,4 @@
-## Chapitre 3 : Architecture d'Automatisation des tests (210 minutes - K3)
+﻿## Chapitre 3 : Architecture d'Automatisation des tests (210 minutes - K3)
 
 ### Objectifs
 
@@ -13,21 +13,21 @@ En apprendre plus sur :
 
 | **Mot** | **Définition** |
 |---------------|-----------------|
-| **développement piloté par les comportements** | Approche collaborative de développement où l'équipe se concentre sur la livraison du comportement attendu d'un composant pour le client. |
-| **capture/rejeux** | Approche d'automatisation des tests où les entrées vers l'objet de test sont enregistrées pendant les tests manuels pour générer des scripts automatisés. |
-| **tests génériques d'Automatisation des tests** | Représentation des couches, composants et interfaces d'une architecture d'automatisation des tests, permettant une approche structurée et modulaire. |
-| **architecture d'Automatisation des tests** | Structure organisationnelle et technique d'un système d'automatisation des tests, définissant les composants, leurs relations et les principes directeurs. |
-| **tests pilotés par les mots-clés** | Technique de script qui utilise des fichiers de données contenant non seulement les données de test mais aussi des mots-clés liés à l'application testée. |
-| **scripting linéaire** | Technique de script simple sans structure de contrôle dans les scripts de test. |
-| **tests basés sur des modèles** | Tests basés sur ou impliquant des modèles du système ou de ses composants. |
-| **scripting structuré** | Technique de script qui utilise des structures de contrôle et une organisation hiérarchique pour améliorer la maintenabilité. |
-| **couche d'adaptation des tests** | Couche dans une architecture d'automatisation des tests qui fournit les interfaces nécessaires pour interagir avec le système sous test. |
-| **harnais de tests** | Collection d'outils logiciels et de données de test configurés pour tester un programme en simulant l'environnement d'exécution. |
-| **test piloté par les données** | Technique de script qui stocke les données de test et les résultats attendus dans un tableau, permettant à un script de contrôle d'exécuter tous les tests. |
-| **étape de test** | Action individuelle la plus petite dans un script de test ou un cas de test. |
-| **solution d'Automatisation des tests** | Ensemble complet d'outils, de processus et de ressources mis en place pour automatiser les activités de test dans un contexte donné. |
-| **développement piloté par les tests** | Pratique de développement où les tests sont écrits avant le code de production. |
-| **script de test** | Séquence d'instructions qui peut être exécutée par un outil d'exécution de test. |
+| **développement piloté par les comportements** <br> (*BDD*) | Approche collaborative de développement où l'équipe se concentre sur la livraison du comportement attendu d'un composant ou d'un système pour le client. |
+| **capture/rejeux** <br> (*Capture/Playback*) | Approche d'Automatisation des tests où les entrées vers l'objet de test sont enregistrées pendant les tests manuels afin de générer des scripts de test automatisés exécutables ultérieurement. |
+| **architecture générique d'Automatisation des tests** <br> (*gTAA*) | Représentation des couches, composants et interfaces d'une architecture d'Automatisation des tests, permettant une approche structurée et modulaire pour implémenter l'Automatisation des tests. |
+| **architecture d'Automatisation des tests** <br> (*TAA*) | Instanciation de l'architecture générique d'Automatisation des tests pour définir l'architecture d'une solution d'Automatisation des tests (couches, composants, services et interfaces). |
+| **tests pilotés par les mots-clés** <br> (*KDT*) | Technique de script qui utilise des fichiers de données contenant non seulement les données de test et les résultats attendus, mais aussi des mots-clés liés à l'application testée. |
+| **scripting linéaire** <br> (*Linear Scripting*) | Technique de script simple sans structure de contrôle dans les scripts de test. |
+| **tests basés sur des modèles** <br> (*MBT*) | Tests basés sur ou impliquant des modèles. |
+| **scripting structuré** <br> (*Structured Scripting*) | Technique de script qui construit et utilise une bibliothèque de (parties de) scripts réutilisables. |
+| **couche d'adaptation des tests** <br> (*Test Adaptation Layer*) | Couche d'une architecture d'Automatisation des tests qui fournit le code nécessaire pour adapter les scripts de test abstraits aux divers composants, configurations ou interfaces du SUT. |
+| **harnais de tests** <br> (*Test Harness*) | Environnement de test composé des stubs et drivers nécessaires pour exécuter un test. |
+| **test piloté par les données** <br> (*DDT*) | Technique de script qui stocke les entrées de test et les résultats attendus dans un tableau ou une feuille de calcul, de sorte qu'un unique script de contrôle puisse exécuter tous les tests de la table. |
+| **étape de test** <br> (*Test Step*) | Interaction unique entre un acteur et l'objet de test, constituée d'une entrée, d'une action et d'un résultat attendu. |
+| **solution d'Automatisation des tests** <br> (*TAS*) | Réalisation/implémentation d'une architecture d'Automatisation des tests, c'est-à-dire une combinaison de composants réalisant une mission d'Automatisation des tests donnée. |
+| **développement piloté par les tests** <br> (*TDD*) | Approche de développement logiciel dans laquelle les cas de test sont développés et souvent automatisés avant que le logiciel ne soit développé pour les faire passer. |
+| **script de test** <br> (*Test Script*) | Séquence d'instructions pour l'exécution d'un test, souvent utilisée pour désigner une spécification de procédure de test, en particulier automatisée. |
 
 ### 3.1 Concepts de conception utilisés dans l'Automatisation des tests
 
