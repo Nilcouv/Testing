@@ -1,24 +1,27 @@
 ﻿# Synthesis
 
-## Test Automation Architecture - Introduction
+## Test Automation Architecture
 
-This chapter explores architecture concepts of Test Automation Implementation, such as:
+This chapter covers design concepts leveraged in test automation, through five learning objectives:
 
-- gTAA (Generic Test Automation Architecture)
-*and major capabilities. Provide a high-level framework on how test automation communicates with other systems*
-- TAS (Test Automation Solution) Design
-*Based on functional, non-functional and technical requirements*
-- TAF (Test Automation Framework) Layering
-*To organize code into layers, each with a specific responsibility (test scripts, business logic, libraries)*
-- Approaches to Automate Test Cases
-*From capture/replay, Linear Scripting to Structured Scripting, DDT (Data-Driven Testing) and BDD (Behavior-Driven Development).*
-- Design principles and patterns
-*to professionalize code writing*
+- **3.1** Design Concepts Leveraged in Test Automation
+  - TAE-3.1.1 (K2) Explain the major capabilities in a test automation architecture
+    *gTAA (generic test automation architecture) and its capabilities: high-level view of how automation communicates with other systems*
+  - TAE-3.1.2 (K2) Explain how to design a test automation solution
+    *TAS (test automation solution) design from functional, non-functional, and technical requirements*
+  - TAE-3.1.3 (K3) Apply layering of test automation frameworks
+    *TAF (test automation framework) layering: scripts, business logic, and libraries with clear responsibilities*
+  - TAE-3.1.4 (K3) Apply different approaches for automating test cases
+    *From capture/playback and linear scripting to structured scripting, DDT, KDT, TDD, and BDD*
+  - TAE-3.1.5 (K3) Apply design principles and design patterns in test automation
+    *OOP, SOLID, and design patterns to professionalize automation code*
+
+Sequence: understand gTAA capabilities (3.1.1), design the TAS (3.1.2), layer the TAF (3.1.3), choose scripting approaches (3.1.4), then apply principles and patterns (3.1.5).
 
 ### Keywords
 
-| **Term** | **Definition** |
-|----------|------------------------------------------------------------------------|
+| Term | Definition |
+| --- | --- |
 | **Behavior-Driven Development** *(BDD)* | A collaborative approach to development in which the team focuses on delivering expected behaviour of a component or system for the customer. |
 | **Capture/Playback** | A test automation approach where inputs to the test object are recorded during manual testing in order to generate automated test scripts that can be executed later. |
 | **Generic Test Automation Architecture** *(gTAA)* | Representation of the layers, components, and interfaces of a test automation architecture, allowing for a structured and modular approach to implement test automation. |
@@ -35,9 +38,11 @@ This chapter explores architecture concepts of Test Automation Implementation, s
 | **Test-Driven Development** *(TDD)* | A software development approach in which test cases are developed, and often automated, before the software is developed to make those test cases pass. |
 | **Test Script** | A sequence of instructions for the execution of a test; commonly used to refer to a test procedure specification, especially an automated one. |
 
-## TAE-3.1.1 (K2) : Explain the Major Capabilities in a Test Automation Architecture
+## 3.1 Design Concepts Leveraged in Test Automation
 
-### gTAA (Generic Test Automation Architecture)
+### TAE-3.1.1 (K2) Explain the major capabilities in a test automation architecture
+
+#### gTAA (Generic Test Automation Architecture)
 
 gTAA (Generic Test Automation Architecture) is a high-level design concept that gives an abstract view of how test automation communicates with connected systems — like an aerial photo of the ecosystem showing how everything connects together (SUT, project management, test management, configuration management). It also provides the capabilities that need to be covered when designing a TAA.
 
@@ -73,14 +78,14 @@ flowchart LR
 
 gTAA represents multiple interfaces interacting with the TAF, whose internal layers provide the core automation capabilities.
 
-### The interfaces of gTAA
+#### The interfaces of gTAA
 
 - **SUT interface**: Describes the connectivity between the SUT and the TAF (e.g., web elements, APIs). Ex. banking application: UI elements (frontend) and API calls (backend).
 - **Project management interface**: Describes how we track the *development progress of the automation itself* (stories, tasks, sprint status) — not test run results. Concretely: connection to tools like Jira/Azure DevOps where automation user stories and tasks are managed.
 - **Test management interface**: Describes the mapping between test case definitions and automated test cases (traceability). Concretely: link IDs between a test management tool (e.g., TestRail, Xray, ALM) and automated scripts/suites, so each automated test remains tied to its original test case definition. Ex. poorly defined interface → weeks spent reconciling which automated tests correspond to which (manual) test cases.
 - **Configuration management interface**: Describes CI/CD pipelines, environments, and testware. Helps manage versioning and deployment of automation code.
 
-### Capabilities provided by test automation tools and libraries
+#### Capabilities provided by test automation tools and libraries
 
 These are the core capabilities a TAA should cover (shown as layers inside the TAF in the gTAA diagram). They are selected from available tools according to project requirements.
 
@@ -98,7 +103,7 @@ Ex. Building a TAS (Test Automation Solution) for an online banking application:
 
 Implementing these capabilities creates a comprehensive TAS, able to test all aspects of the banking application.
 
-### Conclusion
+#### Conclusion (3.1.1)
 
 1. gTAA provides an abstract view of communication between automation and connected systems.
 2. Four key interfaces:
@@ -114,9 +119,9 @@ Implementing these capabilities creates a comprehensive TAS, able to test all as
 
 Understanding these capabilities is crucial for designing effective TAS, able to scale with the project, and adapt to changes in the SUT.
 
-## TAE-3.1.2 (K2) : Explain How to Design a Test Automation Solution
+### TAE-3.1.2 (K2) Explain how to design a test automation solution
 
-### What is a TAS (Test Automation Solution)?
+#### What is a TAS (Test Automation Solution)?
 
 A TAS is the complete package / everything you need for automating testing activities (beyond just tools/scripts). It is defined by understanding:
 
@@ -133,7 +138,7 @@ Ex. healthcare application:
 
 All of these requirements influence how the TAS is designed.
 
-### Implementing a TAS
+#### Implementing a TAS
 
 Implementation options:
 
@@ -145,7 +150,7 @@ Ex. healthcare project: Tricentis Tosca (UI testing — strong healthcare regula
 
 Note: Custom components/adapters specific to the SUT are almost always needed (off-the-shelf tools never cover every unique characteristic).
 
-### Role of TAA (Test Automation Architecture)
+#### Role of TAA (Test Automation Architecture)
 
 The TAA defines the technical design for the overall TAS (blueprint / master plan for automation efforts).
 
@@ -157,7 +162,7 @@ It must address:
 - Connecting to test management and defect management tools
 - Utilizing version control and repositories
 
-#### Selecting tools and libraries
+##### Selecting tools and libraries
 
 One of the most critical decisions.
 
@@ -176,13 +181,13 @@ Ex. React frontend + REST API:
 - Selenium + RestAssured (if the team prefers Java)
 - Cypress + Postman (if the team prefers JavaScript)
 
-#### Developing plugins / components
+##### Developing plugins / components
 
 No off-the-shelf solution covers all project needs. Almost always requires developments of custom plugins/components to extend the tool's functionality to the specific needs of the SUT/project.
 
 Ex. E-commerce project: unique checkout process that the selected tool could not interact with properly → custom component developed to understand the page structure (DOM = Document Object Model, the tree of HTML elements in the page) and interact reliably with the checkout page.
 
-#### Identifying connectivity and interface requirements
+##### Identifying connectivity and interface requirements
 
 Often overlooked until too late. Must define connectivity/interface requirements from the start, to avoid late surprises and redesigns.
 
@@ -197,13 +202,13 @@ Includes:
 
 Ex. TAF worked in development, but corporate firewall blocked required connections → had to redesign to fit security constraints.
 
-#### Connecting to test management and defect management tools
+##### Connecting to test management and defect management tools
 
 Automation does not exist in isolation — connect it to test management tools (e.g., TestRail, Xray, ALM) and defect management tools (e.g., Jira, Azure DevOps).
 
 Ex. When automated tests fail: auto-create a Jira ticket with screenshots/logs **and** update the test case status in TestRail. Saves time and reduces gaps.
 
-#### Utilizing version control and repositories
+##### Utilizing version control and repositories
 
 Automation requires code management, like software development. This goes through a code management strategy including:
 
@@ -214,7 +219,7 @@ Automation requires code management, like software development. This goes throug
 
 Ex. Project with an unplanned monolithic repository: repo became unwieldy → team obligated to painfully refactor into multiple repos by test level (unit, API, UI).
 
-### Real-world example: E-commerce website automation
+#### Real-world example: E-commerce website automation
 
 - **Requirements**
   - Functional: browse products, add to cart, checkout
@@ -226,7 +231,7 @@ Ex. Project with an unplanned monolithic repository: repo became unwieldy → te
 - **Integration**: Jira (defect management), TestRail (test cases management)
 - **Version control / CI**: Git (version control, repos organized by test type), Jenkins (continuous integration / CI pipeline), Docker (consistent, controlled test environments)
 
-### Common pitfalls to avoid
+#### Common pitfalls to avoid
 
 1. **Tool-first approach** — selection based on tool usage rather than testing needs
 2. **Ignoring maintainability** — bad TAS architecture planning making it unmaintainable and hard to scale as the application evolves
@@ -234,7 +239,7 @@ Ex. Project with an unplanned monolithic repository: repo became unwieldy → te
 4. **Neglecting reporting** — minimal investment limiting reporting capabilities and increasing difficulty to interpret test results
 5. **Siloed approach** — TAS development not integrated with the development process / SDLC
 
-### Conclusion
+#### Conclusion (3.1.2)
 
 TAS design is more than picking a tool and writing scripts. It requires:
 
@@ -247,9 +252,9 @@ TAS design is more than picking a tool and writing scripts. It requires:
 Test Automation is a journey, not a destination (evolve with the application, emergence of new techniques, etc.)
 
 
-## TAE-3.1.3 (K3) : Apply Layering of Test Automation Frameworks
+### TAE-3.1.3 (K3) Apply layering of test automation frameworks
 
-### What is a TAF (Test Automation Framework)?
+#### What is a TAF (Test Automation Framework)?
 
 TAF is the foundation of a TAS (Test Automation Solution). It often includes:
 
@@ -260,9 +265,9 @@ TAF is the foundation of a TAS (Test Automation Solution). It often includes:
 
 Layering organizes automation code to avoid maintenance nightmares (e.g., monolithic 2000-line scripts) and improve maintainability, reusability, and scalability.
 
-### The Three Main Layers
+#### The Three Main Layers
 
-#### TAF layers
+##### TAF layers
 
 ```mermaid
 flowchart TB
@@ -326,7 +331,7 @@ class BasePage:
     pass                                        # wait until element is ready (placeholder)
 ```
 
-### How these layers interact
+#### How these layers interact
 
 - Test scripts layer: **WHAT** to test (e.g., valid login)
 - Business logic layer: **HOW** to test on this SUT (enter username/password, click login)
@@ -335,7 +340,7 @@ class BasePage:
 This approach separates responsibilities, making the framework more flexible and easier to maintain.
 Ex. username field ID changes → update **only** the business logic layer; test scripts and core libraries stay unchanged.
 
-### Scaling test automation
+#### Scaling test automation
 
 ```mermaid
 flowchart TB
@@ -368,7 +373,7 @@ Core libraries provide a reusable base for **multiple TAFs**:
 
 Ex. Financial services company: a central test engineering team maintains the core libraries; each product team builds its own business logic and test scripts on top → new projects get automation running much faster.
 
-### Real-world example: E-commerce testing
+#### Real-world example: E-commerce testing
 
 Building a TAF for an e-commerce website:
 
@@ -391,7 +396,7 @@ Building a TAF for an e-commerce website:
    - `test_checkout_process`
    - `test_account_creation`
 
-### Benefits of layering
+#### Benefits of layering
 
 - **Maintainability**: when the application changes, usually only one layer needs an update (typically the business logic layer)
 - **Reusability**: core libraries shared across projects
@@ -399,32 +404,32 @@ Building a TAF for an e-commerce website:
 - **Readability**: test scripts focus on intent / business flow, not implementation details
 - **Division of labor**: e.g., technical experts on core libraries, domain experts on test scripts
 
-### Challenges and best practices
+#### Challenges and best practices
 
-#### Challenges
+##### Challenges
 
 - **Initial investment**: more time upfront than simple scripts; payoff in maintenance and scalability
 - **Learning curve**: higher complexity — team must understand layering and follow patterns consistently
 - **Over-engineering**: risk of creating too many layers or abstractions
 
-#### Best practices
+##### Best practices
 
 - **Start simple**: begin with the 3 main layers; add complexity later if needed
 - **Document well**: ensure everyone understands the purpose of each layer and how they interact with each other
 - **Use design patterns**: e.g., Page Object Model works well with the layered approach (organizing code in the 3 layers above; see later topics)
 - **Code reviews**: ensure layering principles are followed
 
-### Conclusion
+#### Conclusion (3.1.3)
 
 1. Layering creates maintainable, reusable, and scalable automation.
 2. Three layers: Test scripts (what), Business logic (how), Core libraries (tools).
 3. Saves long-term time despite upfront investment.
 
-## TAE-3.1.4 (K3) : Apply Different Approaches to Automate Test Cases
+### TAE-3.1.4 (K3) Apply different approaches for automating test cases
 
 Several approaches exist to automate test cases, beyond simple scripting. They represent a trade-off between simplicity to get started and long-term maintainability, and form an evolution from basic to more advanced techniques.
 
-### Capture/Playback
+#### Capture/Playback
 
 Records manual actions performed on the SUT and replays them automatically (ex. Selenium IDE, Katalon Recorder). It comes in two flavors:
 
@@ -448,7 +453,7 @@ Ex. Client needing about 50 test cases automated quickly before a major release.
 
 Good way to dip a toe into automation, or for very stable applications with few changes, but usually not a good long-term strategy.
 
-### Linear Scripting
+#### Linear Scripting
 
 Step-by-step scripts written without any custom libraries or functions, like writing a story without chapters. Unlike capture/playback, the code is written manually, though it often starts as a modified capture/playback script.
 
@@ -490,7 +495,7 @@ Ex. Project inherited with about 200 linear scripts. When the login page was red
 - Application changes may require updates in multiple places.
 - Requires some programming knowledge, though not advanced skills.
 
-### Structured Scripting
+#### Structured Scripting
 
 Professional approach introducing reusable elements: test libraries, test steps and user journeys shared across multiple scripts. It requires more programming knowledge but produces much more maintainable code. Instead of writing the login sequence in every test, a reusable `login()` function is created and called by any test.
 
@@ -527,7 +532,7 @@ Ex. E-commerce project with dozens of tests needing to add products to the cart.
 - Initial time investment to set up the structure and libraries.
 - More complex architecture for new team members to understand.
 
-### TDD (Test-Driven Development)
+#### TDD (Test-Driven Development)
 
 Development approach (rather than strictly a test automation approach) that results in automated tests: tests are written before the code they test. Follows the **red, green, refactor** cycle:
 
@@ -574,7 +579,7 @@ Ex. Project developing a critical medication dosage calculator. Tests were writt
 - Can feel slower initially, though it often saves time later by reducing bugs.
 - Risk of false confidence if tests don't cover important scenarios.
 
-### DDT (Data-Driven Testing)
+#### DDT (Data-Driven Testing)
 
 Separates test logic from test data, so the same test template runs with different data sets (like one exam template reused with different student names). Data typically comes from external sources: CSV files, spreadsheets, databases or XML files.
 
@@ -650,7 +655,7 @@ Ex. CSV columns: `test_id,username,password,expected_result`
 On failure, the report shows `TC02_wrong_password` instead of an anonymous row index.
 
 
-### KDT (Keyword-Driven Testing)
+#### KDT (Keyword-Driven Testing)
 
 Takes the separation of test logic and test data even further by defining high-level keywords representing actions or verifications (ex. `login`, `SearchProduct`, `AddToCart`), which tests then assemble as a sequence, like building with Lego blocks instead of sculpting from clay. Robot Framework is a popular open-source framework for this approach.
 
@@ -723,7 +728,7 @@ Customer Can Purchase Auto Insurance             # business-readable flow (no co
 
 Ex. Project that went overboard with keyword abstraction, ending up with hundreds of very specific keywords used only once or twice, making the framework hard to maintain. The lesson learned was to keep keywords at a consistent level of abstraction balancing reusability with clarity, starting with a small, well-designed set and growing it organically, with good documentation.
 
-### BDD (Behavior-Driven Development)
+#### BDD (Behavior-Driven Development)
 
 Extension of TDD focusing on the behavior of the system from the user's perspective, using natural language "Given-When-Then" scenarios so non-technical stakeholders can understand them. Scenarios are stored in feature files, and tools such as Cucumber, SpecFlow or JBehave translate them into executable tests.
 
@@ -769,7 +774,7 @@ Ex. Weekly "Three Amigos" sessions where a developer, a tester and a business an
 - Implementing and maintaining step definitions can be complex.
 - Debugging can be challenging when scenarios get complex.
 
-### Comparing the approaches
+#### Comparing the approaches
 
 | Criterion | Low | Medium | High |
 |---|---|---|---|
@@ -778,7 +783,7 @@ Ex. Weekly "Three Amigos" sessions where a developer, a tester and a business an
 | Scalability | Capture/Playback, Linear Scripting | Structured Scripting | DDT, TDD, KDT, BDD |
 | Business involvement | Capture/Playback, Linear Scripting, Structured Scripting | DDT, TDD | KDT, BDD |
 
-### Evolution and combination of approaches
+#### Evolution and combination of approaches
 
 Each approach represents an evolution addressing the limitations of the previous one:
 
@@ -797,7 +802,7 @@ The best strategy often combines several approaches based on the need at hand:
 
 Ex. E-commerce project combining TDD for back-end unit tests, structured scripting with DDT for API tests, KDT for the most common UI workflows, and BDD for critical user journeys such as checkout, leveraging the strengths of each approach where it made the most sense.
 
-### Conclusion
+#### Conclusion (3.1.4)
 
 1. There is no one-size-fits-all approach; the best strategy often combines several of them based on project needs, team skills and organizational culture.
 2. Capture/playback: easy to start but hard to maintain.
@@ -808,11 +813,13 @@ Ex. E-commerce project combining TDD for back-end unit tests, structured scripti
 7. Keyword-Driven Testing: use high-level keywords for business-readable tests.
 8. Behavior-Driven Development: natural language scenarios bridging technical and business worlds.
 
-## TAE-3.1.5.0 (K3) : Object Oriented Programming Principles
+### TAE-3.1.5 (K3) Apply design principles and design patterns in test automation
+
+#### Object-oriented programming principles
 
 Design principles and design patterns can sound theoretical, but are actually proven solutions to common problems in software design, like blueprints tested by thousands of developers over many years. Object-oriented programming principles are the foundation on which SOLID principles and design patterns are built.
 
-### Encapsulation
+##### Encapsulation
 
 Bundling data and the methods that work on that data within a single unit, restricting direct access to some of its components, like a car where the driver only needs the steering wheel, pedals and gears without knowing how the engine works internally. In test automation, it means hiding the complex stuff inside a class and only exposing what's necessary through public methods.
 
@@ -832,7 +839,7 @@ public class LoginPage {
 }
 ```
 
-### Abstraction
+##### Abstraction
 
 Simplifying complex systems by modeling classes based on essential properties and behaviors, while hiding unnecessary details, like using a TV remote: pressing a button without needing to understand the electrical signals sent to the TV. In test automation, abstraction helps create models of the application's components focused on what's needed for testing, without getting bogged down in implementation details.
 
@@ -878,7 +885,7 @@ public void testPageNavigation(Page page) {     // works with any Page implement
 
 Ex. Project needing to test the same functionality on both a web application and a mobile app. Creating an abstraction of the user interface that both implementations could follow made it possible to write the tests once and run them against both platforms. Abstraction separates what needs to be tested from how to interact with the system, making test code more maintainable.
 
-### Inheritance
+##### Inheritance
 
 Allows a class to inherit properties and methods from another class, creating a parent-child relationship where the child class can also add its own capabilities, like biological inheritance: traits are inherited, but unique ones exist too. In test automation, inheritance helps avoid code duplication by using base classes with common functionality.
 
@@ -939,7 +946,7 @@ public class ProductPage extends BasePage {     // child class: product page + a
 
 Ex. Project without inheritance, where every one of 30+ page classes duplicated about 50 to 60 lines of identical code for waiting mechanisms, screenshots and error logging. Updating the waiting mechanism required changing all 30 files. Refactoring to a base class with inheritance reduced the codebase size by about 30%, and later enhancing the screenshot functionality only required a change in `BasePage`, automatically benefiting every page class.
 
-### Polymorphism
+##### Polymorphism
 
 Allows objects of different classes to be treated as objects of a common base class, with the specific implementation used determined at runtime, like a TV remote's power button working the same way across different TV brands. In test automation, polymorphism helps write flexible code without complex conditionals.
 
@@ -996,18 +1003,18 @@ public class ErrorNotification implements Notification {  // error popup (same c
 
 Ex. E-commerce application with different product page types (physical, digital, subscription, bundled). A common `ProductPage` interface with methods like `addToCart` and `getPrice` let tests work with any product type without knowing its specific details. When a new product type was added later, only a new implementation of the interface was needed, and all existing tests kept working without any changes.
 
-### Conclusion
+##### Conclusion (OOP)
 
 1. Encapsulation hides implementation details behind public methods, so internal changes stay isolated.
 2. Abstraction separates what to test from how to interact with the system, enabling reuse across implementations or platforms.
 3. Inheritance avoids code duplication by sharing common functionality through base classes.
 4. Polymorphism lets different objects respond to the same call in different ways, avoiding complex conditional logic.
 
-## TAE-3.1.5.1 (K3) : Solid Principles
+#### SOLID principles
 
 SOLID principles are fundamental object-oriented design principles introduced by Robert C. Martin ("Uncle Bob"). Each letter of the acronym represents a principle, and following them makes code more maintainable, flexible and easier to understand, like following the rules for building a stable house that won't collapse as it's extended or renovated.
 
-### SRP (Single Responsibility Principle)
+##### SRP (Single Responsibility Principle)
 
 A class should have only one reason to change, only one job or responsibility, like not wanting the same person to be both chef and plumber: different skills, different problems. In test automation, each class should focus on testing one specific aspect of the application.
 
@@ -1050,7 +1057,7 @@ public class ReportUtils {                      // ONLY reporting work
 
 Ex. Project with a 3000-line `TestHelper` class handling database connections, UI interactions and report generation. Fixing a bug in one area risked breaking unrelated features, so touching the class was avoided. Refactoring to follow SRP produced smaller, focused classes; updating the database logic afterward only required changing `DatabaseUtils`, with no risk to the rest of the system.
 
-### OCP (Open-Closed Principle)
+##### OCP (Open-Closed Principle)
 
 Software should be open for extension but closed for modification: new functionality should be addable without changing existing code. In test automation, this means building frameworks that can be extended without modifying their core.
 
@@ -1099,7 +1106,7 @@ public class CreditCardValidator extends Validator {  // credit-card-only valida
 
 Ex. Reporting system initially supporting only HTML reports. Adding PDF support by modifying the existing reporting class broke some HTML reporting features. Refactoring to a `ReportGenerator` interface with separate HTML and PDF implementations allowed a later Excel report request to be added as a new implementation, without touching existing code.
 
-### LSP (Liskov Substitution Principle)
+##### LSP (Liskov Substitution Principle)
 
 Subclass objects should be replaceable with superclass objects without breaking the program: if class B is a subclass of class A, B should be usable anywhere A is used, like a recipe calling for any citrus fruit, orange or lemon, without needing to change the recipe.
 
@@ -1173,7 +1180,7 @@ class LoginTest {
 
 `ChromeBrowser` and `FirefoxBrowser` can be substituted for each other in tests because they both properly implement the `Browser` interface, unlike `Square`, which breaks the behavior expected from `Rectangle`.
 
-### ISP (Interface Segregation Principle)
+##### ISP (Interface Segregation Principle)
 
 Clients should not be forced to implement methods they don't use; smaller, specific interfaces are better than one bloated one. In test automation, this means splitting interfaces by functionality (ex. `LoginAction`, `SearchAction`, `CartAction`) instead of one massive `AppAction` interface.
 
@@ -1226,7 +1233,7 @@ class ProductPage implements Navigable, Purchasable {
 
 Ex. A `Reporter` interface with methods for starting reports, adding results, capturing screenshots and generating formats. Some reporting tools didn't support screenshots and ended up with empty, do-nothing implementations. Applying ISP split it into `BasicReporter`, `ScreenshotCapable` and `MultiFormatReporter` interfaces, making it clear which reporters supported which features, without placeholder methods for unsupported ones.
 
-### DIP (Dependency Inversion Principle)
+##### DIP (Dependency Inversion Principle)
 
 High-level modules should not depend on low-level modules; both should depend on abstractions, and abstractions should not depend on details, details should depend on abstractions. In practice: depend on interfaces or abstract classes, not concrete implementations, like plugging a device into an electrical outlet without needing to know how electricity is generated.
 
@@ -1273,7 +1280,7 @@ LoginTest firefoxTest = new LoginTest(new FirefoxDriver()); // same pattern with
 
 Ex. Tests originally depending directly on Selenium WebDriver. Switching some tests to Appium for mobile was a major effort due to API differences. Introducing a `Driver` interface implemented by both Selenium and Appium wrappers made switching drivers trivial, running the same tests on web and mobile by injecting a different driver implementation.
 
-### Conclusion
+##### Conclusion (SOLID)
 
 1. **SRP** (Single Responsibility Principle): a class should have only one reason to change.
 2. **OCP** (Open-Closed Principle): open for extension, closed for modification, new functionality is added rather than existing code changed.
@@ -1281,11 +1288,11 @@ Ex. Tests originally depending directly on Selenium WebDriver. Switching some te
 4. **ISP** (Interface Segregation Principle): prefer small, focused interfaces over large, general-purpose ones.
 5. **DIP** (Dependency Inversion Principle): depend on abstractions (interfaces), not concrete implementations.
 
-## TAE-3.1.5.2 (K3) : Design Patterns
+#### Design patterns
 
 Design patterns are proven solutions to common problems in software design, like recipes or blueprints tested by thousands of developers over many years. The following patterns are particularly useful in test automation.
 
-### Facade Pattern
+##### Facade Pattern
 
 Provides a simplified interface to a complex system or set of classes, like a hotel's front desk coordinating housekeeping, maintenance and the restaurant so guests only ever talk to one point of contact. In test automation, it hides the complexity of test libraries and exposes only what testers need to create test cases.
 
@@ -1341,7 +1348,7 @@ public void testLogin() {
 
 Instead of dealing with finding elements, waiting and interacting separately, the test just calls `login()`. Ex. Manual testers intimidated by the complexity of Selenium WebDriver were eased into automation gradually thanks to a simple facade wrapping the common actions: they started with high-level methods like `login()` and `searchForProduct()`, then learned the more complex underlying APIs as they gained confidence.
 
-### Singleton Pattern
+##### Singleton Pattern
 
 Ensures a class has only one instance and provides a global access point to it, like having only one principal at a school: one person in charge that everyone knows how to find. In test automation, it's often used for driver management, configuration and logging.
 
@@ -1388,7 +1395,7 @@ This ensures all tests use the same WebDriver instance, preventing issues like m
 
 Ex. Project where each test used to create its own browser instance; running tests in parallel opened dozens of Chrome windows and bogged down the test machine. Implementing a singleton `DriverManager` allowed controlling browser creation and reusing instances when appropriate, making tests run much faster.
 
-### POM (Page Object Model)
+##### POM (Page Object Model)
 
 Probably the most widely used design pattern in UI test automation. It creates a separate class for each page of the application, containing the page elements and the methods to interact with them, separating test logic from page-specific details.
 
@@ -1432,7 +1439,7 @@ test('should login successfully with valid credentials', async ({ page }) => {
 
 If the login page changes, only the `LoginPage` class needs updating, not every test that uses it. Ex. Login button ID changing from `loginBtn` to `submitLogin` only requires updating the `loginButton` locator in the `LoginPage` class, in one place.
 
-### Flow Model Pattern
+##### Flow Model Pattern
 
 An expansion of the Page Object Model, adding a layer of abstraction over page objects that stores the user flows interacting with multiple pages: page objects represent the "pages" of the application, flow models represent the "journeys" users take through those pages.
 
@@ -1482,14 +1489,14 @@ Without the flow model, this would require the test to directly interact with fi
 
 Ex. E-commerce project with complicated checkout flows involving multiple pages and different paths depending on customer type, payment method and shipping options. Flow models encapsulated these into easy-to-use methods like `completePurchaseWithCreditCard()` or `completePurchaseWithPayPal()`, making tests focused on business scenarios rather than navigation mechanics. The double layer of abstraction gives a clear separation between the *how* of interacting with page elements (page objects), the *what* of completing business processes (flow models), and the *why* of verifying application behavior (the tests).
 
-### Common pitfalls
+##### Common pitfalls
 
 - **Over-engineering** - start simple and refactor as needed, don't build complex abstractions just for the sake of it.
 - **Rigid framework** - don't build frameworks so rigid they can't adapt to changing requirements.
 - **Forgetting the goal** - the goal is to test the application, not to build a perfect framework; if a design makes tests harder to write or understand, reconsider it.
 - **Ignoring context** - what works for a large enterprise application might be overkill for a simple website, choose patterns appropriate to the context.
 
-### Best practices
+##### Best practices
 
 - **Use proven patterns** - start with established patterns like Page Object Model before experimenting with custom solutions.
 - **Prioritize readability** - tests should tell a story about how the application is used, not get lost in implementation details.
@@ -1497,10 +1504,18 @@ Ex. E-commerce project with complicated checkout flows involving multiple pages 
 - **Maintain independence** - each test should be able to run independently of others, avoiding dependencies between tests.
 - **Balance abstraction** - too much abstraction can make code hard to understand, too little can make it hard to maintain.
 
-### Conclusion
+##### Conclusion (design patterns)
 
 1. Test automation is a software development activity, so software design principles apply to it.
 2. The four OOP principles (encapsulation, abstraction, inheritance, polymorphism) provide the foundation for good test automation design.
 3. SOLID principles (SRP, OCP, LSP, ISP, DIP) help create more maintainable and flexible code.
 4. Key design patterns for test automation: Facade, Singleton, Page Object Model, and Flow Model.
 5. OOP + SOLID + Patterns lead to maintainable automation; POM + Flow models lead to scalable UI testing.
+
+## Chapter wrap-up
+
+1. Use gTAA to understand capabilities and interfaces before designing a TAA/TAS.
+2. Design the TAS from SUT requirements, tools, connectivity, and ecosystem fit.
+3. Layer the TAF so scripts, business logic, and libraries stay maintainable.
+4. Combine automation approaches to fit skill, risk, and lifespan.
+5. Apply OOP, SOLID, and patterns so automation code stays extensible.

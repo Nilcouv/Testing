@@ -4,12 +4,14 @@
 
 This chapter introduces test automation and why it exists, through three learning objectives:
 
-- TAE-1.1.1 — Explain the Advantages and Disadvantages of Test Automation
-  *What automation is (setup, execute, compare), what it gains, what it costs, and where it stops*
-- TAE-1.2.1 — Explain How Test Automation Is Applied Across SDLC Models
-  *How Waterfall, V-Model, and Agile change when automation starts, how it runs, and what that implies*
-- TAE-1.2.2 — Select Suitable Test Automation Tools for a Given SUT
-  *How to choose tools from SUT, project needs, and team skills, then validate with comparison and pilots*
+- **1.1** Purpose of Test Automation
+  - TAE-1.1.1 (K2) Explain the advantages and disadvantages of test automation
+    *What automation is (setup, execute, compare), what it gains, what it costs, and where it stops*
+- **1.2** Test Automation in the Software Development Lifecycle
+  - TAE-1.2.1 (K2) Explain how test automation is applied across different software development lifecycle models
+    *How Waterfall, V-Model, and Agile change when automation starts, how it runs, and what that implies*
+  - TAE-1.2.2 (K2) Select suitable test automation tools for a given system under test
+    *How to choose tools from SUT, project needs, and team skills, then validate with comparison and pilots*
 
 ### Keywords
 
@@ -21,7 +23,7 @@ This chapter introduces test automation and why it exists, through three learnin
 
 Sequence: understand what automation can and cannot do (1.1.1), place it in the development lifecycle (1.2.1), then select tools that fit the SUT and the team (1.2.2).
 
-## TAE-1.1.1 (K2) : Explain the Advantages and Disadvantages of Test Automation
+## TAE-1.1.1 (K2) : Explain the advantages and disadvantages of test automation
 
 Test automation uses specialised software to:
 
@@ -70,7 +72,7 @@ Keep these limits in mind:
 2. It costs upfront, needs maintenance, and can be brittle or wrong if scripts are buggy.
 3. Balance automated and manual testing: automation handles repetition; humans keep exploratory and judgement work.
 
-## TAE-1.2.1 (K2) : Explain How Test Automation Is Applied Across SDLC Models
+## TAE-1.2.1 (K2) : Explain how test automation is applied across different software development lifecycle models
 
 Automation timing and strategy depend on the SDLC (Software Development Life Cycle). There is no single approach that fits every model.
 
@@ -222,7 +224,7 @@ Short iterations (sprints). TAEs and business representatives can set roadmap an
 2. Timing of build and run drives how early defects appear and how expensive fixes are.
 3. Implement automation deliberately for the model, not by default the same way everywhere.
 
-## TAE-1.2.2 (K2) : Select Suitable Test Automation Tools for a Given SUT
+## TAE-1.2.2 (K2) : Select suitable test automation tools for a given system under test
 
 Analyze the SUT and project needs before picking tools. UI tools and web-service tools differ. There is no fixed limit on how many tools or features you may use, but cost always matters. Options include commercial off-the-shelf products and custom solutions on open-source technology. Team skill matters as much as technical fit.
 
